@@ -254,9 +254,8 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
                   <button
                     type="submit"
                     disabled={!captchaToken || loading}
-                    className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ${
-                      !captchaToken || loading ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
+                    className={`px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 ${!captchaToken || loading ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
                   >
                     {loading ? 'Scheduling...' : 'Schedule Meeting'}
                   </button>
