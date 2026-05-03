@@ -4,12 +4,22 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   IoBook, IoDocumentText, IoPlay, IoSearch, 
-  IoFilter, IoChevronForward, IoCloudDownload 
+  IoChevronForward 
 } from 'react-icons/io5';
 import Link from 'next/link';
 
+interface Material {
+  _id: string;
+  title: string;
+  description: string;
+  type: 'video' | 'pdf' | 'note';
+  url: string;
+  subject: string;
+  createdAt: string;
+}
+
 export default function MaterialsPage() {
-  const [materials, setMaterials] = useState<any[]>([]);
+  const [materials, setMaterials] = useState<Material[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSubject, setSelectedSubject] = useState('All');
@@ -23,7 +33,7 @@ export default function MaterialsPage() {
         if (data.success) {
           setMaterials(data.materials);
           // Extract unique subjects
-          const uniqueSubjects = ['All', ...new Set(data.materials.map((m: any) => m.subject))] as string[];
+          const uniqueSubjects = ['All', ...new Set(data.materials.map((m: Material) => m.subject))] as string[];
           setSubjects(uniqueSubjects);
         }
       } catch (error) {

@@ -61,6 +61,30 @@ interface Newsletter {
   updatedAt: Date;
 }
 
+interface Material {
+  _id: string;
+  title: string;
+  type: 'pdf' | 'video' | 'note';
+  url: string;
+  subject: string;
+  class: string;
+}
+
+interface Question {
+  question: string;
+  options: string[];
+  correctOption: number;
+}
+
+interface Exam {
+  _id: string;
+  title: string;
+  subject: string;
+  class: string;
+  duration: number;
+  questions: Question[];
+}
+
 export default function AdminDashboard() {
   const [stats, setStats] = useState<DashboardStats>({
     totalTutors: 0,
@@ -73,8 +97,8 @@ export default function AdminDashboard() {
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [classes, setClasses] = useState<ClassSchedule[]>([]);
   const [subscribers, setSubscribers] = useState<Newsletter[]>([]);
-  const [materials, setMaterials] = useState<any[]>([]);
-  const [exams, setExams] = useState<any[]>([]);
+  const [materials, setMaterials] = useState<Material[]>([]);
+  const [exams, setExams] = useState<Exam[]>([]);
   const [activeTab, setActiveTab] = useState<'tutors' | 'meetings' | 'classes' | 'subscribers' | 'materials' | 'exams'>('tutors');
   const [isAddingMaterial, setIsAddingMaterial] = useState(false);
   const [isAddingExam, setIsAddingExam] = useState(false);
@@ -430,7 +454,7 @@ export default function AdminDashboard() {
         <form onSubmit={handleAddMaterial} className="mb-6 p-4 border rounded bg-gray-50">
           <div className="grid grid-cols-2 gap-4">
             <input type="text" placeholder="Title" required className="p-2 border rounded" value={newMaterial.title} onChange={e => setNewMaterial({...newMaterial, title: e.target.value})} />
-            <select className="p-2 border rounded" value={newMaterial.type} onChange={e => setNewMaterial({...newMaterial, type: e.target.value as any})}>
+            <select className="p-2 border rounded" value={newMaterial.type} onChange={e => setNewMaterial({...newMaterial, type: e.target.value as 'pdf' | 'video' | 'note'})}>
               <option value="pdf">PDF</option>
               <option value="video">Video</option>
               <option value="note">Note</option>

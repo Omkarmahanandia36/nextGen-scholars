@@ -33,7 +33,7 @@ export async function GET(request: Request) {
       success: true,
       materials
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Materials API Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }

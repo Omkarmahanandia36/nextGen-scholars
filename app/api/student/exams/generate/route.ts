@@ -42,11 +42,11 @@ export async function POST(request: Request) {
       message: 'Exam generated successfully',
       examId: result.insertedId
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Exam Generation API Error:', error);
     return NextResponse.json({ 
       success: false, 
-      message: error.message || 'Internal server error' 
+      message: error instanceof Error ? error.message : 'Internal server error' 
     }, { status: 500 });
   }
 }

@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       success: true, 
       message: 'Password reset link has been sent to your email.' 
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Forgot Password API Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }

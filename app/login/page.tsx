@@ -49,9 +49,9 @@ function LoginForm() {
       } else {
         router.push('/dashboard');
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during login';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

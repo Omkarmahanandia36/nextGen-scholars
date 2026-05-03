@@ -31,7 +31,7 @@ export async function GET() {
       exams,
       subjects: profile.subjects
     });
-  } catch (error: any) {
+  } catch {
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }
 }

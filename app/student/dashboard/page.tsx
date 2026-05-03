@@ -1,12 +1,24 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { 
-  IoBook, IoDocumentText, IoCalendar, IoStatsChart, 
-  IoLogOut, IoPerson, IoNotifications, IoPlay, IoArrowForward
+  IoBook, IoDocumentText, IoStatsChart, 
+  IoNotifications, IoPlay, IoArrowForward
 } from 'react-icons/io5';
 import Link from 'next/link';
+
+interface Material {
+  title: string;
+  url: string;
+  type: string;
+  subject: string;
+  createdAt: string;
+}
+
+interface Exam {
+  title: string;
+  subject: string;
+}
 
 interface DashboardData {
   user: {
@@ -14,8 +26,8 @@ interface DashboardData {
     className: string;
     subjects: string[];
   };
-  recentMaterials: any[];
-  upcomingExams: any[];
+  recentMaterials: Material[];
+  upcomingExams: Exam[];
   stats: {
     materialsCount: number;
     examsCount: number;

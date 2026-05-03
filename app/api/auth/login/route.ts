@@ -30,14 +30,16 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Login Error:', error);
     
-    if (error.message === 'Invalid email or password' || error.message.includes('required fields')) {
-      return NextResponse.json(
-        { success: false, message: error.message },
-        { status: 401 }
-      );
+    if (error instanceof Error) {
+      if (error.message === 'Invalid email or password' || error.message.includes('required fields')) {
+        return NextResponse.json(
+          { success: false, message: error.message },
+          { status: 401 }
+        );
+      }
     }
 
     return NextResponse.json(

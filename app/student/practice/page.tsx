@@ -1,16 +1,24 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { 
   IoDocumentText, IoTime, IoChevronForward, IoCheckmarkCircle, 
-  IoSparkles, IoAddCircle, IoRefreshCircle, IoAlertCircle
+  IoSparkles, IoAddCircle, IoAlertCircle
 } from 'react-icons/io5';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+interface Exam {
+  _id: string;
+  title: string;
+  subject: string;
+  durationMinutes: number;
+  questions: unknown[];
+}
+
 export default function PracticeExamsPage() {
-  const [exams, setExams] = useState<any[]>([]);
+  const [exams, setExams] = useState<Exam[]>([]);
   const [subjects, setSubjects] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
@@ -18,7 +26,7 @@ export default function PracticeExamsPage() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  const fetchExams = async () => {
+  const fetchExams = useCallback(async () => {
     try {
       const response = await fetch('/api/student/exams');
       const data = await response.json();
@@ -34,11 +42,11 @@ export default function PracticeExamsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedSubject]);
 
   useEffect(() => {
     fetchExams();
-  }, []);
+  }, [fetchExams]);
 
   const handleGenerateAIQuiz = async () => {
     if (!selectedSubject) return;
@@ -59,8 +67,8 @@ export default function PracticeExamsPage() {
       } else {
         setError(data.message || 'Failed to generate quiz');
       }
-    } catch (err) {
-      setError('Something went wrong. Please try again.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setGenerating(false);
     }
@@ -101,7 +109,7 @@ export default function PracticeExamsPage() {
               <span className="font-bold text-sm uppercase tracking-wider">AI Powered</span>
             </div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Generate Instant Quiz</h2>
-            <p className="text-gray-500 text-sm mb-6">Can't find an exam? Let our AI create a custom practice test for you right now.</p>
+            <p className="text-gray-500 text-sm mb-6">Can&apos;t find an exam? Let our AI create a custom practice test for you right now.</p>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <select 

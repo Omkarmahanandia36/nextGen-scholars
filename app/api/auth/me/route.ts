@@ -2,7 +2,13 @@ import { NextResponse } from 'next/server';
 import { authService } from '@/backend/services/auth.service';
 import { cookies } from 'next/headers';
 import clientPromise from '@/backend/config/mongodb';
-import { ObjectId } from 'mongodb';
+import { ObjectId, WithId, Document } from 'mongodb';
+
+interface Tutor extends WithId<Document> {
+  name: string;
+  specialization: string;
+  imageUrl?: string;
+}
 
 export const dynamic = 'force-dynamic';
 
@@ -30,10 +36,10 @@ export async function GET() {
 
     const profile = await db.collection('student_profiles').findOne({ userId: user._id });
     
-    let tutors: any[] = [];
+    let tutors: Tutor[] = [];
     if (user.role === 'student' && profile?.tutorIds) {
       const tutorObjectIds = profile.tutorIds.map((id: string) => new ObjectId(id));
-      tutors = await db.collection('tutors').find({ _id: { $in: tutorObjectIds } }).toArray();
+      tutors = await db.collection('tutors').find({ _id: { $in: tutorObjectIds } }).toArray() as Tutor[];
     }
 
     return NextResponse.json({
@@ -44,14 +50,14 @@ export async function GET() {
         email: user.email,
         role: user.role,
         onboardingComplete: profile?.onboardingComplete || false,
-        tutors: tutors.map((t: any) => ({
+        tutors: tutors.map((t: Tutor) => ({
           name: t.name,
           specialization: t.specialization,
           imageUrl: t.imageUrl
         }))
       }
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }
 }

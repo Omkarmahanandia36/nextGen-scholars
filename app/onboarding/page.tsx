@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { IoBook, IoSchool, IoArrowForward } from 'react-icons/io5';
@@ -57,8 +57,8 @@ export default function OnboardingPage() {
       }
 
       router.push('/student/dashboard');
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Onboarding failed');
     } finally {
       setLoading(false);
     }
@@ -74,7 +74,7 @@ export default function OnboardingPage() {
         >
           <div className="text-center mb-12">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome to NextGen Scholar!</h1>
-            <p className="text-gray-600">Let's personalize your learning experience.</p>
+            <p className="text-gray-600">Let&apos;s personalize your learning experience.</p>
             
             {/* Progress Bar */}
             <div className="mt-8 flex items-center justify-center space-x-4">

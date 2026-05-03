@@ -42,7 +42,7 @@ export async function GET() {
         subjects: profile?.subjects || []
       }
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Profile GET API Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }
@@ -65,7 +65,7 @@ export async function PATCH(request: Request) {
     const body = await request.json();
     const { name, className, subjects } = body;
 
-    const result = await StudentService.updateProfile(decoded.userId, {
+    await StudentService.updateProfile(decoded.userId, {
       name,
       className,
       subjects
@@ -75,7 +75,7 @@ export async function PATCH(request: Request) {
       success: true,
       message: 'Profile updated successfully'
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Profile PATCH API Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }

@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
       } else {
         setError(data.message || 'Something went wrong');
       }
-    } catch (err: any) {
+    } catch {
       setError('Failed to send reset link. Please try again.');
     } finally {
       setLoading(false);

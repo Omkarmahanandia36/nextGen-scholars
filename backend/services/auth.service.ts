@@ -6,6 +6,16 @@ import { ObjectId } from 'mongodb';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_jwt_key_12345';
 
+interface TokenPayload {
+  userId: string;
+  email: string;
+  name: string;
+  role: string;
+  onboardingComplete: boolean;
+  iat?: number;
+  exp?: number;
+}
+
 export class AuthService {
   async signup(name: string, email: string, password: string) {
     if (!name || !email || !password) {
@@ -66,8 +76,8 @@ export class AuthService {
 
     const profile = await db.collection<StudentProfile>('student_profiles').findOne({ userId: user._id });
 
-    const payload = { 
-      userId: user._id, 
+    const payload: TokenPayload = { 
+      userId: user._id!.toString(), 
       email: user.email, 
       name: user.name,
       role: user.role,
@@ -88,13 +98,13 @@ export class AuthService {
     };
   }
 
-  generateToken(payload: any) {
+  generateToken(payload: TokenPayload) {
     return jwt.sign(payload, JWT_SECRET, { expiresIn: '7d' });
   }
 
   async verifyToken(token: string) {
     try {
-      return jwt.verify(token, JWT_SECRET) as any;
+      return jwt.verify(token, JWT_SECRET) as TokenPayload;
     } catch (error) {
       return null;
     }

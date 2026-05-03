@@ -5,6 +5,10 @@ import clientPromise from '@/backend/config/mongodb';
 import { ObjectId } from 'mongodb';
 import { cookies } from 'next/headers';
 
+interface Question {
+  correctOptionIndex: number;
+}
+
 export const dynamic = 'force-dynamic';
 
 export async function POST(
@@ -38,7 +42,7 @@ export async function POST(
 
     // Calculate score
     let score = 0;
-    const processedAnswers = exam.questions.map((q: any, index: number) => {
+    const processedAnswers = exam.questions.map((q: Question, index: number) => {
       const isCorrect = answers[index] === q.correctOptionIndex;
       if (isCorrect) score++;
       return {
@@ -57,10 +61,10 @@ export async function POST(
       answers: processedAnswers,
     };
 
-    await ExamService.submitResult(result as any);
+    await ExamService.submitResult(result);
 
     return NextResponse.json({ success: true, result });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Submit Exam Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }

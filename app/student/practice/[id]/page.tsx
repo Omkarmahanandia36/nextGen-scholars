@@ -1,27 +1,45 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import { IoTime, IoChevronForward, IoChevronBack, IoCheckmarkCircle, IoAlertCircle } from 'react-icons/io5';
 
+interface Question {
+  questionText: string;
+  options: string[];
+}
+
+interface Exam {
+  title: string;
+  subject: string;
+  durationMinutes: number;
+  questions: Question[];
+}
+
+interface ExamResult {
+  score: number;
+  totalQuestions: number;
+}
+
 export default function TakeExamPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [exam, setExam] = useState<any>(null);
+  const [exam, setExam] = useState<Exam | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [timeLeft, setTimeLeft] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<ExamResult | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [, setIsFullScreen] = useState(false);
 
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+      document.documentElement.requestFullscreen().catch((err: unknown) => {
+        const errorMessage = err instanceof Error ? err.message : String(err);
+        console.error(`Error attempting to enable full-screen mode: ${errorMessage}`);
       });
     }
   };
@@ -60,22 +78,7 @@ export default function TakeExamPage() {
     fetchExam();
   }, [id]);
 
-  useEffect(() => {
-    if (timeLeft > 0 && !submitted) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer);
-    } else if (timeLeft === 0 && exam && !submitted) {
-      handleSubmit();
-    }
-  }, [timeLeft, submitted, exam]);
-
-  const handleAnswer = (optionIndex: number) => {
-    const newAnswers = [...answers];
-    newAnswers[currentQuestion] = optionIndex;
-    setAnswers(newAnswers);
-  };
-
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     if (document.fullscreenElement) {
       document.exitFullscreen();
     }
@@ -93,6 +96,21 @@ export default function TakeExamPage() {
     } catch (error) {
       console.error('Error submitting exam:', error);
     }
+  }, [id, answers]);
+
+  useEffect(() => {
+    if (timeLeft > 0 && !submitted) {
+      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(timer);
+    } else if (timeLeft === 0 && exam && !submitted) {
+      handleSubmit();
+    }
+  }, [timeLeft, submitted, exam, handleSubmit]);
+
+  const handleAnswer = (optionIndex: number) => {
+    const newAnswers = [...answers];
+    newAnswers[currentQuestion] = optionIndex;
+    setAnswers(newAnswers);
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;

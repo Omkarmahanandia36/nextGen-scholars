@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Onboarding API Error:', error);
     return NextResponse.json(
       { success: false, message: 'Internal server error' },

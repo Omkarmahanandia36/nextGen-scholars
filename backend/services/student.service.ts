@@ -66,7 +66,7 @@ export class StudentService {
   static async getMaterials(className: string, subject?: string) {
     const client = await clientPromise;
     const db = client.db();
-    const query: any = { className };
+    const query: { className: string; subject?: string } = { className };
     if (subject) query.subject = subject;
     
     return db.collection('materials').find(query).sort({ createdAt: -1 }).toArray();
@@ -77,7 +77,7 @@ export class StudentService {
     const db = client.db();
     const today = new Date().toISOString().split('T')[0];
     
-    const query: any = { className, date: today };
+    const query: { className: string; date: string; subject?: string } = { className, date: today };
     if (subject) query.subject = subject;
     
     return db.collection('practice_exams').find(query).toArray();

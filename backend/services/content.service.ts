@@ -54,7 +54,7 @@ export class AdminContentService {
 }
 
 export class ExamService {
-  static async submitResult(result: Omit<ExamResult, '_id'>) {
+  static async submitResult(result: Omit<ExamResult, '_id' | 'completedAt'>) {
     const client = await clientPromise;
     const db = client.db();
     return db.collection('exam_results').insertOne({

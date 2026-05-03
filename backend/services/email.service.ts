@@ -8,7 +8,46 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export const sendScheduleEmail = async (formData: any) => {
+interface ScheduleFormData {
+  studentName: string;
+  email: string;
+  phone: string;
+  courseName: string;
+  subjects: string[];
+  preferredDays: string[];
+  preferredTime: string;
+  message?: string;
+}
+
+interface MeetingFormData {
+  name: string;
+  email: string;
+  phone: string;
+  type: 'call' | 'video' | 'message';
+  preferredDate?: string;
+  preferredTime?: string;
+  message?: string;
+}
+
+interface TutorFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  qualification: string;
+  specialization: string;
+  subjects: string[] | string;
+  experience: string;
+  teachingMode: string[] | string;
+}
+
+interface MailOptions {
+  from?: string;
+  to: string;
+  subject: string;
+  html: string;
+}
+
+export const sendScheduleEmail = async (formData: ScheduleFormData) => {
   const { studentName, email, phone, courseName, subjects, preferredDays, preferredTime, message } = formData;
 
   const mailOptions = {
@@ -67,7 +106,7 @@ export const sendScheduleEmail = async (formData: any) => {
   return await sendMail(mailOptions);
 };
 
-export const sendMeetingEmail = async (formData: any) => {
+export const sendMeetingEmail = async (formData: MeetingFormData) => {
   const { name, email, phone, type, preferredDate, preferredTime, message } = formData;
 
   const typeLabels: Record<string, string> = {
@@ -161,7 +200,7 @@ export const sendNewsletterEmail = async (email: string) => {
   return await sendMail(mailOptions);
 };
 
-export const sendTutorRegistrationEmail = async (formData: any) => {
+export const sendTutorRegistrationEmail = async (formData: TutorFormData) => {
   const { fullName, email, phone, qualification, specialization, subjects, experience, teachingMode } = formData;
 
   const mailOptions = {
@@ -217,7 +256,7 @@ export const sendTutorRegistrationEmail = async (formData: any) => {
   return await sendMail(mailOptions);
 };
 
-const sendMail = async (mailOptions: any) => {
+const sendMail = async (mailOptions: MailOptions) => {
   try {
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.warn('EMAIL_USER or EMAIL_PASS not found in environment variables. Logging email content instead:');

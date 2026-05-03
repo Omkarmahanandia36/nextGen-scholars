@@ -10,13 +10,13 @@ export async function POST(request: Request) {
     const result = await authService.signup(name, email, password);
 
     return NextResponse.json(result, { status: 201 });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Internal server error';
     console.error('Signup Error:', error);
     
-    if (error.message.includes('already exists') || error.message.includes('required fields')) {
+    if (errorMessage.includes('already exists') || errorMessage.includes('required fields')) {
       return NextResponse.json(
-        { success: false, message: error.message },
+        { success: false, message: errorMessage },
         { status: 400 }
       );
     }

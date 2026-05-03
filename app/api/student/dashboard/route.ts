@@ -48,7 +48,7 @@ export async function GET() {
         }
       }
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Dashboard API Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }
