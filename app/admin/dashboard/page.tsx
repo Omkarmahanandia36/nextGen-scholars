@@ -73,10 +73,17 @@ export default function AdminDashboard() {
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [classes, setClasses] = useState<ClassSchedule[]>([]);
   const [subscribers, setSubscribers] = useState<Newsletter[]>([]);
-  const [activeTab, setActiveTab] = useState<'tutors' | 'meetings' | 'classes' | 'subscribers'>('tutors');
+  const [materials, setMaterials] = useState<any[]>([]);
+  const [exams, setExams] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<'tutors' | 'meetings' | 'classes' | 'subscribers' | 'materials' | 'exams'>('tutors');
+  const [isAddingMaterial, setIsAddingMaterial] = useState(false);
+  const [isAddingExam, setIsAddingExam] = useState(false);
+  const [newMaterial, setNewMaterial] = useState({ title: '', type: 'pdf', url: '', subject: '', class: '' });
+  const [newExam, setNewExam] = useState({ title: '', subject: '', class: '', duration: 30, questions: [{ question: '', options: ['', '', '', ''], correctOption: 0 }] });
 
   useEffect(() => {
     verifyAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const verifyAuth = async () => {
@@ -98,17 +105,21 @@ export default function AdminDashboard() {
 
   const fetchAllData = async () => {
     try {
-      const [tutorsRes, meetingsRes, classesRes, subscribersRes] = await Promise.all([
+      const [tutorsRes, meetingsRes, classesRes, subscribersRes, materialsRes, examsRes] = await Promise.all([
         fetch('/api/tutors').then(res => res.json()),
         fetch('/api/meetings').then(res => res.json()),
         fetch('/api/schedule-class').then(res => res.json()),
         fetch('/api/newsletter').then(res => res.json()),
+        fetch('/api/admin/materials').then(res => res.json()),
+        fetch('/api/admin/exams').then(res => res.json()),
       ]);
 
       setTutors(tutorsRes.tutors || []);
       setMeetings(meetingsRes.meetings || []);
       setClasses(classesRes.schedules || []);
       setSubscribers(subscribersRes.subscribers || []);
+      setMaterials(Array.isArray(materialsRes) ? materialsRes : []);
+      setExams(Array.isArray(examsRes) ? examsRes : []);
 
       setStats({
         totalTutors: tutorsRes.tutors?.length || 0,
@@ -118,6 +129,42 @@ export default function AdminDashboard() {
       });
     } catch (error) {
       console.error('Error fetching data:', error);
+    }
+  };
+
+  const handleAddMaterial = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/admin/materials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newMaterial),
+      });
+      if (response.ok) {
+        setIsAddingMaterial(false);
+        setNewMaterial({ title: '', type: 'pdf', url: '', subject: '', class: '' });
+        fetchAllData();
+      }
+    } catch (error) {
+      console.error('Error adding material:', error);
+    }
+  };
+
+  const handleAddExam = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/admin/exams', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newExam),
+      });
+      if (response.ok) {
+        setIsAddingExam(false);
+        setNewExam({ title: '', subject: '', class: '', duration: 30, questions: [{ question: '', options: ['', '', '', ''], correctOption: 0 }] });
+        fetchAllData();
+      }
+    } catch (error) {
+      console.error('Error adding exam:', error);
     }
   };
 
@@ -141,7 +188,8 @@ export default function AdminDashboard() {
     if (!confirm('Are you sure you want to delete this item?')) return;
 
     try {
-      const response = await fetch(`/api/${collection}/${id}`, {
+      const url = collection.startsWith('admin/') ? `/api/${collection}/${id}` : `/api/${collection}/${id}`;
+      const response = await fetch(url, {
         method: 'DELETE',
       });
 
@@ -371,6 +419,143 @@ export default function AdminDashboard() {
     </div>
   );
 
+  const renderMaterials = () => (
+    <div>
+      <div className="flex justify-between mb-4">
+        <h3 className="text-lg font-medium">Learning Materials</h3>
+        <button onClick={() => setIsAddingMaterial(true)} className="bg-blue-600 text-white px-4 py-2 rounded">Add Material</button>
+      </div>
+
+      {isAddingMaterial && (
+        <form onSubmit={handleAddMaterial} className="mb-6 p-4 border rounded bg-gray-50">
+          <div className="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="Title" required className="p-2 border rounded" value={newMaterial.title} onChange={e => setNewMaterial({...newMaterial, title: e.target.value})} />
+            <select className="p-2 border rounded" value={newMaterial.type} onChange={e => setNewMaterial({...newMaterial, type: e.target.value as any})}>
+              <option value="pdf">PDF</option>
+              <option value="video">Video</option>
+              <option value="note">Note</option>
+            </select>
+            <input type="text" placeholder="URL" required className="p-2 border rounded" value={newMaterial.url} onChange={e => setNewMaterial({...newMaterial, url: e.target.value})} />
+            <input type="text" placeholder="Subject" required className="p-2 border rounded" value={newMaterial.subject} onChange={e => setNewMaterial({...newMaterial, subject: e.target.value})} />
+            <input type="text" placeholder="Class" required className="p-2 border rounded" value={newMaterial.class} onChange={e => setNewMaterial({...newMaterial, class: e.target.value})} />
+          </div>
+          <div className="mt-4 flex space-x-2">
+            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">Save</button>
+            <button type="button" onClick={() => setIsAddingMaterial(false)} className="bg-gray-400 text-white px-4 py-2 rounded">Cancel</button>
+          </div>
+        </form>
+      )}
+
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject/Class</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {materials.map((m) => (
+              <tr key={m._id}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{m.title}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">{m.type}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{m.subject} - {m.class}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button onClick={() => handleDelete('admin/materials', m._id)} className="text-red-600 hover:text-red-900"><FaTrash /></button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
+  const renderExams = () => (
+    <div>
+      <div className="flex justify-between mb-4">
+        <h3 className="text-lg font-medium">Practice Exams</h3>
+        <button onClick={() => setIsAddingExam(true)} className="bg-blue-600 text-white px-4 py-2 rounded">Add Exam</button>
+      </div>
+
+      {isAddingExam && (
+        <form onSubmit={handleAddExam} className="mb-6 p-4 border rounded bg-gray-50">
+          <div className="grid grid-cols-2 gap-4 mb-4">
+            <input type="text" placeholder="Exam Title" required className="p-2 border rounded" value={newExam.title} onChange={e => setNewExam({...newExam, title: e.target.value})} />
+            <input type="text" placeholder="Subject" required className="p-2 border rounded" value={newExam.subject} onChange={e => setNewExam({...newExam, subject: e.target.value})} />
+            <input type="text" placeholder="Class" required className="p-2 border rounded" value={newExam.class} onChange={e => setNewExam({...newExam, class: e.target.value})} />
+            <input type="number" placeholder="Duration (mins)" required className="p-2 border rounded" value={newExam.duration} onChange={e => setNewExam({...newExam, duration: parseInt(e.target.value)})} />
+          </div>
+          
+          <div className="space-y-4 mb-4">
+            <h4 className="font-medium">Questions</h4>
+            {newExam.questions.map((q, idx) => (
+              <div key={idx} className="p-3 border rounded bg-white">
+                <input type="text" placeholder={`Question ${idx + 1}`} required className="w-full p-2 border rounded mb-2" value={q.question} onChange={e => {
+                  const qs = [...newExam.questions];
+                  qs[idx].question = e.target.value;
+                  setNewExam({...newExam, questions: qs});
+                }} />
+                <div className="grid grid-cols-2 gap-2">
+                  {q.options.map((opt, oIdx) => (
+                    <input key={oIdx} type="text" placeholder={`Option ${oIdx + 1}`} required className="p-2 border rounded" value={opt} onChange={e => {
+                      const qs = [...newExam.questions];
+                      qs[idx].options[oIdx] = e.target.value;
+                      setNewExam({...newExam, questions: qs});
+                    }} />
+                  ))}
+                </div>
+                <select className="mt-2 p-2 border rounded" value={q.correctOption} onChange={e => {
+                  const qs = [...newExam.questions];
+                  qs[idx].correctOption = parseInt(e.target.value);
+                  setNewExam({...newExam, questions: qs});
+                }}>
+                  <option value={0}>Option 1 is correct</option>
+                  <option value={1}>Option 2 is correct</option>
+                  <option value={2}>Option 3 is correct</option>
+                  <option value={3}>Option 4 is correct</option>
+                </select>
+              </div>
+            ))}
+            <button type="button" onClick={() => setNewExam({...newExam, questions: [...newExam.questions, { question: '', options: ['', '', '', ''], correctOption: 0 }]})} className="text-blue-600 text-sm underline">+ Add Question</button>
+          </div>
+
+          <div className="mt-4 flex space-x-2">
+            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">Save Exam</button>
+            <button type="button" onClick={() => setIsAddingExam(false)} className="bg-gray-400 text-white px-4 py-2 rounded">Cancel</button>
+          </div>
+        </form>
+      )}
+
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject/Class</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Questions</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {exams.map((e) => (
+              <tr key={e._id}>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{e.title}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.subject} - {e.class}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{e.questions.length}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <button onClick={() => handleDelete('admin/exams', e._id)} className="text-red-600 hover:text-red-900"><FaTrash /></button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gray-100 pt-40">
       <main className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -457,8 +642,8 @@ export default function AdminDashboard() {
 
         {/* Tabs */}
         <div className="px-4 sm:px-0 mt-6">
-          <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
+          <div className="border-b border-gray-200 overflow-x-auto">
+            <nav className="-mb-px flex space-x-8 min-w-max">
               <button
                 onClick={() => setActiveTab('tutors')}
                 className={`${
@@ -499,6 +684,26 @@ export default function AdminDashboard() {
               >
                 Subscribers
               </button>
+              <button
+                onClick={() => setActiveTab('materials')}
+                className={`${
+                  activeTab === 'materials'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              >
+                Materials
+              </button>
+              <button
+                onClick={() => setActiveTab('exams')}
+                className={`${
+                  activeTab === 'exams'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              >
+                Exams
+              </button>
             </nav>
           </div>
         </div>
@@ -509,7 +714,13 @@ export default function AdminDashboard() {
           {activeTab === 'meetings' && renderMeetings()}
           {activeTab === 'classes' && renderClasses()}
           {activeTab === 'subscribers' && renderSubscribers()}
+          {activeTab === 'materials' && renderMaterials()}
+          {activeTab === 'exams' && renderExams()}
         </div>
+      </main>
+    </div>
+  );
+}
       </main>
     </div>
   );

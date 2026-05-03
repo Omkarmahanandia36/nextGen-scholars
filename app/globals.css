@@ -46,3 +46,7 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #3b82f6 #1a1a1a;
 }
+/* Hide Next.js Dev Indicators */
+.nextjs-static-indicator-toast-wrapper {
+  display: none !important;
+}

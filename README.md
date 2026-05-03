@@ -1,6 +1,6 @@
-# EduVista Academy
+# NextGen Scholar
 
-EduVista Academy is a modern online tutoring platform based in Islamabad, providing high-quality education services to students. Visit us at [eduvistaacademy.vercel.app](https://eduvistaacademy.vercel.app)
+NextGen Scholar is a modern online tutoring platform based in Bhubaneswara, providing high-quality education services to students. Visit us at [nextgenscholar.vercel.app](https://nextgenscholar.vercel.app)
 
 ## Features
 

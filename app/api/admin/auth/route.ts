@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import * as jose from 'jose';
-import clientPromise from '@/lib/mongodb';
+import clientPromise from '@/backend/config/mongodb';
+
+export const dynamic = 'force-dynamic';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 const secret = new TextEncoder().encode(JWT_SECRET);

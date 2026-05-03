@@ -218,7 +218,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           onChange={handleInputChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                           required
-                          placeholder="e.g., F-10, Islamabad"
+                          placeholder="e.g., Saheed Nagar, Bhubaneswara"
                         />
                       </div>
                     </div>
@@ -372,12 +372,15 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                 )}
 
                 {step === 4 && (
-                  <div className="flex justify-center my-4">
-                    <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-                      onChange={handleCaptchaChange}
-                    />
-                  </div>
+                  <div className="flex flex-col items-center justify-center my-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] md:col-span-2">
+                <p className="text-sm text-gray-500 font-medium mb-4 text-center">Please verify that you are human</p>
+                <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-md">
+                  <ReCAPTCHA
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                    onChange={handleCaptchaChange}
+                  />
+                </div>
+              </div>
                 )}
 
                 {/* Navigation Buttons */}

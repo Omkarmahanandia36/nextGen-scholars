@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
-import type { ClassSchedule } from '@/models/ClassSchedule';
+import clientPromise from '@/backend/config/mongodb';
+import type { ClassSchedule } from '@/backend/models/ClassSchedule';
+import { sendScheduleEmail } from '@/backend/services/email.service';
+
+export const dynamic = 'force-dynamic';
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -57,6 +60,15 @@ export async function POST(request: Request) {
 
     const result = await db.collection('class-schedules').insertOne(classSchedule);
     console.log('Saved to database with ID:', result.insertedId);
+
+    // Send email notification
+    try {
+      await sendScheduleEmail(formData);
+      console.log('Email notification sent successfully');
+    } catch (emailError) {
+      console.error('Failed to send email notification:', emailError);
+      // We don't return an error here because the database operation succeeded
+    }
 
     return NextResponse.json({ 
       success: true, 

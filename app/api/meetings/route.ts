@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
-import type { Meeting } from '@/models/Meeting';
+import clientPromise from '@/backend/config/mongodb';
+import type { Meeting } from '@/backend/models/Meeting';
+import { sendMeetingEmail } from '@/backend/services/email.service';
+
+export const dynamic = 'force-dynamic';
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
@@ -98,6 +101,14 @@ export async function POST(request: Request) {
 
     const result = await db.collection('meetings').insertOne(meeting);
     console.log('Saved meeting to database with ID:', result.insertedId);
+
+    // Send email notification
+    try {
+      await sendMeetingEmail(formData);
+      console.log('Meeting email notification sent successfully');
+    } catch (emailError) {
+      console.error('Failed to send meeting email notification:', emailError);
+    }
 
     return NextResponse.json({ 
       success: true, 

@@ -1,0 +1,27 @@
+import { NextResponse } from 'next/server';
+
+export async function POST() {
+  const response = NextResponse.json({ success: true, message: 'Logged out successfully' });
+  
+  // Clear the auth_token cookie
+  response.cookies.set('auth_token', '', {
+    httpOnly: true,
+    expires: new Date(0),
+    path: '/',
+  });
+
+  return response;
+}
+
+export async function DELETE() {
+  const response = NextResponse.json({ success: true, message: 'Logged out successfully' });
+  
+  // Clear the auth_token cookie
+  response.cookies.set('auth_token', '', {
+    httpOnly: true,
+    expires: new Date(0),
+    path: '/',
+  });
+
+  return response;
+}

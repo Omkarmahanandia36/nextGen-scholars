@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
-import type { Newsletter } from '@/models/Newsletter';
+import clientPromise from '@/backend/config/mongodb';
+import type { Newsletter } from '@/backend/models/Newsletter';
+import { sendNewsletterEmail } from '@/backend/services/email.service';
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
@@ -53,6 +56,13 @@ export async function POST(request: Request) {
     };
 
     await db.collection('newsletter').insertOne(subscriber);
+
+    // Send email notification
+    try {
+      await sendNewsletterEmail(email);
+    } catch (emailError) {
+      console.error('Failed to send newsletter notification email:', emailError);
+    }
 
     return NextResponse.json({ 
       success: true, 

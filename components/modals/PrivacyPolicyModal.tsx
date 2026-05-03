@@ -63,7 +63,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, onClose
                     <h3 className="text-xl font-semibold text-white">Information We Collect</h3>
                   </div>
                   <div className="text-gray-300 space-y-3">
-                    <p>At EduVista Academy, we collect information to provide better services to our users:</p>
+                    <p>At NextGen Scholar, we collect information to provide better services to our users:</p>
                     <ul className="list-disc list-inside space-y-2 text-gray-400">
                       <li>Personal information (name, email address, phone number)</li>
                       <li>Educational background and preferences</li>
@@ -184,7 +184,7 @@ const PrivacyPolicyModal: React.FC<PrivacyPolicyModalProps> = ({ isOpen, onClose
                   <div className="text-gray-300 space-y-3">
                     <p>If you have any questions about this privacy policy, please contact us at:</p>
                     <div className="space-y-1 text-gray-400">
-                      <p>Email: privacy@eduvista.com</p>
+                      <p>Email: privacy@nextgenscholar.com</p>
                       <p>Phone: +92 XXX XXXXXXX</p>
                     </div>
                   </div>

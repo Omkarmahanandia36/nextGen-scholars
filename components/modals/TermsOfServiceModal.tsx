@@ -64,7 +64,7 @@ const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({ isOpen, onClo
                   </div>
                   <div className="text-gray-300 space-y-3">
                     <p>
-                      By accessing or using EduVista Academy&apos;s services, you agree to be bound by these Terms of Service.
+                      By accessing or using NextGen Scholar&apos;s services, you agree to be bound by these Terms of Service.
                       If you disagree with any part of the terms, you may not access our services.
                     </p>
                   </div>
@@ -166,7 +166,7 @@ const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({ isOpen, onClo
                   </div>
                   <div className="text-gray-300">
                     <p>
-                      EduVista Academy shall not be liable for any indirect, incidental, special, consequential, or
+                      NextGen Scholar shall not be liable for any indirect, incidental, special, consequential, or
                       punitive damages resulting from your use or inability to use the service.
                     </p>
                   </div>
@@ -184,7 +184,7 @@ const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({ isOpen, onClo
                   </div>
                   <div className="text-gray-300">
                     <p>
-                      These terms shall be governed by and construed in accordance with the laws of Pakistan,
+                      These terms shall be governed by and construed in accordance with the laws of India,
                       without regard to its conflict of law provisions.
                     </p>
                   </div>

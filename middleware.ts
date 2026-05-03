@@ -2,66 +2,97 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import * as jose from 'jose';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_jwt_key_12345';
 const secret = new TextEncoder().encode(JWT_SECRET);
 
 export async function middleware(request: NextRequest) {
-  // Only run on admin routes
-  if (!request.nextUrl.pathname.startsWith('/admin')) {
-    return NextResponse.next();
+  const { pathname } = request.nextUrl;
+
+  // 1. Admin Routes
+  if (pathname.startsWith('/admin')) {
+    if (pathname === '/admin/login') {
+      const token = request.cookies.get('admin_token')?.value;
+      if (token) {
+        try {
+          await jose.jwtVerify(token, secret);
+          return NextResponse.redirect(new URL('/admin/dashboard', request.url));
+        } catch (error) {}
+      }
+      return NextResponse.next();
+    }
+
+    const token = request.cookies.get('admin_token')?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+
+    try {
+      await jose.jwtVerify(token, secret);
+      return NextResponse.next();
+    } catch (error) {
+      const response = NextResponse.redirect(new URL('/admin/login', request.url));
+      response.cookies.delete('admin_token');
+      return response;
+    }
   }
 
-  // Skip the login page
-  if (request.nextUrl.pathname === '/admin/login') {
-    // If user is already logged in, redirect to dashboard
-    const token = request.cookies.get('admin_token')?.value;
+  // 2. Student & Dashboard Routes
+  if (pathname.startsWith('/student') || pathname === '/dashboard') {
+    const token = request.cookies.get('auth_token')?.value;
+    
+    if (!token) {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+
+    try {
+      const { payload } = await jose.jwtVerify(token, secret);
+      
+      // If onboarding is not complete and not already on onboarding page, redirect
+      if (!payload.onboardingComplete && pathname !== '/onboarding') {
+        return NextResponse.redirect(new URL('/onboarding', request.url));
+      }
+
+      // If already completed onboarding and trying to access it, redirect to dashboard
+      if (payload.onboardingComplete && pathname === '/onboarding') {
+        return NextResponse.redirect(new URL('/student/dashboard', request.url));
+      }
+
+      // Handle generic /dashboard redirect to student dashboard
+      if (pathname === '/dashboard') {
+        return NextResponse.redirect(new URL('/student/dashboard', request.url));
+      }
+
+      return NextResponse.next();
+    } catch (error) {
+      const response = NextResponse.redirect(new URL('/login', request.url));
+      response.cookies.delete('auth_token');
+      return response;
+    }
+  }
+
+  // 3. Auth Routes (Login/Signup/Home) - Redirect to dashboard if already logged in
+  if (pathname === '/login' || pathname === '/signup' || pathname === '/') {
+    const token = request.cookies.get('auth_token')?.value;
     if (token) {
       try {
-        await jose.jwtVerify(token, secret);
-        return NextResponse.redirect(new URL('/admin/dashboard', request.url));
-      } catch (error) {
-        // Invalid token, let them proceed to login
-        console.error('Invalid token:', error);
-      }
+        const { payload } = await jose.jwtVerify(token, secret);
+        if (payload.onboardingComplete) {
+          return NextResponse.redirect(new URL('/student/dashboard', request.url));
+        } else {
+          // If onboarding is not complete, redirect to onboarding except if already there
+          if (pathname !== '/onboarding') {
+            return NextResponse.redirect(new URL('/onboarding', request.url));
+          }
+        }
+      } catch (error) {}
     }
-    return NextResponse.next();
   }
 
-  const token = request.cookies.get('admin_token')?.value;
-  console.log('Token:', token); // Debug log
-
-  if (!token) {
-    console.log('No token found, redirecting to login'); // Debug log
-    return NextResponse.redirect(new URL('/admin/login', request.url));
-  }
-
-  try {
-    const { payload } = await jose.jwtVerify(token, secret);
-    console.log('Token verified:', payload); // Debug log
-    
-    // Clone the request headers and add user info
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.set('x-admin-email', payload.email as string);
-    requestHeaders.set('x-admin-role', payload.role as string);
-
-    // Return response with modified headers
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
-  } catch (error) {
-    console.error('Token verification failed:', error); // Debug log
-    // Delete the invalid cookie
-    const response = NextResponse.redirect(new URL('/admin/login', request.url));
-    response.cookies.delete('admin_token');
-    return response;
-  }
+  return NextResponse.next();
 }
 
-// Add runtime configuration
 export const runtime = 'nodejs';
 
 export const config = {
-  matcher: '/admin/:path*',
-}
+  matcher: ['/', '/admin/:path*', '/student/:path*', '/dashboard', '/onboarding', '/login', '/signup'],
+};

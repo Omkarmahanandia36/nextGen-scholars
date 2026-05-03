@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,9 +15,11 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "EduVista Academy",
-  description: "Transform your learning journey with EduVista Academy - Islamabad's premier online teaching platform.",
+  title: "NextGen Scholar",
+  description: "Transform your learning journey with NextGen Scholar - Bhubaneswara's premier online teaching platform.",
 };
+
+import LayoutClient from "@/components/layout/LayoutClient";
 
 export default function RootLayout({
   children,
@@ -30,11 +30,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
         <AppProvider>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
+          <LayoutClient>{children}</LayoutClient>
         </AppProvider>
       </body>
     </html>

@@ -33,7 +33,7 @@ const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-                Join Islamabad&apos;s premier online teaching platform for personalized learning and academic excellence
+                Join Bhubaneswara&apos;s premier online teaching platform for personalized learning and academic excellence
               </p>
             </motion.div>
 
@@ -70,11 +70,11 @@ const HeroSection = () => {
               className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
             >
               <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl p-6 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">500+</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">50+</h3>
                 <p className="text-gray-600">Students Enrolled</p>
               </div>
               <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl p-6 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">12+</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">3+</h3>
                 <p className="text-gray-600">Expert Teachers</p>
               </div>
               <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-2xl p-6 shadow-lg">

@@ -7,29 +7,34 @@ import { usePathname, useRouter } from 'next/navigation';
 import { IoMail } from 'react-icons/io5';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { FaUserCircle, FaChevronDown } from 'react-icons/fa';
-import ScheduleMeetingModal from '../modals/ScheduleMeetingModal';
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMeetingModalOpen, setIsMeetingModalOpen] = useState(false);
+  const [isStudent, setIsStudent] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAdminDropdownOpen, setIsAdminDropdownOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    const checkAdminStatus = async () => {
+    const checkStatus = async () => {
+      // Check Admin
       try {
-        const response = await fetch('/api/admin/verify');
-        const data = await response.json();
-        setIsAdmin(data.success);
+        const adminRes = await fetch('/api/admin/verify');
+        const adminData = await adminRes.json();
+        setIsAdmin(adminData.success);
       } catch {
         setIsAdmin(false);
       }
+
+      // Check Student (check if cookie exists)
+      const hasToken = document.cookie.includes('auth_token');
+      setIsStudent(hasToken);
     };
 
-    checkAdminStatus();
-  }, []);
+    checkStatus();
+  }, [pathname]);
 
   const handleLogout = async () => {
     try {
@@ -61,7 +66,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link href="/">
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
-                EduVista
+                NextGen Scholar
               </span>
             </Link>
 
@@ -128,15 +133,27 @@ const Navbar = () => {
                 </div>
               )}
 
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsMeetingModalOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-              >
-                <IoMail className="w-4 h-4" />
-                Contact
-              </motion.button>
+              {isStudent ? (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => router.push('/student/dashboard')}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  <IoMail className="w-4 h-4" />
+                  Dashboard
+                </motion.button>
+              ) : (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => router.push('/signup')}
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  <IoMail className="w-4 h-4" />
+                  Get Started
+                </motion.button>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -192,26 +209,36 @@ const Navbar = () => {
                 </>
               )}
 
-              <motion.button
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  setIsOpen(false);
-                  setIsMeetingModalOpen(true);
-                }}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-              >
-                <IoMail className="w-4 h-4" />
-                Contact
-              </motion.button>
+              {isStudent ? (
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    setIsOpen(false);
+                    router.push('/student/dashboard');
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  <IoMail className="w-4 h-4" />
+                  Dashboard
+                </motion.button>
+              ) : (
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    setIsOpen(false);
+                    router.push('/signup');
+                  }}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                >
+                  <IoMail className="w-4 h-4" />
+                  Get Started
+                </motion.button>
+              )}
             </motion.div>
           )}
         </div>
       </nav>
 
-      <ScheduleMeetingModal
-        isOpen={isMeetingModalOpen}
-        onClose={() => setIsMeetingModalOpen(false)}
-      />
     </>
   );
 };

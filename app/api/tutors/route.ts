@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '@/lib/mongodb';
-import type { Tutor } from '@/models/Tutor';
+import clientPromise from '@/backend/config/mongodb';
+import type { Tutor } from '@/backend/models/Tutor';
+
+export const dynamic = 'force-dynamic';
 
 async function verifyRecaptcha(token: string) {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;

@@ -69,17 +69,17 @@ const Footer = () => {
                 <div className="space-y-4">
                   <Link href="/">
                     <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
-                      EduVista Academy
+                      NextGen Scholar
                     </h3>
                   </Link>
                   <p className="text-gray-400">
                     Transforming education through innovative teaching methods and personalized learning experiences.
                   </p>
                   <div className="flex space-x-4">
-                    <SocialLink href="https://twitter.com/eduvista" icon={<FaTwitter size={16} />} />
-                    <SocialLink href="https://facebook.com/eduvista" icon={<FaFacebook size={16} />} />
-                    <SocialLink href="https://instagram.com/eduvista" icon={<FaInstagram size={16} />} />
-                    <SocialLink href="https://linkedin.com/company/eduvista" icon={<FaLinkedin size={16} />} />
+                    <SocialLink href="https://twitter.com/nextgenscholar" icon={<FaTwitter size={16} />} />
+                    <SocialLink href="https://facebook.com/nextgenscholar" icon={<FaFacebook size={16} />} />
+                    <SocialLink href="https://instagram.com/nextgenscholar" icon={<FaInstagram size={16} />} />
+                    <SocialLink href="https://linkedin.com/company/nextgenscholar" icon={<FaLinkedin size={16} />} />
                   </div>
                 </div>
 
@@ -108,18 +108,18 @@ const Footer = () => {
                   <ul className="space-y-3 text-gray-400">
                     <li className="flex items-center">
                       <span className="mr-2">📍</span>
-                      Islamabad, Pakistan
+                      Bhubaneswara, India
                     </li>
                     <li className="flex items-center">
                       <span className="mr-2">📧</span>
-                      <a href="mailto:info@eduvista.com" className="hover:text-white transition-colors">
-                        info@eduvista.com
+                      <a href="mailto:nextgenscholar02@gmail.com" className="hover:text-white transition-colors">
+                        nextgenscholar02@gmail.com
                       </a>
                     </li>
                     <li className="flex items-center">
                       <span className="mr-2">📱</span>
-                      <a href="tel:+92XXXXXXXXX" className="hover:text-white transition-colors">
-                        +92 XXX XXXXXXX
+                      <a href="tel:+918280807595" className="hover:text-white transition-colors">
+                        +91 8280807595
                       </a>
                     </li>
                   </ul>
@@ -160,7 +160,7 @@ const Footer = () => {
               <div className="mt-12 pt-8 border-t border-gray-800">
                 <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                   <p className="text-gray-400 text-sm">
-                    {new Date().getFullYear()} EduVista Academy. All rights reserved.
+                    {new Date().getFullYear()} NextGen Scholar. All rights reserved.
                   </p>
                   <div className="flex space-x-6">
                     <button

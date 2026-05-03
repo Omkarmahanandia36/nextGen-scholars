@@ -71,7 +71,7 @@ const FeaturesSection = () => {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Why Choose{' '}
             <span className="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
-              EduVista Academy
+              Nextgen Scholaras
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
