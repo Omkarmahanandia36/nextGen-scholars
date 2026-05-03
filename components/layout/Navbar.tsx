@@ -28,9 +28,14 @@ const Navbar = () => {
         setIsAdmin(false);
       }
 
-      // Check Student (check if cookie exists)
-      const hasToken = document.cookie.includes('auth_token');
-      setIsStudent(hasToken);
+      // Check Student via API (more reliable than document.cookie for httpOnly)
+      try {
+        const studentRes = await fetch('/api/auth/me');
+        const studentData = await studentRes.json();
+        setIsStudent(studentData.success && studentData.user?.role === 'student');
+      } catch {
+        setIsStudent(false);
+      }
     };
 
     checkStatus();
@@ -38,13 +43,19 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch('/api/admin/auth', {
+      // Try student logout first
+      const studentLogoutRes = await fetch('/api/auth/logout', { method: 'POST' });
+      
+      // Also try admin logout
+      const adminLogoutRes = await fetch('/api/admin/auth', {
         method: 'DELETE',
       });
       
-      if (response.ok) {
+      if (studentLogoutRes.ok || adminLogoutRes.ok) {
         setIsAdmin(false);
+        setIsStudent(false);
         router.push('/');
+        router.refresh();
       }
     } catch (error) {
       console.error('Logout failed:', error);

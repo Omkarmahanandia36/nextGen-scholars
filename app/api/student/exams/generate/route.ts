@@ -31,20 +31,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'Profile not found' }, { status: 404 });
     }
 
-    // Check if we already have a generated exam for this subject today
-    const today = new Date().toISOString().split('T')[0];
-    const existingExams = await StudentService.getDailyExams(profile.className);
-    const alreadyExists = existingExams.find(e => e.subject === subject && e.date === today);
-
-    if (alreadyExists) {
-      return NextResponse.json({ 
-        success: true, 
-        message: 'Exam already exists for today',
-        examId: alreadyExists._id 
-      });
-    }
-
-    // Generate via AI
+    // Generate via AI on every request to ensure a new set of questions as requested
     const quizData = await AIService.generateQuiz(profile.className, subject);
     
     // Save to database
