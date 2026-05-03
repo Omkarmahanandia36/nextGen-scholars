@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { 
   HiOutlineChartBar, 
   HiOutlineBookOpen, 
@@ -134,16 +135,16 @@ const Sidebar = () => {
         </p>
         <div className="space-y-3">
           {user?.tutors && user.tutors.length > 0 ? (
-            user.tutors.map((tutor: any, index: number) => (
+            user.tutors.map((tutor: { name: string; specialization: string[]; imageUrl?: string }, index: number) => (
               <motion.div 
                 key={index}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="p-3 bg-white border border-gray-100 rounded-xl flex items-center gap-3 hover:border-blue-200 transition-colors"
               >
-                <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center overflow-hidden border border-teal-100">
+                <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center overflow-hidden border border-teal-100 relative">
                   {tutor.imageUrl ? (
-                    <img src={tutor.imageUrl} alt={tutor.name} className="w-full h-full object-cover" />
+                    <Image src={tutor.imageUrl} alt={tutor.name} fill className="object-cover" />
                   ) : (
                     <span className="text-teal-600 font-bold text-xs">{tutor.name.charAt(0)}</span>
                   )}

@@ -79,10 +79,8 @@ export async function middleware(request: NextRequest) {
         if (payload.onboardingComplete) {
           return NextResponse.redirect(new URL('/student/dashboard', request.url));
         } else {
-          // If onboarding is not complete, redirect to onboarding except if already there
-          if (pathname !== '/onboarding') {
-            return NextResponse.redirect(new URL('/onboarding', request.url));
-          }
+          // If onboarding is not complete, redirect to onboarding
+          return NextResponse.redirect(new URL('/onboarding', request.url));
         }
       } catch (error) {}
     }

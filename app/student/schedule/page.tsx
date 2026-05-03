@@ -19,7 +19,7 @@ export default function SchedulePage() {
           </div>
           <h1 className="text-3xl font-black text-gray-900 mb-4">Coming Soon</h1>
           <p className="text-gray-500 mb-8 leading-relaxed">
-            We're currently building a powerful personalized schedule manager for you. Stay tuned!
+            We&apos;re currently building a powerful personalized schedule manager for you. Stay tuned!
           </p>
           <div className="flex items-center justify-center gap-2 text-sm font-bold text-blue-600 bg-blue-50 py-3 px-6 rounded-2xl">
             <HiOutlineClock className="text-xl" />

@@ -9,9 +9,10 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
 
@@ -29,10 +30,11 @@ export async function POST(
     const client = await clientPromise;
     const db = client.db();
     
-    const exam = await db.collection('practice_exams').findOne({ _id: new ObjectId(params.id) });
+    const exam = await db.collection('practice_exams').findOne({ _id: new ObjectId(id) });
     if (!exam) {
       return NextResponse.json({ success: false, message: 'Exam not found' }, { status: 404 });
     }
+
 
     // Calculate score
     let score = 0;
@@ -47,9 +49,10 @@ export async function POST(
     });
 
     const result = {
-      examId: params.id,
+      examId: id,
       studentId: decoded.userId,
       score,
+
       totalQuestions: exam.questions.length,
       answers: processedAnswers,
     };

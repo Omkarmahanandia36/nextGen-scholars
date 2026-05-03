@@ -92,7 +92,7 @@ export class StudentService {
       return [];
     }
 
-    const tutorObjectIds = profile.tutorIds.map(id => new ObjectId(id));
+    const tutorObjectIds = profile.tutorIds.map((id: string) => new ObjectId(id));
     return db.collection('tutors').find({ _id: { $in: tutorObjectIds } }).toArray();
   }
 }

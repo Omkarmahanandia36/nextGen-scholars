@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { IoPerson, IoBook, IoSchool, IoSave, IoAlertCircle, IoCheckmarkCircle } from 'react-icons/io5';
+import { IoPerson, IoSchool, IoSave, IoAlertCircle, IoCheckmarkCircle } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 
 interface ProfileData {
@@ -41,6 +41,7 @@ export default function ProfilePage() {
         setData(result.data);
       }
     } catch (error) {
+      void error; // Avoid unused variable error
       console.error('Error fetching profile:', error);
     } finally {
       setLoading(false);
@@ -73,6 +74,7 @@ export default function ProfilePage() {
         setMessage({ type: 'error', text: result.message || 'Failed to update profile' });
       }
     } catch (error) {
+      void error; // Avoid unused variable error
       setMessage({ type: 'error', text: 'An error occurred. Please try again.' });
     } finally {
       setSaving(false);

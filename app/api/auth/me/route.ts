@@ -30,7 +30,7 @@ export async function GET() {
 
     const profile = await db.collection('student_profiles').findOne({ userId: user._id });
     
-    let tutors = [];
+    let tutors: any[] = [];
     if (user.role === 'student' && profile?.tutorIds) {
       const tutorObjectIds = profile.tutorIds.map((id: string) => new ObjectId(id));
       tutors = await db.collection('tutors').find({ _id: { $in: tutorObjectIds } }).toArray();
@@ -44,7 +44,7 @@ export async function GET() {
         email: user.email,
         role: user.role,
         onboardingComplete: profile?.onboardingComplete || false,
-        tutors: tutors.map(t => ({
+        tutors: tutors.map((t: any) => ({
           name: t.name,
           specialization: t.specialization,
           imageUrl: t.imageUrl
