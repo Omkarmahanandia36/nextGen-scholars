@@ -39,6 +39,7 @@ export async function GET() {
         name: user.name,
         email: user.email,
         className: profile?.className || '',
+        board: profile?.board || '',
         subjects: profile?.subjects || []
       }
     });
@@ -63,12 +64,13 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json();
-    const { name, className, subjects } = body;
+    const { name, className, subjects, board } = body;
 
     await StudentService.updateProfile(decoded.userId, {
       name,
       className,
-      subjects
+      subjects,
+      board
     });
 
     return NextResponse.json({

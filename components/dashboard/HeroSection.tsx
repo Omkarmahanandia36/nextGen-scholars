@@ -15,7 +15,7 @@ const HeroSection = () => {
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-50 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           <div className="absolute top-40 left-40 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         </div>
 
@@ -28,7 +28,7 @@ const HeroSection = () => {
               className="space-y-6"
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
                   Transform Your Learning Journey
                 </span>
               </h1>
@@ -47,7 +47,7 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Explore Courses
                 </motion.button>

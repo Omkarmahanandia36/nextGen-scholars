@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { IoBook, IoSchool, IoArrowForward } from 'react-icons/io5';
 
 const CLASSES = [
+  'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7',
   'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12', 
   'JEE Preparation', 'NEET Preparation', 'Other'
 ];
@@ -15,9 +16,14 @@ const SUBJECTS = [
   'English', 'Computer Science', 'Social Studies'
 ];
 
+const BOARDS = [
+  'CBSE', 'ICSE', 'State Board', 'Other'
+];
+
 export default function OnboardingPage() {
   const [step, setStep] = useState(1);
   const [selectedClass, setSelectedClass] = useState('');
+  const [selectedBoard, setSelectedBoard] = useState('');
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -32,8 +38,8 @@ export default function OnboardingPage() {
   };
 
   const handleSubmit = async () => {
-    if (!selectedClass || selectedSubjects.length === 0) {
-      setError('Please select your class and at least one subject');
+    if (!selectedClass || !selectedBoard || selectedSubjects.length === 0) {
+      setError('Please select your class, board, and at least one subject');
       return;
     }
 
@@ -46,6 +52,7 @@ export default function OnboardingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           className: selectedClass,
+          board: selectedBoard,
           subjects: selectedSubjects,
         }),
       });
@@ -80,6 +87,7 @@ export default function OnboardingPage() {
             <div className="mt-8 flex items-center justify-center space-x-4">
               <div className={`h-2 w-16 rounded-full transition-all ${step >= 1 ? 'bg-blue-500' : 'bg-gray-200'}`} />
               <div className={`h-2 w-16 rounded-full transition-all ${step >= 2 ? 'bg-blue-500' : 'bg-gray-200'}`} />
+              <div className={`h-2 w-16 rounded-full transition-all ${step >= 3 ? 'bg-blue-500' : 'bg-gray-200'}`} />
             </div>
           </div>
 
@@ -129,6 +137,52 @@ export default function OnboardingPage() {
                 </button>
               </div>
             </motion.div>
+          ) : step === 2 ? (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
+            >
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="p-3 bg-purple-100 rounded-xl">
+                  <IoBook className="text-purple-600 text-2xl" />
+                </div>
+                <h2 className="text-xl font-semibold text-gray-800">Which board are you affiliated with?</h2>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
+                {BOARDS.map((board) => (
+                  <button
+                    key={board}
+                    onClick={() => setSelectedBoard(board)}
+                    className={`p-4 rounded-2xl border-2 transition-all text-center font-medium ${
+                      selectedBoard === board
+                        ? 'border-purple-500 bg-purple-50 text-purple-700 shadow-md'
+                        : 'border-gray-100 hover:border-purple-200 text-gray-600'
+                    }`}
+                  >
+                    {board}
+                  </button>
+                ))}
+              </div>
+
+              <div className="pt-8 flex space-x-4">
+                <button
+                  onClick={() => setStep(1)}
+                  className="flex-1 py-4 bg-gray-100 text-gray-600 rounded-2xl font-semibold hover:bg-gray-200 transition-all"
+                >
+                  Back
+                </button>
+                <button
+                  onClick={() => selectedBoard && setStep(3)}
+                  disabled={!selectedBoard}
+                  className="flex-[2] py-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all disabled:opacity-50 flex items-center justify-center space-x-2"
+                >
+                  <span>Next Step</span>
+                  <IoArrowForward />
+                </button>
+              </div>
+            </motion.div>
           ) : (
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -160,7 +214,7 @@ export default function OnboardingPage() {
 
               <div className="pt-8 flex space-x-4">
                 <button
-                  onClick={() => setStep(1)}
+                  onClick={() => setStep(2)}
                   className="flex-1 py-4 bg-gray-100 text-gray-600 rounded-2xl font-semibold hover:bg-gray-200 transition-all"
                 >
                   Back

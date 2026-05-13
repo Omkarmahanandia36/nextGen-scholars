@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     console.log('reCAPTCHA verification successful');
 
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
 
     const meeting: Meeting = {
       ...formData,
@@ -126,7 +126,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
     
     const meetings = await db.collection('meetings')
       .find({})

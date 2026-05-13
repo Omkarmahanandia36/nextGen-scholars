@@ -50,7 +50,7 @@ export async function POST(request: Request) {
 
     // Proceed with database operation after verification
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
 
     const classSchedule: ClassSchedule = {
       ...formData,
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
     
     const schedules = await db.collection('class-schedules').find({}).toArray();
     

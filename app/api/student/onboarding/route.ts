@@ -19,16 +19,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'Invalid token' }, { status: 401 });
     }
 
-    const { className, subjects } = await request.json();
+    const { className, board, subjects } = await request.json();
 
-    if (!className || !subjects || !Array.isArray(subjects) || subjects.length === 0) {
+    if (!className || !board || !subjects || !Array.isArray(subjects) || subjects.length === 0) {
       return NextResponse.json(
-        { success: false, message: 'Please provide class and subjects' },
+        { success: false, message: 'Please provide class, board, and subjects' },
         { status: 400 }
       );
     }
 
-    await StudentService.completeOnboarding(decoded.userId, { className, subjects });
+    await StudentService.completeOnboarding(decoded.userId, { className, board, subjects });
 
     // Generate new token with onboardingComplete: true
     const newPayload = {

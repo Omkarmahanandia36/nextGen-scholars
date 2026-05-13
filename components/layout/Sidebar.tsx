@@ -66,7 +66,7 @@ const Sidebar = () => {
       {/* Brand Header */}
       <div className="p-8 pb-4">
         <Link href="/student/dashboard" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform">
             <HiLightningBolt className="text-xl" />
           </div>
           <span className="text-2xl font-black tracking-tight">
@@ -142,11 +142,11 @@ const Sidebar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="p-3 bg-white border border-gray-100 rounded-xl flex items-center gap-3 hover:border-blue-200 transition-colors"
               >
-                <div className="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center overflow-hidden border border-teal-100 relative">
+                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center overflow-hidden border border-blue-100 relative">
                   {tutor.imageUrl ? (
                     <Image src={tutor.imageUrl} alt={tutor.name} fill className="object-cover" />
                   ) : (
-                    <span className="text-teal-600 font-bold text-xs">{tutor.name.charAt(0)}</span>
+                    <span className="text-blue-600 font-bold text-xs">{tutor.name.charAt(0)}</span>
                   )}
                 </div>
                 <div className="flex-grow overflow-hidden">

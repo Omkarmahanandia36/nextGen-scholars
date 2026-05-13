@@ -14,31 +14,31 @@ const features = [
     title: 'Expert Mentorship',
     description: 'Learn from industry professionals and experienced educators who guide your journey.',
     icon: '👨‍🏫',
-    color: 'from-teal-500 to-teal-600',
+    color: 'from-blue-400 to-blue-500',
   },
   {
     title: 'Flexible Schedule',
     description: 'Choose your preferred time slots that perfectly fit your daily routine.',
     icon: '⏰',
-    color: 'from-cyan-500 to-cyan-600',
+    color: 'from-blue-500 to-blue-600',
   },
   {
     title: 'Progress Tracking',
     description: 'Monitor your learning journey with detailed progress reports and analytics.',
     icon: '📊',
-    color: 'from-blue-500 to-teal-500',
+    color: 'from-blue-600 to-blue-400',
   },
   {
     title: 'Personalized Path',
     description: 'Get a customized learning plan tailored to your goals and current level.',
     icon: '🎯',
-    color: 'from-teal-500 to-cyan-500',
+    color: 'from-blue-400 to-blue-600',
   },
   {
     title: '24/7 Support',
     description: 'Access learning resources and support whenever you need them.',
     icon: '💬',
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-blue-500 to-blue-700',
   },
 ];
 
@@ -70,8 +70,8 @@ const FeaturesSection = () => {
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Why Choose{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent">
-              Nextgen Scholaras
+            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+              NextGen Scholar
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -93,7 +93,7 @@ const FeaturesSection = () => {
               variants={item}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-teal-100 rounded-2xl transform group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl transform group-hover:scale-105 transition-transform duration-300" />
               <div className="relative p-8 bg-white rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center mb-6">
                   <span className="text-4xl mr-4">{feature.icon}</span>
@@ -116,7 +116,7 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-20"
         >
-          <button onClick={() => window.location.href = '/#schedule-class'} className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+          <button onClick={() => window.location.href = '/#schedule-class'} className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
             Start Learning Today
           </button>
         </motion.div>

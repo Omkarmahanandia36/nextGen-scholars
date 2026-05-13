@@ -13,7 +13,7 @@ export class StudentService {
     return collection.findOne({ userId: new ObjectId(userId) });
   }
 
-  static async updateProfile(userId: string, profileData: { className?: string; subjects?: string[]; name?: string }) {
+  static async updateProfile(userId: string, profileData: { className?: string; subjects?: string[]; name?: string; board?: string }) {
     const collection = await this.getCollection();
     const client = await clientPromise;
     const db = client.db();
@@ -45,7 +45,7 @@ export class StudentService {
     return { success: true };
   }
 
-  static async completeOnboarding(userId: string, profileData: { className: string; subjects: string[] }) {
+  static async completeOnboarding(userId: string, profileData: { className: string; board: string; subjects: string[] }) {
     const collection = await this.getCollection();
     
     const result = await collection.updateOne(
@@ -63,24 +63,41 @@ export class StudentService {
     return result;
   }
 
-  static async getMaterials(className: string, subject?: string) {
+  static async getMaterials(className: string, board?: string, subject?: string) {
     const client = await clientPromise;
     const db = client.db();
-    const query: { className: string; subject?: string } = { className };
+    const query: { className: string; board?: string; subject?: string } = { className };
+    if (board) query.board = board;
     if (subject) query.subject = subject;
     
     return db.collection('materials').find(query).sort({ createdAt: -1 }).toArray();
   }
 
-  static async getDailyExams(className: string, subject?: string) {
+  static async getDailyExams(className: string, board?: string, subject?: string) {
     const client = await clientPromise;
     const db = client.db();
     const today = new Date().toISOString().split('T')[0];
     
-    const query: { className: string; date: string; subject?: string } = { className, date: today };
+    const query: any = { className, date: today };
+    if (board) query.board = board;
     if (subject) query.subject = subject;
+    // By default, daily exams are type 'daily' or undefined
+    query.examType = { $ne: 'most-probable' };
     
     return db.collection('practice_exams').find(query).toArray();
+  }
+
+  static async getExams(filters: { className: string; board?: string; subject?: string; folderName?: string; examType?: string }) {
+    const client = await clientPromise;
+    const db = client.db();
+    const query: any = { className: filters.className };
+    
+    if (filters.board) query.board = filters.board;
+    if (filters.subject) query.subject = filters.subject;
+    if (filters.folderName) query.folderName = filters.folderName;
+    if (filters.examType) query.examType = filters.examType;
+    
+    return db.collection('practice_exams').find(query).sort({ createdAt: -1 }).toArray();
   }
 
   static async getAssignedTutors(userId: string) {

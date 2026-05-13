@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     }
 
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
 
     // Check if email already exists
     const existingSubscriber = await db.collection('newsletter').findOne({ email });
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
 
     const subscribers = await db.collection('newsletter')
       .find({})
@@ -107,7 +107,7 @@ export async function DELETE(request: Request) {
     const { email } = await request.json();
 
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
 
     const result = await db.collection('newsletter').updateOne(
       { email },

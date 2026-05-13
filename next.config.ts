@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Removed turbo config as it is invalid and we are using webpack
 };
 
 export default nextConfig;

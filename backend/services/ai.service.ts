@@ -7,7 +7,7 @@ const groq = new Groq({
 });
 
 export class AIService {
-  static async generateQuiz(className: string, subject: string): Promise<Omit<PracticeExam, '_id' | 'createdAt'>> {
+  static async generateQuiz(className: string, subject: string, chapter?: string): Promise<Omit<PracticeExam, '_id' | 'createdAt'>> {
     const todayDate = new Date().toISOString().split('T')[0];
     const sessionSeed = Math.random().toString(36).substring(2, 10);
     
@@ -15,11 +15,15 @@ export class AIService {
     const classSyllabus = SYLLABUS[className] || SYLLABUS[className.replace('Grade ', 'Grade ')];
     const topics = classSyllabus ? classSyllabus[subject] : null;
     
-    const syllabusContext = topics 
+    let syllabusContext = topics 
       ? `SYLLABUS TOPICS: ${topics.join(', ')}. ONLY generate questions from these topics.`
       : `SYLLABUS: Ensure questions are strictly appropriate for the ${className} level in ${subject}.`;
 
-    const prompt = `Generate a rigorous practice exam for students of ${className} on the subject: ${subject}.
+    if (chapter) {
+      syllabusContext = `FOCUS CHAPTER: ${chapter}. ONLY generate questions from the chapter "${chapter}" for ${subject} at the ${className} level.`;
+    }
+
+    const prompt = `Generate a rigorous practice exam for students of ${className} on the subject: ${subject}${chapter ? ` (Chapter: ${chapter})` : ''}.
     
     ${syllabusContext}
 
@@ -71,6 +75,11 @@ export class AIService {
       }
 
       const quizData = JSON.parse(content);
+      
+      // Inject chapter as folderName if provided
+      if (chapter) {
+        quizData.folderName = chapter;
+      }
       
       // Basic validation to ensure we got questions
       if (!quizData.questions || !Array.isArray(quizData.questions) || quizData.questions.length === 0) {

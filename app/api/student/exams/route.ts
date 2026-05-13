@@ -5,8 +5,13 @@ import { cookies } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const examType = searchParams.get('examType');
+    const subject = searchParams.get('subject');
+    const folderName = searchParams.get('folderName');
+
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
 
@@ -24,14 +29,26 @@ export async function GET() {
       return NextResponse.json({ success: false, message: 'Profile not found' }, { status: 404 });
     }
 
-    const exams = await StudentService.getDailyExams(profile.className);
+    let exams;
+    if (examType === 'most-probable') {
+      exams = await StudentService.getExams({
+        className: profile.className,
+        board: profile.board,
+        subject: subject || undefined,
+        folderName: folderName || undefined,
+        examType: 'most-probable'
+      });
+    } else {
+      exams = await StudentService.getDailyExams(profile.className, profile.board, subject || undefined);
+    }
 
     return NextResponse.json({
       success: true,
       exams,
       subjects: profile.subjects
     });
-  } catch {
+  } catch (error) {
+    console.error('API Error:', error);
     return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
   }
 }

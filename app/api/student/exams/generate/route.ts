@@ -21,7 +21,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'Invalid token' }, { status: 401 });
     }
 
-    const { subject } = await request.json();
+    const { subject, chapter } = await request.json();
     if (!subject) {
       return NextResponse.json({ success: false, message: 'Subject is required' }, { status: 400 });
     }
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     }
 
     // Generate via AI on every request to ensure a new set of questions as requested
-    const quizData = await AIService.generateQuiz(profile.className, subject);
+    const quizData = await AIService.generateQuiz(profile.className, subject, chapter);
     
     // Save to database
     const result = await AdminContentService.addExam(quizData);

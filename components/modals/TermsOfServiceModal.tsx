@@ -33,7 +33,7 @@ const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({ isOpen, onClo
             className="relative w-full max-w-3xl max-h-[85vh] bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl overflow-hidden border border-gray-700"
           >
             {/* Header with Gradient */}
-            <div className="relative h-32 bg-gradient-to-r from-purple-600 to-pink-500 p-6 flex items-center">
+            <div className="relative h-32 bg-gradient-to-r from-blue-600 to-blue-400 p-6 flex items-center">
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="relative">
                 <h2 className="text-3xl font-bold text-white mb-2">Terms of Service</h2>
@@ -57,7 +57,7 @@ const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({ isOpen, onClo
                   className="bg-gray-800/50 p-6 rounded-xl border border-gray-700"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-purple-500/10 text-purple-400 rounded-lg">
+                    <div className="p-3 bg-blue-500/10 text-blue-400 rounded-lg">
                       <FaGavel className="w-6 h-6" />
                     </div>
                     <h3 className="text-xl font-semibold text-white">Agreement to Terms</h3>
@@ -96,7 +96,7 @@ const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({ isOpen, onClo
                   className="bg-gray-800/50 p-6 rounded-xl border border-gray-700"
                 >
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-teal-500/10 text-teal-400 rounded-lg">
+                    <div className="p-3 bg-blue-500/10 text-blue-400 rounded-lg">
                       <FaFileContract className="w-6 h-6" />
                     </div>
                     <h3 className="text-xl font-semibold text-white">Service Terms</h3>

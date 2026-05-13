@@ -88,7 +88,7 @@ export default function StudentDashboard() {
               <IoNotifications className="text-xl" />
             </button>
 
-            <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-blue-600 to-teal-500 flex items-center justify-center text-white font-bold shadow-lg">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold shadow-lg">
               {data.user.name?.charAt(0) || 'S'}
             </div>
           </div>
@@ -105,8 +105,8 @@ export default function StudentDashboard() {
           <StatCard
             title="Available Exams"
             value={data.stats.examsCount}
-            icon={<IoDocumentText className="text-teal-500" />}
-            color="bg-teal-50"
+            icon={<IoDocumentText className="text-blue-500" />}
+            color="bg-blue-50"
           />
           <StatCard
             title="Completed"
@@ -144,7 +144,7 @@ export default function StudentDashboard() {
                         <div className="p-3 bg-white rounded-xl shadow-sm">
                           {material.type === 'video'
                             ? <IoPlay className="text-blue-500" />
-                            : <IoDocumentText className="text-teal-500" />}
+                            : <IoDocumentText className="text-blue-500" />}
                         </div>
 
                         <div>
@@ -174,7 +174,7 @@ export default function StudentDashboard() {
           <div className="space-y-6">
 
             {/* Practice */}
-            <div className="bg-gradient-to-br from-blue-600 to-teal-500 p-6 rounded-3xl text-white shadow-xl">
+            <div className="bg-gradient-to-br from-blue-600 to-blue-400 p-6 rounded-3xl text-white shadow-xl">
               <h2 className="text-xl font-bold mb-2">Practice Mode</h2>
               <p className="text-blue-50/80 text-sm mb-6">
                 Master your subjects with daily exams and instant feedback.

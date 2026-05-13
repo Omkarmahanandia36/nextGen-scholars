@@ -398,10 +398,10 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                     type="button"
                     onClick={step < 4 ? () => setStep(step + 1) : handleSubmit}
                     disabled={step === 4 && (!captchaToken || loading)}
-                    className={`px-6 py-2 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
+                    className={`px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
                       step === 4 && (!captchaToken || loading)
                         ? 'opacity-50 cursor-not-allowed'
-                        : 'hover:bg-gradient-to-r hover:from-blue-700 hover:to-teal-600'
+                        : 'hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-600'
                     }`}
                   >
                     {step < 4 ? 'Next' : loading ? 'Submitting...' : 'Submit Application'}

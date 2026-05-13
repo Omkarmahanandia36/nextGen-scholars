@@ -9,12 +9,18 @@ interface ProfileData {
   name: string;
   email: string;
   className: string;
+  board: string;
   subjects: string[];
 }
 
 const AVAILABLE_CLASSES = [
-  'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12',
-  'JEE Preparation', 'NEET Preparation'
+  'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7',
+  'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12',
+  'JEE Preparation', 'NEET Preparation', 'Other'
+];
+
+const BOARDS = [
+  'CBSE', 'ICSE', 'State Board', 'Other'
 ];
 
 const AVAILABLE_SUBJECTS = [
@@ -62,6 +68,7 @@ export default function ProfilePage() {
         body: JSON.stringify({
           name: data.name,
           className: data.className,
+          board: data.board,
           subjects: data.subjects
         }),
       });
@@ -150,7 +157,7 @@ export default function ProfilePage() {
               {/* Academic Info Section */}
               <section>
                 <div className="flex items-center gap-2 mb-6">
-                  <div className="p-2 bg-teal-50 rounded-lg text-teal-600">
+                  <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
                     <IoSchool />
                   </div>
                   <h2 className="text-xl font-bold text-gray-900">Academic Details</h2>
@@ -178,6 +185,26 @@ export default function ProfilePage() {
                   </div>
 
                   <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Board Affiliation</label>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {BOARDS.map((board) => (
+                        <button
+                          key={board}
+                          type="button"
+                          onClick={() => setData({ ...data, board })}
+                          className={`p-3 rounded-xl text-sm font-medium transition-all border ${
+                            data.board === board
+                              ? 'bg-purple-600 border-purple-600 text-white shadow-md'
+                              : 'bg-white border-gray-200 text-gray-600 hover:border-purple-300'
+                          }`}
+                        >
+                          {board}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">My Subjects</label>
                     <div className="flex flex-wrap gap-2">
                       {AVAILABLE_SUBJECTS.map((subject) => (
@@ -187,8 +214,8 @@ export default function ProfilePage() {
                           onClick={() => toggleSubject(subject)}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-all border flex items-center gap-2 ${
                             data.subjects.includes(subject)
-                              ? 'bg-teal-500 border-teal-500 text-white'
-                              : 'bg-white border-gray-200 text-gray-600 hover:border-teal-300'
+                              ? 'bg-blue-600 border-blue-600 text-white'
+                              : 'bg-white border-gray-200 text-gray-600 hover:border-blue-300'
                           }`}
                         >
                           {subject}

@@ -22,6 +22,7 @@ export interface Tutor {
 export interface StudentProfile {
   _id?: ObjectId;
   userId: ObjectId | string; 
+  board?: string;
   className: string; 
   subjects: string[]; 
   tutorIds?: (ObjectId | string)[]; // Array of assigned tutors
@@ -33,10 +34,12 @@ export interface Material {
   _id?: ObjectId;
   title: string;
   description: string;
-  type: 'pdf' | 'video' | 'link' | 'text';
+  type: 'pdf' | 'video' | 'link' | 'text' | 'note';
   url: string;
+  board?: string;
   className: string; 
   subject: string; 
+  folderName?: string;
   createdBy: ObjectId | string; 
   createdAt: Date;
 }
@@ -44,7 +47,9 @@ export interface Material {
 export interface PracticeExam {
   _id?: ObjectId;
   title: string;
+  description?: string;
   date: string; // YYYY-MM-DD
+  board?: string;
   className: string;
   subject: string;
   questions: {
@@ -54,6 +59,9 @@ export interface PracticeExam {
     explanation?: string;
   }[];
   durationMinutes: number;
+  folderName?: string;
+  examType?: 'daily' | 'most-probable';
+  createdBy: string | ObjectId;
   createdAt: Date;
 }
 

@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     const { email, password } = await request.json();
 
     const client = await clientPromise;
-    const db = client.db("academy");
+    const db = client.db("nextgenscholar");
 
     const admin = await db.collection('admins').findOne({ email });
     if (!admin) {

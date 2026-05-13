@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { AdminContentService } from '@/backend/services/content.service';
 import { authService } from '@/backend/services/auth.service';
+import { cookies } from 'next/headers';
 
 export async function DELETE(
   req: Request,
@@ -8,12 +9,13 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get('admin_token')?.value;
+
+    if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const token = authHeader.split(' ')[1];
     const decoded = await authService.verifyToken(token);
     
     if (!decoded || decoded.role !== 'admin') {

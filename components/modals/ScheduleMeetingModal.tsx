@@ -281,7 +281,7 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       disabled={loading || !captchaToken}
-                      className={`px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 ${
+                      className={`px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 ${
                         loading || !captchaToken
                           ? 'bg-blue-400 cursor-not-allowed'
                           : 'hover:bg-blue-700'
