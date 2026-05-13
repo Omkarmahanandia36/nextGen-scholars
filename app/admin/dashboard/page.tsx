@@ -79,6 +79,7 @@ interface Question {
   question: string;
   options: string[];
   correctOption: number;
+  explanation: string;
 }
 
 interface Exam {
@@ -135,7 +136,7 @@ export default function AdminDashboard() {
   const [isAddingMaterial, setIsAddingMaterial] = useState(false);
   const [isAddingExam, setIsAddingExam] = useState(false);
   const [materialsSectionDesc, setMaterialsSectionDesc] = useState('Manage and organize educational resources');
-  const [newMaterial, setNewMaterial] = useState({ title: '', description: '', type: 'Link' as const, url: '', subject: '', className: '', board: 'CBSE', folderName: '' });
+  const [newMaterial, setNewMaterial] = useState({ title: '', description: '', type: 'Link' as 'PDF' | 'Video' | 'Link', url: '', subject: '', className: '', board: 'CBSE', folderName: '' });
   const [examsSectionDesc, setExamsSectionDesc] = useState('Create and manage online assessments');
   const [newExam, setNewExam] = useState({ 
     title: '', 
@@ -243,7 +244,7 @@ export default function AdminDashboard() {
       });
       if (response.ok) {
         setIsAddingExam(false);
-        setNewExam({ title: '', description: '', subject: '', className: '', board: 'CBSE', folderName: '', duration: 30, questions: [{ question: '', options: ['', '', '', ''], correctOption: 0 }] });
+        setNewExam({ title: '', description: '', subject: '', className: '', board: 'CBSE', folderName: '', examType: 'daily' as 'daily' | 'most-probable', duration: 30, questions: [{ question: '', options: ['', '', '', ''], correctOption: 0, explanation: '' }] });
         fetchAllData();
         showToast('Exam added successfully');
       } else {
@@ -1074,7 +1075,7 @@ export default function AdminDashboard() {
                       type="button"
                       onClick={() => setNewExam({
                         ...newExam,
-                        questions: [...newExam.questions, { question: '', options: ['', '', '', ''], correctOption: 0 }]
+                        questions: [...newExam.questions, { question: '', options: ['', '', '', ''], correctOption: 0, explanation: '' }]
                       })}
                       className="text-xs font-black bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg transition-all"
                     >

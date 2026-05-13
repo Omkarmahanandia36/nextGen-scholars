@@ -48,8 +48,10 @@ export async function POST(request: Request) {
       board: profile.board,
       folderName: folderName || 'Imported',
       examType: 'most-probable',
-      duration: duration || 30,
-      questions: formattedQuestions
+      durationMinutes: duration || 30,
+      date: new Date().toISOString().split('T')[0],
+      questions: formattedQuestions,
+      createdBy: decoded.userId
     });
 
     return NextResponse.json({

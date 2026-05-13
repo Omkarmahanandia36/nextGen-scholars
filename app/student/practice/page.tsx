@@ -15,7 +15,8 @@ interface Exam {
   title: string;
   subject: string;
   durationMinutes: number;
-  questions: unknown[];
+  questions: any[];
+  folderName?: string;
 }
 
 export default function PracticeExamsPage() {

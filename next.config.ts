@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Removed turbo config as it is invalid and we are using webpack
+  serverExternalPackages: ["uploadthing", "@uploadthing/react"],
 };
 
 export default nextConfig;
