@@ -1,4 +1,4 @@
-'use client';
+'use client'; // v2 - original UI restored
 
 import React, { useState } from 'react';
 import Link from 'next/link';

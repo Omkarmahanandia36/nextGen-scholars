@@ -1,4 +1,4 @@
-'use client';
+'use client'; // v2 - original UI restored
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
