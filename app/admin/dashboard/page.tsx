@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaTrash, FaCheck, FaTimes, FaPlus, FaSpinner, FaBookOpen, FaUsers, FaVideo, FaGraduationCap, FaEnvelope, FaExclamationCircle, FaFileAlt } from 'react-icons/fa';
+import { FaTrash, FaCheck, FaTimes, FaPlus, FaSpinner, FaBookOpen, FaUsers, FaVideo, FaGraduationCap, FaEnvelope, FaExclamationCircle, FaFileAlt, FaUserAlt, FaSignOutAlt } from 'react-icons/fa';
 import { UploadButton } from '@/utils/uploadthing';
 import "@uploadthing/react/styles.css";
 
@@ -10,7 +10,15 @@ interface DashboardStats {
   totalTutors: number;
   totalMeetings: number;
   totalClasses: number;
-  totalSubscribers: number;
+  totalUsers: number;
+}
+
+interface User {
+  _id: string;
+  name: string;
+  email: string;
+  role: 'student' | 'admin';
+  createdAt: Date | string;
 }
 
 interface Tutor {
@@ -92,6 +100,7 @@ interface Exam {
   folderName?: string;
   examType?: 'daily' | 'most-probable';
   duration: number;
+  durationMinutes?: number;
   questions: Question[];
 }
 
@@ -123,16 +132,16 @@ export default function AdminDashboard() {
     totalTutors: 0,
     totalMeetings: 0,
     totalClasses: 0,
-    totalSubscribers: 0,
+    totalUsers: 0,
   });
 
   const [tutors, setTutors] = useState<Tutor[]>([]);
   const [meetings, setMeetings] = useState<Meeting[]>([]);
   const [classes, setClasses] = useState<ClassSchedule[]>([]);
-  const [subscribers, setSubscribers] = useState<Newsletter[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [materials, setMaterials] = useState<Material[]>([]);
   const [exams, setExams] = useState<Exam[]>([]);
-  const [activeTab, setActiveTab] = useState<'tutors' | 'meetings' | 'classes' | 'subscribers' | 'materials' | 'exams'>('tutors');
+  const [activeTab, setActiveTab] = useState<'tutors' | 'meetings' | 'classes' | 'users' | 'materials' | 'exams'>('tutors');
   const [isAddingMaterial, setIsAddingMaterial] = useState(false);
   const [isAddingExam, setIsAddingExam] = useState(false);
   const [materialsSectionDesc, setMaterialsSectionDesc] = useState('Manage and organize educational resources');
@@ -181,14 +190,29 @@ export default function AdminDashboard() {
       setIsLoading(false);
     }
   };
+  
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/admin/auth', { method: 'DELETE' });
+      if (response.ok) {
+        showToast('Logged out successfully', 'success');
+        window.location.href = '/';
+      } else {
+        showToast('Failed to log out', 'error');
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+      showToast('An error occurred during logout', 'error');
+    }
+  };
 
   const fetchAllData = async () => {
     try {
-      const [tutorsRes, meetingsRes, classesRes, subscribersRes, materialsRes, examsRes] = await Promise.all([
+      const [tutorsRes, meetingsRes, classesRes, usersRes, materialsRes, examsRes] = await Promise.all([
         fetch('/api/tutors').then(res => res.json()),
         fetch('/api/meetings').then(res => res.json()),
         fetch('/api/schedule-class').then(res => res.json()),
-        fetch('/api/newsletter').then(res => res.json()),
+        fetch('/api/admin/users').then(res => res.json()),
         fetch('/api/admin/materials').then(res => res.json()),
         fetch('/api/admin/exams').then(res => res.json()),
       ]);
@@ -196,7 +220,7 @@ export default function AdminDashboard() {
       setTutors(tutorsRes.tutors || []);
       setMeetings(meetingsRes.meetings || []);
       setClasses(classesRes.schedules || []);
-      setSubscribers(subscribersRes.subscribers || []);
+      setUsers(usersRes.users || []);
       setMaterials(Array.isArray(materialsRes) ? materialsRes : []);
       setExams(Array.isArray(examsRes) ? examsRes : []);
 
@@ -204,7 +228,7 @@ export default function AdminDashboard() {
         totalTutors: tutorsRes.tutors?.length || 0,
         totalMeetings: meetingsRes.meetings?.length || 0,
         totalClasses: classesRes.schedules?.length || 0,
-        totalSubscribers: subscribersRes.subscribers?.length || 0,
+        totalUsers: usersRes.users?.length || 0,
       });
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -475,37 +499,41 @@ export default function AdminDashboard() {
     </div>
   );
 
-  const renderSubscribers = () => (
-    subscribers.length === 0 ? <EmptyState message="No subscribers yet" icon={FaEnvelope} /> :
+  const renderUsers = () => (
+    users.length === 0 ? <EmptyState message="No users registered yet" icon={FaUserAlt} /> :
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50/50 backdrop-blur-sm">
           <tr>
+            <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Name</th>
             <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Email</th>
-            <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Status</th>
-            <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Subscribed At</th>
+            <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Role</th>
+            <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Registered At</th>
             <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">Actions</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-200 bg-transparent">
-          {subscribers.map((subscriber) => (
-            <motion.tr key={subscriber._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hover:bg-blue-50/30 transition-colors">
+          {users.map((user) => (
+            <motion.tr key={user._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hover:bg-blue-50/30 transition-colors">
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm font-medium text-black">{subscriber.email}</div>
+                <div className="text-sm font-bold text-black">{user.name}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm font-medium text-black">{user.email}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                  ${subscriber.subscribed ? 'bg-green-100 text-green-800 border border-green-200' : 'bg-red-100 text-red-800 border border-red-200'}`}>
-                  {subscriber.subscribed ? 'Subscribed' : 'Unsubscribed'}
+                  ${user.role === 'admin' ? 'bg-purple-100 text-purple-800 border border-purple-200' : 'bg-blue-100 text-blue-800 border border-blue-200'}`}>
+                  {user.role}
                 </span>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-black">
-                  {new Date(subscriber.subscribedAt).toLocaleDateString()}
+                  {new Date(user.createdAt).toLocaleDateString()}
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                <button onClick={() => handleDelete('newsletter', subscriber._id)} className="text-gray-900 hover:text-gray-700 bg-gray-100 p-2 rounded-full transition-colors" title="Delete">
+                <button onClick={() => handleDelete('admin/users', user._id)} className="text-gray-900 hover:text-gray-700 bg-gray-100 p-2 rounded-full transition-colors" title="Delete">
                   <FaTrash />
                 </button>
               </td>
@@ -1001,6 +1029,20 @@ export default function AdminDashboard() {
                     </select>
                   </div>
                   <div className="space-y-2">
+                    <label className="text-xs font-black text-black uppercase tracking-wider">Board</label>
+                    <select 
+                      required 
+                      className="w-full p-3.5 border-2 border-black rounded-xl focus:ring-4 focus:ring-black/5 outline-none text-black font-black bg-white cursor-pointer" 
+                      value={newExam.board} 
+                      onChange={e => setNewExam({ ...newExam, board: e.target.value })}
+                    >
+                      <option value="CBSE" className="text-black font-black">CBSE</option>
+                      <option value="ICSE" className="text-black font-black">ICSE</option>
+                      <option value="State Board" className="text-black font-black">State Board</option>
+                      <option value="Other" className="text-black font-black">Other</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
                     <label className="text-xs font-black text-black uppercase tracking-wider">Exam Type</label>
                     <select 
                       className="w-full p-3.5 border-2 border-black rounded-xl focus:ring-4 focus:ring-black/5 outline-none text-black font-black bg-white cursor-pointer" 
@@ -1012,9 +1054,10 @@ export default function AdminDashboard() {
                     </select>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-black text-black uppercase tracking-wider">Folder / Chapter (Optional)</label>
+                    <label className="text-xs font-black text-black uppercase tracking-wider">Chapter / Folder (Required)</label>
                     <input 
                       type="text" 
+                      required
                       placeholder="e.g. Chapter 1: Force" 
                       className="w-full p-3.5 border-2 border-black rounded-xl focus:ring-4 focus:ring-black/5 outline-none text-black placeholder:text-black font-black bg-white" 
                       value={newExam.folderName} 
@@ -1043,12 +1086,74 @@ export default function AdminDashboard() {
                           const wsname = wb.SheetNames[0];
                           const ws = wb.Sheets[wsname];
                           const data = utils.sheet_to_json(ws, { header: 1 }) as any[][];
-                          const questions = data.slice(1).map(row => ({
-                            question: row[0]?.toString() || '',
-                            options: [row[1]?.toString() || '', row[2]?.toString() || '', row[3]?.toString() || '', row[4]?.toString() || ''],
-                            correctOption: parseInt(row[5]) || 0,
-                            explanation: row[6]?.toString() || ''
-                          })).filter(q => q.question);
+                          
+                          const firstRow = data[0] || [];
+                          const isHeader = firstRow.some(cell => 
+                            /^(question|option|correct|ans|exp|s\.?no|serial|id|index|#)/i.test(cell?.toString().trim())
+                          );
+                          const startIdx = isHeader ? 1 : 0;
+
+                          // Robust sheet-wide consensus serial column detector
+                          let hasSerialCol = false;
+                          if (data.length > startIdx) {
+                            const firstHeader = data[0]?.[0]?.toString().trim().toLowerCase() || '';
+                            const secondHeader = data[0]?.[1]?.toString().trim().toLowerCase() || '';
+                            if (/^(s\.?no\.?|sr\.?no\.?|no\.?|q\.?no\.?|serial|id|index|#)$/i.test(firstHeader)) {
+                              hasSerialCol = true;
+                            } else if (secondHeader && /^(question|questions|q\.?text|question\s*text|q)$/i.test(secondHeader)) {
+                              hasSerialCol = true;
+                            } else {
+                              let numberCount = 0;
+                              let totalValidRows = 0;
+                              const scanRows = data.slice(startIdx, startIdx + 15);
+                              for (const row of scanRows) {
+                                const val = row?.[0];
+                                if (val !== undefined && val !== null && val !== '') {
+                                  totalValidRows++;
+                                  const strVal = val.toString().trim();
+                                  if (/^\d+(\.\d+)?\s*[\.\-\)]*$/.test(strVal) || /^(q\d+|q\.\d+|q\s+\d+|question\s*\d+|s\.?no\s*\d+|sr\s*\d+|no\s*\d+)\s*[\.\-\)]*$/i.test(strVal)) {
+                                    numberCount++;
+                                  }
+                                }
+                              }
+                              if (totalValidRows > 0 && numberCount / totalValidRows >= 0.5) {
+                                hasSerialCol = true;
+                              }
+                            }
+                          }
+
+                          const mapLetterToIdx = (val: any): number => {
+                            if (val === undefined || val === null) return 0;
+                            const str = val.toString().trim().toUpperCase();
+                            if (str === 'A') return 0;
+                            if (str === 'B') return 1;
+                            if (str === 'C') return 2;
+                            if (str === 'D') return 3;
+                            const parsed = parseInt(str);
+                            return isNaN(parsed) ? 0 : parsed;
+                          };
+
+                          const questions = data.slice(startIdx).map(row => {
+                            const qIdx = hasSerialCol ? 1 : 0;
+                            const o1Idx = hasSerialCol ? 2 : 1;
+                            const o2Idx = hasSerialCol ? 3 : 2;
+                            const o3Idx = hasSerialCol ? 4 : 3;
+                            const o4Idx = hasSerialCol ? 5 : 4;
+                            const ansIdx = hasSerialCol ? 6 : 5;
+                            const expIdx = hasSerialCol ? 7 : 6;
+
+                            return {
+                              question: row[qIdx]?.toString().trim() || '',
+                              options: [
+                                row[o1Idx]?.toString().trim() || '',
+                                row[o2Idx]?.toString().trim() || '',
+                                row[o3Idx]?.toString().trim() || '',
+                                row[o4Idx]?.toString().trim() || ''
+                              ],
+                              correctOption: mapLetterToIdx(row[ansIdx]),
+                              explanation: row[expIdx]?.toString().trim() || ''
+                            };
+                          }).filter(q => q.question);
                           setNewExam(prev => ({ ...prev, questions }));
                           showToast(`Imported ${questions.length} questions successfully!`);
                         } catch (err) {
@@ -1187,7 +1292,7 @@ export default function AdminDashboard() {
                 <h4 className="text-lg font-black text-black mb-2">{exam.title}</h4>
                 <div className="space-y-1 mb-4">
                   <p className="text-sm font-black text-black opacity-60">{exam.subject} • {exam.className}</p>
-                  <p className="text-xs font-black text-black opacity-40">{exam.questions.length} Questions • {exam.duration} mins</p>
+                  <p className="text-xs font-black text-black opacity-40">{exam.questions.length} Questions • {exam.duration || exam.durationMinutes || 30} mins</p>
                 </div>
                 <div className="flex items-center text-xs font-black text-black bg-gray-50 px-3 py-2 rounded-lg">
                   <FaCheck className="mr-2 text-green-500" /> Exam Published
@@ -1213,7 +1318,7 @@ export default function AdminDashboard() {
     { id: 'tutors', label: 'Tutors', icon: FaUsers },
     { id: 'meetings', label: 'Meetings', icon: FaVideo },
     { id: 'classes', label: 'Classes', icon: FaGraduationCap },
-    { id: 'subscribers', label: 'Subscribers', icon: FaEnvelope },
+    { id: 'users', label: 'Total Users', icon: FaUserAlt },
     { id: 'materials', label: 'Materials', icon: FaBookOpen },
     { id: 'exams', label: 'Exams', icon: FaFileAlt },
   ] as const;
@@ -1225,9 +1330,20 @@ export default function AdminDashboard() {
       </AnimatePresence>
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-black text-black">Admin Dashboard</h1>
-          <p className="mt-2 text-sm text-black font-medium">Manage your academy's data, users, and content from a centralized platform.</p>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-black text-black">Admin Dashboard</h1>
+            <p className="mt-2 text-sm text-black font-medium">Manage your academy's data, users, and content from a centralized platform.</p>
+          </div>
+          <motion.button
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleLogout}
+            className="flex items-center space-x-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/30 transition-all duration-200 border border-red-500/10"
+          >
+            <FaSignOutAlt className="text-base" />
+            <span>Log Out</span>
+          </motion.button>
         </div>
 
         {/* Stats Grid */}
@@ -1236,7 +1352,7 @@ export default function AdminDashboard() {
             { label: 'Total Tutors', value: stats.totalTutors, color: 'from-blue-500 to-blue-600', shadow: 'shadow-blue-500/20' },
             { label: 'Total Meetings', value: stats.totalMeetings, color: 'from-purple-500 to-purple-600', shadow: 'shadow-purple-500/20' },
             { label: 'Total Classes', value: stats.totalClasses, color: 'from-orange-500 to-orange-600', shadow: 'shadow-orange-500/20' },
-            { label: 'Subscribers', value: stats.totalSubscribers, color: 'from-green-500 to-green-600', shadow: 'shadow-green-500/20' }
+            { label: 'Total Users', value: stats.totalUsers, color: 'from-green-500 to-green-600', shadow: 'shadow-green-500/20' }
           ].map((stat, idx) => (
             <motion.div
               key={stat.label}
@@ -1282,7 +1398,7 @@ export default function AdminDashboard() {
             {activeTab === 'tutors' && renderTutors()}
             {activeTab === 'meetings' && renderMeetings()}
             {activeTab === 'classes' && renderClasses()}
-            {activeTab === 'subscribers' && renderSubscribers()}
+            {activeTab === 'users' && renderUsers()}
             {activeTab === 'materials' && renderMaterials()}
             {activeTab === 'exams' && renderExams()}
           </div>

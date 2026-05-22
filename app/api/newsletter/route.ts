@@ -59,9 +59,14 @@ export async function POST(request: Request) {
 
     // Send email notification
     try {
-      await sendNewsletterEmail(email);
+      const emailResult = await sendNewsletterEmail(email);
+      if (!emailResult.success) {
+        console.error('Failed to send newsletter notification email:', emailResult.error);
+      } else {
+        console.log('Newsletter notification email sent successfully');
+      }
     } catch (emailError) {
-      console.error('Failed to send newsletter notification email:', emailError);
+      console.error('Unexpected error sending newsletter notification email:', emailError);
     }
 
     return NextResponse.json({ 

@@ -41,6 +41,27 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
+    
+    if (body) {
+      if (typeof body.durationMinutes !== 'number' && typeof body.duration === 'number') {
+        body.durationMinutes = body.duration;
+      } else if (typeof body.durationMinutes !== 'number') {
+        body.durationMinutes = 30;
+      }
+    }
+    
+    // Format questions to standard database schema (questionText, correctOptionIndex)
+    if (body && body.questions && Array.isArray(body.questions)) {
+      body.questions = body.questions.map((q: any) => ({
+        questionText: q.questionText || q.question || '',
+        options: q.options || [],
+        correctOptionIndex: typeof q.correctOptionIndex === 'number' 
+          ? q.correctOptionIndex 
+          : (typeof q.correctOption === 'number' ? q.correctOption : 0),
+        explanation: q.explanation || ''
+      }));
+    }
+
     const result = await AdminContentService.addExam(body);
     return NextResponse.json(result);
   } catch (error: unknown) {

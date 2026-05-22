@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -55,6 +55,11 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
   });
   const [loading, setLoading] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -72,7 +77,8 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!captchaToken) {
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+    if (siteKey && !captchaToken) {
       alert('Please complete the reCAPTCHA verification');
       return;
     }
@@ -83,7 +89,10 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken: formData.recaptchaToken || 'dummy-token',
+        }),
       });
 
       const data = await response.json();
@@ -119,7 +128,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
             animate="visible"
             exit="exit"
             variants={modalVariants}
-            className="relative w-full max-w-2xl bg-white rounded-2xl shadow-xl"
+            className="relative w-full max-w-2xl bg-white rounded-2xl shadow-xl text-gray-900"
           >
             {/* Close Button */}
             <button
@@ -177,7 +186,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="fullName"
                           value={formData.fullName}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -190,7 +199,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -203,7 +212,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -216,7 +225,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="location"
                           value={formData.location}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                           placeholder="e.g., Saheed Nagar, Bhubaneswara"
                         />
@@ -237,7 +246,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="qualification"
                           value={formData.qualification}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         >
                           <option value="">Select Qualification</option>
@@ -255,7 +264,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="specialization"
                           value={formData.specialization}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -268,7 +277,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           name="university"
                           value={formData.university}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -283,7 +292,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           onChange={handleInputChange}
                           min="1950"
                           max={new Date().getFullYear()}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -327,7 +336,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           value={formData.experience}
                           onChange={handleInputChange}
                           min="0"
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -363,7 +372,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           value={formData.bio}
                           onChange={handleInputChange}
                           rows={4}
-                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
                         />
                       </div>
@@ -372,15 +381,23 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                 )}
 
                 {step === 4 && (
-                  <div className="flex flex-col items-center justify-center my-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] md:col-span-2">
-                <p className="text-sm text-gray-500 font-medium mb-4 text-center">Please verify that you are human</p>
-                <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-md">
-                  <ReCAPTCHA
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-                    onChange={handleCaptchaChange}
-                  />
-                </div>
-              </div>
+                  isMounted && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                    <div className="flex flex-col items-center justify-center my-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] md:col-span-2">
+                      <p className="text-sm text-gray-500 font-medium mb-4 text-center">Please verify that you are human</p>
+                      <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-md">
+                        <ReCAPTCHA
+                          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                          onChange={handleCaptchaChange}
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    isMounted && (
+                      <div className="my-6 p-4 bg-yellow-50 text-yellow-900 rounded-lg font-medium border border-yellow-200 text-center md:col-span-2">
+                        reCAPTCHA site key is missing. Captcha verification is bypassed.
+                      </div>
+                    )
+                  )
                 )}
 
                 {/* Navigation Buttons */}
@@ -397,9 +414,9 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                   <button
                     type="button"
                     onClick={step < 4 ? () => setStep(step + 1) : handleSubmit}
-                    disabled={step === 4 && (!captchaToken || loading)}
+                    disabled={(step === 4 && (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? !captchaToken : false)) || loading}
                     className={`px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
-                      step === 4 && (!captchaToken || loading)
+                      (step === 4 && (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? !captchaToken : false)) || loading
                         ? 'opacity-50 cursor-not-allowed'
                         : 'hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-600'
                     }`}

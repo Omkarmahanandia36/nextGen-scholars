@@ -15,6 +15,7 @@ interface Exam {
   title: string;
   subject: string;
   durationMinutes: number;
+  duration?: number;
   questions: any[];
   folderName?: string;
 }
@@ -39,14 +40,18 @@ export default function PracticeExamsPage() {
     try {
       let url = `/api/student/exams?examType=${viewMode}`;
       if (selectedSubject) url += `&subject=${encodeURIComponent(selectedSubject)}`;
-      if (selectedFolder && selectedFolder !== 'All Chapters' && selectedFolder !== 'All') {
+      if (viewMode === 'daily' && selectedFolder && selectedFolder !== 'All Chapters' && selectedFolder !== 'All') {
         url += `&folderName=${encodeURIComponent(selectedFolder)}`;
       }
 
       const response = await fetch(url);
       const data = await response.json();
       if (data.success) {
-        setExams(data.exams);
+        const mappedExams = data.exams.map((ex: any) => ({
+          ...ex,
+          durationMinutes: ex.durationMinutes || ex.duration || 30
+        }));
+        setExams(mappedExams);
         setSubjects(data.subjects || []);
         
         // Extract available folders if in most-probable mode
@@ -58,7 +63,7 @@ export default function PracticeExamsPage() {
           setAvailableFolders(Array.from(folders));
         }
 
-        if (data.subjects?.length > 0 && !selectedSubject && viewMode === 'daily') {
+        if (data.subjects?.length > 0 && !selectedSubject) {
           setSelectedSubject(data.subjects[0]);
         }
       }
@@ -67,7 +72,7 @@ export default function PracticeExamsPage() {
     } finally {
       setLoading(false);
     }
-  }, [viewMode, selectedSubject, selectedFolder]);
+  }, [viewMode, selectedSubject]);
 
   useEffect(() => {
     fetchExams();
@@ -154,13 +159,21 @@ export default function PracticeExamsPage() {
         {/* View Mode Switcher */}
         <div className="flex p-1 bg-blue-50 rounded-2xl mb-8 w-fit border border-blue-100 shadow-sm">
           <button 
-            onClick={() => { setViewMode('daily'); setSelectedFolder('All Chapters'); }}
+            onClick={() => { 
+              setViewMode('daily'); 
+              setSelectedFolder('All Chapters'); 
+              if (subjects.length > 0) setSelectedSubject(subjects[0]);
+            }}
             className={`px-6 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'daily' ? 'bg-blue-600 text-white shadow-lg' : 'text-blue-600/60 hover:text-blue-600'}`}
           >
             Daily Practice
           </button>
           <button 
-            onClick={() => { setViewMode('most-probable'); setSelectedFolder('All Chapters'); setSelectedSubject(''); }}
+            onClick={() => { 
+              setViewMode('most-probable'); 
+              setSelectedFolder('All Chapters'); 
+              if (subjects.length > 0) setSelectedSubject(subjects[0]);
+            }}
             className={`px-6 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'most-probable' ? 'bg-blue-600 text-white shadow-lg' : 'text-blue-600/60 hover:text-blue-600'}`}
           >
             Most Probable Exams
@@ -247,7 +260,7 @@ export default function PracticeExamsPage() {
                         <h2 className="text-2xl font-bold text-gray-900 leading-tight">{exam.title}</h2>
                         <div className="flex flex-wrap items-center gap-3 text-sm font-bold mt-2">
                           <span className="bg-blue-600 text-white px-3 py-1 rounded-lg">{exam.subject}</span>
-                          <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100"><IoTime className="mr-1.5" /> {exam.durationMinutes}m</span>
+                          <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100"><IoTime className="mr-1.5" /> {exam.durationMinutes || exam.duration || 30}m</span>
                           <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100"><IoCheckmarkCircle className="mr-1.5" /> {exam.questions.length} Qs</span>
                         </div>
                       </div>
@@ -274,112 +287,323 @@ export default function PracticeExamsPage() {
           </>
         ) : (
           <div className="space-y-8">
-            {/* Excel Practice Section - Now at the top of Most Probable */}
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 overflow-hidden relative group">
-              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                <IoFileTrayFull className="text-9xl text-blue-600" />
-              </div>
-              
-              <div className="relative z-10">
-                <div className="flex items-center space-x-2 mb-4 text-blue-600">
-                  <IoCloudUpload className="text-xl" />
-                  <span className="font-bold text-xs uppercase tracking-wider">Personal Trainer</span>
-                </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Practice with Excel</h2>
-                <p className="text-gray-600 font-medium text-sm mb-6 max-w-md">Upload your own question bank to generate a focused practice arena instantly.</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-4">
-                    <select 
+            {/* Elegant Dropdown Selector Filters Card */}
+            <div className="bg-gradient-to-br from-white to-blue-50/20 p-8 rounded-3xl shadow-xl border border-blue-100/50 backdrop-blur-md">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Subject Selector */}
+                <div className="space-y-2">
+                  <label className="flex items-center text-sm font-bold text-gray-700 space-x-2">
+                    <IoLibrary className="text-blue-600 text-lg" />
+                    <span>Select Subject</span>
+                  </label>
+                  <div className="relative">
+                    <select
                       value={selectedSubject}
-                      onChange={(e) => setSelectedSubject(e.target.value)}
-                      className="w-full px-5 py-4 bg-blue-50/50 border-2 border-blue-100/50 rounded-2xl focus:border-blue-600 outline-none transition-all text-gray-900 font-bold appearance-none"
+                      onChange={(e) => {
+                        setSelectedSubject(e.target.value);
+                        setSelectedFolder('All Chapters');
+                      }}
+                      className="w-full px-5 py-4 bg-white border-2 border-blue-100 hover:border-blue-500 focus:border-blue-600 outline-none transition-all rounded-2xl font-bold text-gray-800 shadow-sm appearance-none cursor-pointer"
                     >
-                      <option value="" className="text-gray-900">Select Subject</option>
-                      {subjects.map(s => (
-                        <option key={s} value={s} className="text-gray-900">{s}</option>
+                      {subjects.length === 0 && (
+                        <option value="">No registered subjects</option>
+                      )}
+                      {subjects.map((sub) => (
+                        <option key={sub} value={sub}>{sub}</option>
                       ))}
                     </select>
- 
-                    <input 
-                      type="text"
-                      placeholder="Chapter Name (e.g. Thermodynamics)"
-                      value={selectedExcelChapter}
-                      onChange={(e) => setSelectedExcelChapter(e.target.value)}
-                      className="w-full px-5 py-4 bg-blue-50/50 border-2 border-blue-100/50 rounded-2xl focus:border-blue-600 outline-none transition-all text-gray-900 font-bold placeholder:text-gray-400"
-                    />
+                    <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Chapter Selector */}
+                <div className="space-y-2">
+                  <label className="flex items-center text-sm font-bold text-gray-700 space-x-2">
+                    <IoLayers className="text-blue-600 text-lg" />
+                    <span>Select Chapter</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={selectedFolder}
+                      onChange={(e) => setSelectedFolder(e.target.value)}
+                      className="w-full px-5 py-4 bg-white border-2 border-blue-100 hover:border-blue-500 focus:border-blue-600 outline-none transition-all rounded-2xl font-bold text-gray-800 shadow-sm appearance-none cursor-pointer"
+                    >
+                      <option value="All Chapters">All Chapters</option>
+                      {availableFolders.map((folder) => (
+                        <option key={folder} value={folder}>{folder}</option>
+                      ))}
+                    </select>
+                    <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Filtered Exam Papers Display */}
+            {(() => {
+              const filteredExams = exams.filter(exam => {
+                if (!selectedFolder || selectedFolder === 'All Chapters' || selectedFolder === 'All') return true;
+                return exam.folderName === selectedFolder;
+              });
+
+              return (
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between px-2">
+                    <h3 className="text-xl font-bold text-gray-900">Most Probable Exam Papers</h3>
+                    <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                      {filteredExams.length} Available
+                    </span>
                   </div>
 
-                  <div className="flex flex-col justify-end">
-                    <input 
-                      type="file"
-                      id="excel-import-most-probable"
-                      accept=".xlsx, .xls"
-                      className="hidden"
-                      onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (!file) return;
-                        if (!selectedSubject) {
-                          setError('Please select a subject first');
-                          return;
-                        }
-                        setGenerating(true);
-                        try {
-                          const { read, utils } = await import('xlsx');
-                          const reader = new FileReader();
-                          reader.onload = async (evt) => {
-                            const bstr = evt.target?.result;
-                            const wb = read(bstr, { type: 'binary' });
-                            const wsname = wb.SheetNames[0];
-                            const data = utils.sheet_to_json(wb.Sheets[wsname], { header: 1 }) as any[][];
-                            const questions = data.slice(1).map(row => ({
-                              question: row[0]?.toString() || '',
-                              options: [row[1]?.toString() || '', row[2]?.toString() || '', row[3]?.toString() || '', row[4]?.toString() || ''],
-                              correctOption: parseInt(row[5]) || 0,
-                              explanation: row[6]?.toString() || ''
-                            })).filter(q => q.question);
+                  {loading ? (
+                    <div className="flex justify-center p-20 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                      <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-600"></div>
+                    </div>
+                  ) : filteredExams.length > 0 ? (
+                    <div className="grid grid-cols-1 gap-4">
+                      {filteredExams.map((exam) => (
+                        <motion.div
+                          key={exam._id}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          whileHover={{ y: -4 }}
+                          className="bg-white p-7 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all"
+                        >
+                          <div className="flex items-center space-x-5">
+                            <div className="p-5 bg-blue-50 rounded-2xl border border-blue-100">
+                              <IoDocumentText className="text-3xl text-blue-600" />
+                            </div>
+                            <div>
+                              <div className="flex items-center space-x-2 mb-1">
+                                <span className="text-[10px] font-bold text-white bg-blue-600 px-2 py-0.5 rounded uppercase tracking-wider">Exam Paper</span>
+                                {exam.folderName && (
+                                  <span className="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded uppercase">
+                                    {exam.folderName}
+                                  </span>
+                                )}
+                              </div>
+                              <h2 className="text-2xl font-bold text-gray-900 leading-tight">{exam.title}</h2>
+                              <div className="flex flex-wrap items-center gap-3 text-sm font-bold mt-2">
+                                <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100 font-bold">
+                                  <IoTime className="mr-1.5" /> {exam.durationMinutes || exam.duration || 30}m
+                                </span>
+                                <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100 font-bold">
+                                  <IoCheckmarkCircle className="mr-1.5" /> {exam.questions.length} Qs
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <Link href={`/student/practice/${exam._id}`} className="md:w-auto w-full">
+                            <button className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 hover:shadow-lg transition-all shadow-md flex items-center space-x-3 w-full justify-center group cursor-pointer">
+                              <span>Start Practice</span>
+                              <IoChevronForward className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="bg-white p-16 rounded-3xl shadow-sm border border-dashed border-gray-200 text-center">
+                      <div className="bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <IoAlertCircle className="text-5xl text-gray-200" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900">No exams found</h3>
+                      <p className="text-gray-500 font-medium max-w-sm mx-auto mt-2">
+                        Try adjusting your chapter filter or checking another subject.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
-                            const res = await fetch('/api/student/exams/import', {
-                              method: 'POST',
-                              headers: { 'Content-Type': 'application/json' },
-                              body: JSON.stringify({
-                                title: `Practice: ${selectedExcelChapter || selectedSubject}`,
-                                subject: selectedSubject,
-                                folderName: selectedExcelChapter || 'Imported',
-                                questions,
-                                duration: 30,
-                                type: 'most-probable'
-                              })
-                            });
-                            const result = await res.json();
-                            if (result.success) {
-                              router.push(`/student/practice/${result.examId}`);
-                            } else {
-                              setError(result.message);
+            {/* Custom Excel Practice Tool Accordion */}
+            <div className="mt-12 border-t border-gray-200/60 pt-8">
+              <details className="group bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm">
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none select-none hover:bg-blue-50/10 transition-colors">
+                  <div className="flex items-center space-x-3 text-blue-600">
+                    <IoCloudUpload className="text-2xl" />
+                    <span className="font-bold text-gray-900 text-lg">💡 Practice with Custom Excel Question Bank</span>
+                  </div>
+                  <span className="text-blue-600 transition-transform group-open:rotate-180">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"/></svg>
+                  </span>
+                </summary>
+                <div className="p-8 border-t border-gray-50 bg-gray-50/30">
+                  <div className="max-w-4xl mx-auto">
+                    <p className="text-gray-600 font-medium text-sm mb-6">
+                      Upload your own question bank in Excel format to generate a customized practice arena instantly. Perfect for revision of school assignments or reference worksheets!
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">Target Subject</label>
+                        <div className="relative">
+                          <select 
+                            value={selectedSubject}
+                            onChange={(e) => setSelectedSubject(e.target.value)}
+                            className="w-full px-5 py-4 bg-white border-2 border-blue-100 rounded-2xl outline-none focus:border-blue-600 transition-all text-gray-900 font-bold appearance-none shadow-sm cursor-pointer"
+                          >
+                            <option value="" className="text-gray-900">Select Subject</option>
+                            {subjects.map(s => (
+                              <option key={s} value={s} className="text-gray-900">{s}</option>
+                            ))}
+                          </select>
+                          <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"/></svg>
+                          </div>
+                        </div>
+                        
+                        <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider">Chapter / Topic</label>
+                        <input 
+                          type="text"
+                          placeholder="Chapter Name (e.g. Thermodynamics)"
+                          value={selectedExcelChapter}
+                          onChange={(e) => setSelectedExcelChapter(e.target.value)}
+                          className="w-full px-5 py-4 bg-white border-2 border-blue-100 rounded-2xl focus:border-blue-600 outline-none transition-all text-gray-900 font-bold placeholder:text-gray-400 shadow-sm"
+                        />
+                      </div>
+
+                      <div className="flex flex-col justify-end">
+                        <input 
+                          type="file"
+                          id="excel-import-most-probable"
+                          accept=".xlsx, .xls"
+                          className="hidden"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+                            if (!selectedSubject) {
+                              setError('Please select a subject first');
+                              return;
                             }
-                          };
-                          reader.readAsBinaryString(file);
-                        } catch (err) {
-                          setError('Failed to process Excel file');
-                        } finally {
-                          setGenerating(false);
-                        }
-                      }}
-                    />
-                    <button 
-                      onClick={() => {
-                        if (!selectedSubject) {
-                          setError('Please select a subject before uploading');
-                          return;
-                        }
-                        document.getElementById('excel-import-most-probable')?.click();
-                      }}
-                      disabled={generating}
-                      className="w-full py-10 bg-blue-600 text-white rounded-3xl font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center justify-center space-y-2 shadow-xl"
-                    >
-                      <IoCloudUpload className="text-4xl" />
-                      <span>{generating ? 'Processing...' : 'Upload & Start Practice'}</span>
-                    </button>
+                            setGenerating(true);
+                            try {
+                              const { read, utils } = await import('xlsx');
+                              const reader = new FileReader();
+                              reader.onload = async (evt) => {
+                                const bstr = evt.target?.result;
+                                const wb = read(bstr, { type: 'binary' });
+                                const wsname = wb.SheetNames[0];
+                                const data = utils.sheet_to_json(wb.Sheets[wsname], { header: 1 }) as any[][];
+
+                                 // 1. Detect if the first row is a header row dynamically
+                                 const firstRow = data[0] || [];
+                                 const isHeader = firstRow.some(cell => 
+                                   /^(question|option|correct|ans|exp|s\.?no|serial|id|index|#)/i.test(cell?.toString().trim())
+                                 );
+                                 const startIdx = isHeader ? 1 : 0;
+                                 
+                                 // Robust sheet-wide consensus serial column detector
+                                 let hasSerialCol = false;
+                                 if (data.length > startIdx) {
+                                   const firstHeader = data[0]?.[0]?.toString().trim().toLowerCase() || '';
+                                   const secondHeader = data[0]?.[1]?.toString().trim().toLowerCase() || '';
+                                   if (/^(s\.?no\.?|sr\.?no\.?|no\.?|q\.?no\.?|serial|id|index|#)$/i.test(firstHeader)) {
+                                     hasSerialCol = true;
+                                   } else if (secondHeader && /^(question|questions|q\.?text|question\s*text|q)$/i.test(secondHeader)) {
+                                     hasSerialCol = true;
+                                   } else {
+                                     let numberCount = 0;
+                                     let totalValidRows = 0;
+                                     const scanRows = data.slice(startIdx, startIdx + 15);
+                                     for (const row of scanRows) {
+                                       const val = row?.[0];
+                                       if (val !== undefined && val !== null && val !== '') {
+                                         totalValidRows++;
+                                         const strVal = val.toString().trim();
+                                         if (/^\d+(\.\d+)?\s*[\.\-\)]*$/.test(strVal) || /^(q\d+|q\.\d+|q\s+\d+|question\s*\d+|s\.?no\s*\d+|sr\s*\d+|no\s*\d+)\s*[\.\-\)]*$/i.test(strVal)) {
+                                           numberCount++;
+                                         }
+                                       }
+                                     }
+                                     if (totalValidRows > 0 && numberCount / totalValidRows >= 0.5) {
+                                       hasSerialCol = true;
+                                     }
+                                   }
+                                 }
+
+                                 const mapLetterToIdx = (val: any): number => {
+                                   if (val === undefined || val === null) return 0;
+                                   const str = val.toString().trim().toUpperCase();
+                                   if (str === 'A') return 0;
+                                   if (str === 'B') return 1;
+                                   if (str === 'C') return 2;
+                                   if (str === 'D') return 3;
+                                   const parsed = parseInt(str);
+                                   return isNaN(parsed) ? 0 : parsed;
+                                 };
+
+                                 const questions = data.slice(startIdx).map(row => {
+                                   const qIdx = hasSerialCol ? 1 : 0;
+                                   const o1Idx = hasSerialCol ? 2 : 1;
+                                   const o2Idx = hasSerialCol ? 3 : 2;
+                                   const o3Idx = hasSerialCol ? 4 : 3;
+                                   const o4Idx = hasSerialCol ? 5 : 4;
+                                   const ansIdx = hasSerialCol ? 6 : 5;
+                                   const expIdx = hasSerialCol ? 7 : 6;
+
+                                   return {
+                                     question: row[qIdx]?.toString().trim() || '',
+                                     options: [
+                                       row[o1Idx]?.toString().trim() || '',
+                                       row[o2Idx]?.toString().trim() || '',
+                                       row[o3Idx]?.toString().trim() || '',
+                                       row[o4Idx]?.toString().trim() || ''
+                                     ],
+                                     correctOption: mapLetterToIdx(row[ansIdx]),
+                                     explanation: row[expIdx]?.toString().trim() || ''
+                                   };
+                                 }).filter(q => q.question);
+
+                                const res = await fetch('/api/student/exams/import', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({
+                                    title: `Practice: ${selectedExcelChapter || selectedSubject}`,
+                                    subject: selectedSubject,
+                                    folderName: selectedExcelChapter || 'Imported',
+                                    questions,
+                                    duration: 30,
+                                    type: 'most-probable'
+                                  })
+                                });
+                                const result = await res.json();
+                                if (result.success) {
+                                  router.push(`/student/practice/${result.examId}`);
+                                } else {
+                                  setError(result.message);
+                                }
+                              };
+                              reader.readAsBinaryString(file);
+                            } catch (err) {
+                              setError('Failed to process Excel file');
+                            } finally {
+                              setGenerating(false);
+                            }
+                          }}
+                        />
+                        <button 
+                          onClick={() => {
+                            if (!selectedSubject) {
+                              setError('Please select a subject before uploading');
+                              return;
+                            }
+                            document.getElementById('excel-import-most-probable')?.click();
+                          }}
+                          disabled={generating}
+                          className="w-full py-8 bg-blue-600 text-white rounded-3xl font-bold text-lg hover:bg-blue-700 hover:scale-[1.01] active:scale-[0.99] transition-all flex flex-col items-center justify-center space-y-2 shadow-xl shadow-blue-600/10 cursor-pointer"
+                        >
+                          <IoCloudUpload className="text-3xl" />
+                          <span>{generating ? 'Processing...' : 'Upload & Start Practice'}</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {error && (
@@ -388,203 +612,8 @@ export default function PracticeExamsPage() {
                     <span>{error}</span>
                   </div>
                 )}
-              </div>
+              </details>
             </div>
-
-            {/* Step-by-Step Selection Flow */}
-            {!selectedSubject ? (
-              <div className="space-y-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">
-                  <h2 className="text-2xl font-bold text-gray-900">Choose a Subject</h2>
-                  <div className="relative group">
-                    <input 
-                      type="text" 
-                      placeholder="Search subjects..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-4 py-2.5 bg-blue-50/30 border-2 border-blue-100/50 rounded-xl focus:border-blue-600 outline-none transition-all text-sm font-bold w-full md:w-64 shadow-sm placeholder:text-gray-400"
-                    />
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {subjects
-                    .filter(s => s.toLowerCase().includes(searchTerm.toLowerCase()))
-                    .map((subject) => (
-                    <motion.button
-                      key={subject}
-                      whileHover={{ y: -5, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => { setSelectedSubject(subject); setSearchTerm(''); }}
-                      className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm text-left group transition-all hover:border-blue-600 hover:shadow-xl hover:shadow-blue-600/5"
-                    >
-                      <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 transform group-hover:rotate-6">
-                        <IoDocumentText className="text-3xl" />
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:translate-x-1 transition-transform">{subject}</h3>
-                      <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all">Explore Chapters →</p>
-                    </motion.button>
-                  ))}
-                </div>
-                {subjects.filter(s => s.toLowerCase().includes(searchTerm.toLowerCase())).length === 0 && (
-                  <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
-                    <p className="text-gray-400 font-bold">No subjects match your search.</p>
-                  </div>
-                )}
-              </div>
-            ) : (selectedFolder === 'All Chapters' || selectedFolder === '') && availableFolders.length > 0 ? (
-              <div className="space-y-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">
-                  <div className="flex items-center space-x-4">
-                    <button 
-                      onClick={() => setSelectedSubject('')}
-                      className="w-10 h-10 bg-blue-50/50 border border-blue-100/50 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all shadow-sm group"
-                    >
-                      <IoChevronBack className="text-lg group-hover:-translate-x-0.5 transition-transform" />
-                    </button>
-                    <div>
-                      <h2 className="text-2xl font-bold text-gray-900 leading-none">{selectedSubject}</h2>
-                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Select a Chapter</p>
-                    </div>
-                  </div>
-                  <div className="relative group">
-                    <input 
-                      type="text" 
-                      placeholder="Search chapters..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-4 py-2.5 bg-blue-50/30 border-2 border-blue-100/50 rounded-xl focus:border-blue-600 outline-none transition-all text-sm font-bold w-full md:w-64 shadow-sm placeholder:text-gray-400"
-                    />
-                    <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-600 transition-colors">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => { setSelectedFolder('All'); setSearchTerm(''); }}
-                    className="bg-white p-8 rounded-3xl border-2 border-blue-600 shadow-xl shadow-blue-600/5 text-left group transition-all"
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
-                        <IoDocumentText className="text-white text-2xl" />
-                      </div>
-                      <span className="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">ALL-IN-ONE</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">Full Subject Exam</h3>
-                    <p className="text-gray-500 text-xs font-medium">Practice everything from {selectedSubject}</p>
-                  </motion.button>
-
-                  {availableFolders
-                    .filter(f => f.toLowerCase().includes(searchTerm.toLowerCase()))
-                    .map((folder) => (
-                    <motion.button
-                      key={folder}
-                      whileHover={{ y: -4, scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => { setSelectedFolder(folder); setSearchTerm(''); }}
-                      className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm text-left group transition-all hover:border-blue-600 hover:shadow-xl"
-                    >
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-12 h-12 bg-blue-50 border border-blue-100/50 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                          <IoDocumentText className="text-2xl" />
-                        </div>
-                        <span className="text-[10px] font-bold text-gray-300 group-hover:text-blue-600 transition-colors uppercase">Chapter</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:translate-x-1 transition-transform">{folder}</h3>
-                      <p className="text-gray-400 text-xs font-medium">View probability-based questions</p>
-                    </motion.button>
-                  ))}
-                </div>
-                {availableFolders.filter(f => f.toLowerCase().includes(searchTerm.toLowerCase())).length === 0 && searchTerm && (
-                  <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
-                    <p className="text-gray-400 font-bold">No chapters match your search.</p>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="space-y-6">
-                {/* Active Filters Bar */}
-                <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-blue-50 rounded-xl border border-blue-100">
-                      <IoDocumentText className="text-blue-600 text-xl" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">Currently Browsing</p>
-                      <h3 className="text-gray-900 font-bold text-lg">
-                        {selectedSubject} {selectedFolder !== 'All Chapters' && selectedFolder !== 'All' ? `• ${selectedFolder}` : ''}
-                      </h3>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => { setSelectedSubject(''); setSelectedFolder('All Chapters'); }}
-                    className="px-6 py-2 bg-blue-600 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/10"
-                  >
-                    Reset Filters
-                  </button>
-                </div>
-
-                <div className="space-y-4 mt-8">
-                  <div className="flex items-center justify-between px-2">
-                    <h3 className="text-xl font-bold text-gray-900">Practice Sets</h3>
-                    <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">{exams.length} Results</span>
-                  </div>
-
-                  {loading ? (
-                    <div className="flex justify-center p-20">
-                      <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-600"></div>
-                    </div>
-                  ) : exams.length > 0 ? (
-                    exams.map((exam) => (
-                      <motion.div
-                        key={exam._id}
-                        whileHover={{ y: -4 }}
-                        className="bg-white p-7 rounded-3xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6"
-                      >
-                        <div className="flex items-center space-x-5">
-                          <div className="p-5 bg-blue-50 rounded-2xl border border-blue-100">
-                            <IoDocumentText className="text-3xl text-blue-600" />
-                          </div>
-                          <div>
-                            <div className="flex items-center space-x-2 mb-1">
-                              <span className="text-[10px] font-bold text-white bg-blue-600 px-2 py-0.5 rounded uppercase tracking-wider">Most Probable</span>
-                              {exam.folderName && <span className="text-[10px] font-bold text-blue-600/60 border border-blue-100 px-2 py-0.5 rounded uppercase">{exam.folderName}</span>}
-                            </div>
-                            <h2 className="text-2xl font-bold text-gray-900 leading-tight">{exam.title}</h2>
-                            <div className="flex flex-wrap items-center gap-3 text-sm font-bold mt-2">
-                              <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100 font-bold"><IoTime className="mr-1.5" /> {exam.durationMinutes}m</span>
-                              <span className="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100 font-bold"><IoCheckmarkCircle className="mr-1.5" /> {exam.questions.length} Qs</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <Link href={`/student/practice/${exam._id}`} className="md:w-auto w-full">
-                          <button className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg flex items-center space-x-3 w-full justify-center group">
-                            <span>Start Practice</span>
-                            <IoChevronForward className="group-hover:translate-x-1 transition-transform" />
-                          </button>
-                        </Link>
-                      </motion.div>
-                    ))
-                  ) : (
-                    <div className="bg-white p-16 rounded-3xl shadow-sm border border-dashed border-gray-200 text-center">
-                      <div className="bg-gray-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <IoAlertCircle className="text-5xl text-gray-200" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-gray-900">No exams found</h3>
-                      <p className="text-gray-500 font-medium max-w-sm mx-auto mt-2">Try adjusting your filters or checking a different subject.</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
         )}
       </div>

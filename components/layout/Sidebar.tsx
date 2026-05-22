@@ -52,9 +52,8 @@ const Sidebar = () => {
     try {
       const response = await fetch('/api/auth/logout', { method: 'POST' });
       if (response.ok) {
-        // Clear all local state and redirect
-        router.push('/login');
-        router.refresh();
+        // Clear all local state and redirect with a full reload to clean layout state
+        window.location.href = '/login';
       }
     } catch (error) {
       console.error('Logout failed:', error);

@@ -59,7 +59,7 @@ const Footer = () => {
             {/* Background Gradients */}
             <div className="absolute inset-0">
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-blue-500 rounded-full opacity-20 blur-3xl"></div>
-              <div className="absolute top-1/2 -left-24 w-48 h-48 bg-blue-400 rounded-full opacity-20 blur-3xl"></div>
+              <div className="absolute top-1/2 -left-24 w-48 h-48 bg-teal-500 rounded-full opacity-20 blur-3xl"></div>
             </div>
 
             {/* Content */}
@@ -68,7 +68,7 @@ const Footer = () => {
                 {/* Company Info */}
                 <div className="space-y-4">
                   <Link href="/">
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
                       NextGen Scholar
                     </h3>
                   </Link>
@@ -141,7 +141,7 @@ const Footer = () => {
                     <button
                       type="submit"
                       disabled={loading}
-                      className="w-full px-4 py-2.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300"
+                      className="w-full px-4 py-2.5 bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300"
                     >
                       {loading ? 'Subscribing...' : 'Subscribe'}
                     </button>

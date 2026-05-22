@@ -63,14 +63,6 @@ const AboutPage = () => {
     }
   ];
 
-  const team = [
-    {
-      name: 'Soval Sarangi',
-      role: 'Founder',
-      education: 'Bsc (Math) ,MBA in HR and finnance',
-      description: 'Leading our academic excellence initiatives with 3+ years of experience in education management.'
-    }
-  ];
 
   return (
     <div className="min-h-screen pt-20">
@@ -160,31 +152,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-black text-center mb-12">Meet Our Leadership</h2>
-          <div className="grid grid-cols-1 max-w-md mx-auto gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 group text-center"
-              >
-                <div className="relative w-full h-64 mb-6 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300">
-                  <span className="text-gray-400 font-medium">Photo Space</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-blue-600 font-medium mb-2">{member.role}</p>
-                <p className="text-sm text-gray-500 mb-4">{member.education}</p>
-                <p className="text-gray-600">{member.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Values Section */}
       <section className="py-20 bg-gradient-to-b from-white to-gray-50">
