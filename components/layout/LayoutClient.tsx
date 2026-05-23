@@ -53,15 +53,16 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
   const isAdmin = pathname?.startsWith('/admin');
   const isOnboarding = pathname?.startsWith('/onboarding');
   const isAuth = pathname === '/login' || pathname === '/signup';
+  const isPracticeArena = pathname?.startsWith('/student/practice/') && pathname !== '/student/practice';
 
   // Logged in student layout - specifically for student portal experience
   // We show sidebar if:
   // 1. We confirmed they are a student via API
   // 2. OR they are currently on a /student route (which middleware protects)
-  const useStudentLayout = (isStudent || pathname?.startsWith('/student')) && !isAdmin && !isOnboarding && !isAuth;
+  const useStudentLayout = (isStudent || pathname?.startsWith('/student')) && !isAdmin && !isOnboarding && !isAuth && !isPracticeArena;
 
-  const showNavbar = !useStudentLayout && !isAdmin && !isOnboarding;
-  const showFooter = !useStudentLayout && !isAdmin && !isOnboarding && !isAuth;
+  const showNavbar = !useStudentLayout && !isAdmin && !isOnboarding && !isPracticeArena;
+  const showFooter = !useStudentLayout && !isAdmin && !isOnboarding && !isAuth && !isPracticeArena;
   const showSidebar = useStudentLayout;
 
   // Prevent UI flickering while checking auth ONLY on protected student routes

@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "NextGen Scholar",
-  description: "Transform your learning journey with NextGen Scholar - Bhubaneswara's premier online teaching platform.",
+  description: "Transform your learning journey with NextGen Scholar - Bhubaneswar's premier online teaching platform.",
 };
 
 import LayoutClient from "@/components/layout/LayoutClient";

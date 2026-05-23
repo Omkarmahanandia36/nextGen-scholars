@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ReCAPTCHA from 'react-google-recaptcha';
 import { 
   FiUser, 
   FiMail, 
@@ -62,7 +61,6 @@ export default function ScheduleClassForm() {
   const [success, setSuccess] = useState(false);
   const [successData, setSuccessData] = useState<FormData | null>(null);
   const [error, setError] = useState('');
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -82,11 +80,6 @@ export default function ScheduleClassForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    if (siteKey && !captchaToken) {
-      setError('Please complete the reCAPTCHA verification');
-      return;
-    }
     setLoading(true);
     setError('');
 
@@ -98,7 +91,7 @@ export default function ScheduleClassForm() {
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken: captchaToken || 'dummy-token',
+          recaptchaToken: 'dummy-token',
         }),
       });
 
@@ -119,7 +112,6 @@ export default function ScheduleClassForm() {
           message: '',
         });
         setSelectedCourse(null);
-        setCaptchaToken(null);
       } else {
         setError(data.error || 'Failed to schedule class. Please try again.');
       }
@@ -130,10 +122,7 @@ export default function ScheduleClassForm() {
     }
   };
 
-  const handleCaptchaChange = (token: string | null) => {
-    setCaptchaToken(token);
-    setError('');
-  };
+
 
   return (
     <div className="relative py-16 px-4 max-w-4xl mx-auto overflow-hidden">
@@ -149,19 +138,19 @@ export default function ScheduleClassForm() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="relative bg-white/90 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(59,130,246,0.08)] border border-gray-100"
+            className="relative bg-gradient-to-br from-blue-50/50 via-white to-teal-50/30 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(59,130,246,0.08)] border border-blue-100/50"
             id="schedule-class"
           >
             {/* Header Section */}
             <div className="text-center mb-10">
-              <span className="inline-flex px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 font-bold text-xs uppercase tracking-wider mb-4 border border-blue-100/50">
+              <span className="inline-flex px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-500/10 to-teal-500/10 text-blue-600 font-bold text-xs uppercase tracking-wider mb-4 border border-blue-100/30">
                 Book a Slot
               </span>
               <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
                 Schedule a{' '}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
+                <strong className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 font-extrabold inline-block">
                   Class Room
-                </span>
+                </strong>
               </h2>
               <p className="text-gray-500 mt-3 text-base md:text-lg max-w-md mx-auto">
                 Fill in your program and schedule details below to start your professional tutoring experience.
@@ -184,7 +173,7 @@ export default function ScheduleClassForm() {
               {/* SECTION 1: Personal Details */}
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
-                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                  <div className="p-2.5 bg-gradient-to-br from-blue-500/10 to-teal-500/10 text-blue-600 rounded-xl">
                     <FiUser className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-800">Contact Information</h3>
@@ -256,7 +245,7 @@ export default function ScheduleClassForm() {
               {/* SECTION 2: Academic Profile */}
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
-                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                  <div className="p-2.5 bg-gradient-to-br from-blue-500/10 to-teal-500/10 text-blue-600 rounded-xl">
                     <FiBookOpen className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-800">Academic Program</h3>
@@ -340,7 +329,7 @@ export default function ScheduleClassForm() {
               {/* SECTION 3: Schedule Preferences */}
               <div className="space-y-6">
                 <div className="flex items-center gap-3 border-b border-gray-100 pb-3">
-                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                  <div className="p-2.5 bg-gradient-to-br from-blue-500/10 to-teal-500/10 text-blue-600 rounded-xl">
                     <FiCalendar className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-800">Schedule Preferences</h3>
@@ -408,7 +397,7 @@ export default function ScheduleClassForm() {
               {/* Additional Message */}
               <div className="group">
                 <div className="flex items-center gap-3 border-b border-gray-100 pb-3 mb-4">
-                  <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+                  <div className="p-2.5 bg-gradient-to-br from-blue-500/10 to-teal-500/10 text-blue-600 rounded-xl">
                     <FiMessageSquare className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-800">Additional Message</h3>
@@ -428,29 +417,18 @@ export default function ScheduleClassForm() {
                 </div>
               </div>
 
-              {/* reCAPTCHA panel */}
-              {isMounted && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-                <div className="flex flex-col items-center justify-center my-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-100 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.02)]">
-                  <p className="text-xs text-gray-500 font-bold mb-4 uppercase tracking-wider">Verification Required</p>
-                  <div className="overflow-hidden rounded-xl shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-md">
-                    <ReCAPTCHA
-                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                      onChange={handleCaptchaChange}
-                    />
-                  </div>
-                </div>
-              ) : (
-                isMounted && (
-                  <div className="my-6 p-4 bg-amber-50 text-amber-800 rounded-xl font-semibold border border-amber-100 text-center text-sm">
-                    ⚠️ reCAPTCHA site key is missing. Captcha verification is bypassed.
-                  </div>
-                )
-              )}
+
 
               {/* Submit Button */}
               {(() => {
-                const hasSiteKey = !!process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-                const isBtnDisabled = loading || (hasSiteKey ? !captchaToken : false);
+                const isBtnDisabled = loading || 
+                  !formData.studentName.trim() || 
+                  !formData.email.trim() || 
+                  !formData.phone.trim() || 
+                  !formData.courseId || 
+                  formData.subjects.length === 0 || 
+                  formData.preferredDays.length === 0 || 
+                  !formData.preferredTime;
                 return (
                   <motion.button
                     type="submit"
@@ -471,16 +449,16 @@ export default function ScheduleClassForm() {
                     {loading ? (
                       <>
                         <FiRefreshCw className="w-5 h-5 animate-spin" />
-                        <span>Scheduling Class...</span>
+                        <strong className="font-extrabold">Scheduling Class...</strong>
                       </>
                     ) : isBtnDisabled ? (
                       <>
-                        <span>Verify Captcha to Book Slot</span>
+                        <strong className="font-extrabold">Fill All Fields to Book Slot</strong>
                         <FiLock className="w-4.5 h-4.5 text-blue-400/40 animate-pulse" />
                       </>
                     ) : (
                       <>
-                        <span>Book Class Slot Now</span>
+                        <strong className="font-extrabold text-white">Book Class Slot Now</strong>
                         <FiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                       </>
                     )}
@@ -497,7 +475,7 @@ export default function ScheduleClassForm() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5, type: 'spring', damping: 25 }}
-            className="relative bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(16,185,129,0.06)] border border-green-50 text-center overflow-hidden"
+            className="relative bg-gradient-to-br from-green-50/50 via-white to-teal-50/30 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-[0_20px_50px_rgba(16,185,129,0.06)] border border-green-100/50 text-center overflow-hidden"
           >
             {/* Glowing background shapes for success screen */}
             <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-green-50/50 to-transparent pointer-events-none"></div>

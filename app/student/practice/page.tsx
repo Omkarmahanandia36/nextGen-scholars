@@ -9,6 +9,7 @@ import {
 } from 'react-icons/io5';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { SYLLABUS } from '@/backend/config/syllabus';
 
 interface Exam {
   _id: string;
@@ -33,6 +34,7 @@ export default function PracticeExamsPage() {
   const [availableFolders, setAvailableFolders] = useState<string[]>([]);
   const [error, setError] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const [className, setClassName] = useState('');
   const router = useRouter();
 
   const fetchExams = useCallback(async () => {
@@ -53,6 +55,9 @@ export default function PracticeExamsPage() {
         }));
         setExams(mappedExams);
         setSubjects(data.subjects || []);
+        if (data.className) {
+          setClassName(data.className);
+        }
         
         // Extract available folders if in most-probable mode
         if (viewMode === 'most-probable') {
@@ -210,13 +215,47 @@ export default function PracticeExamsPage() {
                       ))}
                     </select>
 
-                    <input 
-                      type="text"
-                      placeholder="Chapter Name (e.g. Force)"
-                      value={selectedAIChapter}
-                      onChange={(e) => setSelectedAIChapter(e.target.value)}
-                      className="w-full px-5 py-4 bg-blue-50/50 border-2 border-blue-100/50 rounded-2xl focus:border-blue-600 outline-none transition-all text-gray-900 font-bold placeholder:text-gray-400"
-                    />
+                    {(() => {
+                      const normalizedClass = className.replace('Class ', 'Grade ');
+                      const classSyllabus = SYLLABUS[className] || SYLLABUS[normalizedClass] || SYLLABUS[className.replace('Grade ', 'Class ')];
+                      
+                      let chaptersList: string[] = [];
+                      if (classSyllabus) {
+                        if (classSyllabus[selectedSubject]) {
+                          chaptersList = classSyllabus[selectedSubject];
+                        } else if (['Physics', 'Chemistry', 'Biology'].includes(selectedSubject) && classSyllabus['Science']) {
+                          chaptersList = classSyllabus['Science'];
+                        } else if (selectedSubject === 'Social Studies' && classSyllabus['Social Science']) {
+                          chaptersList = classSyllabus['Social Science'];
+                        } else if (selectedSubject === 'Social Studies' && classSyllabus['Environmental Studies']) {
+                          chaptersList = classSyllabus['Environmental Studies'];
+                        }
+                      }
+
+                      return (
+                        <div className="relative">
+                          <select 
+                            value={selectedAIChapter}
+                            onChange={(e) => setSelectedAIChapter(e.target.value)}
+                            className="w-full px-5 py-4 bg-blue-50/50 border-2 border-blue-100/50 rounded-2xl focus:border-blue-600 outline-none transition-all text-gray-900 font-bold appearance-none cursor-pointer"
+                          >
+                            <option value="" className="text-gray-400 font-medium">
+                              Select Chapter / Topic (All Chapters)
+                            </option>
+                            {chaptersList.map((chapterName) => (
+                              <option key={chapterName} value={chapterName} className="text-gray-900 font-medium">
+                                {chapterName}
+                              </option>
+                            ))}
+                          </select>
+                          <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-blue-600">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                          </div>
+                        </div>
+                      );
+                    })()}
                     <button 
                       onClick={handleGenerateAIQuiz}
                       disabled={generating || !selectedSubject}

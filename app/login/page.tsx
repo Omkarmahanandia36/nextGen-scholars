@@ -67,9 +67,9 @@ function LoginForm() {
       >
         <div className="text-center">
           <Link href="/">
-            <span className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent cursor-pointer">
+            <strong className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent cursor-pointer inline-block">
               NextGen Scholar
-            </span>
+            </strong>
           </Link>
           <h2 className="mt-6 text-3xl font-bold text-gray-900">Welcome back</h2>
           <p className="mt-2 text-sm text-gray-600">

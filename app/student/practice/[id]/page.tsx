@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import { IoTime, IoChevronForward, IoChevronBack, IoCheckmarkCircle, IoAlertCircle, IoDocumentText } from 'react-icons/io5';
@@ -44,9 +44,16 @@ export default function TakeExamPage() {
   const [hasStarted, setHasStarted] = useState(false);
   const [, setIsFullScreen] = useState(false);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef({ hasStarted, submitted, answers });
+
+  useEffect(() => {
+    stateRef.current = { hasStarted, submitted, answers };
+  }, [hasStarted, submitted, answers]);
+
   const toggleFullScreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err: unknown) => {
+    if (!document.fullscreenElement && containerRef.current) {
+      containerRef.current.requestFullscreen().catch((err: unknown) => {
         console.error('Fullscreen error:', err);
       });
     }
@@ -56,6 +63,38 @@ export default function TakeExamPage() {
     setHasStarted(true);
     toggleFullScreen();
   };
+
+  // Submit exam automatically on exit (component unmount or browser reload/tab close)
+  useEffect(() => {
+    const handleAutoSubmit = () => {
+      const { hasStarted: currentHasStarted, submitted: currentSubmitted, answers: currentAnswers } = stateRef.current;
+      if (currentHasStarted && !currentSubmitted) {
+        fetch(`/api/student/exams/${id}/submit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answers: currentAnswers }),
+          keepalive: true,
+        }).catch(err => console.error('Auto-submit exit error:', err));
+      }
+    };
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      const { hasStarted: currentHasStarted, submitted: currentSubmitted } = stateRef.current;
+      if (currentHasStarted && !currentSubmitted) {
+        handleAutoSubmit();
+        e.preventDefault();
+        e.returnValue = 'Are you sure you want to leave? Your exam progress will be auto-submitted.';
+        return e.returnValue;
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      handleAutoSubmit();
+    };
+  }, [id]);
 
   useEffect(() => {
     const handleFullScreenChange = () => {
@@ -388,12 +427,20 @@ export default function TakeExamPage() {
             </ul>
           </div>
 
-          <button 
-            onClick={startExam}
-            className="w-full py-5 bg-blue-600 text-white rounded-[2rem] font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-blue-600/20 hover:bg-blue-700"
-          >
-            ENTER THE ARENA
-          </button>
+          <div className="flex flex-col gap-3">
+            <button 
+              onClick={startExam}
+              className="w-full py-5 bg-blue-600 text-white rounded-[2rem] font-bold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-blue-600/20 hover:bg-blue-700"
+            >
+              ENTER THE ARENA
+            </button>
+            <button 
+              onClick={() => router.push('/student/practice')}
+              className="w-full py-4 bg-slate-50 hover:bg-slate-100 text-slate-500 rounded-[2rem] font-bold text-sm transition-all"
+            >
+              CANCEL & GO BACK
+            </button>
+          </div>
         </motion.div>
       </div>
     );
@@ -401,35 +448,66 @@ export default function TakeExamPage() {
 
   // 3. Live Practice Arena with Side OMR Sheet
   return (
-    <div className="min-h-screen bg-[#F8FAFC] font-sans pb-16">
+    <div ref={containerRef} id="arena-container" className="h-screen flex flex-col bg-[#F8FAFC] font-sans overflow-hidden select-none">
+      <style>{`
+        ::backdrop {
+          background-color: #F8FAFC !important;
+        }
+        :fullscreen {
+          background-color: #F8FAFC !important;
+        }
+        #arena-container:fullscreen {
+          background-color: #F8FAFC !important;
+          height: 100vh !important;
+          width: 100vw !important;
+          overflow: hidden !important;
+        }
+        /* Custom scrollbar styling for a premium visual aesthetic */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background-color: #E2E8F0;
+          border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background-color: #CBD5E1;
+        }
+      `}</style>
+
       {/* Exam Header */}
-      <div className="bg-white border-b border-slate-100 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+      <div className="bg-white border-b border-slate-100 flex-shrink-0 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-extrabold text-slate-800 tracking-tight leading-none">{exam.title}</h1>
-            <p className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mt-1.5">{exam.subject}</p>
+            <h1 className="text-lg font-extrabold text-slate-800 tracking-tight leading-none">{exam.title}</h1>
+            <p className="text-[9px] font-black text-blue-600 uppercase tracking-[0.2em] mt-1">{exam.subject}</p>
           </div>
-          <div className="flex items-center space-x-4 bg-blue-50/50 px-5 py-2.5 rounded-2xl border border-blue-100/50">
-            <IoTime className="text-blue-600 text-xl" />
-            <span className={`font-mono text-2xl font-black ${timeLeft < 60 ? 'text-rose-500 animate-pulse animate-duration-1000' : 'text-slate-800'}`}>
+          <div className="flex items-center space-x-3 bg-blue-50/50 px-4 py-2 rounded-xl border border-blue-100/50">
+            <IoTime className="text-blue-600 text-lg" />
+            <span className={`font-mono text-xl font-black ${timeLeft < 60 ? 'text-rose-500 animate-pulse animate-duration-1000' : 'text-slate-800'}`}>
               {formatTime(timeLeft)}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-4 md:p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* Main Panel Grid */}
+      <div className="flex-1 min-h-0 w-full max-w-7xl mx-auto p-4 md:p-6 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full min-h-0 w-full">
+          
           {/* Left Column: Active Question Card Arena */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="lg:col-span-8 flex flex-col h-full min-h-0 gap-4">
             
             {/* Progress Header Card */}
-            <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-              <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 px-1">
+            <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex-shrink-0">
+              <div className="flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 px-1">
                 <span>QUESTION {currentQuestion + 1} OF {exam.questions.length}</span>
                 <span>{Math.round(((currentQuestion + 1) / exam.questions.length) * 100)}% EXPLORED</span>
               </div>
-              <div className="h-3.5 w-full bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/50">
+              <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/50">
                 <motion.div 
                   className="h-full bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full shadow-md shadow-blue-500/10"
                   initial={{ width: 0 }}
@@ -446,31 +524,31 @@ export default function TakeExamPage() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="bg-white p-8 md:p-12 rounded-[2rem] shadow-sm border border-slate-100 min-h-[420px] flex flex-col justify-between"
+                className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 flex-1 min-h-0 flex flex-col justify-between overflow-y-auto custom-scrollbar"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="px-3.5 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black tracking-widest uppercase">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full text-[9px] font-black tracking-widest uppercase">
                       SINGLE CHOICE
                     </span>
-                    <span className="text-xs font-bold text-slate-400">
+                    <span className="text-[10px] font-bold text-slate-400">
                       Marks: +4 / -1
                     </span>
                   </div>
                   
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800 leading-snug mb-10">
+                  <h2 className="text-xl md:text-2xl font-extrabold text-slate-800 leading-snug mb-6">
                     {question.questionText}
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-3">
                   {question.options.map((option: string, index: number) => {
                     const isSelected = answers[currentQuestion] === index;
                     return (
                       <button
                         key={index}
                         onClick={() => handleAnswer(index)}
-                        className={`group relative p-5 rounded-2xl border-2 transition-all duration-300 text-left flex items-center justify-between overflow-hidden ${
+                        className={`group relative p-4 rounded-xl border-2 transition-all duration-300 text-left flex items-center justify-between overflow-hidden ${
                           isSelected
                             ? 'border-blue-600 bg-gradient-to-r from-blue-50 to-indigo-50/30 text-blue-900 shadow-sm'
                             : 'border-slate-100 hover:border-blue-200/50 hover:bg-slate-50/20 text-slate-600 bg-slate-50/40'
@@ -483,18 +561,18 @@ export default function TakeExamPage() {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                           />
                         )}
-                        <div className="flex items-center space-x-4">
-                          <span className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center font-extrabold text-sm transition-all duration-200 ${
+                        <div className="flex items-center space-x-3">
+                          <span className={`w-7.5 h-7.5 rounded-lg flex items-center justify-center font-extrabold text-xs transition-all duration-200 ${
                             isSelected 
                               ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20' 
                               : 'bg-white border border-slate-200 text-slate-400 group-hover:border-blue-300 group-hover:text-blue-600'
                           }`}>
                             {String.fromCharCode(65 + index)}
                           </span>
-                          <span className="font-bold text-base md:text-lg">{option}</span>
+                          <span className="font-bold text-sm md:text-base">{option}</span>
                         </div>
                         {isSelected && (
-                          <IoCheckmarkCircle className="text-2xl text-blue-600" />
+                          <IoCheckmarkCircle className="text-xl text-blue-600" />
                         )}
                       </button>
                     );
@@ -504,32 +582,32 @@ export default function TakeExamPage() {
             </AnimatePresence>
 
             {/* Pagination Controls */}
-            <div className="flex items-center justify-between pt-4">
+            <div className="flex items-center justify-between flex-shrink-0 pt-2">
               <button
                 onClick={() => setCurrentQuestion(prev => Math.max(0, prev - 1))}
                 disabled={currentQuestion === 0}
-                className="px-6 py-4 bg-white border border-slate-200 text-slate-700 rounded-2xl font-bold text-sm hover:bg-slate-50 active:scale-95 disabled:opacity-40 disabled:hover:bg-white disabled:pointer-events-none transition-all flex items-center space-x-2 shadow-sm group"
+                className="px-5 py-3.5 bg-white border border-slate-200 text-slate-700 rounded-xl font-bold text-xs hover:bg-slate-50 active:scale-95 disabled:opacity-40 disabled:hover:bg-white disabled:pointer-events-none transition-all flex items-center space-x-2 shadow-sm group"
               >
                 <IoChevronBack className="group-hover:-translate-x-0.5 transition-transform" />
                 <span>PREVIOUS</span>
               </button>
 
               <div className="hidden md:flex items-center space-x-2">
-                <span className="text-[10px] font-black text-slate-400 tracking-wider">SHORTCUTS: [1-4] SELECT | [← →] NAVIGATE</span>
+                <span className="text-[9px] font-black text-slate-400 tracking-wider">SHORTCUTS: [1-4] SELECT | [← →] NAVIGATE</span>
               </div>
 
               {currentQuestion === exam.questions.length - 1 ? (
                 <button
                   onClick={handleSubmit}
-                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold text-base hover:scale-105 active:scale-95 transition-all shadow-lg shadow-blue-500/20 flex items-center space-x-2"
+                  className="px-7 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-lg shadow-blue-500/20 flex items-center space-x-2"
                 >
                   <span>SUBMIT EXAM</span>
-                  <IoCheckmarkCircle className="text-xl" />
+                  <IoCheckmarkCircle className="text-lg" />
                 </button>
               ) : (
                 <button
                   onClick={() => setCurrentQuestion(prev => Math.min(exam.questions.length - 1, prev + 1))}
-                  className="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold text-sm hover:scale-105 active:scale-95 transition-all flex items-center space-x-2 shadow-md shadow-blue-500/10 group"
+                  className="px-5 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold text-xs hover:scale-105 active:scale-95 transition-all flex items-center space-x-2 shadow-md shadow-blue-500/10 group"
                 >
                   <span>NEXT</span>
                   <IoChevronForward className="group-hover:translate-x-0.5 transition-transform" />
@@ -539,111 +617,109 @@ export default function TakeExamPage() {
           </div>
 
           {/* Right Column: Sticky OMR Bubble Sheet Card */}
-          <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-6 flex flex-col justify-between">
+          <div className="lg:col-span-4 flex flex-col h-full min-h-0 bg-white rounded-3xl border border-slate-100 shadow-sm p-5">
+            
+            {/* OMR Header Stats */}
+            <div className="flex-shrink-0 border-b border-slate-100 pb-4 mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-extrabold text-slate-800 text-base tracking-tight flex items-center space-x-2">
+                  <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" />
+                  <span>OMR BUBBLE SHEET</span>
+                </h3>
+                <span className="px-2 py-0.5 bg-slate-100 rounded-md text-[8px] font-black text-slate-500 uppercase tracking-widest">
+                  GRID MODE
+                </span>
+              </div>
               
-              {/* OMR Header Stats */}
-              <div className="border-b border-slate-100 pb-5 mb-5">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-extrabold text-slate-800 text-lg tracking-tight flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 bg-blue-600 rounded-full animate-pulse" />
-                    <span>OMR BUBBLE SHEET</span>
-                  </h3>
-                  <span className="px-2.5 py-1 bg-slate-100 rounded-lg text-[9px] font-black text-slate-500 uppercase tracking-widest">
-                    GRID MODE
-                  </span>
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                <div className="bg-slate-50/50 p-2.5 rounded-xl border border-slate-100/50">
+                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Attempted</p>
+                  <p className="text-lg font-black text-blue-600">{answers.filter(a => a !== -1).length}<span className="text-xs font-normal text-slate-400">/{exam.questions.length}</span></p>
                 </div>
-                
-                <div className="grid grid-cols-2 gap-3 mt-4">
-                  <div className="bg-slate-50/50 p-3 rounded-2xl border border-slate-100/50">
-                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Attempted</p>
-                    <p className="text-xl font-black text-blue-600">{answers.filter(a => a !== -1).length}<span className="text-sm font-normal text-slate-400">/{exam.questions.length}</span></p>
-                  </div>
-                  <div className="bg-slate-50/50 p-3 rounded-2xl border border-slate-100/50">
-                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Skipped</p>
-                    <p className="text-xl font-black text-slate-700">{answers.filter(a => a === -1).length}</p>
-                  </div>
+                <div className="bg-slate-50/50 p-2.5 rounded-xl border border-slate-100/50">
+                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Skipped</p>
+                  <p className="text-lg font-black text-slate-700">{answers.filter(a => a === -1).length}</p>
                 </div>
               </div>
+            </div>
 
-              {/* Scrollable OMR Grid List */}
-              <div className="max-h-[380px] overflow-y-auto pr-1 space-y-2 scrollbar-thin scrollbar-thumb-slate-200">
-                {exam.questions.map((q, idx) => {
-                  const isSelected = answers[idx] !== -1;
-                  const selectedOpt = answers[idx];
-                  const isActive = idx === currentQuestion;
-                  return (
-                    <div 
-                      key={idx} 
-                      className={`flex items-center justify-between p-2.5 rounded-2xl transition-all duration-200 border ${
-                        isActive 
-                          ? 'bg-blue-50/50 border-blue-200 shadow-sm' 
-                          : isSelected 
-                            ? 'bg-slate-50/20 border-slate-100' 
-                            : 'bg-white border-transparent'
+            {/* Scrollable OMR Bubble Grid List */}
+            <div className="flex-1 min-h-0 overflow-y-auto pr-1 space-y-1.5 custom-scrollbar">
+              {exam.questions.map((q, idx) => {
+                const isSelected = answers[idx] !== -1;
+                const selectedOpt = answers[idx];
+                const isActive = idx === currentQuestion;
+                return (
+                  <div 
+                    key={idx} 
+                    className={`flex items-center justify-between p-2 rounded-xl transition-all duration-200 border ${
+                      isActive 
+                        ? 'bg-blue-50/50 border-blue-200 shadow-sm' 
+                        : isSelected 
+                          ? 'bg-slate-50/20 border-slate-100' 
+                          : 'bg-white border-transparent'
+                    }`}
+                  >
+                    <button
+                      onClick={() => setCurrentQuestion(idx)}
+                      className={`flex items-center space-x-2 text-left transition-all ${
+                        isActive ? 'scale-[1.02]' : ''
                       }`}
                     >
-                      <button
-                        onClick={() => setCurrentQuestion(idx)}
-                        className={`flex items-center space-x-3 text-left transition-all ${
-                          isActive ? 'scale-[1.02]' : ''
-                        }`}
-                      >
-                        <span className={`w-7.5 h-7.5 rounded-xl flex items-center justify-center font-black text-xs transition-all ${
-                          isActive 
-                            ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 border border-blue-600' 
-                            : isSelected 
-                              ? 'bg-slate-100 text-slate-600 border border-slate-200' 
-                              : 'bg-slate-50 text-slate-400 border border-slate-100'
-                        }`}>
-                          {idx + 1}
-                        </span>
-                        <span className={`text-sm font-bold tracking-tight ${
-                          isActive ? 'text-blue-900 font-extrabold' : 'text-slate-500 hover:text-slate-800'
-                        }`}>
-                          Q. {idx + 1}
-                        </span>
-                      </button>
+                      <span className={`w-6.5 h-6.5 rounded-lg flex items-center justify-center font-black text-[10px] transition-all ${
+                        isActive 
+                          ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 border border-blue-600' 
+                          : isSelected 
+                            ? 'bg-slate-100 text-slate-600 border border-slate-200' 
+                            : 'bg-slate-50 text-slate-400 border border-slate-100'
+                      }`}>
+                        {idx + 1}
+                      </span>
+                      <span className={`text-xs font-bold tracking-tight ${
+                        isActive ? 'text-blue-900 font-extrabold' : 'text-slate-500 hover:text-slate-800'
+                      }`}>
+                        Q. {idx + 1}
+                      </span>
+                    </button>
 
-                      <div className="flex space-x-1.5">
-                        {['A', 'B', 'C', 'D'].map((letter, optIdx) => {
-                          const isBubbleSelected = selectedOpt === optIdx;
-                          return (
-                            <button
-                              key={letter}
-                              onClick={() => {
-                                setAnswers(prev => {
-                                  const newAnswers = [...prev];
-                                  newAnswers[idx] = optIdx;
-                                  return newAnswers;
-                                });
-                              }}
-                              className={`w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-xs transition-all duration-200 border ${
-                                isBubbleSelected
-                                  ? 'bg-gradient-to-tr from-blue-600 to-indigo-600 border-blue-600 text-white shadow-md shadow-blue-500/10 scale-[1.08]'
-                                  : 'bg-white hover:bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-400 hover:text-slate-700'
-                              }`}
-                            >
-                              {letter}
-                            </button>
-                          );
-                        })}
-                      </div>
+                    <div className="flex space-x-1">
+                      {['A', 'B', 'C', 'D'].map((letter, optIdx) => {
+                        const isBubbleSelected = selectedOpt === optIdx;
+                        return (
+                          <button
+                            key={letter}
+                            onClick={() => {
+                              setAnswers(prev => {
+                                const newAnswers = [...prev];
+                                newAnswers[idx] = optIdx;
+                                return newAnswers;
+                              });
+                            }}
+                            className={`w-6 h-6 rounded-full flex items-center justify-center font-extrabold text-[10px] transition-all duration-200 border ${
+                              isBubbleSelected
+                                ? 'bg-gradient-to-tr from-blue-600 to-indigo-600 border-blue-600 text-white shadow-md shadow-blue-500/10 scale-[1.08]'
+                                : 'bg-white hover:bg-slate-50 border-slate-200 hover:border-slate-300 text-slate-400 hover:text-slate-700'
+                            }`}
+                          >
+                            {letter}
+                          </button>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
+            </div>
 
-              {/* Direct Finish CTA */}
-              <div className="border-t border-slate-100 pt-5 mt-5">
-                <button
-                  onClick={handleSubmit}
-                  className="w-full py-4 bg-slate-900 hover:bg-slate-850 text-white rounded-2xl font-bold text-sm tracking-wide transition-all shadow-md shadow-slate-900/10 active:scale-[0.98] flex items-center justify-center space-x-2"
-                >
-                  <span>FINISH & SUBMIT EXAM</span>
-                  <IoCheckmarkCircle className="text-lg" />
-                </button>
-              </div>
+            {/* Direct Finish CTA (Vibrant, Premium Blue Button with highly visible text) */}
+            <div className="flex-shrink-0 border-t border-slate-100 pt-4 mt-4">
+              <button
+                onClick={handleSubmit}
+                className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs tracking-wider transition-all shadow-md shadow-blue-600/10 active:scale-[0.98] flex items-center justify-center space-x-2"
+              >
+                <span className="text-white font-extrabold uppercase">FINISH & SUBMIT EXAM</span>
+                <IoCheckmarkCircle className="text-base text-white" />
+              </button>
             </div>
           </div>
         </div>

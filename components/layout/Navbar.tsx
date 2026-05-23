@@ -76,9 +76,9 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                NextGen Scholar
-              </span>
+              <strong className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent inline-block">
+                NextGen Scholars
+              </strong>
             </Link>
 
             {/* Desktop Navigation */}
@@ -149,7 +149,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => router.push('/student/dashboard')}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <IoMail className="w-4 h-4" />
                   Dashboard
@@ -159,7 +159,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => router.push('/signup')}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <IoMail className="w-4 h-4" />
                   Get Started
@@ -227,7 +227,7 @@ const Navbar = () => {
                     setIsOpen(false);
                     router.push('/student/dashboard');
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <IoMail className="w-4 h-4" />
                   Dashboard
@@ -239,7 +239,7 @@ const Navbar = () => {
                     setIsOpen(false);
                     router.push('/signup');
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <IoMail className="w-4 h-4" />
                   Get Started

@@ -12,8 +12,17 @@ export class AIService {
     const sessionSeed = Math.random().toString(36).substring(2, 10);
     
     // Fetch syllabus topics if available
-    const classSyllabus = SYLLABUS[className] || SYLLABUS[className.replace('Grade ', 'Grade ')];
-    const topics = classSyllabus ? classSyllabus[subject] : null;
+    const classSyllabus = SYLLABUS[className] || SYLLABUS[className.replace('Class ', 'Grade ')];
+    let topics = classSyllabus ? classSyllabus[subject] : null;
+    if (classSyllabus && !topics) {
+      if (['Physics', 'Chemistry', 'Biology'].includes(subject) && classSyllabus['Science']) {
+        topics = classSyllabus['Science'];
+      } else if (subject === 'Social Studies' && classSyllabus['Social Science']) {
+        topics = classSyllabus['Social Science'];
+      } else if (subject === 'Social Studies' && classSyllabus['Environmental Studies']) {
+        topics = classSyllabus['Environmental Studies'];
+      }
+    }
     
     let syllabusContext = topics 
       ? `SYLLABUS TOPICS: ${topics.join(', ')}. ONLY generate questions from these topics.`

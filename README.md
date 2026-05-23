@@ -1,6 +1,6 @@
 # NextGen Scholar
 
-NextGen Scholar is a modern online tutoring platform based in Bhubaneswara, providing high-quality education services to students. Visit us at [nextgenscholar.vercel.app](https://nextgenscholar.vercel.app)
+NextGen Scholar is a modern online tutoring platform based in Bhubaneswar, providing high-quality education services to students. Visit us at [nextgenscholar.vercel.app](https://nextgenscholar.vercel.app)
 
 ## Features
 

@@ -45,7 +45,8 @@ export async function GET(request: Request) {
     return NextResponse.json({
       success: true,
       exams,
-      subjects: profile.subjects
+      subjects: profile.subjects,
+      className: profile.className
     });
   } catch (error) {
     console.error('API Error:', error);

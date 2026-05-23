@@ -70,9 +70,9 @@ const FeaturesSection = () => {
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Why Choose{' '}
-            <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              NextGen Scholar
-            </span>
+            <strong className="bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent font-bold inline-block">
+              NextGen Scholars
+            </strong>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Experience a revolutionary approach to education with our comprehensive
@@ -116,7 +116,7 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-20"
         >
-          <button onClick={() => window.location.href = '/#schedule-class'} className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+          <button onClick={() => window.location.href = '/#schedule-class'} className="px-8 py-4 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
             Start Learning Today
           </button>
         </motion.div>

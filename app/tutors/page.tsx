@@ -32,7 +32,7 @@ const FEATURED_TUTORS: Tutor[] = [
     reviews: 98,
     students: 240,
     experience: 6,
-    location: 'Bhubaneswara',
+    location: 'Bhubaneswar',
     bio: 'Dedicated senior educator passionate about simplifying mathematics and general sciences for school and competitive board exam preparations.'
   }
 ];
@@ -54,7 +54,7 @@ const TutorsPage = () => {
             </span>
           </h1>
           <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-            Learn from Bhubaneswara&apos;s most qualified, verified, and passionate educators.
+            Learn from Bhubaneswar&apos;s most qualified, verified, and passionate educators.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

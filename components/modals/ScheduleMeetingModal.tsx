@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IoClose, IoCall, IoVideocam, IoMail, IoSend, IoCheckmarkCircle, IoCloseCircle } from 'react-icons/io5';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ScheduleMeetingModalProps {
   isOpen: boolean;
@@ -25,7 +24,6 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
   const [loading, setLoading] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -34,11 +32,6 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    if (siteKey && !captchaToken) {
-      alert('Please complete the reCAPTCHA verification');
-      return;
-    }
     setLoading(true);
     try {
       const response = await fetch('/api/meetings', {
@@ -49,7 +42,7 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
         body: JSON.stringify({
           ...formData,
           type: selectedType,
-          recaptchaToken: captchaToken || 'dummy-token',
+          recaptchaToken: 'dummy-token',
         }),
       });
 
@@ -79,9 +72,7 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
     });
   };
 
-  const handleCaptchaChange = (token: string | null) => {
-    setCaptchaToken(token);
-  };
+
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false);
@@ -272,45 +263,40 @@ const ScheduleMeetingModal: React.FC<ScheduleMeetingModalProps> = ({ isOpen, onC
                     />
                   </div>
 
-                  {isMounted && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-                    <div className="flex flex-col items-center justify-center my-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]">
-                      <p className="text-sm !text-gray-500 font-medium mb-4 text-center">Please verify that you are human</p>
-                      <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-md">
-                        <ReCAPTCHA
-                          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                          onChange={handleCaptchaChange}
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    isMounted && (
-                      <div className="my-6 p-4 bg-yellow-50 !text-yellow-900 rounded-lg font-medium border border-yellow-200 text-center">
-                        reCAPTCHA site key is missing. Captcha verification is bypassed.
-                      </div>
-                    )
-                  )}
+
 
                   <div className="flex justify-end">
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      disabled={loading || (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? !captchaToken : false)}
-                      className={`px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 ${
-                        loading || (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? !captchaToken : false)
-                          ? 'bg-blue-400 cursor-not-allowed'
-                          : 'hover:bg-blue-700'
-                      }`}
-                    >
-                      {selectedType === 'message' ? (
-                        <>
-                          Send Message
-                          <IoSend className="w-5 h-5" />
-                        </>
-                      ) : (
-                        loading ? 'Scheduling...' : 'Schedule Meeting'
-                      )}
-                    </motion.button>
+                    {(() => {
+                      const isFormInvalid = !formData.name.trim() || 
+                        !formData.email.trim() || 
+                        !formData.phone.trim() || 
+                        (selectedType !== 'message' && (!formData.preferredDate || !formData.preferredTime)) ||
+                        (selectedType === 'message' && !formData.message.trim());
+                      const isBtnDisabled = loading || isFormInvalid;
+
+                      return (
+                        <motion.button
+                          type="submit"
+                          whileHover={isBtnDisabled ? {} : { scale: 1.02 }}
+                          whileTap={isBtnDisabled ? {} : { scale: 0.98 }}
+                          disabled={isBtnDisabled}
+                          className={`px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2 ${
+                            isBtnDisabled
+                              ? 'opacity-50 cursor-not-allowed'
+                              : 'hover:bg-blue-700'
+                          }`}
+                        >
+                          {selectedType === 'message' ? (
+                            <>
+                              Send Message
+                              <IoSend className="w-5 h-5" />
+                            </>
+                          ) : (
+                            loading ? 'Scheduling...' : 'Schedule Meeting'
+                          )}
+                        </motion.button>
+                      );
+                    })()}
                   </div>
                 </motion.form>
               )}

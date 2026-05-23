@@ -28,15 +28,15 @@ const HeroSection = () => {
               className="space-y-6"
             >
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+                <strong className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 font-bold inline-block">
                   Transform Your Learning Journey
-                </span>
+                </strong>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-                Join Bhubaneswara&apos;s premier online teaching platform for personalized learning and academic excellence
+                Join Bhubaneswar&apos;s premier online teaching platform for personalized learning and academic excellence
               </p>
             </motion.div>
-
+ 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ const HeroSection = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-teal-500 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Explore Courses
                 </motion.button>

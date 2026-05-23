@@ -54,7 +54,7 @@ const AboutPage = () => {
     {
       year: 'March 2026',
       title: 'Company Founded',
-      description: 'Successfully launched NextGen Scholar with a vision to transform education in Bhubaneswara.'
+      description: 'Successfully launched NextGen Scholar with a vision to transform education in Bhubaneswar.'
     },
     {
       year: 'April 2026',
@@ -77,7 +77,7 @@ const AboutPage = () => {
               className="text-4xl md:text-5xl font-bold mb-6"
             >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500">
-                Transforming Education in Bhubaneswara
+                Transforming Education in Bhubaneswar
               </span>
             </motion.h1>
             <motion.p

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 interface TutorFormData {
   fullName: string;
@@ -54,7 +53,6 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
     recaptchaToken: '',
   });
   const [loading, setLoading] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -77,11 +75,6 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-    if (siteKey && !captchaToken) {
-      alert('Please complete the reCAPTCHA verification');
-      return;
-    }
     setLoading(true);
     try {
       const response = await fetch('/api/tutors', {
@@ -91,7 +84,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
         },
         body: JSON.stringify({
           ...formData,
-          recaptchaToken: formData.recaptchaToken || 'dummy-token',
+          recaptchaToken: 'dummy-token',
         }),
       });
 
@@ -108,10 +101,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
     }
   };
 
-  const handleCaptchaChange = (token: string | null) => {
-    setCaptchaToken(token);
-    setFormData(prev => ({ ...prev, recaptchaToken: token || '' }));
-  };
+
 
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.95 },
@@ -147,10 +137,10 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
             {/* Modal Body */}
             <div className="p-6">
               <div className="mb-8 flex justify-between">
-                {[1, 2, 3, 4].map((stepNumber) => (
+                {[1, 2, 3].map((stepNumber) => (
                   <div
                     key={stepNumber}
-                    className={`flex items-center ${stepNumber < 4 ? 'flex-1' : ''}`}
+                    className={`flex items-center ${stepNumber < 3 ? 'flex-1' : ''}`}
                   >
                     <div
                       className={`w-8 h-8 rounded-full flex items-center justify-center ${
@@ -161,7 +151,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                     >
                       {stepNumber}
                     </div>
-                    {stepNumber < 4 && (
+                    {stepNumber < 3 && (
                       <div
                         className={`flex-1 h-1 mx-2 ${
                           step > stepNumber ? 'bg-blue-600' : 'bg-gray-200'
@@ -227,7 +217,7 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                           onChange={handleInputChange}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 bg-white"
                           required
-                          placeholder="e.g., Saheed Nagar, Bhubaneswara"
+                          placeholder="e.g., Saheed Nagar, Bhubaneswar"
                         />
                       </div>
                     </div>
@@ -380,50 +370,54 @@ const RegisterTutorModal: React.FC<RegisterTutorModalProps> = ({ isOpen, onClose
                   </div>
                 )}
 
-                {step === 4 && (
-                  isMounted && process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-                    <div className="flex flex-col items-center justify-center my-8 p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] md:col-span-2">
-                      <p className="text-sm text-gray-500 font-medium mb-4 text-center">Please verify that you are human</p>
-                      <div className="overflow-hidden rounded-lg shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-md">
-                        <ReCAPTCHA
-                          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                          onChange={handleCaptchaChange}
-                        />
-                      </div>
-                    </div>
-                  ) : (
-                    isMounted && (
-                      <div className="my-6 p-4 bg-yellow-50 text-yellow-900 rounded-lg font-medium border border-yellow-200 text-center md:col-span-2">
-                        reCAPTCHA site key is missing. Captcha verification is bypassed.
-                      </div>
-                    )
-                  )
-                )}
-
                 {/* Navigation Buttons */}
-                <div className="flex justify-between mt-6">
-                  {step > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => setStep(step - 1)}
-                      className="px-6 py-2 text-blue-600 border border-blue-600 rounded-xl hover:bg-blue-50"
-                    >
-                      Previous
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={step < 4 ? () => setStep(step + 1) : handleSubmit}
-                    disabled={(step === 4 && (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? !captchaToken : false)) || loading}
-                    className={`px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
-                      (step === 4 && (process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? !captchaToken : false)) || loading
-                        ? 'opacity-50 cursor-not-allowed'
-                        : 'hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-600'
-                    }`}
-                  >
-                    {step < 4 ? 'Next' : loading ? 'Submitting...' : 'Submit Application'}
-                  </button>
-                </div>
+                {(() => {
+                  const isStep1Invalid = step === 1 && (
+                    !formData.fullName.trim() || 
+                    !formData.email.trim() || 
+                    !formData.phone.trim() || 
+                    !formData.location.trim()
+                  );
+                  const isStep2Invalid = step === 2 && (
+                    !formData.qualification || 
+                    !formData.specialization.trim() || 
+                    !formData.university.trim() || 
+                    !formData.graduationYear
+                  );
+                  const isStep3Invalid = step === 3 && (
+                    formData.subjects.length === 0 || 
+                    !formData.experience || 
+                    formData.teachingMode.length === 0 || 
+                    !formData.bio.trim()
+                  );
+                  const isNextDisabled = isStep1Invalid || isStep2Invalid || isStep3Invalid || loading;
+
+                  return (
+                     <div className="flex justify-between mt-6">
+                       {step > 1 && (
+                         <button
+                           type="button"
+                           onClick={() => setStep(step - 1)}
+                           className="px-6 py-2 text-blue-600 border border-blue-600 rounded-xl hover:bg-blue-50"
+                         >
+                           Previous
+                         </button>
+                       )}
+                       <button
+                         type="button"
+                         onClick={step < 3 ? () => setStep(step + 1) : handleSubmit}
+                         disabled={isNextDisabled}
+                         className={`px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
+                           isNextDisabled
+                             ? 'opacity-50 cursor-not-allowed'
+                             : 'hover:bg-gradient-to-r hover:from-blue-700 hover:to-blue-600'
+                         }`}
+                       >
+                         {step < 3 ? 'Next' : loading ? 'Submitting...' : 'Submit Application'}
+                       </button>
+                     </div>
+                  );
+                })()}
               </form>
             </div>
           </motion.div>
