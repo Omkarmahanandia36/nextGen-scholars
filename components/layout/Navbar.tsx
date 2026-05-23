@@ -12,22 +12,11 @@ import { FaUserCircle, FaChevronDown } from 'react-icons/fa';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isAdminDropdownOpen, setIsAdminDropdownOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
     const checkStatus = async () => {
-      // Check Admin
-      try {
-        const adminRes = await fetch('/api/admin/verify');
-        const adminData = await adminRes.json();
-        setIsAdmin(adminData.success);
-      } catch {
-        setIsAdmin(false);
-      }
-
       // Check Student via API (more reliable than document.cookie for httpOnly)
       try {
         const studentRes = await fetch('/api/auth/me');
@@ -52,7 +41,6 @@ const Navbar = () => {
       });
       
       if (studentLogoutRes.ok || adminLogoutRes.ok) {
-        setIsAdmin(false);
         setIsStudent(false);
         router.push('/');
         router.refresh();
@@ -105,45 +93,6 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              {isAdmin && (
-                <div className="relative">
-                  <button
-                    onClick={() => setIsAdminDropdownOpen(!isAdminDropdownOpen)}
-                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
-                  >
-                    <FaUserCircle className="w-4 h-4" />
-                    Admin
-                    <FaChevronDown className={`w-3 h-3 transition-transform ${isAdminDropdownOpen ? 'rotate-180' : ''}`} />
-                  </button>
-                  
-                  {isAdminDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg py-2 z-50"
-                    >
-                      <Link
-                        href="/admin/dashboard"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                        onClick={() => setIsAdminDropdownOpen(false)}
-                      >
-                        Dashboard
-                      </Link>
-                      <button
-                        onClick={() => {
-                          handleLogout();
-                          setIsAdminDropdownOpen(false);
-                        }}
-                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                      >
-                        Logout
-                      </button>
-                    </motion.div>
-                  )}
-                </div>
-              )}
-
               {isStudent ? (
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -199,27 +148,6 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              {isAdmin && (
-                <>
-                  <Link
-                    href="/admin/dashboard"
-                    className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  <button
-                    onClick={() => {
-                      handleLogout();
-                      setIsOpen(false);
-                    }}
-                    className="w-full text-left px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg"
-                  >
-                    Logout
-                  </button>
-                </>
-              )}
-
               {isStudent ? (
                 <motion.button
                   whileTap={{ scale: 0.95 }}
