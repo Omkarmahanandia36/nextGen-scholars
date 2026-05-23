@@ -89,8 +89,6 @@ export async function proxy(request: NextRequest) {
   return NextResponse.next();
 }
 
-export const runtime = 'nodejs';
-
 export const config = {
   matcher: ['/', '/admin/:path*', '/student/:path*', '/dashboard', '/onboarding', '/login', '/signup'],
 };
