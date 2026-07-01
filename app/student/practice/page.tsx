@@ -10,6 +10,7 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { SYLLABUS } from '@/backend/config/syllabus';
+import QuizForge from '@/components/dashboard/QuizForge';
 
 interface Exam {
   _id: string;
@@ -22,7 +23,7 @@ interface Exam {
 }
 
 export default function PracticeExamsPage() {
-  const [viewMode, setViewMode] = useState<'daily' | 'most-probable'>('daily');
+  const [viewMode, setViewMode] = useState<'daily' | 'most-probable' | 'self-exam'>('daily');
   const [exams, setExams] = useState<Exam[]>([]);
   const [subjects, setSubjects] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,7 @@ export default function PracticeExamsPage() {
   const router = useRouter();
 
   const fetchExams = useCallback(async () => {
+    if (viewMode === 'self-exam') return;
     setLoading(true);
     try {
       let url = `/api/student/exams?examType=${viewMode}`;
@@ -154,15 +156,23 @@ export default function PracticeExamsPage() {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">
-                {viewMode === 'daily' ? 'Practice Arena' : 'Most Probable Exams'}
+                {viewMode === 'self-exam'
+                  ? 'Self Exam Arena'
+                  : viewMode === 'daily'
+                  ? 'Practice Arena'
+                  : 'Most Probable Exams'}
               </h1>
-              <p className="text-gray-500">Master your subjects with focused practice sets.</p>
+              <p className="text-gray-500">
+                {viewMode === 'self-exam'
+                  ? 'Generate custom mock exams and interactive quizzes from your study material.'
+                  : 'Master your subjects with focused practice sets.'}
+              </p>
             </div>
           </div>
         </header>
 
         {/* View Mode Switcher */}
-        <div className="flex p-1 bg-blue-50 rounded-2xl mb-8 w-fit border border-blue-100 shadow-sm">
+        <div className="flex flex-wrap p-1 bg-blue-50 rounded-2xl mb-8 w-fit border border-blue-100 shadow-sm gap-1">
           <button 
             onClick={() => { 
               setViewMode('daily'); 
@@ -183,9 +193,21 @@ export default function PracticeExamsPage() {
           >
             Most Probable Exams
           </button>
+          <button 
+            onClick={() => { 
+              setViewMode('self-exam'); 
+              setSelectedFolder('All Chapters'); 
+              if (subjects.length > 0) setSelectedSubject(subjects[0]);
+            }}
+            className={`px-6 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'self-exam' ? 'bg-blue-600 text-white shadow-lg' : 'text-blue-600/60 hover:text-blue-600'}`}
+          >
+            Self Exam
+          </button>
         </div>
 
-        {viewMode === 'daily' ? (
+        {viewMode === 'self-exam' ? (
+          <QuizForge />
+        ) : viewMode === 'daily' ? (
           <>
             {/* AI Generation Section */}
             <div className="mb-12">
