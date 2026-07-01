@@ -1,7 +1,0 @@
-fastapi
-pydantic
-openai
-google-genai
-fpdf2
-aiofiles
-python-multipart
