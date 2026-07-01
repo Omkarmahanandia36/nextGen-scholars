@@ -14,7 +14,9 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/quiz-generator/:path*',
-        destination: `${process.env.QUIZ_API_URL || 'http://127.0.0.1:8000'}/api/:path*`,
+        destination: process.env.NODE_ENV === 'production'
+          ? '/api/quiz_generator/api/:path*'
+          : 'http://127.0.0.1:8000/api/:path*',
       },
     ];
   },
