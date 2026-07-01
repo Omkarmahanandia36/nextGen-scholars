@@ -221,7 +221,7 @@ export default function QuizForge() {
       setView("quiz");
     } catch (err: any) {
       console.error(err);
-      setLoadingError(err.message || "An unexpected error occurred during generation.");
+      setLoadingError(prev => prev && prev.startsWith("Upload failed") ? prev : (err.message || "An unexpected error occurred during generation."));
     }
   };
 
