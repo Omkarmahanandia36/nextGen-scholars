@@ -617,13 +617,13 @@ export default function QuizForge() {
           <button
             onClick={generateQuiz}
             disabled={((activeTab === "pdf" ? !file : (!pastedText || pastedText.trim().length < 50)) || totalQuestions === 0 || totalQuestions > 50)}
-            className={`w-full py-4.5 rounded-2xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-xl cursor-pointer ${
+            className={`w-full py-4 rounded-2xl font-bold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer text-sm uppercase tracking-wider ${
               (activeTab === "pdf" ? file : (pastedText && pastedText.trim().length >= 50)) && totalQuestions > 0 && totalQuestions <= 50
-                ? "bg-blue-600 hover:bg-blue-700 hover:shadow-blue-500/20 active:scale-[0.99]"
-                : "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 shadow-none"
+                ? "bg-blue-600 hover:bg-blue-700 !text-white active:scale-[0.98] shadow-lg shadow-blue-500/15"
+                : "bg-gray-100 !text-gray-400 border border-gray-200 shadow-none cursor-not-allowed"
             }`}
           >
-            <IoFlash className="text-xl" />
+            <IoFlash className="text-lg" />
             <span>Generate Quiz & PDF</span>
           </button>
         </div>
