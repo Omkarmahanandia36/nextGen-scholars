@@ -147,7 +147,7 @@ Format the output strictly as a JSON array like this:
         method: "PUT",
         headers: {
           "X-Goog-Upload-Offset": "0",
-          "X-Goog-Upload-Command": "finalize",
+          "X-Goog-Upload-Command": "upload, finalize",
           "Content-Length": fileBytes.length.toString(),
         },
         body: Buffer.from(fileBytes),
