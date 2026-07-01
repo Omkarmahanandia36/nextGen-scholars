@@ -5,6 +5,7 @@ import {
   IoCloudUpload, IoDocumentText, IoAlertCircle, IoCheckmarkCircle, 
   IoArrowForward, IoRefresh, IoSparkles, IoEye, IoChevronDown 
 } from "react-icons/io5";
+import { useUploadThing } from "@/utils/uploadthing";
 
 interface QuizOption {
   A: string;
@@ -36,6 +37,7 @@ interface AnswersMap {
 const API_BASE = "/api/quiz-generator";
 
 export default function QuizForge() {
+  const { startUpload } = useUploadThing("pdfUploader");
   // Application states: 'upload' | 'loading' | 'quiz' | 'results'
   const [view, setView] = useState<"upload" | "loading" | "quiz" | "results">("upload");
   const [file, setFile] = useState<File | null>(null);
@@ -153,17 +155,27 @@ export default function QuizForge() {
     setLoadingError("");
     setError("");
 
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("num_mcq", mcqCount.toString());
-    formData.append("num_1_mark", oneMarkCount.toString());
-    formData.append("num_2_mark", twoMarkCount.toString());
-    formData.append("num_5_mark", fiveMarkCount.toString());
-
     try {
+      // 1. Upload file to UploadThing directly from the client's browser
+      const uploadRes = await startUpload([file]);
+      if (!uploadRes || uploadRes.length === 0) {
+        throw new Error("Failed to upload PDF file to storage.");
+      }
+      const fileUrl = uploadRes[0].url;
+
+      // 2. Submit the file URL and counts as JSON to the server
       const response = await fetch(`${API_BASE}/generate-quiz`, {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fileUrl,
+          num_mcq: mcqCount,
+          num_1_mark: oneMarkCount,
+          num_2_mark: twoMarkCount,
+          num_5_mark: fiveMarkCount,
+        }),
       });
 
       if (!response.ok) {

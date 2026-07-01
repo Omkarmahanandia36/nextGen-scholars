@@ -3,19 +3,15 @@ import { Groq } from "groq-sdk";
 
 export async function POST(req: NextRequest) {
   try {
-    const formData = await req.formData();
-    const file = formData.get("file") as File;
-    const numMcq = parseInt(formData.get("num_mcq") as string || "0", 10);
-    const num1Mark = parseInt(formData.get("num_1_mark") as string || "0", 10);
-    const num2Mark = parseInt(formData.get("num_2_mark") as string || "0", 10);
-    const num5Mark = parseInt(formData.get("num_5_mark") as string || "0", 10);
+    const body = await req.json();
+    const fileUrl = body.fileUrl as string;
+    const numMcq = parseInt(body.num_mcq || "0", 10);
+    const num1Mark = parseInt(body.num_1_mark || "0", 10);
+    const num2Mark = parseInt(body.num_2_mark || "0", 10);
+    const num5Mark = parseInt(body.num_5_mark || "0", 10);
 
-    if (!file) {
-      return NextResponse.json({ detail: "No PDF file provided." }, { status: 400 });
-    }
-
-    if (!file.name.toLowerCase().endsWith(".pdf")) {
-      return NextResponse.json({ detail: "Invalid file type. Only PDF documents are supported." }, { status: 400 });
+    if (!fileUrl) {
+      return NextResponse.json({ detail: "No PDF file url provided." }, { status: 400 });
     }
 
     let totalQuestions = numMcq + num1Mark + num2Mark + num5Mark;
@@ -35,8 +31,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ detail: "GEMINI_API_KEY environment variable is missing on server." }, { status: 500 });
     }
 
-    // Convert file to Uint8Array for HTTP upload
-    const arrayBuffer = await file.arrayBuffer();
+    // Download the PDF from UploadThing URL
+    console.log(`Downloading PDF from URL: ${fileUrl}`);
+    const fileFetch = await fetch(fileUrl);
+    if (!fileFetch.ok) {
+      return NextResponse.json({ detail: "Failed to download uploaded PDF file from storage." }, { status: 400 });
+    }
+    const arrayBuffer = await fileFetch.arrayBuffer();
     const fileBytes = new Uint8Array(arrayBuffer);
 
     // ==========================================
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
         "X-Goog-Upload-Header-Content-Type": "application/pdf",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ file: { display_name: file.name || "uploaded_doc.pdf" } }),
+      body: JSON.stringify({ file: { display_name: "quiz_source.pdf" } }),
     });
 
     if (!startResponse.ok) {
