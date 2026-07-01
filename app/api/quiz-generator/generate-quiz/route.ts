@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
         "X-Goog-Upload-Command": "finalize",
         "Content-Length": fileBytes.length.toString(),
       },
-      body: fileBytes,
+      body: Buffer.from(fileBytes),
     });
 
     if (!uploadResponse.ok) {
