@@ -44,8 +44,8 @@ export default function QuizForge() {
       setError(`Upload failed: ${err.message}`);
     }
   });
-  // Application states: 'upload' | 'loading' | 'quiz' | 'results'
-  const [view, setView] = useState<"upload" | "loading" | "quiz" | "results">("upload");
+  // Application states: 'upload' | 'loading' | 'exam-ready' | 'quiz' | 'results'
+  const [view, setView] = useState<"upload" | "loading" | "exam-ready" | "quiz" | "results">("upload");
   const [file, setFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [activeTab, setActiveTab] = useState<"pdf" | "text">("pdf");
@@ -76,6 +76,73 @@ export default function QuizForge() {
 
   // References
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const isSubmittingRef = useRef(false);
+
+  const enterFullscreen = () => {
+    const docEl = document.documentElement as any;
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen().catch((err: any) => console.error(err));
+    } else if (docEl.mozRequestFullScreen) { /* Firefox */
+      docEl.mozRequestFullScreen().catch((err: any) => console.error(err));
+    } else if (docEl.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+      docEl.webkitRequestFullscreen().catch((err: any) => console.error(err));
+    } else if (docEl.msRequestFullscreen) { /* IE/Edge */
+      docEl.msRequestFullscreen().catch((err: any) => console.error(err));
+    }
+  };
+
+  const exitFullscreen = () => {
+    const doc = document as any;
+    if (doc.exitFullscreen) {
+      doc.exitFullscreen().catch((err: any) => console.error(err));
+    } else if (doc.mozCancelFullScreen) { /* Firefox */
+      doc.mozCancelFullScreen().catch((err: any) => console.error(err));
+    } else if (doc.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+      doc.webkitExitFullscreen().catch((err: any) => console.error(err));
+    } else if (doc.msExitFullscreen) { /* IE/Edge */
+      doc.msExitFullscreen().catch((err: any) => console.error(err));
+    }
+  };
+
+  useEffect(() => {
+    if (view !== "quiz") return;
+
+    const handleFullscreenChange = () => {
+      const doc = document as any;
+      const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;
+      
+      if (!isFullscreen) {
+        if (!isSubmittingRef.current) {
+          isSubmittingRef.current = true;
+          alert("Proctor Alert: You have exited full-screen mode. Your exam has been automatically submitted.");
+          setView("results");
+        }
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
+    };
+  }, [view]);
+
+  useEffect(() => {
+    if (quizQuestions.length > 0) {
+      const saved = answers[currentQuestionIndex];
+      if (typeof saved === "object" && saved !== null && "typedText" in saved) {
+        setTypedAnswer(saved.typedText);
+      } else {
+        setTypedAnswer("");
+      }
+    }
+  }, [currentQuestionIndex, quizQuestions, answers]);
 
   // Calculate dynamic total question count
   const totalQuestions = mcqCount + oneMarkCount + twoMarkCount + fiveMarkCount;
@@ -229,7 +296,7 @@ export default function QuizForge() {
       setIsAnswerRevealed(false);
       setSelfGradeSelection(null);
       setShowExplanation(false);
-      setView("quiz");
+      setView("exam-ready");
     } catch (err: any) {
       console.error(err);
       setLoadingError(prev => prev && prev.startsWith("Upload failed") ? prev : (err.message || "An unexpected error occurred during generation."));
@@ -238,12 +305,10 @@ export default function QuizForge() {
 
   // Answer selection handler for MCQs
   const handleSelectMCQOption = (option: string) => {
-    if (answers[currentQuestionIndex] !== undefined) return;
     setAnswers({
       ...answers,
       [currentQuestionIndex]: option,
     });
-    setShowExplanation(true);
   };
 
   // Non-MCQ handlers
@@ -271,6 +336,8 @@ export default function QuizForge() {
     if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      isSubmittingRef.current = true;
+      exitFullscreen();
       setView("results");
     }
   };
@@ -293,7 +360,15 @@ export default function QuizForge() {
     return score;
   };
 
-  // Call backend to download generated PDF
+  const handleScoreGradeUpdate = (idx: number, grade: 'correct' | 'incorrect') => {
+    setAnswers(prev => ({
+      ...prev,
+      [idx]: {
+        ...(prev[idx] as any),
+        selfGrade: grade
+      }
+    }));
+  };
   const downloadPdf = async (includeAnswers = true) => {
     try {
       const response = await fetch(`${API_BASE}/download-pdf`, {
@@ -330,6 +405,7 @@ export default function QuizForge() {
   };
 
   const resetQuiz = () => {
+    isSubmittingRef.current = false;
     setView("upload");
     setFile(null);
     setPastedText("");
@@ -636,6 +712,71 @@ export default function QuizForge() {
         </div>
       )}
 
+      {/* VIEW: EXAM READY INTERSTITIAL */}
+      {view === "exam-ready" && (
+        <div className="max-w-2xl mx-auto py-6 px-4 space-y-8 animate-fadeIn text-center flex flex-col items-center">
+          <div className="relative w-20 h-20 flex items-center justify-center bg-blue-50 text-blue-600 rounded-3xl border border-blue-100 shadow-sm">
+            <IoSparkles className="text-4xl animate-pulse" />
+          </div>
+          
+          <div className="space-y-3">
+            <h2 className="text-3xl font-black text-gray-900">Your Exam is Forged</h2>
+            <p className="text-gray-500 font-medium text-base">
+              We have generated your personalized exam paper based on your study materials.
+            </p>
+          </div>
+
+          {/* Rules List card */}
+          <div className="w-full bg-gray-50 border border-gray-150 rounded-3xl p-6.5 text-left space-y-5">
+            <h3 className="font-extrabold text-sm text-gray-700 uppercase tracking-wider">Exam Proctoring Rules:</h3>
+            
+            <div className="space-y-4">
+              <div className="flex gap-4">
+                <span className="text-xl flex-shrink-0">🖥️</span>
+                <div>
+                  <h4 className="font-bold text-gray-900 text-sm">Full-Screen Mode Enforcement</h4>
+                  <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">
+                    The exam will lock your browser to full-screen. Make sure to stay in this window.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex gap-4">
+                <span className="text-xl flex-shrink-0">🚫</span>
+                <div>
+                  <h4 className="font-bold text-gray-900 text-sm">Automatic Submission on Exit</h4>
+                  <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">
+                    If you exit full-screen, minimize the page, or change tabs, the exam will automatically submit immediately.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex gap-4">
+                <span className="text-xl flex-shrink-0">📝</span>
+                <div>
+                  <h4 className="font-bold text-gray-900 text-sm">Deferred Answer Analysis</h4>
+                  <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">
+                    Answers, suggested marking schemes, and full explanations are hidden until you submit your exam.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={() => {
+              isSubmittingRef.current = false;
+              enterFullscreen();
+              setView("quiz");
+            }}
+            className="w-full py-4.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-extrabold rounded-2xl shadow-xl shadow-blue-500/15 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer text-base"
+          >
+            <span>Begin Exam (Locks Full-Screen)</span>
+            <IoArrowForward className="text-lg" />
+          </button>
+        </div>
+      )}
+
       {/* VIEW 3: QUIZ INTERACTION */}
       {view === "quiz" && quizQuestions.length > 0 && (
         <div className="space-y-6 max-w-3xl mx-auto animate-fadeIn">
@@ -690,35 +831,19 @@ export default function QuizForge() {
           {quizQuestions[currentQuestionIndex].question_type === "MCQ" ? (
             <div className="grid grid-cols-1 gap-3.5 mt-5">
               {Object.entries(quizQuestions[currentQuestionIndex].options || {}).map(([key, value]) => {
-                const isAnswered = answers[currentQuestionIndex] !== undefined;
                 const isSelected = answers[currentQuestionIndex] === key;
-                const isCorrect = quizQuestions[currentQuestionIndex].correct_answer === key;
-
-                let buttonClass = "border-gray-200 bg-white hover:border-blue-400 hover:bg-blue-50/10 text-gray-700";
-                
-                if (isAnswered) {
-                  if (isCorrect) {
-                    buttonClass = "border-emerald-500 bg-emerald-50/30 text-emerald-800 font-medium";
-                  } else if (isSelected) {
-                    buttonClass = "border-red-500 bg-red-50/30 text-red-800 font-medium";
-                  } else {
-                    buttonClass = "border-gray-100 bg-gray-50/20 text-gray-400 cursor-not-allowed opacity-60";
-                  }
-                }
+                const buttonClass = isSelected
+                  ? "border-blue-500 bg-blue-50/15 text-blue-700 font-semibold shadow-sm"
+                  : "border-gray-200 bg-white hover:border-blue-400 hover:bg-blue-50/10 text-gray-700";
 
                 return (
                   <button
                     key={key}
                     onClick={() => handleSelectMCQOption(key)}
-                    disabled={isAnswered}
                     className={`border rounded-2xl p-4 text-left flex items-center gap-3.5 transition-all duration-200 cursor-pointer ${buttonClass}`}
                   >
                     <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-bold text-xs flex-shrink-0 transition-colors ${
-                      isAnswered && isCorrect
-                        ? "bg-emerald-500 text-white"
-                        : isAnswered && isSelected
-                        ? "bg-red-500 text-white"
-                        : isSelected
+                      isSelected
                         ? "bg-blue-600 text-white"
                         : "bg-gray-100 text-gray-500"
                     }`}>
@@ -738,132 +863,64 @@ export default function QuizForge() {
                 </label>
                 <textarea
                   id="typed-answer"
-                  rows={4}
+                  rows={6}
                   value={typedAnswer}
-                  onChange={(e) => setTypedAnswer(e.target.value)}
-                  disabled={isAnswerRevealed}
-                  placeholder="Type or outline your answer here to help grade yourself..."
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setTypedAnswer(val);
+                    setAnswers({
+                      ...answers,
+                      [currentQuestionIndex]: {
+                        typedText: val,
+                        selfGrade: "incorrect" // Default is incorrect until graded at the end
+                      }
+                    });
+                  }}
+                  placeholder="Type or outline your answer here. You will compare it with the suggested model answer and grade yourself after submitting the exam..."
                   className="w-full bg-white border border-gray-200 rounded-2xl p-4.5 text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none resize-none transition-all duration-200 shadow-sm"
                 />
               </div>
+            </div>
+          )}
 
-              {!isAnswerRevealed ? (
+          {/* Navigation Controls */}
+          {(() => {
+            const ans = answers[currentQuestionIndex];
+            const isCurrentQuestionAnswered = (() => {
+              if (quizQuestions[currentQuestionIndex]?.question_type === "MCQ") {
+                return ans !== undefined;
+              } else {
+                return typeof ans === "object" && ans !== null && "typedText" in ans && ans.typedText.trim().length > 0;
+              }
+            })();
+
+            return (
+              <div className="flex gap-4 mt-6">
+                {currentQuestionIndex > 0 && (
+                  <button
+                    onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
+                    className="flex-1 py-4 bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 font-bold rounded-2xl shadow-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>Previous</span>
+                  </button>
+                )}
                 <button
-                  onClick={handleRevealAnswer}
-                  className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-2xl shadow-lg shadow-blue-500/10 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                  onClick={handleNextQuestion}
+                  disabled={!isCurrentQuestionAnswered}
+                  className={`py-4 rounded-2xl font-bold text-white transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                    currentQuestionIndex > 0 ? "flex-[2]" : "w-full"
+                  } ${
+                    isCurrentQuestionAnswered
+                      ? "bg-blue-600 hover:bg-blue-700 active:scale-[0.99] shadow-xl shadow-blue-500/10"
+                      : "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 shadow-none"
+                  }`}
                 >
-                  <IoEye className="text-lg" />
-                  <span>Reveal Suggested Answer</span>
+                  <span>{currentQuestionIndex < quizQuestions.length - 1 ? "Next Question" : "Submit Exam"}</span>
+                  <IoArrowForward className="text-lg" />
                 </button>
-              ) : (
-                /* SELF-GRADE PANELS */
-                <div className="space-y-5 animate-fadeIn">
-                  <div className="border border-blue-100 bg-blue-50/10 rounded-2xl p-5 space-y-4.5 shadow-sm">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase bg-blue-50 text-blue-600 border border-blue-100/50 px-2 py-0.5 rounded">
-                        Model Answer / Suggested Solution
-                      </span>
-                      <p className="text-sm text-gray-900 mt-2.5 leading-relaxed font-bold">
-                        {quizQuestions[currentQuestionIndex].correct_answer}
-                      </p>
-                    </div>
-
-                    {quizQuestions[currentQuestionIndex].explanation && (
-                      <div className="pt-3.5 border-t border-gray-100">
-                        <span className="text-[10px] font-bold uppercase bg-emerald-50 text-emerald-700 border border-emerald-100/50 px-2 py-0.5 rounded">
-                          Marking Rubric & Rubric Details
-                        </span>
-                        <p className="text-xs md:text-sm text-gray-600 mt-2.5 leading-relaxed">
-                          {quizQuestions[currentQuestionIndex].explanation}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="space-y-2.5">
-                    <p className="text-xs text-gray-500 font-bold text-center uppercase tracking-wider">
-                      Self Grade: How did you do?
-                    </p>
-                    <div className="grid grid-cols-2 gap-3.5">
-                      <button
-                        onClick={() => handleSelfGrade("correct")}
-                        className={`py-4 rounded-2xl border text-sm font-bold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
-                          selfGradeSelection === "correct"
-                            ? "bg-emerald-500 border-emerald-500 text-white shadow-lg shadow-emerald-500/10"
-                            : selfGradeSelection !== null
-                            ? "border-gray-100 bg-gray-50/50 text-gray-300 cursor-not-allowed"
-                            : "border-gray-200 bg-white hover:border-emerald-500 hover:bg-emerald-50/10 text-gray-700"
-                        }`}
-                      >
-                        ✓ Correct
-                      </button>
-                      <button
-                        onClick={() => handleSelfGrade("incorrect")}
-                        className={`py-4 rounded-2xl border text-sm font-bold transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
-                          selfGradeSelection === "incorrect"
-                            ? "bg-red-500 border-red-500 text-white shadow-lg shadow-red-500/10"
-                            : selfGradeSelection !== null
-                            ? "border-gray-100 bg-gray-50/50 text-gray-300 cursor-not-allowed"
-                            : "border-gray-200 bg-white hover:border-red-500 hover:bg-red-50/10 text-gray-700"
-                        }`}
-                      >
-                        ✗ Incorrect
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* MCQ Explanations Reveal */}
-          {showExplanation && quizQuestions[currentQuestionIndex].question_type === "MCQ" && answers[currentQuestionIndex] !== undefined && (
-            <div className="mt-6 border border-blue-100 bg-blue-50/10 rounded-2xl p-5 space-y-4.5 animate-fadeIn shadow-sm">
-              <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-                <h4 className="font-bold text-gray-900 flex items-center gap-2 text-sm">
-                  <IoAlertCircle className="text-lg text-blue-600" />
-                  <span>Option Analysis</span>
-                </h4>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${
-                  answers[currentQuestionIndex] === quizQuestions[currentQuestionIndex].correct_answer
-                    ? "bg-emerald-50 text-emerald-700 border border-emerald-100/50"
-                    : "bg-red-50 text-red-700 border border-red-100/50"
-                }`}>
-                  {answers[currentQuestionIndex] === quizQuestions[currentQuestionIndex].correct_answer ? "Correct" : "Incorrect"}
-                </span>
               </div>
-              
-              <div className="space-y-3.5">
-                {Object.entries(quizQuestions[currentQuestionIndex].explanations || {}).map(([key, expl]) => {
-                  const isOptionCorrect = quizQuestions[currentQuestionIndex].correct_answer === key;
-                  const isOptionSelected = answers[currentQuestionIndex] === key;
-
-                  return (
-                    <div key={key} className="text-xs md:text-sm">
-                      <div className="flex items-center gap-1.5 font-bold">
-                        <span className={isOptionCorrect ? "text-emerald-700" : isOptionSelected ? "text-red-700" : "text-gray-700"}>
-                          Option {key}:
-                        </span>
-                        {isOptionCorrect && <span className="text-[9px] bg-emerald-50 text-emerald-700 border border-emerald-100/50 px-1.5 rounded">Correct Answer</span>}
-                      </div>
-                      <p className="text-gray-500 mt-1 leading-relaxed">{expl}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* Next Question button */}
-          {answers[currentQuestionIndex] !== undefined && (
-            <button
-              onClick={handleNextQuestion}
-              className="w-full py-4.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold rounded-2xl shadow-xl shadow-blue-500/10 transition-all duration-200 mt-6 flex items-center justify-center gap-2 cursor-pointer animate-fadeIn"
-            >
-              <span>{currentQuestionIndex < quizQuestions.length - 1 ? "Next Question" : "View Results"}</span>
-              <IoArrowForward className="text-lg" />
-            </button>
-          )}
+            );
+          })()}
         </div>
       )}
 
@@ -1015,6 +1072,31 @@ export default function QuizForge() {
                             <p className="text-gray-900 font-bold mt-1 leading-relaxed">
                               {q.correct_answer}
                             </p>
+                          </div>
+                          <div className="pt-2">
+                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-2">Grade your answer:</p>
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => handleScoreGradeUpdate(idx, 'correct')}
+                                className={`px-4 py-2 border text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer ${
+                                  (ans as any)?.selfGrade === "correct"
+                                    ? "bg-emerald-500 border-emerald-500 text-white shadow-md shadow-emerald-500/10"
+                                    : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                                }`}
+                              >
+                                ✓ Correct
+                              </button>
+                              <button
+                                onClick={() => handleScoreGradeUpdate(idx, 'incorrect')}
+                                className={`px-4 py-2 border text-xs font-bold rounded-xl transition-all duration-200 cursor-pointer ${
+                                  (ans as any)?.selfGrade === "incorrect"
+                                    ? "bg-red-500 border-red-500 text-white shadow-md shadow-red-500/10"
+                                    : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                                }`}
+                              >
+                                ✗ Incorrect
+                              </button>
+                            </div>
                           </div>
                         </div>
                       )}
