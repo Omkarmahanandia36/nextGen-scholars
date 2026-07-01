@@ -48,6 +48,8 @@ export default function QuizForge() {
   const [view, setView] = useState<"upload" | "loading" | "quiz" | "results">("upload");
   const [file, setFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
+  const [activeTab, setActiveTab] = useState<"pdf" | "text">("pdf");
+  const [pastedText, setPastedText] = useState("");
   
   // Custom marking scheme counts
   const [mcqCount, setMcqCount] = useState(5);
@@ -142,10 +144,14 @@ export default function QuizForge() {
     setError("");
   };
 
-  // Submit file to backend API
+  // Submit file or text to backend API
   const generateQuiz = async () => {
-    if (!file) {
+    if (activeTab === "pdf" && !file) {
       setError("Please upload a PDF file first.");
+      return;
+    }
+    if (activeTab === "text" && (!pastedText || pastedText.trim().length < 50)) {
+      setError("Please paste study material of at least 50 characters.");
       return;
     }
     if (totalQuestions === 0) {
@@ -162,26 +168,31 @@ export default function QuizForge() {
     setError("");
 
     try {
-      // 1. Upload file to UploadThing directly from the client's browser
-      const uploadRes = await startUpload([file]);
-      if (!uploadRes || uploadRes.length === 0) {
-        throw new Error("Failed to upload PDF file to storage.");
-      }
-      const fileUrl = uploadRes[0].url;
+      let payload: any = {
+        num_mcq: mcqCount,
+        num_1_mark: oneMarkCount,
+        num_2_mark: twoMarkCount,
+        num_5_mark: fiveMarkCount,
+      };
 
-      // 2. Submit the file URL and counts as JSON to the server
+      if (activeTab === "pdf" && file) {
+        // 1. Upload file to UploadThing directly from the client's browser
+        const uploadRes = await startUpload([file]);
+        if (!uploadRes || uploadRes.length === 0) {
+          throw new Error("Failed to upload PDF file to storage.");
+        }
+        payload.fileUrl = uploadRes[0].url;
+      } else {
+        payload.text = pastedText;
+      }
+
+      // 2. Submit the payload as JSON to the server
       const response = await fetch(`${API_BASE}/generate-quiz`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          fileUrl,
-          num_mcq: mcqCount,
-          num_1_mark: oneMarkCount,
-          num_2_mark: twoMarkCount,
-          num_5_mark: fiveMarkCount,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -321,6 +332,7 @@ export default function QuizForge() {
   const resetQuiz = () => {
     setView("upload");
     setFile(null);
+    setPastedText("");
     setQuizQuestions([]);
     setCurrentQuestionIndex(0);
     setAnswers({});
@@ -353,55 +365,102 @@ export default function QuizForge() {
             </p>
           </div>
 
-          {/* Drag & Drop File Zone */}
-          <div
-            className={`relative border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 ${
-              dragActive
-                ? "border-blue-500 bg-blue-50/40 text-blue-800"
-                : file
-                ? "border-emerald-500 bg-emerald-50/10 text-emerald-800"
-                : "border-gray-200 bg-gray-50/30 hover:border-blue-400 hover:bg-blue-50/20"
-            }`}
-            onDragEnter={handleDrag}
-            onDragOver={handleDrag}
-            onDragLeave={handleDrag}
-            onDrop={handleDrop}
-            onClick={triggerFileSelect}
-          >
-            <input
-              ref={fileInputRef}
-              type="file"
-              className="hidden"
-              accept="application/pdf"
-              onChange={handleFileChange}
-            />
-            
-            {!file ? (
-              <div className="flex flex-col items-center justify-center py-4">
-                <IoCloudUpload className="text-5xl text-blue-500 mb-3 animate-bounce" />
-                <p className="font-semibold text-gray-700 text-sm md:text-base">
-                  Drag and drop your PDF here, or <span className="text-blue-600 hover:text-blue-700 underline">browse</span>
-                </p>
-                <p className="text-xs text-gray-400 mt-1.5">Only PDF documents are supported</p>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-4">
-                <IoDocumentText className="text-5xl text-emerald-500 mb-3" />
-                <p className="font-bold text-gray-800 text-sm md:text-base truncate max-w-xs md:max-w-md">
-                  {file.name}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {(file.size / (1024 * 1024)).toFixed(2)} MB
-                </p>
-                <button
-                  onClick={removeFile}
-                  className="mt-4 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all duration-200"
-                >
-                  Remove File
-                </button>
-              </div>
-            )}
+          {/* Tab Switcher */}
+          <div className="flex p-1 bg-gray-100 rounded-2xl max-w-md">
+            <button
+              onClick={() => { setActiveTab("pdf"); setError(""); }}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer ${
+                activeTab === "pdf"
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <IoDocumentText className="text-lg" />
+              Upload PDF
+            </button>
+            <button
+              onClick={() => { setActiveTab("text"); setError(""); }}
+              className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 cursor-pointer ${
+                activeTab === "text"
+                  ? "bg-white text-blue-600 shadow-sm"
+                  : "text-gray-500 hover:text-gray-700"
+              }`}
+            >
+              <IoSparkles className="text-lg" />
+              Paste Text
+            </button>
           </div>
+
+          {activeTab === "pdf" ? (
+            /* Drag & Drop File Zone */
+            <div
+              className={`relative border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 ${
+                dragActive
+                  ? "border-blue-500 bg-blue-50/40 text-blue-800"
+                  : file
+                  ? "border-emerald-500 bg-emerald-50/10 text-emerald-800"
+                  : "border-gray-200 bg-gray-50/30 hover:border-blue-400 hover:bg-blue-50/20"
+              }`}
+              onDragEnter={handleDrag}
+              onDragOver={handleDrag}
+              onDragLeave={handleDrag}
+              onDrop={handleDrop}
+              onClick={triggerFileSelect}
+            >
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="hidden"
+                accept="application/pdf"
+                onChange={handleFileChange}
+              />
+              
+              {!file ? (
+                <div className="flex flex-col items-center justify-center py-4">
+                  <IoCloudUpload className="text-5xl text-blue-500 mb-3 animate-bounce" />
+                  <p className="font-semibold text-gray-700 text-sm md:text-base">
+                    Drag and drop your PDF here, or <span className="text-blue-600 hover:text-blue-700 underline">browse</span>
+                  </p>
+                  <p className="text-xs text-gray-400 mt-1.5">Only PDF documents are supported</p>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-4">
+                  <IoDocumentText className="text-5xl text-emerald-500 mb-3" />
+                  <p className="font-bold text-gray-800 text-sm md:text-base truncate max-w-xs md:max-w-md">
+                    {file.name}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {(file.size / (1024 * 1024)).toFixed(2)} MB
+                  </p>
+                  <button
+                    onClick={removeFile}
+                    className="mt-4 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all duration-200"
+                  >
+                    Remove File
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Text Paste Area */
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-gray-700 uppercase tracking-wider block">
+                Paste Study Material / Notes:
+              </label>
+              <textarea
+                value={pastedText}
+                onChange={(e) => setPastedText(e.target.value)}
+                placeholder="Paste your study notes, textbook chapters, or slides text here (min 50 characters)..."
+                className="w-full h-48 px-4 py-3 bg-gray-50/50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:border-blue-500 font-medium text-sm text-gray-800 placeholder-gray-400 transition-all duration-200 resize-none shadow-inner"
+              />
+              <div className="flex justify-between items-center text-xs text-gray-400 font-semibold px-1">
+                <span>Min: 50 chars</span>
+                <span className={pastedText.trim().length >= 50 ? "text-emerald-500 font-bold" : "text-gray-400"}>
+                  {pastedText.trim().length} characters
+                </span>
+              </div>
+            </div>
+          )}
 
           {error && (
             <div className="p-4 bg-red-50 text-red-600 rounded-xl font-bold flex items-center space-x-2 border border-red-100 text-sm animate-fadeIn">
@@ -485,9 +544,9 @@ export default function QuizForge() {
           {/* Action button */}
           <button
             onClick={generateQuiz}
-            disabled={!file || totalQuestions === 0 || totalQuestions > 50}
+            disabled={((activeTab === "pdf" ? !file : (!pastedText || pastedText.trim().length < 50)) || totalQuestions === 0 || totalQuestions > 50)}
             className={`w-full py-4.5 rounded-2xl font-bold text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-xl cursor-pointer ${
-              file && totalQuestions > 0 && totalQuestions <= 50
+              (activeTab === "pdf" ? file : (pastedText && pastedText.trim().length >= 50)) && totalQuestions > 0 && totalQuestions <= 50
                 ? "bg-blue-600 hover:bg-blue-700 hover:shadow-blue-500/20 active:scale-[0.99]"
                 : "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 shadow-none"
             }`}

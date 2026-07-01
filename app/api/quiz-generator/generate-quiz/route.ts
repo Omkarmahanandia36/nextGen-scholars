@@ -5,13 +5,14 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const fileUrl = body.fileUrl as string;
+    const textContent = body.text as string; // Optional raw text input
     const numMcq = parseInt(body.num_mcq || "0", 10);
     const num1Mark = parseInt(body.num_1_mark || "0", 10);
     const num2Mark = parseInt(body.num_2_mark || "0", 10);
     const num5Mark = parseInt(body.num_5_mark || "0", 10);
 
-    if (!fileUrl) {
-      return NextResponse.json({ detail: "No PDF file url provided." }, { status: 400 });
+    if (!fileUrl && !textContent) {
+      return NextResponse.json({ detail: "No PDF file url or study text provided." }, { status: 400 });
     }
 
     let totalQuestions = numMcq + num1Mark + num2Mark + num5Mark;
@@ -31,91 +32,28 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ detail: "GEMINI_API_KEY environment variable is missing on server." }, { status: 500 });
     }
 
-    // Download the PDF from UploadThing URL
-    console.log(`Downloading PDF from URL: ${fileUrl}`);
-    const fileFetch = await fetch(fileUrl);
-    if (!fileFetch.ok) {
-      return NextResponse.json({ detail: "Failed to download uploaded PDF file from storage." }, { status: 400 });
-    }
-    const arrayBuffer = await fileFetch.arrayBuffer();
-    const fileBytes = new Uint8Array(arrayBuffer);
-
-    // ==========================================
-    // STAGE 1: EXTRACTION (Google Gemini)
-    // ==========================================
-    console.log("Stage 1: Uploading PDF to Gemini Files API...");
+    const requirements: string[] = [];
+    if (numMcq > 0) requirements.push(`- ${numMcq} Multiple Choice Questions (MCQ)`);
+    if (num1Mark > 0) requirements.push(`- ${num1Mark} 1-Mark Questions (concise short answer)`);
+    if (num2Mark > 0) requirements.push(`- ${num2Mark} 2-Mark Questions (medium explanation)`);
+    if (num5Mark > 0) requirements.push(`- ${num5Mark} 5-Mark Questions (detailed long answer)`);
     
-    const startResponse = await fetch(`https://generativelanguage.googleapis.com/upload/v1beta/files?key=${geminiKey}`, {
-      method: "POST",
-      headers: {
-        "X-Goog-Upload-Protocol": "resumable",
-        "X-Goog-Upload-Command": "start",
-        "X-Goog-Upload-Header-Content-Length": fileBytes.length.toString(),
-        "X-Goog-Upload-Header-Content-Type": "application/pdf",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ file: { display_name: "quiz_source.pdf" } }),
-    });
-
-    if (!startResponse.ok) {
-      throw new Error(`Failed to start upload: ${await startResponse.text()}`);
-    }
-
-    const uploadUrl = startResponse.headers.get("x-goog-upload-url");
-    if (!uploadUrl) {
-      throw new Error("No upload URL returned from Google Files API");
-    }
-
-    const uploadResponse = await fetch(uploadUrl, {
-      method: "PUT",
-      headers: {
-        "X-Goog-Upload-Offset": "0",
-        "X-Goog-Upload-Command": "finalize",
-        "Content-Length": fileBytes.length.toString(),
-      },
-      body: Buffer.from(fileBytes),
-    });
-
-    if (!uploadResponse.ok) {
-      throw new Error(`Failed to upload file bytes: ${await uploadResponse.text()}`);
-    }
-
-    const fileMetadata = await uploadResponse.json();
-    const fileNameId = fileMetadata.file.name;
-    const fileUri = fileMetadata.file.uri;
-
-    console.log(`Uploaded successfully. File name ID: ${fileNameId}`);
-
-    // Poll status
-    let fileState = "PROCESSING";
-    let retryCount = 0;
-    while (fileState === "PROCESSING" && retryCount < 15) {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      const stateResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/${fileNameId}?key=${geminiKey}`);
-      if (stateResponse.ok) {
-        const stateData = await stateResponse.json();
-        fileState = stateData.state;
-        if (fileState === "FAILED") {
-          throw new Error(`File processing failed on Google Files API: ${stateData.error?.message || "Unknown error"}`);
-        }
-      }
-      retryCount++;
-    }
+    const requirementsStr = requirements.length > 0 ? requirements.join("\n") : `- 5 Multiple Choice Questions (MCQ)`;
 
     let stage1JsonStr = "";
-    try {
-      const requirements: string[] = [];
-      if (numMcq > 0) requirements.push(`- ${numMcq} Multiple Choice Questions (MCQ)`);
-      if (num1Mark > 0) requirements.push(`- ${num1Mark} 1-Mark Questions (concise short answer)`);
-      if (num2Mark > 0) requirements.push(`- ${num2Mark} 2-Mark Questions (medium explanation)`);
-      if (num5Mark > 0) requirements.push(`- ${num5Mark} 5-Mark Questions (detailed long answer)`);
-      
-      const requirementsStr = requirements.length > 0 ? requirements.join("\n") : `- 5 Multiple Choice Questions (MCQ)`;
 
-      const promptStage1 = `You are an expert academic examiner. Read the attached document and generate a quiz with exactly the following marking scheme:
+    if (textContent) {
+      // ------------------------------------------
+      // CASE A: Direct Text Quiz Generation
+      // ------------------------------------------
+      console.log("Stage 1: Generating quiz directly from text content...");
+      const promptStage1 = `You are an expert academic examiner. Read the provided study material and generate a quiz with exactly the following marking scheme:
 ${requirementsStr}
 
 Total questions to generate: ${totalQuestions}
+
+Study Material:
+${textContent}
 
 You must return the output in a strict, raw JSON array format with no markdown code blocks, no backticks, and no extra text.
 Each question object in the JSON array must contain exactly these fields:
@@ -152,12 +90,6 @@ Format the output strictly as a JSON array like this:
             {
               parts: [
                 {
-                  file_data: {
-                    file_uri: fileUri,
-                    mime_type: "application/pdf"
-                  }
-                },
-                {
                   text: promptStage1
                 }
               ]
@@ -176,15 +108,152 @@ Format the output strictly as a JSON array like this:
 
       const generateData = await generateResponse.json();
       stage1JsonStr = generateData.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    } finally {
-      // Clean up the file asset immediately from Google Files API
+
+    } else {
+      // ------------------------------------------
+      // CASE B: PDF File Quiz Generation
+      // ------------------------------------------
+      console.log(`Stage 1: Downloading PDF from URL: ${fileUrl}`);
+      const fileFetch = await fetch(fileUrl);
+      if (!fileFetch.ok) {
+        return NextResponse.json({ detail: "Failed to download uploaded PDF file from storage." }, { status: 400 });
+      }
+      const arrayBuffer = await fileFetch.arrayBuffer();
+      const fileBytes = new Uint8Array(arrayBuffer);
+
+      console.log("Stage 1: Uploading PDF to Gemini Files API...");
+      const startResponse = await fetch(`https://generativelanguage.googleapis.com/upload/v1beta/files?key=${geminiKey}`, {
+        method: "POST",
+        headers: {
+          "X-Goog-Upload-Protocol": "resumable",
+          "X-Goog-Upload-Command": "start",
+          "X-Goog-Upload-Header-Content-Length": fileBytes.length.toString(),
+          "X-Goog-Upload-Header-Content-Type": "application/pdf",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ file: { display_name: "quiz_source.pdf" } }),
+      });
+
+      if (!startResponse.ok) {
+        throw new Error(`Failed to start upload: ${await startResponse.text()}`);
+      }
+
+      const uploadUrl = startResponse.headers.get("x-goog-upload-url");
+      if (!uploadUrl) {
+        throw new Error("No upload URL returned from Google Files API");
+      }
+
+      const uploadResponse = await fetch(uploadUrl, {
+        method: "PUT",
+        headers: {
+          "X-Goog-Upload-Offset": "0",
+          "X-Goog-Upload-Command": "finalize",
+          "Content-Length": fileBytes.length.toString(),
+        },
+        body: Buffer.from(fileBytes),
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error(`Failed to upload file bytes: ${await uploadResponse.text()}`);
+      }
+
+      const fileMetadata = await uploadResponse.json();
+      const fileNameId = fileMetadata.file.name;
+      const fileUri = fileMetadata.file.uri;
+
+      console.log(`Uploaded successfully. File name ID: ${fileNameId}`);
+
+      // Poll status
+      let fileState = "PROCESSING";
+      let retryCount = 0;
+      while (fileState === "PROCESSING" && retryCount < 15) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        const stateResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/${fileNameId}?key=${geminiKey}`);
+        if (stateResponse.ok) {
+          const stateData = await stateResponse.json();
+          fileState = stateData.state;
+          if (fileState === "FAILED") {
+            throw new Error(`File processing failed on Google Files API: ${stateData.error?.message || "Unknown error"}`);
+          }
+        }
+        retryCount++;
+      }
+
+      const promptStage1 = `You are an expert academic examiner. Read the attached document and generate a quiz with exactly the following marking scheme:
+${requirementsStr}
+
+Total questions to generate: ${totalQuestions}
+
+You must return the output in a strict, raw JSON array format with no markdown code blocks, no backticks, and no extra text.
+Each question object in the JSON array must contain exactly these fields:
+- "question_type": string, must be one of: "MCQ", "1_mark", "2_mark", or "5_mark".
+- "question": string, the question text.
+- "options": object with keys "A", "B", "C", and "D" mapping to their option strings. For "1_mark", "2_mark", and "5_mark" questions, set "options" to null or omit it.
+- "correct_answer": string. For "MCQ", it must be "A", "B", "C", or "D". For "1_mark", "2_mark", and "5_mark" questions, it must be the suggested answer or model answer.
+- "explanations": object with keys "A", "B", "C", and "D" mapping to explanations. For "1_mark", "2_mark", and "5_mark" questions, set "explanations" to null or omit it.
+- "explanation": string. For "MCQ" questions, set to null or omit it. For "1_mark", "2_mark", and "5_mark" questions, provide a clear explanation, marking key points, or assessment rubric.
+
+Format the output strictly as a JSON array like this:
+[
+  {
+    "question_type": "MCQ",
+    "question": "What is the primary topic of the document?",
+    "options": {
+      "A": "First Choice",
+      "B": "Second Choice",
+      "C": "Third Choice",
+      "D": "Fourth Choice"
+    },
+    "correct_answer": "A"
+  }
+]
+`;
+
       try {
-        await fetch(`https://generativelanguage.googleapis.com/v1beta/${fileNameId}?key=${geminiKey}`, {
-          method: "DELETE",
+        const generateResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    file_data: {
+                      file_uri: fileUri,
+                      mime_type: "application/pdf"
+                    }
+                  },
+                  {
+                    text: promptStage1
+                  }
+                ]
+              }
+            ],
+            generationConfig: {
+              responseMimeType: "application/json",
+              temperature: 0.2
+            }
+          }),
         });
-        console.log("Google Files API cleanup successful.");
-      } catch (cleanupErr) {
-        console.error("Failed to delete Google Files API asset:", cleanupErr);
+
+        if (!generateResponse.ok) {
+          throw new Error(`Gemini generation failed: ${await generateResponse.text()}`);
+        }
+
+        const generateData = await generateResponse.json();
+        stage1JsonStr = generateData.candidates?.[0]?.content?.parts?.[0]?.text || "";
+      } finally {
+        // Clean up the file asset immediately from Google Files API
+        try {
+          await fetch(`https://generativelanguage.googleapis.com/v1beta/${fileNameId}?key=${geminiKey}`, {
+            method: "DELETE",
+          });
+          console.log("Google Files API cleanup successful.");
+        } catch (cleanupErr) {
+          console.error("Failed to delete Google Files API asset:", cleanupErr);
+        }
       }
     }
 
