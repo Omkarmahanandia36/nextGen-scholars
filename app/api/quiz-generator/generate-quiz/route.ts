@@ -1,6 +1,65 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Groq } from "groq-sdk";
 
+async function fetchGeminiWithFallback(
+  geminiKey: string,
+  contentsPayload: any,
+  temperature: number = 0.2
+): Promise<Response> {
+  const models = ["gemini-2.5-flash", "gemini-1.5-flash", "gemini-1.5-pro"];
+  let lastErrorMsg = "";
+
+  for (const model of models) {
+    let retries = 3;
+    let delay = 1000;
+
+    while (retries > 0) {
+      try {
+        console.log(`Attempting generation with model ${model} (Retries remaining: ${retries - 1})...`);
+        const response = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contents: contentsPayload,
+              generationConfig: {
+                responseMimeType: "application/json",
+                temperature: temperature,
+              },
+            }),
+          }
+        );
+
+        if (response.ok) {
+          return response;
+        }
+
+        const errorText = await response.text();
+        console.warn(`Model ${model} returned error status ${response.status}: ${errorText}`);
+        lastErrorMsg = errorText;
+
+        if (response.status >= 400 && response.status < 500 && response.status !== 429) {
+          throw new Error(errorText);
+        }
+      } catch (err: any) {
+        console.error(`Error during fetch for ${model}:`, err);
+        lastErrorMsg = err.message || "Network error";
+      }
+
+      retries--;
+      if (retries > 0) {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        delay *= 2;
+      }
+    }
+  }
+
+  throw new Error(`All Gemini models failed. Last error: ${lastErrorMsg}`);
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -80,31 +139,15 @@ Format the output strictly as a JSON array like this:
 ]
 `;
 
-      const generateResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
+      const generateResponse = await fetchGeminiWithFallback(geminiKey, [
+        {
+          parts: [
             {
-              parts: [
-                {
-                  text: promptStage1
-                }
-              ]
+              text: promptStage1
             }
-          ],
-          generationConfig: {
-            responseMimeType: "application/json",
-            temperature: 0.2
-          }
-        }),
-      });
-
-      if (!generateResponse.ok) {
-        throw new Error(`Gemini generation failed: ${await generateResponse.text()}`);
-      }
+          ]
+        }
+      ], 0.2);
 
       const generateData = await generateResponse.json();
       stage1JsonStr = generateData.candidates?.[0]?.content?.parts?.[0]?.text || "";
@@ -210,37 +253,21 @@ Format the output strictly as a JSON array like this:
 `;
 
       try {
-        const generateResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
+        const generateResponse = await fetchGeminiWithFallback(geminiKey, [
+          {
+            parts: [
               {
-                parts: [
-                  {
-                    file_data: {
-                      file_uri: fileUri,
-                      mime_type: "application/pdf"
-                    }
-                  },
-                  {
-                    text: promptStage1
-                  }
-                ]
+                file_data: {
+                  file_uri: fileUri,
+                  mime_type: "application/pdf"
+                }
+              },
+              {
+                text: promptStage1
               }
-            ],
-            generationConfig: {
-              responseMimeType: "application/json",
-              temperature: 0.2
-            }
-          }),
-        });
-
-        if (!generateResponse.ok) {
-          throw new Error(`Gemini generation failed: ${await generateResponse.text()}`);
-        }
+            ]
+          }
+        ], 0.2);
 
         const generateData = await generateResponse.json();
         stage1JsonStr = generateData.candidates?.[0]?.content?.parts?.[0]?.text || "";
@@ -298,32 +325,18 @@ ${stage1JsonStr}
 
     if (!stage2JsonStr) {
       try {
-        const fallbackResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
+        const fallbackResponse = await fetchGeminiWithFallback(geminiKey, [
+          {
+            parts: [
               {
-                parts: [
-                  {
-                    text: promptStage2
-                  }
-                ]
+                text: promptStage2
               }
-            ],
-            generationConfig: {
-              responseMimeType: "application/json",
-              temperature: 0.2
-            }
-          }),
-        });
+            ]
+          }
+        ], 0.2);
         
-        if (fallbackResponse.ok) {
-          const fbData = await fallbackResponse.json();
-          stage2JsonStr = fbData.candidates?.[0]?.content?.parts?.[0]?.text || "";
-        }
+        const fbData = await fallbackResponse.json();
+        stage2JsonStr = fbData.candidates?.[0]?.content?.parts?.[0]?.text || "";
       } catch (err) {
         console.error("Gemini elaboration fallback failed:", err);
       }
@@ -399,31 +412,18 @@ ${stage2JsonStr}
 
     if (!stage3JsonStr) {
       try {
-        const geminiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiKey}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
+        const geminiResponse = await fetchGeminiWithFallback(geminiKey, [
+          {
+            parts: [
               {
-                parts: [
-                  {
-                    text: promptStage3
-                  }
-                ]
+                text: promptStage3
               }
-            ],
-            generationConfig: {
-              responseMimeType: "application/json",
-              temperature: 0.1
-            }
-          }),
-        });
-        if (geminiResponse.ok) {
-          const geminiData = await geminiResponse.json();
-          stage3JsonStr = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
-        }
+            ]
+          }
+        ], 0.1);
+        
+        const geminiData = await geminiResponse.json();
+        stage3JsonStr = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "";
       } catch (err) {
         console.warn("Gemini validation fallback failed:", err);
       }
