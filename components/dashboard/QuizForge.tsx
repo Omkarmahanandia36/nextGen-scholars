@@ -1012,14 +1012,14 @@ export default function QuizForge() {
                   >
                     <summary className="flex items-center justify-between p-4.5 cursor-pointer hover:bg-blue-50/10 list-none select-none">
                       <div className="flex items-center gap-3">
-                        <span className={`w-6.5 h-6.5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                        <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
                           isCorrect
                             ? "bg-emerald-500 text-white"
                             : "bg-red-500 text-white"
                         }`}>
                           {isCorrect ? "✓" : "✗"}
                         </span>
-                        <span className="text-sm font-bold text-gray-900 truncate max-w-xs md:max-w-md">
+                        <span className="text-sm font-bold text-gray-900 leading-relaxed">
                           {idx + 1}. {q.question}
                         </span>
                       </div>
