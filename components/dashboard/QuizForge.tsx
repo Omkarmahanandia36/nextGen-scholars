@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { 
   IoCloudUpload, IoDocumentText, IoAlertCircle, IoCheckmarkCircle, 
-  IoArrowForward, IoRefresh, IoSparkles, IoEye, IoChevronDown 
+  IoArrowForward, IoRefresh, IoEye, IoChevronDown,
+  IoSchool, IoCreate, IoFlash
 } from "react-icons/io5";
 import { useUploadThing } from "@/utils/uploadthing";
 
@@ -422,17 +423,12 @@ export default function QuizForge() {
 
   return (
     <div className="bg-white p-6 md:p-10 rounded-3xl border border-gray-100 shadow-sm relative group overflow-hidden">
-      {/* Decorative sparkle background for premium look */}
-      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
-        <IoSparkles className="text-9xl text-blue-600" />
-      </div>
-
       {/* VIEW 1: UPLOAD & CONFIGURATION */}
       {view === "upload" && (
         <div className="space-y-6 max-w-3xl mx-auto">
           <div>
             <div className="flex items-center space-x-2 mb-3 text-blue-600">
-              <IoSparkles className="text-xl" />
+              <IoSchool className="text-xl" />
               <span className="font-bold text-xs uppercase tracking-wider">AI Self Examination Engine</span>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Practice with Your Own Study Material</h2>
@@ -462,7 +458,7 @@ export default function QuizForge() {
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              <IoSparkles className="text-lg" />
+              <IoCreate className="text-lg" />
               Paste Text
             </button>
           </div>
@@ -627,7 +623,7 @@ export default function QuizForge() {
                 : "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200 shadow-none"
             }`}
           >
-            <IoSparkles className="text-xl" />
+            <IoFlash className="text-xl" />
             <span>Generate Quiz & PDF</span>
           </button>
         </div>
@@ -716,7 +712,7 @@ export default function QuizForge() {
       {view === "exam-ready" && (
         <div className="max-w-xl mx-auto py-8 px-4 space-y-8 animate-fadeIn text-center flex flex-col items-center">
           <div className="relative w-16 h-16 flex items-center justify-center bg-blue-50 text-blue-600 rounded-2xl border border-blue-100/80 shadow-sm animate-pulse">
-            <IoSparkles className="text-3xl" />
+            <IoSchool className="text-3xl" />
           </div>
           
           <div className="space-y-2">
