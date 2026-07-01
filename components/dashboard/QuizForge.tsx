@@ -714,48 +714,54 @@ export default function QuizForge() {
 
       {/* VIEW: EXAM READY INTERSTITIAL */}
       {view === "exam-ready" && (
-        <div className="max-w-2xl mx-auto py-6 px-4 space-y-8 animate-fadeIn text-center flex flex-col items-center">
-          <div className="relative w-20 h-20 flex items-center justify-center bg-blue-50 text-blue-600 rounded-3xl border border-blue-100 shadow-sm">
-            <IoSparkles className="text-4xl animate-pulse" />
+        <div className="max-w-xl mx-auto py-8 px-4 space-y-8 animate-fadeIn text-center flex flex-col items-center">
+          <div className="relative w-16 h-16 flex items-center justify-center bg-blue-50 text-blue-600 rounded-2xl border border-blue-100/80 shadow-sm animate-pulse">
+            <IoSparkles className="text-3xl" />
           </div>
           
-          <div className="space-y-3">
-            <h2 className="text-3xl font-black text-gray-900">Your Exam is Forged</h2>
-            <p className="text-gray-500 font-medium text-base">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-extrabold text-gray-900 tracking-tight">Your Exam is Forged</h2>
+            <p className="text-gray-500 font-medium text-sm">
               We have generated your personalized exam paper based on your study materials.
             </p>
           </div>
 
           {/* Rules List card */}
-          <div className="w-full bg-gray-50 border border-gray-150 rounded-3xl p-6.5 text-left space-y-5">
-            <h3 className="font-extrabold text-sm text-gray-700 uppercase tracking-wider">Exam Proctoring Rules:</h3>
+          <div className="w-full bg-white border border-gray-100 rounded-3xl p-6 md:p-8 text-left space-y-6 shadow-sm">
+            <h3 className="font-bold text-xs text-gray-400 uppercase tracking-widest">Exam Proctoring Rules</h3>
             
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <span className="text-xl flex-shrink-0">🖥️</span>
+            <div className="space-y-5">
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0 text-lg border border-blue-100/50">
+                  🖥️
+                </div>
                 <div>
                   <h4 className="font-bold text-gray-900 text-sm">Full-Screen Mode Enforcement</h4>
-                  <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">
+                  <p className="text-gray-500 text-xs mt-1 leading-relaxed">
                     The exam will lock your browser to full-screen. Make sure to stay in this window.
                   </p>
                 </div>
               </div>
               
-              <div className="flex gap-4">
-                <span className="text-xl flex-shrink-0">🚫</span>
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center flex-shrink-0 text-lg border border-red-100/50">
+                  🚫
+                </div>
                 <div>
                   <h4 className="font-bold text-gray-900 text-sm">Automatic Submission on Exit</h4>
-                  <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">
+                  <p className="text-gray-500 text-xs mt-1 leading-relaxed">
                     If you exit full-screen, minimize the page, or change tabs, the exam will automatically submit immediately.
                   </p>
                 </div>
               </div>
               
-              <div className="flex gap-4">
-                <span className="text-xl flex-shrink-0">📝</span>
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0 text-lg border border-amber-100/50">
+                  📝
+                </div>
                 <div>
                   <h4 className="font-bold text-gray-900 text-sm">Deferred Answer Analysis</h4>
-                  <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">
+                  <p className="text-gray-500 text-xs mt-1 leading-relaxed">
                     Answers, suggested marking schemes, and full explanations are hidden until you submit your exam.
                   </p>
                 </div>
@@ -769,10 +775,10 @@ export default function QuizForge() {
               enterFullscreen();
               setView("quiz");
             }}
-            className="w-full py-4.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-extrabold rounded-2xl shadow-xl shadow-blue-500/15 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer text-base"
+            className="w-full py-4 px-6 bg-blue-600 hover:bg-blue-700 active:scale-[0.98] !text-white font-bold rounded-2xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer text-sm uppercase tracking-wider"
           >
             <span>Begin Exam (Locks Full-Screen)</span>
-            <IoArrowForward className="text-lg" />
+            <IoArrowForward className="text-base" />
           </button>
         </div>
       )}
