@@ -11,12 +11,13 @@ const nextConfig: NextConfig = {
   },
   serverExternalPackages: ["uploadthing", "@uploadthing/react"],
   async rewrites() {
+    if (process.env.NODE_ENV === 'production') {
+      return [];
+    }
     return [
       {
         source: '/api/quiz-generator/:path*',
-        destination: process.env.NODE_ENV === 'production'
-          ? '/api/quiz_generator/api/:path*'
-          : 'http://127.0.0.1:8000/api/:path*',
+        destination: 'http://127.0.0.1:8000/api/:path*',
       },
     ];
   },

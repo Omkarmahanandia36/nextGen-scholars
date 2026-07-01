@@ -1,3 +1,9 @@
 {
-  "buildCommand": "next build --webpack"
+  "buildCommand": "next build --webpack",
+  "rewrites": [
+    {
+      "source": "/api/quiz-generator/:path*",
+      "destination": "/api/quiz_generator/api/:path*"
+    }
+  ]
 }
