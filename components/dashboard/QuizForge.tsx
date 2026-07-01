@@ -37,7 +37,13 @@ interface AnswersMap {
 const API_BASE = "/api/quiz-generator";
 
 export default function QuizForge() {
-  const { startUpload } = useUploadThing("pdfUploader");
+  const { startUpload } = useUploadThing("pdfUploader", {
+    onUploadError: (err) => {
+      console.error("UploadThing Client Error:", err);
+      setLoadingError(`Upload failed: ${err.message}`);
+      setError(`Upload failed: ${err.message}`);
+    }
+  });
   // Application states: 'upload' | 'loading' | 'quiz' | 'results'
   const [view, setView] = useState<"upload" | "loading" | "quiz" | "results">("upload");
   const [file, setFile] = useState<File | null>(null);
