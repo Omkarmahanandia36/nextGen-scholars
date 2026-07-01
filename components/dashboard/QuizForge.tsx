@@ -711,9 +711,9 @@ export default function QuizForge() {
                     key={key}
                     onClick={() => handleSelectMCQOption(key)}
                     disabled={isAnswered}
-                    className={`border rounded-2xl py-4.5 px-5.5 text-left flex items-start gap-4 transition-all duration-200 cursor-pointer ${buttonClass}`}
+                    className={`border rounded-2xl p-4 text-left flex items-center gap-3.5 transition-all duration-200 cursor-pointer ${buttonClass}`}
                   >
-                    <span className={`w-7.5 h-7.5 rounded-xl flex items-center justify-center font-bold text-xs flex-shrink-0 transition-colors ${
+                    <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-bold text-xs flex-shrink-0 transition-colors ${
                       isAnswered && isCorrect
                         ? "bg-emerald-500 text-white"
                         : isAnswered && isSelected
@@ -724,7 +724,7 @@ export default function QuizForge() {
                     }`}>
                       {key}
                     </span>
-                    <span className="text-sm md:text-base pt-0.5 leading-relaxed">{value}</span>
+                    <span className="text-sm md:text-base leading-relaxed">{value}</span>
                   </button>
                 );
               })}
