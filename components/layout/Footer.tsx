@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaTwitter, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import ScheduleMeetingModal from '../modals/ScheduleMeetingModal';
 import PrivacyPolicyModal from '../modals/PrivacyPolicyModal';
@@ -67,7 +68,14 @@ const Footer = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                 {/* Company Info */}
                 <div className="space-y-4">
-                  <Link href="/">
+                  <Link href="/" className="flex items-center gap-2">
+                    <Image 
+                      src="/images/logo.png" 
+                      alt="NextGen Scholars Logo" 
+                      width={36} 
+                      height={36} 
+                      className="rounded-[12px] object-cover"
+                    />
                     <strong className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent inline-block">
                       NextGen Scholars
                     </strong>
