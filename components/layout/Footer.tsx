@@ -68,13 +68,13 @@ const Footer = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                 {/* Company Info */}
                 <div className="space-y-4">
-                  <Link href="/" className="flex items-center gap-2">
+                  <Link href="/" className="flex items-center gap-2.5">
                     <Image 
                       src="/images/logo.png" 
                       alt="NextGen Scholars Logo" 
-                      width={36} 
-                      height={36} 
-                      className="rounded-[12px] object-cover"
+                      width={40} 
+                      height={40} 
+                      className="h-10 w-10 object-contain"
                     />
                     <strong className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent inline-block">
                       NextGen Scholars

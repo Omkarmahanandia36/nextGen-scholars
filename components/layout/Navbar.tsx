@@ -64,13 +64,13 @@ const Navbar = () => {
         <div className="w-full max-w-6xl mx-auto mt-4 bg-white bg-opacity-70 backdrop-blur-lg rounded-2xl shadow-lg px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2.5">
               <Image 
                 src="/images/logo.png" 
                 alt="NextGen Scholars Logo" 
-                width={36} 
-                height={36} 
-                className="rounded-[12px] object-cover"
+                width={40} 
+                height={40} 
+                className="h-10 w-10 object-contain"
                 priority
               />
               <strong className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-teal-500 bg-clip-text text-transparent inline-block">
