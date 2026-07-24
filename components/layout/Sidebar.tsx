@@ -65,9 +65,13 @@ const Sidebar = () => {
       {/* Brand Header */}
       <div className="p-8 pb-4">
         <Link href="/student/dashboard" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform">
-            <HiLightningBolt className="text-xl" />
-          </div>
+          <Image 
+            src="/images/logo.png" 
+            alt="NextGen Scholars Logo" 
+            width={40} 
+            height={40} 
+            className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" 
+          />
           <span className="text-2xl font-black tracking-tight">
             <span className="text-gray-900">Next</span>
             <span className="text-blue-600">Gen Scholar</span>
