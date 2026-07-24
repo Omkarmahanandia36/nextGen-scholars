@@ -31,6 +31,100 @@ interface ExamResult {
   answers: ProcessedAnswer[];
 }
 
+const renderMathText = (text: string) => {
+  if (!text) return '';
+  const parts = text.split('$');
+  return parts.map((part, index) => {
+    if (index % 2 === 0) {
+      return <span key={index}>{part}</span>;
+    }
+    let mathStr = part;
+    mathStr = mathStr
+      .replace(/\\pm/g, '±')
+      .replace(/\\times/g, '×')
+      .replace(/\\div/g, '÷')
+      .replace(/\\ne/g, '≠')
+      .replace(/\\le/g, '≤')
+      .replace(/\\ge/g, '≥')
+      .replace(/\\alpha/g, 'α')
+      .replace(/\\beta/g, 'β')
+      .replace(/\\gamma/g, 'γ')
+      .replace(/\\theta/g, 'θ')
+      .replace(/\\pi/g, 'π')
+      .replace(/\\Delta/g, 'Δ')
+      .replace(/\\delta/g, 'δ')
+      .replace(/\\lambda/g, 'λ')
+      .replace(/\\sigma/g, 'σ')
+      .replace(/\\omega/g, 'ω')
+      .replace(/\\phi/g, 'φ')
+      .replace(/\\infty/g, '∞')
+      .replace(/\\approx/g, '≈');
+      
+    mathStr = mathStr.replace(/\\sqrt\{([^}]+)\}/g, '√$1');
+    mathStr = mathStr.replace(/\\sqrt/g, '√');
+    mathStr = mathStr.replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '$1/$2');
+
+    const tokens: React.ReactNode[] = [];
+    let currentText = '';
+    
+    for (let i = 0; i < mathStr.length; i++) {
+      if (mathStr[i] === '^') {
+        if (currentText) {
+          tokens.push(<span key={`t-${i}`}>{currentText}</span>);
+          currentText = '';
+        }
+        if (mathStr[i + 1] === '{') {
+          const closeIndex = mathStr.indexOf('}', i + 1);
+          if (closeIndex !== -1) {
+            const exp = mathStr.substring(i + 2, closeIndex);
+            tokens.push(<sup key={`sup-${i}`} className="text-xs">{exp}</sup>);
+            i = closeIndex;
+          } else {
+            currentText += '^';
+          }
+        } else if (i + 1 < mathStr.length) {
+          tokens.push(<sup key={`sup-${i}`} className="text-xs">{mathStr[i + 1]}</sup>);
+          i++;
+        } else {
+          currentText += '^';
+        }
+      } else if (mathStr[i] === '_') {
+        if (currentText) {
+          tokens.push(<span key={`t-${i}`}>{currentText}</span>);
+          currentText = '';
+        }
+        if (mathStr[i + 1] === '{') {
+          const closeIndex = mathStr.indexOf('}', i + 1);
+          if (closeIndex !== -1) {
+            const sub = mathStr.substring(i + 2, closeIndex);
+            tokens.push(<sub key={`sub-${i}`} className="text-xs">{sub}</sub>);
+            i = closeIndex;
+          } else {
+            currentText += '_';
+          }
+        } else if (i + 1 < mathStr.length) {
+          tokens.push(<sub key={`sub-${i}`} className="text-xs">{mathStr[i + 1]}</sub>);
+          i++;
+        } else {
+          currentText += '_';
+        }
+      } else {
+        currentText += mathStr[i];
+      }
+    }
+    
+    if (currentText) {
+      tokens.push(<span key={`t-end`}>{currentText}</span>);
+    }
+    
+    return (
+      <span key={index} className="font-serif italic bg-slate-50 px-1 py-0.5 rounded text-blue-850">
+        {tokens}
+      </span>
+    );
+  });
+};
+
 export default function TakeExamPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -341,7 +435,7 @@ export default function TakeExamPage() {
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-slate-800 mb-6 leading-snug">{q.questionText}</h3>
+                      <h3 className="text-xl font-bold text-slate-800 mb-6 leading-snug">{renderMathText(q.questionText)}</h3>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                         {q.options.map((opt, optIdx) => {
@@ -358,7 +452,7 @@ export default function TakeExamPage() {
                                     : 'border-slate-100 bg-slate-50/30 text-slate-500'
                               }`}
                             >
-                              <span>{opt}</span>
+                              <span>{renderMathText(opt)}</span>
                               {isCorrectOpt && <IoCheckmarkCircle className="text-xl text-emerald-600 flex-shrink-0 ml-2" />}
                               {isStudentSelected && !isCorrect && <IoAlertCircle className="text-xl text-rose-600 flex-shrink-0 ml-2" />}
                             </div>
@@ -372,7 +466,7 @@ export default function TakeExamPage() {
                             <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                             <span>EXPLANATION</span>
                           </p>
-                          <p className="text-sm text-slate-600 leading-relaxed font-semibold">{q.explanation}</p>
+                          <p className="text-sm text-slate-600 leading-relaxed font-semibold">{renderMathText(q.explanation || '')}</p>
                         </div>
                       )}
                     </div>
@@ -537,7 +631,7 @@ export default function TakeExamPage() {
                   </div>
                   
                   <h2 className="text-xl md:text-2xl font-extrabold text-slate-800 leading-snug mb-6">
-                    {question.questionText}
+                    {renderMathText(question.questionText)}
                   </h2>
                 </div>
 
@@ -569,7 +663,7 @@ export default function TakeExamPage() {
                           }`}>
                             {String.fromCharCode(65 + index)}
                           </span>
-                          <span className="font-bold text-sm md:text-base">{option}</span>
+                          <span className="font-bold text-sm md:text-base">{renderMathText(option)}</span>
                         </div>
                         {isSelected && (
                           <IoCheckmarkCircle className="text-xl text-blue-600" />
