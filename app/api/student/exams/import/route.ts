@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'Invalid token' }, { status: 401 });
     }
 
-    const { title, subject, questions, duration, folderName } = await request.json();
+    const { title, subject, questions, duration, folderName, type, examType } = await request.json();
     
     if (!title || !subject || !questions || questions.length === 0) {
       return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
       explanation: q.explanation || ''
     }));
 
-    // Save as a temporary/most-probable exam for this student's class
+    // Save as a practice exam for this student's class
     const result = await AdminContentService.addExam({
       title: title || `Practice: ${subject}`,
       description: `Imported practice session for ${subject}`,
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       className: profile.className,
       board: profile.board,
       folderName: folderName || 'Imported',
-      examType: 'most-probable',
+      examType: type || examType || 'most-probable',
       durationMinutes: duration || 30,
       date: new Date().toISOString().split('T')[0],
       questions: formattedQuestions,

@@ -23,7 +23,7 @@ interface Exam {
 }
 
 export default function PracticeExamsPage() {
-  const [viewMode, setViewMode] = useState<'daily' | 'most-probable' | 'self-exam'>('daily');
+  const [viewMode, setViewMode] = useState<'daily' | 'most-probable' | 'previous-year' | 'self-exam'>('daily');
   const [exams, setExams] = useState<Exam[]>([]);
   const [subjects, setSubjects] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,8 +61,8 @@ export default function PracticeExamsPage() {
           setClassName(data.className);
         }
         
-        // Extract available folders if in most-probable mode
-        if (viewMode === 'most-probable') {
+        // Extract available folders if in most-probable or previous-year mode
+        if (viewMode === 'most-probable' || viewMode === 'previous-year') {
           const folders = new Set<string>();
           data.exams.forEach((ex: any) => {
             if (ex.folderName) folders.add(ex.folderName);
@@ -160,11 +160,15 @@ export default function PracticeExamsPage() {
                   ? 'Self Exam Arena'
                   : viewMode === 'daily'
                   ? 'Practice Arena'
+                  : viewMode === 'previous-year'
+                  ? 'Previous Year Exams'
                   : 'Most Probable Exams'}
               </h1>
               <p className="text-gray-500">
                 {viewMode === 'self-exam'
                   ? 'Generate custom mock exams and interactive quizzes from your study material.'
+                  : viewMode === 'previous-year'
+                  ? 'Practice with past year official board and competitive exam question papers.'
                   : 'Master your subjects with focused practice sets.'}
               </p>
             </div>
@@ -192,6 +196,16 @@ export default function PracticeExamsPage() {
             className={`px-6 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'most-probable' ? 'bg-blue-600 text-white shadow-lg' : 'text-blue-600/60 hover:text-blue-600'}`}
           >
             Most Probable Exams
+          </button>
+          <button 
+            onClick={() => { 
+              setViewMode('previous-year'); 
+              setSelectedFolder('All Chapters'); 
+              if (subjects.length > 0) setSelectedSubject(subjects[0]);
+            }}
+            className={`px-6 py-2.5 rounded-xl font-bold transition-all ${viewMode === 'previous-year' ? 'bg-blue-600 text-white shadow-lg' : 'text-blue-600/60 hover:text-blue-600'}`}
+          >
+            Previous Year Exam
           </button>
           <button 
             onClick={() => { 
@@ -281,7 +295,7 @@ export default function PracticeExamsPage() {
                     <button 
                       onClick={handleGenerateAIQuiz}
                       disabled={generating || !selectedSubject}
-                      className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center space-x-3 shadow-xl shadow-blue-600/10"
+                      className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center space-x-3 shadow-xl shadow-blue-600/10 cursor-pointer"
                     >
                       {generating ? (
                         <>
@@ -295,6 +309,12 @@ export default function PracticeExamsPage() {
                         </>
                       )}
                     </button>
+                    {error && (
+                      <div className="mt-3 p-4 bg-red-50 text-red-600 rounded-2xl font-bold text-sm flex items-center space-x-2 border border-red-100 animate-fadeIn">
+                        <IoAlertCircle className="text-xl shrink-0" />
+                        <span>{error}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -414,7 +434,9 @@ export default function PracticeExamsPage() {
               return (
                 <div className="space-y-6">
                   <div className="flex items-center justify-between px-2">
-                    <h3 className="text-xl font-bold text-gray-900">Most Probable Exam Papers</h3>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      {viewMode === 'previous-year' ? 'Previous Year Exam Papers' : 'Most Probable Exam Papers'}
+                    </h3>
                     <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                       {filteredExams.length} Available
                     </span>
@@ -631,7 +653,7 @@ export default function PracticeExamsPage() {
                                     folderName: selectedExcelChapter || 'Imported',
                                     questions,
                                     duration: 30,
-                                    type: 'most-probable'
+                                    type: viewMode === 'previous-year' ? 'previous-year' : 'most-probable'
                                   })
                                 });
                                 const result = await res.json();

@@ -42,8 +42,19 @@ export async function POST(
 
     // Calculate score
     let score = 0;
-    const processedAnswers = exam.questions.map((q: Question, index: number) => {
-      const isCorrect = answers[index] === q.correctOptionIndex;
+    const processedAnswers = (exam.questions || []).map((q: any, index: number) => {
+      let correctOptionIndex = 0;
+      if (typeof q.correctOptionIndex === 'number') {
+        correctOptionIndex = q.correctOptionIndex;
+      } else if (typeof q.correctOption === 'number') {
+        correctOptionIndex = q.correctOption;
+      } else if (typeof q.correct_answer === 'string') {
+        const ansStr = q.correct_answer.trim().toUpperCase();
+        const idx = ['A', 'B', 'C', 'D'].indexOf(ansStr);
+        if (idx !== -1) correctOptionIndex = idx;
+      }
+
+      const isCorrect = answers[index] === correctOptionIndex;
       if (isCorrect) score++;
       return {
         questionIndex: index,

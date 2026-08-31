@@ -30,13 +30,13 @@ export async function GET(request: Request) {
     }
 
     let exams;
-    if (examType === 'most-probable') {
+    if (examType === 'most-probable' || examType === 'previous-year') {
       exams = await StudentService.getExams({
         className: profile.className,
         board: profile.board,
         subject: subject || undefined,
         folderName: folderName || undefined,
-        examType: 'most-probable'
+        examType: examType
       });
     } else {
       exams = await StudentService.getDailyExams(profile.className, profile.board, subject || undefined);

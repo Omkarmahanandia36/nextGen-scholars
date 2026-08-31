@@ -203,9 +203,50 @@ export default function TakeExamPage() {
       try {
         const response = await fetch(`/api/student/exams/${id}`);
         const data = await response.json();
-        if (data.success) {
+        if (data.success && data.exam) {
           const fetchedExam = { ...data.exam };
           fetchedExam.durationMinutes = fetchedExam.durationMinutes || fetchedExam.duration || 30;
+
+          // Normalize questions schema safely
+          if (fetchedExam.questions && Array.isArray(fetchedExam.questions)) {
+            fetchedExam.questions = fetchedExam.questions.map((q: any) => {
+              const questionText = q.questionText || q.question || q.question_text || '';
+              let options: string[] = [];
+              if (Array.isArray(q.options)) {
+                options = q.options.map((opt: any) => String(opt));
+              } else if (q.options && typeof q.options === 'object') {
+                options = [q.options.A, q.options.B, q.options.C, q.options.D].filter(opt => opt !== undefined).map(String);
+              }
+
+              let correctOptionIndex = 0;
+              if (typeof q.correctOptionIndex === 'number') {
+                correctOptionIndex = q.correctOptionIndex;
+              } else if (typeof q.correctOption === 'number') {
+                correctOptionIndex = q.correctOption;
+              } else if (typeof q.correct_answer === 'string') {
+                const ansStr = q.correct_answer.trim().toUpperCase();
+                const idx = ['A', 'B', 'C', 'D'].indexOf(ansStr);
+                if (idx !== -1) correctOptionIndex = idx;
+              }
+
+              let explanation = q.explanation || '';
+              if (!explanation && q.explanations && typeof q.explanations === 'object') {
+                explanation = Object.entries(q.explanations)
+                  .map(([key, val]) => `${key}: ${val}`)
+                  .join(' | ');
+              }
+
+              return {
+                questionText,
+                options,
+                correctOptionIndex,
+                explanation
+              };
+            });
+          } else {
+            fetchedExam.questions = [];
+          }
+
           setExam(fetchedExam);
           setAnswers(new Array(fetchedExam.questions.length).fill(-1));
           setTimeLeft(fetchedExam.durationMinutes * 60);

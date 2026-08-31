@@ -78,13 +78,16 @@ export class StudentService {
     const db = client.db();
     const today = new Date().toISOString().split('T')[0];
     
-    const query: any = { className, date: today };
+    const query: any = { className };
     if (board) query.board = board;
     if (subject) query.subject = subject;
-    // By default, daily exams are type 'daily' or undefined
-    query.examType = { $ne: 'most-probable' };
+    // By default, daily practice exams are type 'daily' or undefined / not most-probable / not previous-year
+    query.examType = { $nin: ['most-probable', 'previous-year'] };
     
-    return db.collection('practice_exams').find(query).toArray();
+    const todayExams = await db.collection('practice_exams').find({ ...query, date: today }).sort({ createdAt: -1 }).toArray();
+    if (todayExams.length > 0) return todayExams;
+
+    return db.collection('practice_exams').find(query).sort({ createdAt: -1 }).limit(20).toArray();
   }
 
   static async getExams(filters: { className: string; board?: string; subject?: string; folderName?: string; examType?: string }) {

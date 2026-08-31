@@ -98,7 +98,7 @@ interface Exam {
   className: string;
   board?: string;
   folderName?: string;
-  examType?: 'daily' | 'most-probable';
+  examType?: 'daily' | 'most-probable' | 'previous-year';
   duration: number;
   durationMinutes?: number;
   questions: Question[];
@@ -154,7 +154,7 @@ export default function AdminDashboard() {
     className: '', 
     board: 'CBSE', 
     folderName: '', 
-    examType: 'daily' as 'daily' | 'most-probable',
+    examType: 'daily' as 'daily' | 'most-probable' | 'previous-year',
     duration: 30, 
     questions: [{ question: '', options: ['', '', '', ''], correctOption: 0, explanation: '' }] 
   });
@@ -268,7 +268,7 @@ export default function AdminDashboard() {
       });
       if (response.ok) {
         setIsAddingExam(false);
-        setNewExam({ title: '', description: '', subject: '', className: '', board: 'CBSE', folderName: '', examType: 'daily' as 'daily' | 'most-probable', duration: 30, questions: [{ question: '', options: ['', '', '', ''], correctOption: 0, explanation: '' }] });
+        setNewExam({ title: '', description: '', subject: '', className: '', board: 'CBSE', folderName: '', examType: 'daily' as 'daily' | 'most-probable' | 'previous-year', duration: 30, questions: [{ question: '', options: ['', '', '', ''], correctOption: 0, explanation: '' }] });
         fetchAllData();
         showToast('Exam added successfully');
       } else {
@@ -1047,10 +1047,11 @@ export default function AdminDashboard() {
                     <select 
                       className="w-full p-3.5 border-2 border-black rounded-xl focus:ring-4 focus:ring-black/5 outline-none text-black font-black bg-white cursor-pointer" 
                       value={newExam.examType} 
-                      onChange={e => setNewExam({ ...newExam, examType: e.target.value as 'daily' | 'most-probable' })}
+                      onChange={e => setNewExam({ ...newExam, examType: e.target.value as 'daily' | 'most-probable' | 'previous-year' })}
                     >
                       <option value="daily" className="text-black font-black">Daily Practice</option>
                       <option value="most-probable" className="text-black font-black">Most Probable (Excel Import)</option>
+                      <option value="previous-year" className="text-black font-black">Previous Year Exam</option>
                     </select>
                   </div>
                   <div className="space-y-2">

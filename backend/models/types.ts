@@ -60,7 +60,7 @@ export interface PracticeExam {
   }[];
   durationMinutes: number;
   folderName?: string;
-  examType?: 'daily' | 'most-probable';
+  examType?: 'daily' | 'most-probable' | 'previous-year';
   createdBy: string | ObjectId;
   createdAt: Date;
 }
