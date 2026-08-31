@@ -360,6 +360,16 @@ export const SYLLABUS: Record<string, Record<string, string[]>> = {
       'Introduction to Trigonometry', 'Some Applications of Trigonometry', 'Circles',
       'Constructions', 'Areas Related to Circles', 'Surface Areas and Volumes', 'Statistics', 'Probability'
     ],
+    'Physics': [
+      'Force, Moment & Circular Motion',
+      'Work, Power, Energy & Machines',
+      'Light – Reflection, Refraction, Prism & Lenses',
+      'Sound & Vibrations',
+      'Heat & Calorimetry',
+      'Electricity & Electrical Circuits',
+      'Magnetism & Electromagnetism',
+      'Nuclear Physics & Radioactivity'
+    ],
     'Science': [
       'Chemical Reactions and Equations', 'Acids, Bases and Salts',
       'Metals and Non-metals', 'Carbon and its Compounds', 'Periodic Classification of Elements',
