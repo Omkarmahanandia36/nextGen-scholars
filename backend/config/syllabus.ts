@@ -378,6 +378,17 @@ export const SYLLABUS: Record<string, Record<string, string[]>> = {
       'Human Evolution',
       'Pollution'
     ],
+    'Chemistry': [
+      'Periodic Table & Properties',
+      'Chemical Bonding',
+      'Acids, Bases, and Salts',
+      'Analytical Chemistry',
+      'Mole Concept and Stoichiometry',
+      'Electrolysis',
+      'Metallurgy',
+      'Study of Specific Compounds',
+      'Organic Chemistry'
+    ],
     'Science': [
       'Chemical Reactions and Equations', 'Acids, Bases and Salts',
       'Metals and Non-metals', 'Carbon and its Compounds', 'Periodic Classification of Elements',
