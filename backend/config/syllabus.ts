@@ -370,6 +370,14 @@ export const SYLLABUS: Record<string, Record<string, string[]>> = {
       'Magnetism & Electromagnetism',
       'Nuclear Physics & Radioactivity'
     ],
+    'Biology': [
+      'Basic Biology',
+      'Plant Physiology',
+      'Human Anatomy and Physiology',
+      'Population',
+      'Human Evolution',
+      'Pollution'
+    ],
     'Science': [
       'Chemical Reactions and Equations', 'Acids, Bases and Salts',
       'Metals and Non-metals', 'Carbon and its Compounds', 'Periodic Classification of Elements',
