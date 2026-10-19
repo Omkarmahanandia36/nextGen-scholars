@@ -7,6 +7,7 @@ import {
   IoChevronForward, IoFolderOpen, IoArrowBack, IoLink, IoClose
 } from 'react-icons/io5';
 import Link from 'next/link';
+import NoteViewer from '@/components/materials/NoteViewer';
 
 interface Material {
   _id: string;
@@ -253,10 +254,12 @@ export default function MaterialsPage() {
                         material.type === 'video' ? 'bg-blue-50 text-blue-600' :
                         material.type === 'pdf' ? 'bg-red-50 text-red-600' : 
                         material.type === 'link' ? 'bg-purple-50 text-purple-600' :
+                        material.type === 'note' ? 'bg-amber-50 text-amber-600' :
                         'bg-blue-50 text-blue-600'
                       }`}>
                         {material.type === 'video' ? <IoPlay className="text-2xl" /> : 
                          material.type === 'link' ? <IoLink className="text-2xl" /> :
+                         material.type === 'note' ? <IoBook className="text-2xl" /> :
                          <IoDocumentText className="text-2xl" />}
                       </div>
                       <span className="px-3 py-1 bg-gray-50 text-gray-500 text-xs font-bold rounded-lg uppercase">
@@ -287,7 +290,7 @@ export default function MaterialsPage() {
                         rel="noopener noreferrer"
                         className="flex items-center space-x-2 text-blue-600 font-bold hover:text-blue-700 transition-all cursor-pointer"
                       >
-                        <span>{material.type === 'video' ? 'Watch' : material.type === 'link' ? 'Visit Link' : 'View'}</span>
+                        <span>{material.type === 'video' ? 'Watch' : material.type === 'link' ? 'Visit Link' : material.type === 'note' ? 'Read Study Guide' : 'View'}</span>
                         <IoChevronForward />
                       </a>
                     </div>
@@ -318,19 +321,26 @@ export default function MaterialsPage() {
                   <div className={`p-2 rounded-xl ${
                     selectedMaterial.type === 'video' ? 'bg-blue-50 text-blue-600' :
                     selectedMaterial.type === 'pdf' ? 'bg-red-50 text-red-600' : 
+                    selectedMaterial.type === 'note' ? 'bg-amber-50 text-amber-600' :
                     'bg-blue-50 text-blue-600'
                   }`}>
-                    {selectedMaterial.type === 'video' ? <IoPlay className="text-lg" /> : <IoDocumentText className="text-lg" />}
+                    {selectedMaterial.type === 'video' ? <IoPlay className="text-lg" /> : 
+                     selectedMaterial.type === 'note' ? <IoBook className="text-lg" /> :
+                     <IoDocumentText className="text-lg" />}
                   </div>
                   <h3 className="font-bold text-gray-900 truncate">{selectedMaterial.title}</h3>
                 </div>
                 <div className="flex items-center space-x-2">
                   <a 
-                    href={selectedMaterial.url} 
+                    href={
+                      selectedMaterial.type === 'note' && (selectedMaterial.url?.includes('chemical-bonding') || selectedMaterial.title.toLowerCase().includes('chemical bonding'))
+                        ? '/student/materials/chemical-bonding'
+                        : selectedMaterial.url
+                    } 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors flex items-center justify-center"
-                    title="Open in new tab"
+                    title="Open in new tab / full page"
                   >
                     <IoLink className="text-xl" />
                   </a>
@@ -342,13 +352,17 @@ export default function MaterialsPage() {
                   </button>
                 </div>
               </div>
-              <div className="flex-1 w-full bg-gray-100 relative">
-                <iframe
-                  src={getEmbedUrl(selectedMaterial.url, selectedMaterial.type)}
-                  className="w-full h-full border-0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+              <div className="flex-1 w-full bg-gray-100 relative overflow-hidden flex flex-col">
+                {selectedMaterial.type === 'note' || selectedMaterial.url?.endsWith('.json') ? (
+                  <NoteViewer noteUrl={selectedMaterial.url} />
+                ) : (
+                  <iframe
+                    src={getEmbedUrl(selectedMaterial.url, selectedMaterial.type)}
+                    className="w-full h-full border-0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                )}
               </div>
             </motion.div>
           </div>

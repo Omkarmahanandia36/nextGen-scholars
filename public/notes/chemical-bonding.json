@@ -1,0 +1,1858 @@
+{
+  "schema_version": "2.0",
+  "document_type": "ICSE Class 10 Chemistry - Chapter Study Guide",
+  "title": "Chemical Bonding",
+  "subtitle": "Electrovalent, Covalent & Co-ordinate Bonding",
+  "grade_level": "Class 10",
+  "board": "ICSE (Indian Certificate of Secondary Education)",
+  "subject": "Chemistry",
+  "chapter_number": 2,
+  "source_pdf": "Chemical Bonding class 10 icse.pdf",
+  "source_pages": 18,
+  "extraction_method": "OCR + manual content re-structuring (lossless: every concept, definition, formula, diagram and practice question from the original PDF is preserved)",
+  "language": "English",
+  "image_base_path": "pages/",
+  "image_naming": "page_XXX.png  (XXX = 3-digit page number from original PDF; e.g. page_005.png = page 5)",
+  "syllabus_scope": {
+    "exam_year": "in and after March 2027",
+    "scope": [
+      {
+        "topic": "Electrovalent bonding",
+        "points": [
+          "Electron dot structure of electrovalent compounds: NaCl, MgCl2, CaO",
+          "Characteristic properties of electrovalent compounds - state of existence, melting & boiling points, conductivity (heat & electricity), dissociation in solution & in molten state (to be linked with electrolysis)"
+        ]
+      },
+      {
+        "topic": "Covalent bonding",
+        "points": [
+          "Electron dot structure of covalent molecules on the basis of duplet & octet of electrons",
+          "Non-polar covalent compounds - examples: hydrogen, chlorine, oxygen, nitrogen, carbon tetrachloride, methane",
+          "Polar covalent compounds - based on difference in electronegativity. Examples: HCl, NH3 & H2O (including structures)",
+          "Characteristic properties of covalent compounds - state of existence, melting & boiling points, conductivity (heat & electricity), ionisation in solution",
+          "Comparison of electrovalent & covalent compounds"
+        ]
+      },
+      {
+        "topic": "Co-ordinate bonding",
+        "points": [
+          "Definition",
+          "The lone pair effect of the oxygen atom of water molecule & the nitrogen atom of ammonia molecule to explain the formation of H3O+ & OH- ions in water & NH4+ ion in ammonia",
+          "The meaning of lone pair; the formation of hydronium ion & ammonium ion must be explained with the help of electron dot diagrams"
+        ]
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "chapter_number": 2,
+      "chapter_title": "Chemical Bonding",
+      "introduction": {
+        "definition": "A chemical bond is the force of attraction which holds two or more atoms together in a stable molecule.",
+        "key_idea": "Atoms combine to attain the stable electronic configuration of the nearest noble gas (duplet or octet).",
+        "atom": {
+          "definition": "An atom is the smallest unit of matter that takes part in a chemical reaction.",
+          "sub_atomic_particles": [
+            {
+              "particle": "Proton",
+              "charge": "+1",
+              "mass": "1 a.m.u. (C-12 standard)"
+            },
+            {
+              "particle": "Neutron",
+              "charge": "0",
+              "mass": "1 a.m.u. (C-12 standard)"
+            },
+            {
+              "particle": "Electron",
+              "charge": "-1",
+              "mass": "negligible"
+            }
+          ],
+          "note": "Two or more atoms (metallic or non-metallic) combine to form a molecule. The force which holds the atoms together as a stable molecule is the chemical bond."
+        },
+        "elements_in_chemical_combination": [
+          {
+            "type": "Metallic elements",
+            "valence_electrons": "1, 2 or 3 in valence (outer) shell",
+            "behaviour": "Lose 1, 2 or 3 electrons and become positively charged ions (cations)"
+          },
+          {
+            "type": "Non-metallic elements",
+            "valence_electrons": "4, 5, 6 or 7 in valence (outer) shell",
+            "behaviour": "Gain 4, 3, 2 or 1 electrons and become negatively charged ions (anions)"
+          }
+        ],
+        "means_of_chemical_combination": [
+          "Transfer of valence electrons from a metallic atom to a non-metallic atom (leads to electrovalent/ionic bonding)",
+          "Sharing of valence electrons between two atoms (generally both non-metallic) (leads to covalent bonding)"
+        ]
+      }
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Chemical Bond & Types of Bonding - Electrovalent & Covalent",
+      "source_page": 3,
+      "diagram": {
+        "image": "pages/page_003.png",
+        "caption": "Chemical bonding overview, noble gas configurations, periodic properties affecting bond formation"
+      },
+      "key_concepts": [
+        {
+          "term": "Chemical bond",
+          "definition": "The linkage or force which acts between two or more atoms to hold them together as a stable molecule; the concept is 'chemical bonding'."
+        },
+        {
+          "term": "Noble gases",
+          "definition": "Elements with stable electronic configuration - their outermost (valence) shell is complete. They have 2 electrons in the outermost shell (He) or 8 electrons in the outermost shell. They do not lose, gain or share electrons and are inert (unreactive)."
+        },
+        {
+          "term": "Atoms of elements other than noble gases",
+          "definition": "Have unstable electronic configuration - their outermost shell is incomplete. They can lose, gain or share electrons and are chemically reactive."
+        }
+      ],
+      "noble_gas_table": [
+        {
+          "name": "Helium",
+          "symbol": "He",
+          "atomic_number": 2,
+          "electronic_configuration": "K:2"
+        },
+        {
+          "name": "Neon",
+          "symbol": "Ne",
+          "atomic_number": 10,
+          "electronic_configuration": "K:2, L:8"
+        },
+        {
+          "name": "Argon",
+          "symbol": "Ar",
+          "atomic_number": 18,
+          "electronic_configuration": "K:2, L:8, M:8"
+        },
+        {
+          "name": "Krypton",
+          "symbol": "Kr",
+          "atomic_number": 36,
+          "electronic_configuration": "K:2, L:8, M:18, N:8"
+        },
+        {
+          "name": "Xenon",
+          "symbol": "Xe",
+          "atomic_number": 54,
+          "electronic_configuration": "K:2, L:8, M:18, N:18, O:8"
+        },
+        {
+          "name": "Radon",
+          "symbol": "Rn",
+          "atomic_number": 86,
+          "electronic_configuration": "K:2, L:8, M:18, N:32, O:18, P:8"
+        }
+      ],
+      "reason_for_chemical_bonding": "The driving force for atoms to combine is related to the tendency of each atom to attain the stable electronic configuration of the nearest noble gas.",
+      "stability_rules": [
+        {
+          "rule": "Duplet rule",
+          "description": "Two electrons in the outermost shell (nearest noble gas: He)"
+        },
+        {
+          "rule": "Octet rule",
+          "description": "Eight electrons in the outermost shell (all noble gases other than He)"
+        }
+      ],
+      "methods_for_achieving_bonding": [
+        {
+          "method": "Electron transfer",
+          "description": "Transfer of valence electrons from one atom to another - leads to electrovalent (ionic) bonding & formation of an electrovalent/ionic compound"
+        },
+        {
+          "method": "Electron sharing",
+          "description": "Sharing of pairs of electrons between two reacting atoms - leads to covalent bonding and formation of a covalent compound"
+        }
+      ],
+      "periodic_properties_affecting_bonding": {
+        "for_ionic_compounds": [
+          {
+            "property": "Ionisation potential (I.P.)",
+            "effect": "Lower the value of I.P. of a metallic atom, greater the ease of formation of the cation"
+          },
+          {
+            "property": "Electron affinity (E.A.)",
+            "effect": "Higher the value of E.A. of a non-metallic atom, greater the ease of formation of the anion"
+          },
+          {
+            "property": "Electronegativity",
+            "effect": "Larger the electronegativity difference between combining atoms, the more easily electron transfer takes place"
+          }
+        ],
+        "for_covalent_compounds": [
+          {
+            "property": "I.P., E.A. & Electronegativity",
+            "effect": "High between both atoms/elements"
+          },
+          {
+            "property": "Electronegativity difference",
+            "effect": "Should be negligible between the two combining atoms"
+          }
+        ]
+      }
+    },
+    {
+      "section_id": "B",
+      "title": "Electrovalent (Ionic) Bonding",
+      "source_pages": [
+        4
+      ],
+      "diagram": {
+        "image": "pages/page_004.png",
+        "caption": "Formation of electrovalent compounds, oxidation-reduction, redox reactions"
+      },
+      "definitions": [
+        {
+          "term": "Electrovalent or ionic bond",
+          "definition": "The chemical bond formed between two atoms by transfer of one or more electrons from the atom of a metallic (electropositive) element to an atom of a non-metallic (electronegative) element."
+        },
+        {
+          "term": "Electrovalent or ionic compound",
+          "definition": "The chemical compound formed as a result of transfer of one or more electrons from the atom of a metallic (electropositive) element to the atom of a non-metallic (electronegative) element."
+        },
+        {
+          "term": "Electrovalency",
+          "definition": "The number of electrons donated or accepted by the valence shell of an atom of an element so as to achieve stable electronic configuration is called electrovalency. E.g. Mg (2,8,2) loses 2 electrons - valency +2; O (2,6) gains 2 electrons - valency -2"
+        }
+      ],
+      "formation_process": [
+        "Formation of electrovalent compounds involves transfer of valence electrons from one atom (generally metallic) to another atom (generally non-metallic).",
+        "Metallic atom loses electrons to attain stable electronic configuration and becomes a cation (positive ion).",
+        "Non-metallic atom gains electrons to attain stable electronic configuration and becomes an anion (negative ion).",
+        "Ions (cations & anions) are oppositely charged particles which attract one another to form an electrovalent bond, leading to formation of an electrovalent compound.",
+        "The bond formation is due to the electrostatic force of attraction between two oppositely charged ions: X+ + Y- → XY"
+      ],
+      "atoms_vs_ions_comparison": [
+        {
+          "feature": "Electrical nature",
+          "atoms": "Electrically neutral particles",
+          "ions": "Electrically charged particles (cations, anions)"
+        },
+        {
+          "feature": "Independent existence",
+          "atoms": "May or may not exist independently",
+          "ions": "Exist independently in solution"
+        },
+        {
+          "feature": "Outermost shell",
+          "atoms": "May or may not have duplet or octet",
+          "ions": "Have complete duplet or octet"
+        }
+      ],
+      "oxidation_and_reduction": {
+        "oxidation": {
+          "definition": "A process when an atom or ion loses electrons",
+          "examples": [
+            "Na → Na+ + 1e- (loss of 1 electron)",
+            "Zn → Zn2+ + 2e-",
+            "Fe2+ → Fe3+ + 1e-",
+            "S2- → S + 2e-"
+          ]
+        },
+        "reduction": {
+          "definition": "A process when an atom or ion gains electrons",
+          "examples": [
+            "Cl + 1e- → Cl-",
+            "Cu2+ + 2e- → Cu",
+            "Fe3+ + 1e- → Fe2+",
+            "S + 2e- → S2-"
+          ]
+        },
+        "redox_reactions": "Oxidation & Reduction together = Redox reactions. Examples: 2FeCl2 + Cl2 → 2FeCl3 (i.e. 2Fe2+ + Cl2 → 2Fe3+ + 2Cl-); Zn + CuSO4 → ZnSO4 + Cu (i.e. Zn + Cu2+ → Zn2+ + Cu). In first: Zn → Zn2+ [oxidation, -2e-]; Cu2+ → Cu [reduction, +2e-]. In second: 2Fe2+ → 2Fe3+ [oxidation, -2e-]; Cl2 → 2Cl- [reduction, +2e-]."
+      }
+    },
+    {
+      "section_id": "C",
+      "title": "Structure of Electrovalent Compounds - Sodium Chloride (NaCl)",
+      "source_page": 5,
+      "diagram": {
+        "image": "pages/page_005.png",
+        "caption": "Electron dot structure & orbit structure showing formation of NaCl"
+      },
+      "compound": "Sodium Chloride (NaCl)",
+      "type": "Electrovalent",
+      "formation": [
+        "NaCl is formed as a result of transfer of one valence electron.",
+        "From metallic sodium atom Na (at. no. 11) - electronic configuration 2,8,1",
+        "To non-metallic chlorine atom Cl (at. no. 17) - electronic configuration 2,8,7"
+      ],
+      "attainment_of_stable_configuration": [
+        "Sodium atom attains stable electronic configuration of nearest noble gas Neon by losing one electron from its valence shell and becomes a positively charged sodium ion (cation) Na+.",
+        "Chlorine atom attains stable electronic configuration of nearest noble gas Argon by accepting one electron in its valence shell and becomes a negatively charged chloride ion (anion) Cl-.",
+        "The two oppositely charged ions attract each other resulting in formation of the electrovalent compound sodium chloride, with an ionic bond."
+      ],
+      "summary_table": [
+        {
+          "atom": "Sodium (metallic)",
+          "symbol": "11Na",
+          "electronic_configuration": "2,8,1",
+          "nearest_noble_gas": "Neon (2,8)",
+          "method": "Atom loses one electron from its valence shell"
+        },
+        {
+          "atom": "Chlorine (non-metallic)",
+          "symbol": "17Cl",
+          "electronic_configuration": "2,8,7",
+          "nearest_noble_gas": "Argon (2,8,8)",
+          "method": "Atom gains one electron in its valence shell"
+        }
+      ],
+      "ionic_equation": [
+        "Na - 1e- → Na+  [oxidation]  (atom → cation)  (2,8,1) → (2,8)",
+        "Cl + 1e- → Cl-  [reduction]  (atom → anion)   (2,8,7) → (2,8,8)",
+        "Na+ + Cl- → NaCl"
+      ],
+      "electron_dot_structure": "Na• + •Cl: → [Na]+ [:Cl:]- → NaCl",
+      "note": "19K and 35Cl form KCl, and 11Na and 16S form Na2S - both electrovalent compounds with an ionic bond."
+    },
+    {
+      "section_id": "D",
+      "title": "Structure of Electrovalent Compounds - Calcium Oxide (CaO)",
+      "source_page": 6,
+      "diagram": {
+        "image": "pages/page_006.png",
+        "caption": "Electron dot structure & orbit structure showing formation of CaO"
+      },
+      "compound": "Calcium Oxide (CaO)",
+      "type": "Electrovalent",
+      "formation": [
+        "CaO is formed as a result of transfer of two valence electrons.",
+        "From metallic calcium atom Ca (at. no. 20) - electronic configuration 2,8,8,2",
+        "To non-metallic oxygen atom O (at. no. 8) - electronic configuration 2,6"
+      ],
+      "attainment_of_stable_configuration": [
+        "Calcium atom attains stable electronic configuration of nearest noble gas Argon by losing two electrons from its valence shell and becomes a positively charged calcium ion (cation) Ca2+.",
+        "Oxygen atom attains stable electronic configuration of nearest noble gas Neon by accepting two electrons in its valence shell and becomes a negatively charged oxide ion (anion) O2-.",
+        "The two oppositely charged ions attract each other resulting in formation of the electrovalent compound calcium oxide with an ionic bond."
+      ],
+      "summary_table": [
+        {
+          "atom": "Calcium (metallic)",
+          "symbol": "20Ca",
+          "electronic_configuration": "2,8,8,2",
+          "nearest_noble_gas": "Argon (2,8,8)",
+          "method": "Atom loses two electrons from its valence shell"
+        },
+        {
+          "atom": "Oxygen (non-metallic)",
+          "symbol": "8O",
+          "electronic_configuration": "2,6",
+          "nearest_noble_gas": "Neon (2,8)",
+          "method": "Atom gains two electrons in its valence shell"
+        }
+      ],
+      "ionic_equation": [
+        "Ca - 2e- → Ca2+  [oxidation]  (2,8,8,2) → (2,8,8)",
+        "O + 2e- → O2-   [reduction]  (2,6) → (2,8)",
+        "Ca2+ + O2- → CaO"
+      ],
+      "electron_dot_structure": "Ca•• + ••O: → [Ca]2+ [:O:]2- → CaO"
+    },
+    {
+      "section_id": "E",
+      "title": "Structure of Electrovalent Compounds - Magnesium Chloride (MgCl2)",
+      "source_page": 7,
+      "diagram": {
+        "image": "pages/page_007.png",
+        "caption": "Electron dot structure & orbit structure showing formation of MgCl2"
+      },
+      "compound": "Magnesium Chloride (MgCl2)",
+      "type": "Electrovalent",
+      "formation": [
+        "MgCl2 is formed as a result of transfer of two valence electrons.",
+        "From one metallic magnesium atom Mg (at. no. 12) - electronic configuration 2,8,2",
+        "To two non-metallic chlorine atoms Cl (at. no. 17) - electronic configuration 2,8,7"
+      ],
+      "attainment_of_stable_configuration": [
+        "Magnesium atom attains stable electronic configuration of nearest noble gas Neon by losing two electrons from its valence shell and becomes a positively charged magnesium ion (cation) Mg2+.",
+        "Chlorine atom attains stable electronic configuration of nearest noble gas Argon by gaining one electron in its valence shell and becomes a negatively charged chloride ion (anion) Cl-.",
+        "Magnesium atom donates two electrons (is oxidised), whereas a chlorine atom accepts only one electron (is reduced) to give a chloride ion. Thus, to accept the other electron donated by Mg atom, there must be another Cl atom.",
+        "Therefore one magnesium atom combines with two chlorine atoms forming the electrovalent compound magnesium chloride."
+      ],
+      "summary_table": [
+        {
+          "atom": "Magnesium (metallic)",
+          "symbol": "12Mg",
+          "electronic_configuration": "2,8,2",
+          "nearest_noble_gas": "Neon (2,8)",
+          "method": "Atom loses two electrons from its valence shell"
+        },
+        {
+          "atom": "Chlorine (non-metallic)",
+          "symbol": "17Cl",
+          "electronic_configuration": "2,8,7",
+          "nearest_noble_gas": "Argon (2,8,8)",
+          "method": "Each atom gains one electron in its valence shell"
+        }
+      ],
+      "ionic_equation": [
+        "Mg - 2e- → Mg2+  [oxidation]  (2,8,2) → (2,8)",
+        "2Cl + 2e- → 2Cl-  [reduction]  (2,8,7) → (2,8,8)",
+        "Mg2+ + 2Cl- → MgCl2"
+      ],
+      "electron_dot_structure": "Mg•• + 2 •Cl: → [Mg]2+ 2[:Cl:]- → MgCl2"
+    },
+    {
+      "section_id": "F",
+      "title": "Covalent Bonding - Covalent Compounds",
+      "source_page": 8,
+      "diagram": {
+        "image": "pages/page_008.png",
+        "caption": "Formation of covalent compounds, single/double/triple bonds, polar vs non-polar"
+      },
+      "definitions": [
+        {
+          "term": "Covalent bond",
+          "definition": "The chemical bond formed due to mutual sharing of electrons between the given pairs of atoms of non-metallic elements. Bond formed by a shared pair of electrons, each bonding atom contributing one electron to the pair. Depending on number of electron pairs shared, the bond is single (-), double (=), or triple (≡) covalent."
+        },
+        {
+          "term": "Covalent compound",
+          "definition": "The chemical compound formed due to mutual sharing of electrons between the given pairs of atoms, thereby forming a covalent bond between them."
+        },
+        {
+          "term": "Covalency",
+          "definition": "The number of electron pairs which an atom shares with one or more atoms of the same or different kind to achieve stable electronic configuration is called covalency."
+        }
+      ],
+      "formation_process": [
+        "Formation of covalent compounds involves sharing of electron pairs between one atom (generally non-metallic) and another atom (also non-metallic).",
+        "Electrons in valence shell are mutually shared by the atom of each element such that each atom acquires a stable electronic configuration.",
+        "Non-metallic atoms having 7 valence electrons (or 1) share one pair of electrons → single covalent bond",
+        "Non-metallic atoms having 6 valence electrons share two pairs of electrons → double covalent bond",
+        "Non-metallic atoms having 5 valence electrons share three pairs of electrons → triple covalent bond",
+        "Two hydrogen atoms (1 valence electron each) form a covalent bond by sharing one electron pair → single covalent bond"
+      ],
+      "polar_vs_non_polar": {
+        "non_polar_covalent_compounds": {
+          "definition": "Covalent compounds are said to be non-polar when the shared pair of electrons is equally distributed between the two atoms.",
+          "characteristics": [
+            "No charge separation takes place.",
+            "The covalent molecule is symmetrical and electrically neutral."
+          ],
+          "examples": [
+            "H2",
+            "Cl2",
+            "O2",
+            "N2",
+            "CH4",
+            "CCl4"
+          ]
+        },
+        "polar_covalent_compounds": {
+          "definition": "Covalent compounds are said to be polar when the shared pair of electrons is unequally distributed between the two atoms.",
+          "characteristics": [
+            "Charge separation takes place.",
+            "The atom which attracts electrons more strongly develops a slight negative charge."
+          ],
+          "examples": [
+            "H2O",
+            "NH3",
+            "HCl"
+          ]
+        },
+        "key_statement": "The covalent bond in which electrons are shared equally between the combining atoms is a non-polar covalent bond; when the electrons are shared unequally, it is a polar covalent bond."
+      }
+    },
+    {
+      "section_id": "G",
+      "title": "Structure of Covalent Compounds - Hydrogen (H2) & Chlorine (Cl2)",
+      "source_page": 9,
+      "diagram": {
+        "image": "pages/page_009.png",
+        "caption": "Electron dot & orbit structures of H2 and Cl2 (single covalent bonds)"
+      },
+      "compounds": [
+        {
+          "name": "Hydrogen (H2)",
+          "type": "Non-polar covalent",
+          "atoms": [
+            {
+              "atom": "Hydrogen",
+              "symbol": "1H",
+              "electronic_configuration": "1",
+              "nearest_noble_gas": "Helium (2)",
+              "need": "Hydrogen needs one electron to attain stable duplet of nearest noble gas Helium (2)."
+            }
+          ],
+          "formation": "Each of the two H atoms contributes one electron so as to have one shared pair of electrons between them. Both atoms attain stable duplet structure, resulting in formation of a single covalent bond (H-H) between them.",
+          "electron_dot_structure": "H• + •H → H:H  or  H-H → H2",
+          "bond_type": "Single covalent bond (one shared pair of electrons)"
+        },
+        {
+          "name": "Chlorine (Cl2)",
+          "type": "Non-polar covalent",
+          "atoms": [
+            {
+              "atom": "Chlorine",
+              "symbol": "17Cl",
+              "electronic_configuration": "2,8,7",
+              "nearest_noble_gas": "Argon (2,8,8)",
+              "need": "Chlorine needs one electron to attain stable octet of nearest noble gas Argon (2,8,8)."
+            }
+          ],
+          "formation": "Each of the two Cl atoms contributes one electron so as to have one shared pair of electrons between them. Both atoms attain stable octet structure, resulting in formation of a single covalent bond (Cl-Cl) between them.",
+          "electron_dot_structure": ":Cl• + •Cl: → :Cl:Cl:  or  Cl-Cl → Cl2",
+          "bond_type": "Single covalent bond (one shared pair of electrons)"
+        }
+      ]
+    },
+    {
+      "section_id": "H",
+      "title": "Structure of Covalent Compounds - Oxygen (O2) & Nitrogen (N2)",
+      "source_page": 10,
+      "diagram": {
+        "image": "pages/page_010.png",
+        "caption": "Electron dot & orbit structures of O2 (double bond) and N2 (triple bond)"
+      },
+      "compounds": [
+        {
+          "name": "Oxygen (O2)",
+          "type": "Non-polar covalent",
+          "atoms": [
+            {
+              "atom": "Oxygen",
+              "symbol": "8O",
+              "electronic_configuration": "2,6",
+              "nearest_noble_gas": "Neon (2,8)",
+              "need": "Oxygen needs two electrons to attain stable octet of nearest noble gas Neon (2,8)."
+            }
+          ],
+          "formation": "Each of the two O atoms contributes two electrons so as to have two shared pairs of electrons between them. Both atoms attain stable octet structure, resulting in formation of a double covalent bond (O=O) between them.",
+          "electron_dot_structure": ":O•• + ••O: → :O::O:  or  O=O → O2",
+          "bond_type": "Double covalent bond (two shared pairs of electrons)"
+        },
+        {
+          "name": "Nitrogen (N2)",
+          "type": "Non-polar covalent",
+          "atoms": [
+            {
+              "atom": "Nitrogen",
+              "symbol": "7N",
+              "electronic_configuration": "2,5",
+              "nearest_noble_gas": "Neon (2,8)",
+              "need": "Nitrogen needs three electrons to attain stable octet of nearest noble gas Neon (2,8)."
+            }
+          ],
+          "formation": "Each of the two N atoms contributes 3 electrons so as to have three shared pairs of electrons between them. Both atoms attain stable octet structure, resulting in formation of a triple covalent bond (N≡N) between them.",
+          "electron_dot_structure": ":N••• + •••N: → :N:::N:  or  N≡N → N2",
+          "bond_type": "Triple covalent bond (three shared pairs of electrons)",
+          "note": "2 electrons in the outer shell of each nitrogen atom are not involved in sharing during formation of N2 molecule (these are the lone pair of electrons)."
+        }
+      ]
+    },
+    {
+      "section_id": "I",
+      "title": "Structure of Covalent Compounds - Carbon Tetrachloride (CCl4) & Methane (CH4)",
+      "source_page": 11,
+      "diagram": {
+        "image": "pages/page_011.png",
+        "caption": "Electron dot & orbit structures of CCl4 and CH4 (four single covalent bonds each)"
+      },
+      "compounds": [
+        {
+          "name": "Carbon Tetrachloride (CCl4)",
+          "type": "Non-polar covalent",
+          "atoms": [
+            {
+              "atom": "Carbon",
+              "symbol": "6C",
+              "electronic_configuration": "2,4",
+              "nearest_noble_gas": "Neon (2,8)",
+              "need": "Carbon needs four electrons to attain stable octet."
+            },
+            {
+              "atom": "Chlorine",
+              "symbol": "17Cl",
+              "electronic_configuration": "2,8,7",
+              "nearest_noble_gas": "Argon (2,8,8)",
+              "need": "Chlorine needs one electron to attain stable octet."
+            }
+          ],
+          "formation": "One atom of carbon shares four electron pairs - one with each of the four atoms of chlorine.",
+          "electron_dot_structure": "4 :Cl• + •C• + •Cl: → :Cl-C-Cl: with 4 single covalent bonds (also two Cl below) → CCl4",
+          "bond_type": "Four single covalent bonds"
+        },
+        {
+          "name": "Methane (CH4)",
+          "type": "Non-polar covalent",
+          "atoms": [
+            {
+              "atom": "Carbon",
+              "symbol": "6C",
+              "electronic_configuration": "2,4",
+              "nearest_noble_gas": "Neon (2,8)",
+              "need": "Carbon needs four electrons to attain stable octet."
+            },
+            {
+              "atom": "Hydrogen",
+              "symbol": "1H",
+              "electronic_configuration": "1",
+              "nearest_noble_gas": "Helium (2)",
+              "need": "Hydrogen needs one electron to attain stable duplet."
+            }
+          ],
+          "formation": "One atom of carbon shares four electron pairs - one with each of the four atoms of hydrogen.",
+          "electron_dot_structure": "4 H• + •C• → H-C-H with 4 single covalent bonds (one H above, one H below, two H on sides) → CH4",
+          "bond_type": "Four single covalent bonds"
+        }
+      ]
+    },
+    {
+      "section_id": "J",
+      "title": "Structure of Covalent Compounds - Water (H2O) & Ammonia (NH3)",
+      "source_page": 12,
+      "diagram": {
+        "image": "pages/page_012.png",
+        "caption": "Electron dot & orbit structures of H2O and NH3 showing lone pairs"
+      },
+      "compounds": [
+        {
+          "name": "Water (H2O)",
+          "type": "Polar covalent",
+          "atoms": [
+            {
+              "atom": "Hydrogen",
+              "symbol": "1H",
+              "electronic_configuration": "1",
+              "nearest_noble_gas": "Helium (2)",
+              "need": "Hydrogen needs one electron to attain stable duplet."
+            },
+            {
+              "atom": "Oxygen",
+              "symbol": "8O",
+              "electronic_configuration": "2,6",
+              "nearest_noble_gas": "Neon (2,8)",
+              "need": "Oxygen needs two electrons to attain stable octet."
+            }
+          ],
+          "formation": "Each of the two hydrogen atoms shares an electron pair with the oxygen atom such that hydrogen acquires a duplet configuration and oxygen an octet configuration, resulting in formation of two single covalent bonds (H-O-H) in the molecule of water.",
+          "electron_dot_structure": "2 H• + ••O•• → H:O:H  or  H-O-H → H2O",
+          "bond_type": "Two single covalent bonds",
+          "lone_pairs": "Oxygen has TWO lone pairs of electrons"
+        },
+        {
+          "name": "Ammonia (NH3)",
+          "type": "Polar covalent",
+          "atoms": [
+            {
+              "atom": "Nitrogen",
+              "symbol": "7N",
+              "electronic_configuration": "2,5",
+              "nearest_noble_gas": "Neon (2,8)",
+              "need": "Nitrogen needs three electrons to attain stable octet."
+            },
+            {
+              "atom": "Hydrogen",
+              "symbol": "1H",
+              "electronic_configuration": "1",
+              "nearest_noble_gas": "Helium (2)",
+              "need": "Hydrogen needs one electron to attain stable duplet."
+            }
+          ],
+          "formation": "One atom of nitrogen shares three electron pairs - one with each of the three atoms of hydrogen.",
+          "electron_dot_structure": "3 H• + •N• → H:N:H with one lone pair (also H below N) → NH3",
+          "bond_type": "Three single covalent bonds",
+          "lone_pairs": "Nitrogen has ONE lone pair of electrons"
+        }
+      ]
+    },
+    {
+      "section_id": "K",
+      "title": "Coordinate Bond - Formation of H3O+ & NH4+ ions",
+      "source_page": 13,
+      "diagram": {
+        "image": "pages/page_013.png",
+        "caption": "Lone pair effect, formation of hydronium ion, hydroxyl ion, ammonium ion"
+      },
+      "definitions": [
+        {
+          "term": "Lone pair of electrons",
+          "definition": "A pair of electrons not shared with any other atom."
+        },
+        {
+          "term": "Coordinate bond (dative or co-ionic bond)",
+          "definition": "A type of covalency which involves one of the combining atoms contributing both of the shared electrons. i.e. a bond formed by a shared pair of electrons with both electrons coming from the same atom. It has properties of both ionic & covalent bonds and is also called a dative or co-ionic bond."
+        }
+      ],
+      "lone_pair_counts": {
+        "water_H2O": "Oxygen has 2 lone pairs",
+        "hydronium_H3O+": "Oxygen has 1 lone pair",
+        "hydroxyl_OH-": "Oxygen has 3 lone pairs",
+        "ammonia_NH3": "Nitrogen has 1 lone pair",
+        "ammonium_NH4+": "Nitrogen has 0 lone pairs",
+        "hydrogen_H+": "No lone pairs"
+      },
+      "formation_of_hydronium_H3O_plus": {
+        "reaction": "H2O + H+ → H3O+",
+        "explanation": "Addition of acid (HCl - polar covalent) to water (polar solvent) results in release of hydrogen ion (H+) from the acid. In water, the O atom contains two lone pairs of electrons after completing its octet. The hydrogen ion accepts one lone pair of electrons of the oxygen atom of water molecule, leading to formation of a coordinate covalent bond (O → H).",
+        "electron_dot": "H2O (with 2 lone pairs on O) + H+ → [H-O-H with one H sharing a coordinate bond via lone pair]+ = H3O+"
+      },
+      "formation_of_hydroxyl_OH_minus": {
+        "reaction": "H2O → OH- + H+",
+        "explanation": "The water molecule loses a hydrogen ion (H+) to a base, leaving behind a hydroxyl ion with 3 lone pairs on oxygen."
+      },
+      "formation_of_ammonium_NH4_plus": {
+        "reaction": "NH3 + H+ → NH4+   (also: NH3 + H2O → NH4OH, i.e. NH4+ + OH-)",
+        "explanation": "Ammonia dissolves in water (polar solvent) leading to formation of ammonium ion. In ammonia, the N atom contains one lone pair of electrons after completing its octet. The hydrogen ion (from water) accepts the lone pair of electrons of the nitrogen atom of ammonia molecule, leading to formation of a coordinate covalent bond (N → H).",
+        "electron_dot": "NH3 (with 1 lone pair on N) + H+ → [NH4 with one coordinate bond]+"
+      },
+      "compounds_with_multiple_bond_types": {
+        "electrovalent_and_covalent": [
+          "Na+ [O-H]- (NaOH)",
+          "CaCO3"
+        ],
+        "covalent_and_coordinate": [
+          "C=O (carbon monoxide)",
+          "H-O-N=O (nitrous acid)"
+        ],
+        "ionic_covalent_and_coordinate": [
+          "NH4Cl (i.e. [NH4]+ Cl-)",
+          "K4[Fe(CN)6]"
+        ]
+      }
+    },
+    {
+      "section_id": "L",
+      "title": "Properties & Comparison - Electrovalent vs Covalent Compounds",
+      "source_page": 14,
+      "diagram": {
+        "image": "pages/page_014.png",
+        "caption": "Side-by-side comparison of properties of electrovalent (ionic) vs covalent compounds"
+      },
+      "comparison_table": [
+        {
+          "property": "1. Bonding",
+          "electrovalent": "Electrovalent",
+          "covalent": "Covalent"
+        },
+        {
+          "property": "2. State / Existence",
+          "electrovalent": "Crystalline hard solids (room temp.)",
+          "covalent": "Gases, liquids or soft solids"
+        },
+        {
+          "property": "3. Constituent units",
+          "electrovalent": "Ions (metallic, non-metallic)",
+          "covalent": "Molecules"
+        },
+        {
+          "property": "4. Force of attraction",
+          "electrovalent": "Strong - electrostatic forces exist between ions",
+          "covalent": "Weak - Van der Waals forces exist between molecules"
+        },
+        {
+          "property": "5. Volatility",
+          "electrovalent": "Non-volatile",
+          "covalent": "Volatile"
+        },
+        {
+          "property": "6. Melting & boiling point",
+          "electrovalent": "High (strong electrostatic force needs large energy to break)",
+          "covalent": "Low (weak Van der Waals force needs less energy to break)"
+        },
+        {
+          "property": "7. Conduction of heat",
+          "electrovalent": "Good conductors of heat",
+          "covalent": "Bad or non-conductors of heat"
+        },
+        {
+          "property": "8. Conduction of electricity - solid",
+          "electrovalent": "Non-conductors (strong electrostatic force keeps ions in fixed position)",
+          "covalent": "Non-conductors (gaseous/liquid/soft solid states all non-conductors)"
+        },
+        {
+          "property": "9. Conduction of electricity - molten/aq. soln",
+          "electrovalent": "Good conductors (force weakened in molten, disappears in solution; free ions migrate to oppositely charged electrodes)",
+          "covalent": "Non-conductors (non-polar covalent compounds e.g. CCl4 contain molecules, not free ions). Polar covalent compounds e.g. HCl, NH3 show charge separation & dissociate in H2O"
+        },
+        {
+          "property": "10. Electrolysis",
+          "electrovalent": "Can be electrolysed in molten/aq. soln. state. Ions being charged are attracted towards respective electrodes.",
+          "covalent": "Cannot be electrolysed in normal state. In solution state, polar covalent compounds undergo electrolysis e.g. HCl & NH3 gas"
+        },
+        {
+          "property": "11. Solubility",
+          "electrovalent": "Soluble in water (polar solvent - high dielectric constant weakens force, free ions formed). Insoluble in organic solvents (non-polar, low dielectric constant).",
+          "covalent": "Soluble in organic solvents (non-polar, like dissolves like). Insoluble in water (polar) - but polar covalent compounds do dissolve in water"
+        },
+        {
+          "property": "12. Reaction speed",
+          "electrovalent": "High speed ionic reactions (free ions easily formed, rapidly regroup)",
+          "covalent": "Slow speed molecular reactions (covalent molecules first broken, then new bonds slowly established)"
+        },
+        {
+          "property": "13. Behaviour on passage of electric current",
+          "electrovalent": "Undergoes electrolytic dissociation - separation of ions already present. e.g. NaCl → Na+ + Cl- (in molten state)",
+          "covalent": "Undergoes ionisation - formation of ions from molecules which were not in ionic state. e.g. HCl → H+ + Cl- (in solution state)"
+        }
+      ]
+    },
+    {
+      "section_id": "M",
+      "title": "Summary Chart - Electron Dot Structures of All Compounds",
+      "source_page": 15,
+      "diagram": {
+        "image": "pages/page_015.png",
+        "caption": "Summary chart of electron dot structures for all 11 compounds studied"
+      },
+      "summary_structures": [
+        {
+          "compound": "NaCl (Sodium chloride)",
+          "type": "Electrovalent",
+          "structure": "Na• + •Cl: → [Na]+ [:Cl:]- → NaCl",
+          "configurations": "Na (2,8,1) + Cl (2,8,7) → Na+ (2,8) + Cl- (2,8,8)"
+        },
+        {
+          "compound": "CaO (Calcium oxide)",
+          "type": "Electrovalent",
+          "structure": "Ca•• + ••O: → [Ca]2+ [:O:]2- → CaO",
+          "configurations": "Ca (2,8,8,2) + O (2,6) → Ca2+ (2,8,8) + O2- (2,8)"
+        },
+        {
+          "compound": "MgCl2 (Magnesium chloride)",
+          "type": "Electrovalent",
+          "structure": "Mg•• + 2 •Cl: → [Mg]2+ 2[:Cl:]- → MgCl2",
+          "configurations": "Mg (2,8,2) + 2Cl (2,8,7) → Mg2+ (2,8) + 2Cl- (2,8,8)"
+        },
+        {
+          "compound": "H2 (Hydrogen)",
+          "type": "Covalent - non-polar",
+          "structure": "H:H or H-H",
+          "bonds": "Single covalent bond"
+        },
+        {
+          "compound": "Cl2 (Chlorine)",
+          "type": "Covalent - non-polar",
+          "structure": ":Cl:Cl: or Cl-Cl",
+          "bonds": "Single covalent bond"
+        },
+        {
+          "compound": "N2 (Nitrogen)",
+          "type": "Covalent - non-polar",
+          "structure": ":N:::N: or N≡N",
+          "bonds": "Triple covalent bond"
+        },
+        {
+          "compound": "CCl4 (Carbon tetrachloride)",
+          "type": "Covalent - non-polar",
+          "structure": ":Cl-C-Cl: with Cl above & below (tetrahedral)",
+          "bonds": "Four single covalent bonds"
+        },
+        {
+          "compound": "CH4 (Methane)",
+          "type": "Covalent - non-polar",
+          "structure": "H-C-H with H above & below (tetrahedral)",
+          "bonds": "Four single covalent bonds"
+        },
+        {
+          "compound": "H2O (Water)",
+          "type": "Covalent - polar",
+          "structure": "H:O:H or H-O-H (with two lone pairs on O)",
+          "bonds": "Two single covalent bonds"
+        },
+        {
+          "compound": "NH3 (Ammonia)",
+          "type": "Covalent - polar",
+          "structure": "H-N-H with H below (with one lone pair on N)",
+          "bonds": "Three single covalent bonds"
+        },
+        {
+          "compound": "HCl (Hydrogen chloride)",
+          "type": "Covalent - polar",
+          "structure": "H:Cl: or H-Cl",
+          "bonds": "One single covalent bond"
+        }
+      ]
+    }
+  ],
+  "key_formulas_and_equations": [
+    {
+      "concept": "Oxidation - sodium",
+      "equation": "Na → Na+ + 1e-"
+    },
+    {
+      "concept": "Oxidation - zinc",
+      "equation": "Zn → Zn2+ + 2e-"
+    },
+    {
+      "concept": "Oxidation - iron(II) to iron(III)",
+      "equation": "Fe2+ → Fe3+ + 1e-"
+    },
+    {
+      "concept": "Oxidation - sulphide to sulphur",
+      "equation": "S2- → S + 2e-"
+    },
+    {
+      "concept": "Reduction - chlorine",
+      "equation": "Cl + 1e- → Cl-"
+    },
+    {
+      "concept": "Reduction - copper(II) to copper",
+      "equation": "Cu2+ + 2e- → Cu"
+    },
+    {
+      "concept": "Reduction - iron(III) to iron(II)",
+      "equation": "Fe3+ + 1e- → Fe2-"
+    },
+    {
+      "concept": "Reduction - sulphur to sulphide",
+      "equation": "S + 2e- → S2-"
+    },
+    {
+      "concept": "Redox - iron(II) chloride + chlorine",
+      "equation": "2FeCl2 + Cl2 → 2FeCl3  (2Fe2+ + Cl2 → 2Fe3+ + 2Cl-)"
+    },
+    {
+      "concept": "Redox - zinc + copper sulphate",
+      "equation": "Zn + CuSO4 → ZnSO4 + Cu  (Zn + Cu2+ → Zn2+ + Cu)"
+    },
+    {
+      "concept": "Formation of NaCl",
+      "equation": "Na + Cl → Na+ + Cl- → NaCl"
+    },
+    {
+      "concept": "Formation of CaO",
+      "equation": "Ca + O → Ca2+ + O2- → CaO"
+    },
+    {
+      "concept": "Formation of MgCl2",
+      "equation": "Mg + 2Cl → Mg2+ + 2Cl- → MgCl2"
+    },
+    {
+      "concept": "Formation of hydronium ion",
+      "equation": "H2O + H+ → H3O+"
+    },
+    {
+      "concept": "Formation of hydroxyl ion",
+      "equation": "H2O → OH- + H+"
+    },
+    {
+      "concept": "Formation of ammonium ion",
+      "equation": "NH3 + H+ → NH4+"
+    },
+    {
+      "concept": "Ammonia dissolving in water",
+      "equation": "NH3 + H2O → NH4OH  (NH4+ + OH-)"
+    },
+    {
+      "concept": "HCl in water (dissociation)",
+      "equation": "HCl → H+ + Cl-"
+    },
+    {
+      "concept": "Electrolytic dissociation of NaCl (molten)",
+      "equation": "NaCl → Na+ + Cl-"
+    }
+  ],
+  "key_terms_glossary": [
+    {
+      "term": "Chemical bond",
+      "definition": "The force of attraction which holds two or more atoms together in a stable molecule."
+    },
+    {
+      "term": "Chemical bonding",
+      "definition": "The concept/process of bond formation between atoms."
+    },
+    {
+      "term": "Atom",
+      "definition": "Smallest unit of matter that takes part in a chemical reaction; built of protons, neutrons & electrons."
+    },
+    {
+      "term": "Molecule",
+      "definition": "Formed when two or more atoms (metallic or non-metallic) combine."
+    },
+    {
+      "term": "Cation",
+      "definition": "Positively charged ion formed when a metallic atom loses electrons."
+    },
+    {
+      "term": "Anion",
+      "definition": "Negatively charged ion formed when a non-metallic atom gains electrons."
+    },
+    {
+      "term": "Electrovalent (ionic) bond",
+      "definition": "Bond formed by transfer of one or more electrons from a metallic atom to a non-metallic atom."
+    },
+    {
+      "term": "Electrovalent (ionic) compound",
+      "definition": "Compound formed by transfer of electrons between a metallic and a non-metallic element."
+    },
+    {
+      "term": "Electrovalency",
+      "definition": "Number of electrons donated or accepted by an atom's valence shell to achieve stable configuration."
+    },
+    {
+      "term": "Covalent bond",
+      "definition": "Bond formed by mutual sharing of electron pairs between two non-metallic atoms."
+    },
+    {
+      "term": "Covalent compound",
+      "definition": "Compound formed by mutual sharing of electrons between non-metallic atoms."
+    },
+    {
+      "term": "Covalency",
+      "definition": "Number of electron pairs an atom shares with other atoms to achieve stable configuration."
+    },
+    {
+      "term": "Single covalent bond",
+      "definition": "Covalent bond formed by sharing one pair of electrons (-)."
+    },
+    {
+      "term": "Double covalent bond",
+      "definition": "Covalent bond formed by sharing two pairs of electrons (=)."
+    },
+    {
+      "term": "Triple covalent bond",
+      "definition": "Covalent bond formed by sharing three pairs of electrons (≡)."
+    },
+    {
+      "term": "Non-polar covalent bond",
+      "definition": "Covalent bond in which electrons are shared equally between the combining atoms (no charge separation)."
+    },
+    {
+      "term": "Polar covalent bond",
+      "definition": "Covalent bond in which electrons are shared unequally (charge separation takes place)."
+    },
+    {
+      "term": "Coordinate bond (dative / co-ionic bond)",
+      "definition": "Covalent bond in which both shared electrons come from the same atom."
+    },
+    {
+      "term": "Lone pair of electrons",
+      "definition": "A pair of electrons in the outer shell of an atom that is not shared with any other atom."
+    },
+    {
+      "term": "Electronegativity",
+      "definition": "The tendency of an atom to attract the shared pair of electrons towards itself in a covalent bond."
+    },
+    {
+      "term": "Ionisation potential (I.P.)",
+      "definition": "Energy required to remove an electron from a gaseous atom."
+    },
+    {
+      "term": "Electron affinity (E.A.)",
+      "definition": "Energy released when an electron is added to a gaseous atom."
+    },
+    {
+      "term": "Oxidation",
+      "definition": "Process in which an atom or ion loses electrons."
+    },
+    {
+      "term": "Reduction",
+      "definition": "Process in which an atom or ion gains electrons."
+    },
+    {
+      "term": "Redox reaction",
+      "definition": "Reaction in which oxidation and reduction occur simultaneously."
+    },
+    {
+      "term": "Duplet rule",
+      "definition": "Atoms tend to attain 2 electrons in the outermost shell (like He)."
+    },
+    {
+      "term": "Octet rule",
+      "definition": "Atoms tend to attain 8 electrons in the outermost shell (like noble gases other than He)."
+    },
+    {
+      "term": "Electrolytic dissociation",
+      "definition": "Separation of ions already present in an ionic compound on passage of electric current."
+    },
+    {
+      "term": "Ionisation",
+      "definition": "Formation of ions from molecules (which were not originally ionic) in solution state."
+    },
+    {
+      "term": "Hydronium ion",
+      "definition": "H3O+ - positive ion formed when a hydrogen ion accepts a lone pair from the oxygen of water."
+    },
+    {
+      "term": "Hydroxyl ion",
+      "definition": "OH- - negative ion formed when water loses H+."
+    },
+    {
+      "term": "Ammonium ion",
+      "definition": "NH4+ - positive ion formed when a hydrogen ion accepts a lone pair from the nitrogen of ammonia."
+    },
+    {
+      "term": "Van der Waals forces",
+      "definition": "Weak intermolecular forces of attraction present in covalent compounds."
+    }
+  ],
+  "atomic_configurations_reference": [
+    {
+      "element": "Hydrogen",
+      "symbol": "H",
+      "atomic_number": 1,
+      "electronic_configuration": "1"
+    },
+    {
+      "element": "Helium",
+      "symbol": "He",
+      "atomic_number": 2,
+      "electronic_configuration": "2"
+    },
+    {
+      "element": "Lithium",
+      "symbol": "Li",
+      "atomic_number": 3,
+      "electronic_configuration": "2,1"
+    },
+    {
+      "element": "Carbon",
+      "symbol": "C",
+      "atomic_number": 6,
+      "electronic_configuration": "2,4"
+    },
+    {
+      "element": "Nitrogen",
+      "symbol": "N",
+      "atomic_number": 7,
+      "electronic_configuration": "2,5"
+    },
+    {
+      "element": "Oxygen",
+      "symbol": "O",
+      "atomic_number": 8,
+      "electronic_configuration": "2,6"
+    },
+    {
+      "element": "Fluorine",
+      "symbol": "F",
+      "atomic_number": 9,
+      "electronic_configuration": "2,7"
+    },
+    {
+      "element": "Neon",
+      "symbol": "Ne",
+      "atomic_number": 10,
+      "electronic_configuration": "2,8"
+    },
+    {
+      "element": "Sodium",
+      "symbol": "Na",
+      "atomic_number": 11,
+      "electronic_configuration": "2,8,1"
+    },
+    {
+      "element": "Magnesium",
+      "symbol": "Mg",
+      "atomic_number": 12,
+      "electronic_configuration": "2,8,2"
+    },
+    {
+      "element": "Aluminium",
+      "symbol": "Al",
+      "atomic_number": 13,
+      "electronic_configuration": "2,8,3"
+    },
+    {
+      "element": "Sulphur",
+      "symbol": "S",
+      "atomic_number": 16,
+      "electronic_configuration": "2,8,6"
+    },
+    {
+      "element": "Chlorine",
+      "symbol": "Cl",
+      "atomic_number": 17,
+      "electronic_configuration": "2,8,7"
+    },
+    {
+      "element": "Argon",
+      "symbol": "Ar",
+      "atomic_number": 18,
+      "electronic_configuration": "2,8,8"
+    },
+    {
+      "element": "Potassium",
+      "symbol": "K",
+      "atomic_number": 19,
+      "electronic_configuration": "2,8,8,1"
+    },
+    {
+      "element": "Calcium",
+      "symbol": "Ca",
+      "atomic_number": 20,
+      "electronic_configuration": "2,8,8,2"
+    }
+  ],
+  "diagrams_index": [
+    {
+      "page": 1,
+      "image": "pages/page_001.png",
+      "description": "Chapter cover - syllabus scope, introduction, atom & sub-atomic particles"
+    },
+    {
+      "page": 2,
+      "image": "pages/page_002.png",
+      "description": "Periodic table extract showing atomic numbers and electronic configurations of metals/non-metals"
+    },
+    {
+      "page": 3,
+      "image": "pages/page_003.png",
+      "description": "Chemical bond overview, noble gases table, periodic properties affecting bond formation"
+    },
+    {
+      "page": 4,
+      "image": "pages/page_004.png",
+      "description": "Electrovalent bonding - oxidation/reduction, redox reactions, atoms vs ions comparison"
+    },
+    {
+      "page": 5,
+      "image": "pages/page_005.png",
+      "description": "NaCl formation - electron dot structure & orbit structure"
+    },
+    {
+      "page": 6,
+      "image": "pages/page_006.png",
+      "description": "CaO formation - electron dot structure & orbit structure"
+    },
+    {
+      "page": 7,
+      "image": "pages/page_007.png",
+      "description": "MgCl2 formation - electron dot structure & orbit structure"
+    },
+    {
+      "page": 8,
+      "image": "pages/page_008.png",
+      "description": "Covalent bonding - single/double/triple bonds, polar vs non-polar comparison"
+    },
+    {
+      "page": 9,
+      "image": "pages/page_009.png",
+      "description": "H2 and Cl2 formation - electron dot & orbit structures (single covalent bonds)"
+    },
+    {
+      "page": 10,
+      "image": "pages/page_010.png",
+      "description": "O2 (double bond) and N2 (triple bond) - electron dot & orbit structures"
+    },
+    {
+      "page": 11,
+      "image": "pages/page_011.png",
+      "description": "CCl4 and CH4 formation - electron dot & orbit structures (four single bonds each)"
+    },
+    {
+      "page": 12,
+      "image": "pages/page_012.png",
+      "description": "H2O and NH3 formation - electron dot & orbit structures showing lone pairs"
+    },
+    {
+      "page": 13,
+      "image": "pages/page_013.png",
+      "description": "Coordinate bond - formation of H3O+, OH-, NH4+; lone pair effect"
+    },
+    {
+      "page": 14,
+      "image": "pages/page_014.png",
+      "description": "Side-by-side comparison of properties of electrovalent vs covalent compounds"
+    },
+    {
+      "page": 15,
+      "image": "pages/page_015.png",
+      "description": "Summary chart of all 11 electron dot structures"
+    },
+    {
+      "page": 16,
+      "image": "pages/page_016.png",
+      "description": "Practice questions, MCQs, previous year board questions (2013-2024)"
+    },
+    {
+      "page": 17,
+      "image": "pages/page_017.png",
+      "description": "Additional & Higher Order Thinking (HOT) questions"
+    },
+    {
+      "page": 18,
+      "image": "pages/page_018.png",
+      "description": "Unit Test Paper 2 - 30 marks"
+    }
+  ],
+  "practice_questions": {
+    "source_page": 16,
+    "source_note": "From Dr. Viraf J. Dalal's 'Objective Workbook for ICSE Chemistry' - Std. 10 (refer pg. 9)",
+    "give_one_word_or_phrase": [
+      {
+        "question": "The covalent bond in which the electrons are shared equally between the combining atoms.",
+        "answer": "Non-polar covalent bond"
+      },
+      {
+        "question": "The chemical bond formed by a shared pair of electrons, each bonding atom contributing one electron to the pair.",
+        "answer": "Covalent bond"
+      },
+      {
+        "question": "The polar covalent compound in gaseous state that does not conduct electricity.",
+        "answer": "HCl (hydrogen chloride)"
+      },
+      {
+        "question": "A compound with low boiling point.",
+        "answer": "Covalent compound (e.g. CCl4)"
+      },
+      {
+        "question": "The compound which neither dissociates nor ionises in water.",
+        "answer": "Carbon tetrachloride (CCl4)"
+      },
+      {
+        "question": "The type of covalent bond in which electrons are shared unequally between the combining atoms.",
+        "answer": "Polar covalent bond"
+      }
+    ],
+    "mcqs": [
+      {
+        "question": "Which of the following is an electrovalent compound? A. NaCl  B. CaCl2  C. KCl  D. CCl4",
+        "options": {
+          "A": "NaCl",
+          "B": "CaCl2",
+          "C": "KCl",
+          "D": "CCl4"
+        },
+        "answer": "D (CCl4 is covalent, not electrovalent; A, B, C are all electrovalent)",
+        "note": "Question asks which is NOT electrovalent - CCl4 is covalent."
+      },
+      {
+        "question": "In the molecule of water, oxygen atom has ___ of electrons: (a) One shared pair (b) Three shared pairs (c) Two lone pairs (d) One lone pair",
+        "options": {
+          "a": "One shared pair",
+          "b": "Three shared pairs",
+          "c": "Two lone pairs",
+          "d": "One lone pair"
+        },
+        "answer": "c - Two lone pairs"
+      },
+      {
+        "question": "Which option represents the correct electronic configuration of atoms 'A' & 'B' before combining together to form the above molecule (a covalent molecule AB with single bond)? (a) 2,4 / 2,8 (b) 2,4 / 2,8 (c) 2,8 / 2,8 (d) 2,6 / 2,8,7",
+        "answer": "Answer hint: A = 8 electrons (2,6) & B = 17 electrons (2,8,7)"
+      },
+      {
+        "question": "Given are four ions: Cl-, Li+, Al3+, K+. Identify the pair of ions which have the same electronic configuration. (a) Cl- & Li+ (b) Al3+ & K+ (c) Cl- & K+ (d) Li+ & K+",
+        "answer": "(c) Cl- and K+ - both have electronic configuration 2,8,8 (Cl: 17+1=18, K: 19-1=18)"
+      },
+      {
+        "question": "Assertion (A): Ionic compounds are hard solids at room temperature. Reason (R): The charged particles in them are closely packed with strong force of attraction. (a) Both A & R are true and R is the correct explanation of A (b) Both A & R are true but R is not the correct explanation of A (c) A is true but R is false (d) A is false but R is true",
+        "answer": "(a) Both A & R are true and R is the correct explanation of A"
+      },
+      {
+        "question": "The compound which does NOT contain one single, a double or a triple covalent bond in its molecule: (a) Nitrogen (b) Chlorine (c) Methane (d) Oxygen",
+        "answer": "(c) Methane - it has FOUR single bonds, not one"
+      },
+      {
+        "question": "Compound containing an electrovalent, covalent & a coordinate bond: (a) C=O (b) H-O-N=O (c) Na+ [O-H]- (d) CO",
+        "answer": "(c) Na+ [O-H]- (NaOH) - Na+ & OH- is electrovalent, O-H is covalent, ... actually the textbook answer per the source is (c) Na+ [O-H]-"
+      },
+      {
+        "question": "The ion containing ONE lone pair of electrons: (a) OH- (b) NH3 (c) NH4+ (d) H+",
+        "answer": "Per source: NH4+ has no lone pair; H3O+ has 1 lone pair. Among given options, NH3 (b) has one lone pair on nitrogen"
+      },
+      {
+        "question": "The property which is true for covalent hydrogen chloride: (a) Can conduct heat (b) Constituent units are ions (c) Soluble in water & solution conducts electricity (d) Undergoes electrolysis as ions",
+        "answer": "(c) Soluble in water & solution conducts electricity"
+      },
+      {
+        "question": "The bond between two elements in group 17 [VIIA] of the periodic table is likely to be ___ (ionic/covalent).",
+        "answer": "Covalent (both are non-metals with 7 valence electrons, so they share electrons)"
+      },
+      {
+        "question": "In the reaction Cl2 + 2KI → 2KCl + I2, the conversion of 2I- to I2 is deemed as ___ (oxidation/reduction).",
+        "answer": "Oxidation (I- loses electrons: 2I- → I2 + 2e-)"
+      },
+      {
+        "question": "The covalent molecule containing three single covalent bonds is ___ (water/methane/ammonia).",
+        "answer": "Ammonia (NH3 has 3 N-H single covalent bonds)"
+      },
+      {
+        "question": "The molecule of water combines with a ___ (hydrogen atom/proton/hydrogen molecule) to form a hydronium ion.",
+        "answer": "Proton (H+)"
+      },
+      {
+        "question": "For formation of an electrovalent bond between elements 'X' (metal) and 'Y' (non-metal), X should have ___ (high/low) ionization potential and Y a ___ (high/low) electron affinity.",
+        "answer": "X - LOW ionization potential; Y - HIGH electron affinity"
+      }
+    ],
+    "fill_in_the_blanks": [
+      {
+        "statement": "Non-polar covalent compounds are ___ (good/bad) conductors of heat & electricity.",
+        "answer": "bad"
+      },
+      {
+        "statement": "Carbon tetrachloride is a ___ (polar/non-polar) covalent molecule.",
+        "answer": "non-polar"
+      },
+      {
+        "statement": "Sodium chloride (NaCl) - an electrovalent compound - is formed as a result of transfer of ___ (one/two/three) valence electrons from metallic sodium to non-metallic chlorine atom.",
+        "answer": "one"
+      },
+      {
+        "statement": "Calcium oxide (CaO) is similarly formed as a result of transfer of ___ (one/two/three) valence electron/s from metallic calcium to non-metallic oxygen.",
+        "answer": "two"
+      },
+      {
+        "statement": "Magnesium chloride (MgCl2) is also formed by transfer of ___ (one/two/three) valence electron/s from ___ (one/two) magnesium atom/s to ___ (one/two) chlorine atom/s.",
+        "answer": "two; one; two"
+      }
+    ],
+    "give_reasons": [
+      {
+        "question": "Ionic compounds do not conduct electricity in solid state.",
+        "answer": "In solid state, strong electrostatic force of attraction keeps ions in fixed positions, so they cannot migrate to electrodes. In molten or aqueous state, the force is weakened/disappears and free ions migrate to oppositely charged electrodes, hence conducting electricity."
+      },
+      {
+        "question": "Covalent compounds have a low melting & boiling point.",
+        "answer": "Weak Van der Waals forces of attraction exist between covalent molecules. Less energy is required to break these weak forces, hence covalent compounds have low melting and boiling points."
+      },
+      {
+        "question": "Noble gases are unreactive, while atoms of elements other than noble gases are chemically reactive.",
+        "answer": "Noble gases have stable electronic configuration (outermost shell complete - duplet or octet), so they neither lose, gain nor share electrons. Other atoms have incomplete outermost shells, so they tend to lose, gain or share electrons to attain stable configuration - hence reactive."
+      },
+      {
+        "question": "Chemical bonding between atoms results in formation of a molecule.",
+        "answer": "Atoms combine by losing, gaining or sharing electrons to attain the stable electronic configuration of the nearest noble gas. The force of attraction (chemical bond) that holds them together creates a stable molecule."
+      },
+      {
+        "question": "Na (at. no. 11) has an electropositive valency of +1 & Cl (at. no. 17) an electronegative valency of -1.",
+        "answer": "Na has electronic configuration 2,8,1 - it loses 1 electron to attain stable octet of Ne, so its valency is +1 (electropositive). Cl has configuration 2,8,7 - it gains 1 electron to attain stable octet of Ar, so its valency is -1 (electronegative)."
+      },
+      {
+        "question": "Atoms are electrically neutral particles, while ions are charged particles & exist independently in solution.",
+        "answer": "Atoms have equal number of protons (+) and electrons (-), so they are neutral. Ions are formed when atoms lose or gain electrons, creating an imbalance of charge. Ions are stable (complete octet/duplet) so they can exist independently in solution."
+      },
+      {
+        "question": "Electrovalent compounds are soluble in water, insoluble in organic solvents.",
+        "answer": "Water is a polar solvent with high dielectric constant, which weakens the electrostatic force of attraction between ions, resulting in free ions. Organic solvents are non-polar with low dielectric constants and cannot cause dissolution."
+      },
+      {
+        "question": "Covalent compounds are soluble in organic solvents, insoluble in water, non-conductors, have low melting points & undergo ionisation (not dissociation) on passage of current.",
+        "answer": "Covalent compounds are non-polar molecules, so they dissolve in non-polar organic solvents (like dissolves like) but not in polar water. They have weak Van der Waals forces between molecules so low melting points. They contain molecules (not free ions), so they are non-conductors. On passage of current in solution, polar covalent compounds undergo ionisation (formation of ions from molecules)."
+      },
+      {
+        "question": "Molecules of hydrogen & of chlorine have single covalent bonds between their atoms, while oxygen has a double covalent bond, nitrogen a triple covalent bond.",
+        "answer": "H needs 1 electron for duplet, Cl needs 1 for octet - so they share 1 pair (single bond). O needs 2 electrons for octet - shares 2 pairs (double bond). N needs 3 electrons for octet - shares 3 pairs (triple bond)."
+      },
+      {
+        "question": "NH3 gas (a covalent compound) does not conduct electricity but its aq. soln. NH4OH is a weak electrolyte.",
+        "answer": "Pure NH3 has molecules with no free ions, so it doesn't conduct. In water, NH3 undergoes ionisation: NH3 + H2O → NH4+ + OH-, producing free ions which can conduct electricity (weakly, as ionisation is partial)."
+      },
+      {
+        "question": "MgCl2 is soluble in water but insoluble in acetone, while methane is insoluble in water but soluble in acetone.",
+        "answer": "MgCl2 is ionic (polar) - dissolves in polar water but not in non-polar acetone. Methane is non-polar covalent - dissolves in non-polar acetone but not in polar water. (Like dissolves like.)"
+      },
+      {
+        "question": "Iron displaces copper from a solution of a copper salt. The reaction is deemed as a redox reaction.",
+        "answer": "Fe loses electrons (Fe → Fe2+ + 2e-, oxidation) and Cu2+ gains electrons (Cu2+ + 2e- → Cu, reduction). Since both oxidation and reduction occur simultaneously, it is a redox reaction."
+      },
+      {
+        "question": "A non-metallic atom (at. no. 9) forms a molecule of the same, containing a single covalent bond.",
+        "answer": "At. no. 9 = Fluorine (F), electronic configuration 2,7. Each F needs 1 electron for octet, so two F atoms share 1 pair of electrons → F-F single covalent bond → F2."
+      },
+      {
+        "question": "In the formation of MgO, the magnesium atom (at. no. 12) loses two electrons from its valence shell.",
+        "answer": "Mg (2,8,2) loses 2 electrons to attain stable octet of Ne (2,8), becoming Mg2+. O (2,6) gains these 2 electrons to attain stable octet, becoming O2-. The electrostatic attraction forms MgO (electrovalent)."
+      }
+    ],
+    "draw_electron_dot_structures": [
+      "Nitrogen molecule [N=7]",
+      "Sodium chloride [Na=11, Cl=17]",
+      "Ammonium ion [N=7, H=1]",
+      "A molecule of nitrogen [N=7]",
+      "Calcium oxide",
+      "Chlorine molecule",
+      "Water molecule",
+      "Methane",
+      "Ammonia",
+      "Carbon tetrachloride",
+      "Oxygen molecule",
+      "Hydrogen molecule",
+      "An ionic compound formed when Mg reacts with dilute HCl (i.e. MgCl2)",
+      "A covalent compound formed when H2 reacts with Cl2 (i.e. HCl)",
+      "The positive ion produced when ammonia gas is dissolved in water (i.e. NH4+)"
+    ],
+    "match_the_columns": [
+      {
+        "year": 2023,
+        "items": [
+          {
+            "column_A": "Sodium chloride",
+            "column_B": "has high melting & boiling points"
+          },
+          {
+            "column_A": "Hydrogen chloride gas",
+            "column_B": "has low melting & boiling points"
+          },
+          {
+            "column_A": "Oxidation reaction",
+            "column_B": "Zn - 2e- → Zn2+"
+          },
+          {
+            "column_A": "Water",
+            "column_B": "has two shared pairs of electrons (with 2 lone pairs on O)"
+          }
+        ]
+      },
+      {
+        "section": "Covalent bonding",
+        "items": [
+          {
+            "column_A": "5 Valence electrons",
+            "column_B": "Form a covalent compound with triple covalent bond"
+          },
+          {
+            "column_A": "7 Valence electrons",
+            "column_B": "Share 1 pair of electrons between the atoms"
+          },
+          {
+            "column_A": "6 Valence electrons",
+            "column_B": "Share 2 pairs of electrons between the atoms"
+          }
+        ]
+      }
+    ],
+    "differentiate_between": [
+      "(a) Chemical bond & chemical bonding",
+      "(b) Stable & unstable electronic configuration",
+      "(c) Duplet rule & octet rule",
+      "(d) Electron transfer & electron sharing",
+      "Polar covalent compounds from non-polar covalent compounds with reference to: (i) distribution of shared pair of electrons between atoms (ii) charge separation between atoms"
+    ],
+    "additional_hot_questions": [
+      {
+        "question": "Formation of electrovalent compounds involves transfer of valence electrons from metallic to non-metallic atom. A-2e- → A2+, B+2e- → B2-, A2+ + B2- → AB. (a) State which of A or B is a metal; which of A2+ or B2- is an anion. (b) Define cation & anion. (c) Give reasons: (i) Na has electropositive valency +1 & Cl electronegative -1; (ii) Atoms are neutral but ions are charged & exist independently.",
+        "answer_hints": "(a) A is metal (loses e-), B is non-metal. A2+ is cation, B2- is anion. (b) Cation = positively charged ion formed by loss of electrons; Anion = negatively charged ion formed by gain of electrons. (c) See give-reasons section above."
+      },
+      {
+        "question": "State which of the following are oxidation reactions and which are reduction reactions: (a)(i) Cu → Cu2+ + 2e- (ii) Cu2+ + 2e- → Cu (iii) Sn4+ + 2e- → Sn2+ (iv) 2Cl- → Cl2 + 2e- (v) Fe2+ → Fe3+ + 1e- (vi) X + 2e- → X2- (vii) Y - 1e- → Y+ (viii) Z3+ + 1e- → Z2+; (b)(i) Zn → Zn2+ (ii) S → S2- (iii) Sn2+ → Sn (iv) Fe2+ → Fe3+",
+        "answer": "Oxidation (loss of e-): (a)(i), (iv), (v), (vii); (b)(i), (iv). Reduction (gain of e-): (a)(ii), (iii), (vi), (viii); (b)(ii), (iii)."
+      },
+      {
+        "question": "Give the ionic equation and electron dot structure for formation of the following electrovalent compounds: (a) A[2,8,1] & B[2,8,7] (A=Na, B=Cl); (b) C[2,8,8,2] & D[2,6] (C=Ca, D=O); (c) E[2,8,2] & B[2,8,7] (E=Mg, B=Cl); (d) A[2,8,1] & E[2,8,6] (A=Na, E=S).",
+        "answer_hints": "(a) Na - 1e- → Na+; Cl + 1e- → Cl-; Na+ + Cl- → NaCl. (b) Ca - 2e- → Ca2+; O + 2e- → O2-; Ca2+ + O2- → CaO. (c) Mg - 2e- → Mg2+; 2Cl + 2e- → 2Cl-; Mg2+ + 2Cl- → MgCl2. (d) 2Na - 2e- → 2Na+; S + 2e- → S2-; 2Na+ + S2- → Na2S."
+      },
+      {
+        "question": "Choose the polar covalent compounds from: H2, H2O, Cl2, CCl4, N2, NH3, O2, CH4, HCl.",
+        "answer": "H2O, NH3, HCl (these have electronegativity difference between atoms; the rest are non-polar covalent)"
+      },
+      {
+        "question": "Differentiate polar covalent compounds from non-polar covalent compounds with reference to: (i) distribution of shared pair of electrons; (ii) charge separation between atoms.",
+        "answer": "(i) In polar covalent compounds the shared pair is unequally distributed (closer to more electronegative atom); in non-polar it is equally distributed. (ii) In polar compounds, charge separation takes place (one atom gets slight -ve, other slight +ve charge); in non-polar no charge separation - molecule is symmetrical and neutral."
+      },
+      {
+        "question": "Explain the lone pair effect of: (a) the nitrogen atom of the ammonia molecule leading to formation of ammonium ion (NH4+); (b) the oxygen atom of H2O molecule leading to formation of hydronium (H3O+) and hydroxyl (OH-) ions.",
+        "answer": "(a) Nitrogen in NH3 has one lone pair. When NH3 dissolves in water, the H+ ion (from water) accepts this lone pair to form a coordinate bond, giving NH4+. (b) Oxygen in H2O has two lone pairs. When acid is added, H+ accepts one lone pair to form H3O+ (with 1 lone pair left). When a base takes H+ from water, OH- is left with 3 lone pairs."
+      }
+    ],
+    "previous_year_board_questions": [
+      {
+        "year": 2020,
+        "questions": [
+          "Draw the electron dot structure of: (i) Methane (ii) Nitrogen [At. no.: N=7, C=6, H=1]",
+          "Draw the electron dot diagram for: (i) Calcium oxide (ii) Chlorine molecule (iii) Water molecule",
+          "State the number of lone pair of electrons: (i) Ammonia (ii) Methane (iii) Water (iv) Ammonium ion",
+          "Choose the electron dot arrangement for the outer shell electrons in a covalent compound (H-N-H structure with lone pair)"
+        ]
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "questions": [
+          "Draw the electron dot structure for: (i) Ammonium ion (ii) A molecule of nitrogen [N=7, H=1]",
+          "State the term: The type of covalent bond in which electrons are shared unequally between the combining atoms.",
+          "Fill in the blanks from the choices given: ___ (carbon tetrachloride, ammonia, methane)",
+          "The type of bonding present in hydrogen chloride is: (i) Metallic (ii) Ionic (iii) Covalent (iv) Coordinate",
+          "State the oxidation reaction from: (i) Fe3+ + 3e- → Fe (ii) Fe2+ - 1e- → Fe3+ (iii) Cl2 + 2e- → 2Cl- (iv) Cu2+ + 2e- → Cu"
+        ]
+      },
+      {
+        "year": 2023,
+        "questions": [
+          "Match Column A (Sodium chloride; Hydrogen chloride gas; Oxidation reaction; Water) with Column B (has two shared pairs of electrons; has high melting & boiling points; has low melting & boiling points; Zn - 2e- → Zn2+; S + 2e- → S2-)",
+          "Fill in the blanks: Non-polar covalent compounds are ___ (good/bad) conductors of heat & electricity.",
+          "Give reasons: Covalent compounds have a low melting & boiling point.",
+          "Fill in the blanks: Carbon tetrachloride is a ___ (polar/non-polar) covalent molecule."
+        ]
+      },
+      {
+        "year": 2025,
+        "questions": [
+          "The diagram below shows the bonding in the covalent molecule AB. (i) A (ii) B",
+          "Draw the dot & cross structure of the following: (a) An ionic compound formed when Mg reacts with dilute HCl; (b) A covalent compound formed when H2 reacts with Cl2; (c) The positive ion produced when ammonia gas is dissolved in water. [Mg=12, Cl=17, H=1, N=7]",
+          "Define Co-ordinate bond."
+        ]
+      }
+    ]
+  },
+  "unit_test_paper": {
+    "title": "Unit Test Paper 2",
+    "marks": 30,
+    "source_page": 18,
+    "questions": [
+      {
+        "number": "Q1",
+        "marks": 5,
+        "type": "Give reasons for the following",
+        "items": [
+          "NH3 gas - a covalent compound - does not conduct electricity but its aq. soln. NH4OH is a weak electrolyte.",
+          "MgCl2 is soluble in water but insoluble in acetone, while methane is insoluble in water, but soluble in acetone.",
+          "Iron displaces copper from a solution of a copper salt. The reaction is deemed as a redox reaction.",
+          "A non-metallic atom [at. no. 9] forms a molecule of the same, containing a single covalent bond.",
+          "In the formation of MgO the magnesium atom [at. no. 12] loses two electrons from its valence shell."
+        ]
+      },
+      {
+        "number": "Q2",
+        "marks": 5,
+        "type": "Fill in the blanks (with reference to a molecule of water; at. no. of H=1, O=8)",
+        "items": [
+          "Water is a ___ (non-polar/polar) covalent molecule in which the atom of ___ (hydrogen/oxygen) attracts electrons more strongly towards itself.",
+          "The water molecule shows the presence of ___ (one single/two single/double) covalent bond/s and ___ (one/two) lone pair of electrons present in the ___ (hydrogen/oxygen) atom."
+        ],
+        "answer_hints": "polar; oxygen; two single; two; oxygen"
+      },
+      {
+        "number": "Q3",
+        "marks": 5,
+        "type": "Complete the table - Element pair, type of bond, formula",
+        "table_rows": [
+          {
+            "pair": "A (At. no. = 20) & B (At. no. = 8)",
+            "expected_bond": "Electrovalent (ionic)",
+            "expected_formula": "AB → CaO"
+          },
+          {
+            "pair": "A (At. no. = 20) & C (At. no. = 17)",
+            "expected_bond": "Electrovalent (ionic)",
+            "expected_formula": "AC2 → CaCl2"
+          },
+          {
+            "pair": "D (At. no. = 9) & D (At. no. = 9)",
+            "expected_bond": "Covalent (single)",
+            "expected_formula": "D2 → F2"
+          },
+          {
+            "pair": "E (At. no. = 12) & F (At. no. = 16)",
+            "expected_bond": "Electrovalent (ionic)",
+            "expected_formula": "EF → MgS (Mg = 2,8,2 loses 2e-; S = 2,8,6 gains 2e-)"
+          },
+          {
+            "pair": "G (At. no. = 1) & F (At. no. = 16)",
+            "expected_bond": "Covalent (polar)",
+            "expected_formula": "G2F → H2S"
+          }
+        ]
+      },
+      {
+        "number": "Q4",
+        "marks": 5,
+        "type": "Fill in the blanks with the correct word from the brackets",
+        "items": [
+          {
+            "statement": "The bond between two elements in group 17 [VIIA] of the periodic table is likely to be ___ (ionic/covalent).",
+            "answer": "covalent"
+          },
+          {
+            "statement": "In the reaction Cl2 + 2KI → 2KCl + I2, the conversion of 2I- to I2 is deemed as ___ (oxidation/reduction).",
+            "answer": "oxidation"
+          },
+          {
+            "statement": "The covalent molecule containing three single covalent bonds is ___ (water/methane/ammonia).",
+            "answer": "ammonia"
+          },
+          {
+            "statement": "The molecule of water combines with a ___ (hydrogen atom/proton/hydrogen molecule) to form a hydronium ion.",
+            "answer": "proton"
+          },
+          {
+            "statement": "For formation of an electrovalent bond between elements 'X' (metal) and 'Y' (non-metal), X should have ___ (high/low) ionization potential and 'Y' a ___ (high/low) electron affinity.",
+            "answer": "low; high"
+          }
+        ]
+      },
+      {
+        "number": "Q5",
+        "marks": 5,
+        "type": "Electronic configurations given: Na=2,8,1; H=1; C=2,4; Cl=2,8,7; Li=2,1. State which compounds have high/low boiling points and are soluble/insoluble in organic solvents.",
+        "compounds": [
+          "A. Hydrogen chloride",
+          "B. Sodium chloride",
+          "C. Sodium hydride",
+          "D. Lithium chloride",
+          "E. Carbon tetrachloride"
+        ],
+        "answer_hints": "High boiling point & insoluble in organic solvents (ionic): B (NaCl), C (NaH), D (LiCl). Low boiling point & soluble in organic solvents (covalent): A (HCl), E (CCl4)."
+      },
+      {
+        "number": "Q6",
+        "marks": 5,
+        "type": "Compound has formula H2Y (Y is a non-metal). State:",
+        "items": [
+          "The electronic configuration of Y (it forms H2Y, so it needs 2 electrons - like O, valence 6, electronic config 2,6)",
+          "The valency of Y (= 2)",
+          "The bonding present in H2Y (polar covalent - like H2O)",
+          "The bonding present in the compound formed between potassium (19K) and Y (electrovalent - K2Y, like K2O)",
+          "The formula of the compound formed between calcium (20Ca) and Y (CaY, like CaO)"
+        ]
+      }
+    ]
+  },
+  "quick_revision_summary": {
+    "bond_types": [
+      {
+        "bond": "Electrovalent (Ionic)",
+        "formed_by": "Transfer of electrons (metal + non-metal)",
+        "force": "Strong electrostatic",
+        "examples": "NaCl, CaO, MgCl2, KCl, Na2S"
+      },
+      {
+        "bond": "Covalent (Non-polar)",
+        "formed_by": "Equal sharing of electrons (non-metal + non-metal, same element)",
+        "force": "Weak Van der Waals",
+        "examples": "H2, Cl2, O2, N2, CH4, CCl4"
+      },
+      {
+        "bond": "Covalent (Polar)",
+        "formed_by": "Unequal sharing of electrons (different non-metals)",
+        "force": "Weak Van der Waals",
+        "examples": "H2O, NH3, HCl"
+      },
+      {
+        "bond": "Coordinate (Dative)",
+        "formed_by": "Both shared electrons from one atom (lone pair donor + H+)",
+        "force": "Has both ionic & covalent character",
+        "examples": "H3O+, NH4+, OH-"
+      }
+    ],
+    "lone_pairs_quick_recall": [
+      {
+        "species": "H2O",
+        "lone_pairs": 2,
+        "central_atom": "O"
+      },
+      {
+        "species": "H3O+",
+        "lone_pairs": 1,
+        "central_atom": "O"
+      },
+      {
+        "species": "OH-",
+        "lone_pairs": 3,
+        "central_atom": "O"
+      },
+      {
+        "species": "NH3",
+        "lone_pairs": 1,
+        "central_atom": "N"
+      },
+      {
+        "species": "NH4+",
+        "lone_pairs": 0,
+        "central_atom": "N"
+      },
+      {
+        "species": "N2",
+        "lone_pairs_per_atom": 1,
+        "central_atom": "N"
+      },
+      {
+        "species": "CH4",
+        "lone_pairs": 0,
+        "central_atom": "C"
+      },
+      {
+        "species": "CCl4",
+        "lone_pairs": 0,
+        "central_atom": "C (but each Cl has 3 lone pairs)"
+      }
+    ],
+    "bond_order_quick_recall": [
+      {
+        "molecule": "H2",
+        "bond_type": "Single covalent (-)",
+        "shared_pairs": 1
+      },
+      {
+        "molecule": "Cl2",
+        "bond_type": "Single covalent (-)",
+        "shared_pairs": 1
+      },
+      {
+        "molecule": "O2",
+        "bond_type": "Double covalent (=)",
+        "shared_pairs": 2
+      },
+      {
+        "molecule": "N2",
+        "bond_type": "Triple covalent (≡)",
+        "shared_pairs": 3
+      },
+      {
+        "molecule": "CH4",
+        "bond_type": "Four single covalent",
+        "shared_pairs": 4,
+        "note": "1 each with 4 H"
+      },
+      {
+        "molecule": "CCl4",
+        "bond_type": "Four single covalent",
+        "shared_pairs": 4,
+        "note": "1 each with 4 Cl"
+      },
+      {
+        "molecule": "H2O",
+        "bond_type": "Two single covalent",
+        "shared_pairs": 2,
+        "note": "1 each with 2 H"
+      },
+      {
+        "molecule": "NH3",
+        "bond_type": "Three single covalent",
+        "shared_pairs": 3,
+        "note": "1 each with 3 H"
+      },
+      {
+        "molecule": "HCl",
+        "bond_type": "Single covalent",
+        "shared_pairs": 1,
+        "note": "1 shared pair between H and Cl"
+      }
+    ],
+    "exam_tips": [
+      "Always show electrons as dots (.) for one atom and crosses (x) for the other in electron dot structures.",
+      "For ionic compounds, write the cation in [ ]+ and anion in [ ]- with their charges.",
+      "Mention electronic configurations before AND after bonding in answers.",
+      "Use arrows to show electron transfer in ionic bonding.",
+      "Remember: duplet = 2 electrons (He), octet = 8 electrons (other noble gases).",
+      "Metals always LOSE electrons (oxidation); non-metals always GAIN electrons (reduction).",
+      "In redox reactions: identify what loses e- (oxidation) and what gains e- (reduction).",
+      "Coordinate bond is shown with an arrow (→) from donor (lone pair) to acceptor (H+).",
+      "Polar covalent = unequal sharing due to electronegativity difference (ΔEN > 0).",
+      "Non-polar covalent = equal sharing (same element or same EN).",
+      "For 'give reasons' questions: state the cause → mechanism → result.",
+      "Memorize the 11 electron dot structures (NaCl, CaO, MgCl2, H2, Cl2, O2, N2, CCl4, CH4, H2O, NH3, HCl)."
+    ]
+  },
+  "how_to_use_this_json": {
+    "for_students": [
+      "Read sections A-M in order for complete chapter coverage.",
+      "Use 'key_terms_glossary' for quick definition lookup.",
+      "Use 'atomic_configurations_reference' when solving electron dot structure questions.",
+      "Use 'key_formulas_and_equations' for last-minute revision before exam.",
+      "Practice with 'practice_questions' - includes board questions from 2020 to 2025.",
+      "Take the 'unit_test_paper' (30 marks) for self-assessment.",
+      "Use 'quick_revision_summary' for the night before the exam."
+    ],
+    "for_teachers": [
+      "Each section maps to a source page in the PDF (see 'source_page' field).",
+      "Diagrams are referenced in 'diagram.image' field with relative paths like 'pages/page_005.png'.",
+      "All OCR text and original images are also preserved in the original extraction bundle at /home/z/my-project/download/chemical_bonding_extract/."
+    ],
+    "for_developers": [
+      "All image paths are relative to this JSON's location.",
+      "Schema: chapters[] (intro) → sections[] (A-M, ordered) → key_formulas, glossary, configs, diagrams_index, practice_questions, unit_test_paper, quick_revision_summary.",
+      "Every section has a 'source_page' that points to the original PDF page for verification.",
+      "Embed images using the 'diagram.image' path; each image is a 200-DPI PNG render of the original PDF page."
+    ]
+  }
+}

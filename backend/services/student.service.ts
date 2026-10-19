@@ -66,8 +66,23 @@ export class StudentService {
   static async getMaterials(className: string, board?: string, subject?: string) {
     const client = await clientPromise;
     const db = client.db();
-    const query: { className: string; board?: string; subject?: string } = { className };
-    if (board) query.board = board;
+    const classVariants = [className];
+    if (className.startsWith('Class ')) {
+      classVariants.push(className.replace('Class ', 'Grade '));
+    } else if (className.startsWith('Grade ')) {
+      classVariants.push(className.replace('Grade ', 'Class '));
+    }
+
+    const query: any = { className: { $in: classVariants } };
+    if (board) {
+      query.$or = [
+        { board: board },
+        { board: board.toUpperCase() },
+        { board: 'All' },
+        { board: { $exists: false } },
+        { board: null }
+      ];
+    }
     if (subject) query.subject = subject;
     
     return db.collection('materials').find(query).sort({ createdAt: -1 }).toArray();
