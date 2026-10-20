@@ -333,7 +333,9 @@ export default function MaterialsPage() {
                 <div className="flex items-center space-x-2">
                   <a 
                     href={
-                      selectedMaterial.type === 'note' && (selectedMaterial.url?.includes('chemical-bonding') || selectedMaterial.title.toLowerCase().includes('chemical bonding'))
+                      selectedMaterial.type === 'note' && (selectedMaterial.url?.includes('periodic-table') || selectedMaterial.title.toLowerCase().includes('periodic table'))
+                        ? '/student/materials/periodic-table'
+                        : selectedMaterial.type === 'note' && (selectedMaterial.url?.includes('chemical-bonding') || selectedMaterial.title.toLowerCase().includes('chemical bonding'))
                         ? '/student/materials/chemical-bonding'
                         : selectedMaterial.url
                     } 

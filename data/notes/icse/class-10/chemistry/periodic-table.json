@@ -1,0 +1,4390 @@
+{
+  "schema_version": "2.0",
+  "document_type": "ICSE Class 10 Chemistry - Chapter Study Guide",
+  "title": "Periodic Table",
+  "subtitle": "Periodic Properties & Variations of Properties",
+  "grade_level": "Class 10",
+  "board": "ICSE (Indian Certificate of Secondary Education)",
+  "subject": "Chemistry",
+  "chapter_number": 1,
+  "source_pdf": "Periodic Table class 10 icse.pdf",
+  "source_pages": 21,
+  "extraction_method": "Lossless: every concept, definition, formula, table, trend, practice question and diagram-description from the original PDF is preserved as structured JSON. Diagrams are represented as ASCII art / structured tables (no image files needed).",
+  "language": "English",
+  "syllabus_scope": {
+    "exam_year": "in and after March 2027",
+    "scope": [
+      {
+        "topic": "Periodic Properties & their variations in Groups & Periods",
+        "points": [
+          "Definitions & trends of the following periodic properties in groups & periods should be studied:",
+          "Atomic size",
+          "Metallic character",
+          "Non-metallic character",
+          "Ionisation potential",
+          "Electron affinity",
+          "Electronegativity"
+        ]
+      },
+      {
+        "topic": "Periodicity on the basis of atomic number for elements",
+        "points": [
+          "Study of modern periodic table up to period 4 (no questions on elements beyond period 4 - Calcium)",
+          "Periodicity & other related properties explained on basis of nuclear charge & shells (not orbitals)",
+          "Special reference to the alkali metals & halogen groups",
+          "Groups numbered 1 to 18 (IUPAC notation) and IA-VIIA, VIII, IB-VIIB & 0 (older notation accepted)"
+        ]
+      }
+    ],
+    "IUPAC_note": "According to IUPAC recommendation, the GROUPS are numbered from 1 to 18 - replacing older notation. Both notations accepted for examination."
+  },
+  "key_formulas_and_equations": [
+    {
+      "concept": "Modern Periodic Law",
+      "equation": "Properties of elements = Periodic functions of their Atomic Numbers (Z)"
+    },
+    {
+      "concept": "Ionisation Potential (I.P.) Endothermic Process",
+      "equation": "M(g) + Energy (I.P.) → M⁺(g) + e⁻"
+    },
+    {
+      "concept": "Second Ionisation Potential",
+      "equation": "M⁺(g) + Energy (2nd I.P.) → M²⁺(g) + e⁻  [2nd I.P. > 1st I.P.]"
+    },
+    {
+      "concept": "Electron Affinity (E.A.) Exothermic Process",
+      "equation": "X(g) + e⁻ → X⁻(g) + Energy (E.A.)  [e.g. Cl + e⁻ → Cl⁻, −3.80 eV]"
+    },
+    {
+      "concept": "Metallic (Electropositive) Oxidation Process",
+      "equation": "M → M⁺ + e⁻  (Metal acts as Electron Donor / Reducing Agent)"
+    },
+    {
+      "concept": "Non-Metallic (Electronegative) Reduction Process",
+      "equation": "N + e⁻ → N⁻  (Non-metal acts as Electron Acceptor / Oxidising Agent)"
+    },
+    {
+      "concept": "Period 3 Amphoteric Oxide Reactions",
+      "equation": "Al₂O₃ + 6HCl → 2AlCl₃ + 3H₂O  |  Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O"
+    },
+    {
+      "concept": "Stability Index (Neutron to Proton Ratio)",
+      "equation": "n/p ≈ 1.0 (Stable Light Metals)  |  n/p > 1.5 (Radioactive Heavy Elements)"
+    }
+  ],
+  "section_A_introduction": {
+    "section_id": "A",
+    "title": "Introduction & History of Classification",
+    "source_page": 1,
+    "need_for_classification": [
+      "Need arose to group elements into families whose elements showed maximum resemblance.",
+      "On such an arrangement in the form of a table, properties of elements were seen to reappear at regular intervals."
+    ],
+    "history_of_classification": [
+      {
+        "scientist": "Early Chemists",
+        "basis": "Valency, metallic & non-metallic character",
+        "outcome": "Method discarded as elements showed variable valency and dual character."
+      },
+      {
+        "scientist": "Dobereiner (1815)",
+        "basis": "Increasing order of atomic weights",
+        "outcome": "Elements arranged in groups of three called TRIADS. Atomic weight of the middle element was generally the average of the other two. Discarded as it did not hold true for all elements."
+      },
+      {
+        "scientist": "Newland (1864)",
+        "basis": "Increasing order of atomic weights",
+        "outcome": "Elements arranged in a series of eight. Properties of every eighth element were a repetition of the first (Law of Octaves). Discarded as it failed to leave spaces for undiscovered elements."
+      },
+      {
+        "scientist": "Mendeleeff (1869)",
+        "basis": "Increasing order of atomic weights",
+        "outcome": "Elements arranged in the form of a table called Mendeleeff's Periodic Table. Stated that properties of elements are periodic functions of their atomic weights. Could not justify position of certain elements, rare earths and isotopes."
+      },
+      {
+        "scientist": "Moseley (1912)",
+        "basis": "Increasing order of atomic numbers",
+        "outcome": "Elements arranged in a modified table called Modern Periodic Table. Stated that properties of elements are periodic functions of their atomic numbers. Removes most defects of Mendeleeff's Periodic Table."
+      }
+    ]
+  },
+  "section_B_modern_periodic_table": {
+    "section_id": "B",
+    "title": "Modern Periodic Table - Long form of the Periodic Table",
+    "source_page": 3,
+    "introduction": [
+      "Mendeleeff had arranged elements in the periodic table on basis of increasing atomic weights.",
+      "Moseley modified Mendeleeff's periodic table & stated that the basis of classification of elements should be increasing atomic numbers (not atomic weights) since physical and chemical properties of elements depend on the number of electrons and their arrangement.",
+      "Atomic number is equal to the number of electrons in the energy shells of an atom - hence atomic number is the fundamental property of an element."
+    ],
+    "modern_periodic_law": "Physical & chemical properties of elements are periodic functions of their atomic numbers.",
+    "salient_features": [
+      {
+        "feature": "Classification",
+        "description": "Periodic table based on basic fundamental property - atomic number."
+      },
+      {
+        "feature": "Position",
+        "description": "Correlates position of an element with its electronic configuration."
+      },
+      {
+        "feature": "Methodical arrangement",
+        "description": "Arranges elements in increasing order of atomic numbers in SEVEN horizontal rows called PERIODS & EIGHTEEN vertical columns called GROUPS."
+      },
+      {
+        "feature": "Periods",
+        "description": "Completion of each period is logical - each period begins with an element having one electron in outermost shell & ends with zero group element having completely filled outer shell. A transition from metallic to non-metallic character is seen across a period."
+      },
+      {
+        "feature": "Groups",
+        "description": "Each vertical column accommodates elements with the same outer electronic configuration, hence having similar properties. 18 vertical columns consist of groups 1 to 17 & 18 [zero group]. Groups 1, 2 & 13 to 17 [IA to VIIA] are called NORMAL ELEMENTS. Groups 3 to 12 [IB to VIIB & VIII] are called TRANSITION ELEMENTS. Group 18 [zero] at extreme right contains NOBLE or INERT GASES."
+      },
+      {
+        "feature": "Separation of elements",
+        "description": "Reactive metals placed in group 1 [IA] and 2 [IIA]. Transition elements [metals] placed in the middle. Non-metals placed in the upper right corner of the periodic table."
+      },
+      {
+        "feature": "Periodicity of elements",
+        "description": "Gradual change in properties is seen with increase in atomic number. Periodicity in properties (recurrence of properties) is seen with elements of the same subgroup after a difference of 2, 8, 18 or 32 in atomic numbers - due to recurrence of similar valence shell electronic configuration."
+      }
+    ]
+  },
+  "section_C_periods": {
+    "section_id": "C",
+    "title": "Periods in the Modern Periodic Table",
+    "source_page": 4,
+    "key_concepts": [
+      "Periods = Seven horizontal rows of elements arranged in increasing order of atomic numbers.",
+      "Period numbers (1, 2, 3, ...) signify the NUMBER OF ELECTRON SHELLS of an element.",
+      "Period 1 elements (e.g. 1H) have 1 shell; Period 2 elements (e.g. 3Li) have 2 shells; Period 3 elements (e.g. 11Na) have 3 shells, and so on."
+    ],
+    "dual_position_of_hydrogen": "Hydrogen has the simplest electronic configuration of one. It can hence lose 1 electron, behaving like alkali metals (group 1) OR gain 1 electron, behaving like halogens (group 17). It is hence placed above Li in group 1 OR above F in group 17.",
+    "isotopes_of_hydrogen": "Atoms of the same element, having same atomic number but different atomic mass numbers. Hydrogen exists in 3 isotopic forms: 1H, 2H, 3H. Since they have the same electronic configuration, they occupy the same position in the periodic table.",
+    "seven_periods_table": [
+      {
+        "period": 1,
+        "type": "Short (shortest)",
+        "no_of_elements": 2,
+        "atomic_numbers": "1 & 2"
+      },
+      {
+        "period": 2,
+        "type": "Short",
+        "no_of_elements": 8,
+        "atomic_numbers": "3 to 10"
+      },
+      {
+        "period": 3,
+        "type": "Short",
+        "no_of_elements": 8,
+        "atomic_numbers": "11 to 18"
+      },
+      {
+        "period": 4,
+        "type": "Long",
+        "no_of_elements": 18,
+        "atomic_numbers": "19 to 36"
+      },
+      {
+        "period": 5,
+        "type": "Long",
+        "no_of_elements": 18,
+        "atomic_numbers": "37 to 54"
+      },
+      {
+        "period": 6,
+        "type": "Long",
+        "no_of_elements": 32,
+        "atomic_numbers": "55 to 86",
+        "note": "Contains LANTHANIDE SERIES (Rare Earth Elements)"
+      },
+      {
+        "period": 7,
+        "type": "Long",
+        "no_of_elements": 32,
+        "atomic_numbers": "87 to 112",
+        "note": "Contains ACTINIDE SERIES (Radioactive Elements)"
+      }
+    ],
+    "bridge_elements": {
+      "definition": "Period 2 elements are called 'bridge elements' - they show similarities in properties diagonally with the period 3 element of the next group.",
+      "diagram_ascii": "Period 2:  Li  Be  B  C   (bridge elements)\n            ↘   ↘   ↘\nPeriod 3:  Na  Mg  Al  Si  (typical elements)",
+      "example": "Li (period 2, group 1) shows diagonal similarity with Mg (period 3, group 2)."
+    },
+    "property_trends_across_a_period": [
+      {
+        "property": "Number of electron shells",
+        "trend": "REMAINS SAME (electrons enter same shell - K, L, M)"
+      },
+      {
+        "property": "Valence electrons",
+        "trend": "INCREASES BY ONE (from left to right)"
+      },
+      {
+        "property": "Non-metallic character",
+        "trend": "INCREASES (transition from metallic to non-metallic character)"
+      }
+    ],
+    "period_1_elements": [
+      {
+        "element": "Hydrogen",
+        "symbol": "1H",
+        "group": "1 (IA)"
+      },
+      {
+        "element": "Helium",
+        "symbol": "2He",
+        "group": "18 (0)",
+        "note": "Noble gas having duplet arrangement of electrons"
+      }
+    ],
+    "period_2_elements_table": [
+      {
+        "group": "1 (IA)",
+        "element": "Lithium",
+        "symbol": "Li",
+        "at_no": 3,
+        "elec_config": "2,1",
+        "state": "Metal",
+        "valency": 1
+      },
+      {
+        "group": "2 (IIA)",
+        "element": "Beryllium",
+        "symbol": "Be",
+        "at_no": 4,
+        "elec_config": "2,2",
+        "state": "Metal",
+        "valency": 2
+      },
+      {
+        "group": "13 (IIIA)",
+        "element": "Boron",
+        "symbol": "B",
+        "at_no": 5,
+        "elec_config": "2,3",
+        "state": "Metalloid",
+        "valency": 3
+      },
+      {
+        "group": "14 (IVA)",
+        "element": "Carbon",
+        "symbol": "C",
+        "at_no": 6,
+        "elec_config": "2,4",
+        "state": "Non-metal",
+        "valency": 4
+      },
+      {
+        "group": "15 (VA)",
+        "element": "Nitrogen",
+        "symbol": "N",
+        "at_no": 7,
+        "elec_config": "2,5",
+        "state": "Non-metal",
+        "valency": 3
+      },
+      {
+        "group": "16 (VIA)",
+        "element": "Oxygen",
+        "symbol": "O",
+        "at_no": 8,
+        "elec_config": "2,6",
+        "state": "Non-metal",
+        "valency": 2
+      },
+      {
+        "group": "17 (VIIA)",
+        "element": "Fluorine",
+        "symbol": "F",
+        "at_no": 9,
+        "elec_config": "2,7",
+        "state": "Non-metal",
+        "valency": 1
+      },
+      {
+        "group": "18 (0)",
+        "element": "Neon",
+        "symbol": "Ne",
+        "at_no": 10,
+        "elec_config": "2,8",
+        "state": "Noble gas",
+        "valency": 0
+      }
+    ],
+    "period_3_elements_table": [
+      {
+        "group": "1 (IA)",
+        "element": "Sodium",
+        "symbol": "Na",
+        "at_no": 11,
+        "elec_config": "2,8,1",
+        "state": "Metal",
+        "valency": 1
+      },
+      {
+        "group": "2 (IIA)",
+        "element": "Magnesium",
+        "symbol": "Mg",
+        "at_no": 12,
+        "elec_config": "2,8,2",
+        "state": "Metal",
+        "valency": 2
+      },
+      {
+        "group": "13 (IIIA)",
+        "element": "Aluminium",
+        "symbol": "Al",
+        "at_no": 13,
+        "elec_config": "2,8,3",
+        "state": "Metal",
+        "valency": 3
+      },
+      {
+        "group": "14 (IVA)",
+        "element": "Silicon",
+        "symbol": "Si",
+        "at_no": 14,
+        "elec_config": "2,8,4",
+        "state": "Metalloid",
+        "valency": 4
+      },
+      {
+        "group": "15 (VA)",
+        "element": "Phosphorus",
+        "symbol": "P",
+        "at_no": 15,
+        "elec_config": "2,8,5",
+        "state": "Non-metal",
+        "valency": 3
+      },
+      {
+        "group": "16 (VIA)",
+        "element": "Sulphur",
+        "symbol": "S",
+        "at_no": 16,
+        "elec_config": "2,8,6",
+        "state": "Non-metal",
+        "valency": 2
+      },
+      {
+        "group": "17 (VIIA)",
+        "element": "Chlorine",
+        "symbol": "Cl",
+        "at_no": 17,
+        "elec_config": "2,8,7",
+        "state": "Non-metal",
+        "valency": 1
+      },
+      {
+        "group": "18 (0)",
+        "element": "Argon",
+        "symbol": "Ar",
+        "at_no": 18,
+        "elec_config": "2,8,8",
+        "state": "Noble gas",
+        "valency": 0
+      }
+    ],
+    "period_3_compounds_table": {
+      "headers": [
+        "Property",
+        "Na",
+        "Mg",
+        "Al",
+        "Si",
+        "P",
+        "S",
+        "Cl"
+      ],
+      "chloride_formula": [
+        "NaCl",
+        "MgCl2",
+        "AlCl3",
+        "SiCl4",
+        "PCl5 / PCl3",
+        "S2Cl2",
+        "—"
+      ],
+      "chloride_bonding": [
+        "Ionic",
+        "Ionic",
+        "Ionic, covalent",
+        "Covalent",
+        "Covalent",
+        "Covalent",
+        "—"
+      ],
+      "chloride_state": [
+        "Solid",
+        "Solid",
+        "Solid",
+        "Liquid",
+        "Liquid/solid",
+        "Liquid",
+        "—"
+      ],
+      "oxide_formula": [
+        "Na2O",
+        "MgO",
+        "Al2O3",
+        "SiO2",
+        "P2O5 / P4O10",
+        "SO2 / SO3",
+        "Cl2O7"
+      ],
+      "oxide_bonding": [
+        "Electrovalent",
+        "Electrovalent",
+        "Electrovalent",
+        "Covalent",
+        "Covalent",
+        "Covalent",
+        "Covalent"
+      ],
+      "oxide_character": [
+        "Strongly basic",
+        "Basic",
+        "Amphoteric",
+        "Weakly acidic",
+        "Acidic",
+        "Acidic",
+        "Strongly acidic"
+      ],
+      "hydroxide": [
+        "NaOH",
+        "Mg(OH)2",
+        "Al(OH)3",
+        "H2SiO3",
+        "HPO3",
+        "H2SO4",
+        "HClO4"
+      ],
+      "hydroxide_character": [
+        "Strong base",
+        "Weak base",
+        "Amphoteric",
+        "Weak acid",
+        "Weak acid",
+        "Strong acid",
+        "Strong acid"
+      ],
+      "hydride": [
+        "NaH",
+        "MgH2",
+        "AlH3",
+        "SiH4",
+        "PH3",
+        "H2S",
+        "HCl"
+      ],
+      "hydride_character": [
+        "Strong base",
+        "Weak base",
+        "Weaker base",
+        "Weaker base",
+        "Weaker base",
+        "Weak acid",
+        "Strong acid"
+      ],
+      "notes": [
+        "H2SiO3 = metasilicic acid; HClO4 = perchloric acid; Cl2O7 = chlorine heptoxide",
+        "PH3 = phosphine",
+        "HPO3 = metaphosphoric acid; H3PO4 = orthophosphoric acid"
+      ]
+    }
+  },
+  "section_D_groups": {
+    "section_id": "D",
+    "title": "Groups in the Modern Periodic Table",
+    "source_page": 6,
+    "key_concepts": [
+      "Groups = Eighteen vertical columns (with eight main groups) in the periodic table.",
+      "Group numbers signify the NUMBER OF VALENCE ELECTRONS of an element (valence electrons = electrons in outermost shell).",
+      "Group 1 (IA) elements e.g. 11Na [2,8,1] have 1 valence electron.",
+      "Group 2 (IIA) elements e.g. 12Mg [2,8,2] have 2 valence electrons, and so on.",
+      "Transition elements also have 2 valence electrons - e.g. 26Fe [2,8,14,2], 30Zn [2,8,18,2]."
+    ],
+    "groups_summary_table": [
+      {
+        "group": "1 (IA)",
+        "type": "ALKALI METALS",
+        "elements": "Light metals from 3Li to 87Fr"
+      },
+      {
+        "group": "2 (IIA)",
+        "type": "ALKALINE EARTH METALS",
+        "elements": "Light metals from 4Be to 88Ra"
+      },
+      {
+        "group": "3 to 12 (IB to VIIB, VIII)",
+        "type": "TRANSITION ELEMENTS",
+        "elements": "Heavy metals from 21Sc to 30Zn; 39Y to 48Cd; 72Hf to 80Hg"
+      },
+      {
+        "group": "Period 6 (special)",
+        "type": "LANTHANIDE SERIES (Rare earths)",
+        "elements": "Ce to Lu, 57La to 71Lu"
+      },
+      {
+        "group": "Period 7 (special)",
+        "type": "ACTINIDE SERIES (Radioactive)",
+        "elements": "Th to Lr, 89Ac to 103Lr; 104Rf to 112Uub"
+      },
+      {
+        "group": "13 to 16 (IIIA to VIA)",
+        "type": "POST TRANSITION ELEMENTS",
+        "elements": "13Al, 32Ge, 50Sn, 81Tl, 82Pb, 83Bi, 84Po"
+      },
+      {
+        "group": "17 (VIIA)",
+        "type": "HALOGENS",
+        "elements": "9F to 85At"
+      },
+      {
+        "group": "18 (0)",
+        "type": "NOBLE / INERT GASES",
+        "elements": "2He, 10Ne, 18Ar, 36Kr, 54Xe, 86Rn"
+      }
+    ],
+    "inner_transition_elements_note": "INNER TRANSITION ELEMENTS (e.g. 58Ce, 90Th) - Metals. Lanthanides (rare earths) & Actinides (radioactive) - two series of 14 elements each. Form two horizontal rows at the bottom of the periodic table. They lie between strongly electropositive metals on the left & least electropositive elements on the right. All have 3 valence electrons (e.g. 21Sc [2,8,8,3]).",
+    "property_trends_down_a_subgroup": [
+      {
+        "property": "Valence electrons",
+        "trend": "REMAIN SAME"
+      },
+      {
+        "property": "Chemical properties",
+        "trend": "REMAIN SIMILAR (or vary gradually) - because chemical properties depend on outer electronic configuration"
+      },
+      {
+        "property": "Metallic character (electropositive character)",
+        "trend": "INCREASES"
+      },
+      {
+        "property": "Number of electron shells",
+        "trend": "INCREASES BY ONE"
+      }
+    ],
+    "alkali_metals_vs_halogens_comparison": {
+      "group_1_alkali_metals": {
+        "elements": "Lithium (Li), Sodium (Na), Potassium (K), Rubidium (Rb), Caesium (Cs), Francium (Fr)",
+        "valency": "Univalent (1 valence electron)",
+        "nature": "Highly reactive, highly electropositive, light, soft metals. Metallic in nature. Soft - can be cut with a knife.",
+        "conductivity": "Good conductors of heat & electricity",
+        "redox_nature": "Strong reducing agents (alkali metals are electron donors). Have one valence electron easily removed from outer shell. After loss, achieve stable configuration of noble gases.",
+        "electronegativity": "Low electronegativity (electropositive character increases from Li to Cs)",
+        "reaction_with_non_metals": "Electrovalent compounds formed (e.g. NaCl, KBr)",
+        "reaction_with_hydrogen": "Ionic hydrides formed (e.g. LiH, NaH)"
+      },
+      "group_17_halogen": {
+        "elements": "Fluorine (F), Chlorine (Cl), Bromine (Br), Iodine (I), Astatine (At)",
+        "valency": "Univalent (7 valence electrons)",
+        "nature": "Highly reactive, highly electronegative, non-metals. Non-metallic in nature. Gaseous: F & Cl; Liquid: Br; Solid at room temp: I",
+        "conductivity": "Bad or non-conductors of heat & electricity",
+        "redox_nature": "Strong oxidising agents (halogens are electron acceptors). Electronegative character decreases from F to I.",
+        "electronegativity": "High electronegativity",
+        "reaction_with_non_metals": "Covalent compounds formed (e.g. HCl, PCl3, SCl4)",
+        "reaction_with_hydrogen": "Covalent hydrides formed (e.g. HF, HCl, HBr, HI)"
+      }
+    }
+  },
+  "section_E_periodic_properties_overview": {
+    "section_id": "E",
+    "title": "Periodic Properties - Variation in Periods & Groups",
+    "source_page": 8,
+    "periodicity_in_properties": {
+      "definition": "Occurrence of characteristic properties of elements at definite intervals in the modern periodic table when elements are arranged in increasing order of their atomic numbers. (Definite intervals = difference of 2, 8, 18 or 32 in atomic numbers.)",
+      "modern_periodic_law": "Properties of elements are periodic functions of their atomic numbers."
+    },
+    "periodic_properties_list": [
+      "Atomic radii",
+      "Ionisation potential",
+      "Electron affinity",
+      "Electronegativity",
+      "Non-metallic and metallic character",
+      "Density",
+      "Melting and boiling point",
+      "Nature of oxides, oxy-acids, hydrides"
+    ],
+    "reasons_for_periodicity": [
+      "After definite intervals of atomic number, similar valence shell electronic configuration occurs.",
+      "Properties of elements depend on the number & arrangement of electrons in various shells including valence shell.",
+      "In the same period or subgroup, increase or decrease in a particular property is due to gradual change in electronic configuration in the arranged elements."
+    ],
+    "definitions_table": [
+      {
+        "property": "Atomic Radius",
+        "definition": "It is the distance between the centre of the nucleus and the outermost shell of the atom.",
+        "ascii_diagram": "      outermost shell\n           ◯\n          / \\\n         |   |  ← atomic radius\n          \\ /\n           ●\n        nucleus"
+      },
+      {
+        "property": "Ionisation Potential (I.P.)",
+        "definition": "It is the amount of energy required to remove an electron from the outermost shell of an isolated gaseous atom.",
+        "equation": "M → M+ + e-  [Energy required = I.P.]"
+      },
+      {
+        "property": "Electron Affinity (E.A.)",
+        "definition": "It is the amount of energy released when an atom in the gaseous state accepts an electron to form an anion.",
+        "equation": "X + e- → X- + energy liberated  [Energy released = E.A.]"
+      },
+      {
+        "property": "Electronegativity (E.N.)",
+        "definition": "It is the tendency of an atom to attract electrons to itself when combined in a compound.",
+        "note": "Small difference in E.N. between combining atoms → covalent bond. Large difference → ionic bond."
+      },
+      {
+        "property": "Non-metallic & Metallic Character",
+        "definition": "In terms of electron loss or gain: an element is a Non-metal if it gains one or more electrons; a Metal if it loses one or more electrons.",
+        "equations": [
+          "N + e- → N- (non-metal gains electron)",
+          "M → M+ + e- (metal loses electron)"
+        ]
+      }
+    ]
+  },
+  "section_F_atomic_size": {
+    "section_id": "F",
+    "title": "Periodic Trends in Properties - Atomic Size",
+    "source_page": 9,
+    "definition": "The distance between the centre of the nucleus of an atom and its outermost shell. (Atomic radius determines bond length.) Unit = Angstrom (Å).",
+    "factors_affecting_atomic_size": [
+      {
+        "factor": "Number of shells",
+        "effect": "Increases → Atomic size INCREASES. Reason: distance of outermost shell from nucleus increases."
+      },
+      {
+        "factor": "Nuclear charge",
+        "effect": "Increases → Atomic size DECREASES. Reason: electrons in outermost shell are attracted with increasing force. (Nuclear charge = positive charge on nucleus = atomic number of element.)"
+      }
+    ],
+    "trend_across_a_period": {
+      "direction": "From left to right",
+      "trend": "ATOMIC SIZE DECREASES",
+      "reasons": [
+        "Number of shells REMAINS SAME → atomic size unaffected",
+        "Nuclear charge INCREASES → atomic size DECREASES"
+      ],
+      "example_period_2": [
+        {
+          "element": "Li",
+          "elec_config": "2,1",
+          "atomic_radius_A": 1.55
+        },
+        {
+          "element": "Be",
+          "elec_config": "2,2",
+          "atomic_radius_A": 1.12
+        },
+        {
+          "element": "B",
+          "elec_config": "2,3",
+          "atomic_radius_A": 0.88
+        },
+        {
+          "element": "C",
+          "elec_config": "2,4",
+          "atomic_radius_A": 0.77
+        },
+        {
+          "element": "N",
+          "elec_config": "2,5",
+          "atomic_radius_A": 0.7
+        },
+        {
+          "element": "O",
+          "elec_config": "2,6",
+          "atomic_radius_A": 0.66
+        },
+        {
+          "element": "F",
+          "elec_config": "2,7",
+          "atomic_radius_A": 0.64
+        },
+        {
+          "element": "Ne",
+          "elec_config": "2,8",
+          "atomic_radius_A": 1.12,
+          "note": "Larger than F since outer shell completely filled → force of repulsion; nuclear pull not seen"
+        }
+      ],
+      "key_facts": [
+        "In period 2, Li has the LARGEST atomic radius & F has the SMALLEST.",
+        "Neon has a larger atomic radius since in inert gases the outer shell is completely filled, resulting in a force of repulsion. The effect of nuclear pull over valence shell electrons is not seen.",
+        "A cation (e.g. Na → Na+ + e-) is SMALLER than the parent neutral atom since the remaining electrons are strongly attracted by the nucleus."
+      ]
+    },
+    "trend_down_a_group": {
+      "direction": "Down a group",
+      "trend": "ATOMIC SIZE INCREASES",
+      "reasons": [
+        "Number of shells INCREASES → atomic size INCREASES (new shells added with increasing atomic number; nuclear distance from valence electrons increases).",
+        "Nuclear charge should increase → atomic size should decrease. BUT",
+        "Increase in number of shells DOMINATES over increase in nuclear charge. Overall atomic radius INCREASES."
+      ],
+      "example_group_1": [
+        {
+          "element": "Li",
+          "elec_config": "2,1",
+          "atomic_radius_A": 1.55
+        },
+        {
+          "element": "Na",
+          "elec_config": "2,8,1",
+          "atomic_radius_A": 1.91
+        },
+        {
+          "element": "K",
+          "elec_config": "2,8,8,1",
+          "atomic_radius_A": 2.35
+        },
+        {
+          "element": "Rb",
+          "elec_config": "2,8,18,8,1",
+          "atomic_radius_A": 2.48
+        },
+        {
+          "element": "Cs",
+          "elec_config": "2,8,18,18,8,1",
+          "atomic_radius_A": 2.67
+        }
+      ],
+      "important_note": "From Li, Na & K - Li has the smallest atomic radius & therefore has higher E.N. & I.P. compared to Na & K. Hence Li has a greater tendency to lose electrons, making it the BEST reducing agent."
+    }
+  },
+  "section_G_ionisation_potential": {
+    "section_id": "G",
+    "title": "Periodic Trends in Properties - Ionisation Potential (I.P.)",
+    "source_page": 10,
+    "definition": "The amount of energy required to remove a loosely bound electron from the outermost shell of an isolated gaseous atom.",
+    "first_and_second_IP": [
+      "Energy required to remove 1st electron = FIRST I.P. (M → M+ + e-)  [first I.P. is less]",
+      "Energy required to remove 2nd electron = SECOND I.P. (M+ → M2+ + e-)  [second I.P. is more]"
+    ],
+    "factors_affecting_IP": [
+      {
+        "factor": "Atomic size",
+        "effect": "Increases → I.P. DECREASES. Reason: nuclear attraction on outer electrons decreases; outer electrons loosely held."
+      },
+      {
+        "factor": "Nuclear charge",
+        "effect": "Increases → I.P. INCREASES. Reason: nuclear attraction on outer electrons increases; outer electrons firmly held."
+      }
+    ],
+    "trend_across_a_period": {
+      "direction": "From left to right",
+      "trend": "IONISATION POTENTIAL INCREASES",
+      "reasons": [
+        "Atomic radii DECREASE → I.P. INCREASES",
+        "Nuclear charge INCREASES → I.P. INCREASES"
+      ],
+      "example_period_2": [
+        {
+          "element": "Li",
+          "elec_config": "2,1",
+          "IP_eV": 5.4
+        },
+        {
+          "element": "Be",
+          "elec_config": "2,2",
+          "IP_eV": 9.3
+        },
+        {
+          "element": "B",
+          "elec_config": "2,3",
+          "IP_eV": 8.3
+        },
+        {
+          "element": "C",
+          "elec_config": "2,4",
+          "IP_eV": 14.5
+        },
+        {
+          "element": "N",
+          "elec_config": "2,5",
+          "IP_eV": 13.6
+        }
+      ],
+      "key_facts": [
+        "Helium (He) has the HIGHEST ionisation potential; Caesium (Cs) has the LOWEST (Francium is radioactive).",
+        "Neon in period 2 also has maximum I.P. since its outer shell is completely filled.",
+        "Metals lose electrons & generally have LOW ionisation potential compared to non-metals."
+      ]
+    },
+    "trend_down_a_group": {
+      "direction": "Down a group",
+      "trend": "IONISATION POTENTIAL DECREASES",
+      "reasons": [
+        "Atomic radii INCREASE (no. of shells increases) → I.P. DECREASES",
+        "Nuclear charge INCREASES → I.P. should increase. BUT",
+        "Increase in atomic radii DOMINATES over increase in nuclear charge. Overall I.P. DECREASES."
+      ],
+      "example_group_1": [
+        {
+          "element": "Li",
+          "elec_config": "2,1",
+          "IP_eV": 5.4
+        },
+        {
+          "element": "Na",
+          "elec_config": "2,8,1",
+          "IP_eV": 5.1
+        },
+        {
+          "element": "K",
+          "elec_config": "2,8,8,1",
+          "IP_eV": 4.3
+        },
+        {
+          "element": "Rb",
+          "elec_config": "2,8,18,8,1",
+          "IP_eV": 4.2
+        },
+        {
+          "element": "Cs",
+          "elec_config": "2,8,18,18,8,1",
+          "IP_eV": 3.9
+        }
+      ]
+    }
+  },
+  "section_H_electron_affinity": {
+    "section_id": "H",
+    "title": "Periodic Trends in Properties - Electron Affinity (E.A.)",
+    "source_page": 11,
+    "definition": "The amount of energy released when an atom in the gaseous state accepts an electron to form an anion.",
+    "equations": [
+      "X + e- → X- + energy liberated  [1st electron affinity]",
+      "Cl + e- → Cl-  [−3.80 eV, represented with −ve sign]"
+    ],
+    "factors_affecting_EA": [
+      {
+        "factor": "Atomic size",
+        "effect": "Increases → E.A. DECREASES. Reason: A small atom takes up electrons more readily than a large atom since nucleus has greater attraction on the electrons."
+      },
+      {
+        "factor": "Nuclear charge",
+        "effect": "Increases → E.A. INCREASES. Reason: increases the tendency of the atom to accept electrons."
+      }
+    ],
+    "trend_across_a_period": {
+      "direction": "From left to right",
+      "trend": "ELECTRON AFFINITY INCREASES",
+      "reasons": [
+        "Atomic radii DECREASE → E.A. INCREASES",
+        "Nuclear charge INCREASES → E.A. INCREASES"
+      ],
+      "key_facts": [
+        "Electron affinity is HIGHEST for halogens (group 17) & LEAST for alkali metals (group 1).",
+        "Neon (Ne) has electron affinity ZERO since inert gases with stable electronic configuration find it difficult to accept electrons.",
+        "INERT GASES DO NOT FORM IONS - their outermost shell is completely filled. They need not accept or donate any electrons & are already stable. They have no urge to destabilize themselves through gain or loss of electrons.",
+        "Greater the value of E.A., more electronegative or more oxidising is the element."
+      ]
+    },
+    "trend_down_a_group": {
+      "direction": "Down a group",
+      "trend": "ELECTRON AFFINITY DECREASES",
+      "reasons": [
+        "Atomic radii INCREASE (no. of shells increases) → E.A. DECREASES",
+        "Nuclear charge INCREASES → E.A. should increase. BUT",
+        "Increase in atomic radii DOMINATES over increase in nuclear charge. Overall E.A. DECREASES."
+      ],
+      "example_group_17": [
+        {
+          "element": "F",
+          "elec_config": "2,7",
+          "EA_eV": "−3.60"
+        },
+        {
+          "element": "Cl",
+          "elec_config": "2,8,7",
+          "EA_eV": "−3.80"
+        },
+        {
+          "element": "Br",
+          "elec_config": "2,8,18,7",
+          "EA_eV": "−3.50"
+        },
+        {
+          "element": "I",
+          "elec_config": "2,8,18,18,7",
+          "EA_eV": "−3.20"
+        }
+      ],
+      "note": "Cl has higher E.A. than F (exception) because F has very small size with high electron-electron repulsion."
+    }
+  },
+  "section_I_electronegativity": {
+    "section_id": "I",
+    "title": "Periodic Trends in Properties - Electronegativity (E.N.)",
+    "source_page": 12,
+    "definition": "The tendency of an atom to attract the shared pair of electrons to itself when combined in a compound.",
+    "bond_type_based_on_EN": [
+      "IONIC BOND forms between combining atoms if atoms differ widely in electronegativity.",
+      "COVALENT BOND forms between combining atoms if atoms have nearly similar electronegativities to attract the bond forming electron pair."
+    ],
+    "factors_affecting_EN": [
+      "Reasons affecting electronegativity are the same and in the same order as electron affinity.",
+      {
+        "factor": "Atomic size",
+        "effect": "Increases → E.N. DECREASES"
+      },
+      {
+        "factor": "Nuclear charge",
+        "effect": "Increases → E.N. INCREASES"
+      }
+    ],
+    "trend_across_a_period": {
+      "direction": "From left to right",
+      "trend": "ELECTRONEGATIVITY INCREASES",
+      "reasons": [
+        "Atomic radii DECREASE → E.N. INCREASES",
+        "Nuclear charge INCREASES → E.N. INCREASES"
+      ],
+      "example_period_3": [
+        {
+          "element": "Na",
+          "elec_config": "2,8,1",
+          "EN": 0.9
+        },
+        {
+          "element": "Mg",
+          "elec_config": "2,8,2",
+          "EN": 1.2
+        },
+        {
+          "element": "Al",
+          "elec_config": "2,8,3",
+          "EN": 1.5
+        },
+        {
+          "element": "Si",
+          "elec_config": "2,8,4",
+          "EN": 1.8
+        },
+        {
+          "element": "P",
+          "elec_config": "2,8,5",
+          "EN": 2.1
+        },
+        {
+          "element": "S",
+          "elec_config": "2,8,6",
+          "EN": 2.5
+        },
+        {
+          "element": "Cl",
+          "elec_config": "2,8,7",
+          "EN": 3
+        },
+        {
+          "element": "Ar",
+          "elec_config": "2,8,8",
+          "EN": "—"
+        }
+      ],
+      "key_facts": [
+        "Elements with high electronegativity are usually NON-METALLIC. (Non-metals are electronegative; metals are electropositive.)",
+        "Fluorine is the MOST electronegative element in the periodic table; Caesium is the LEAST.",
+        "In period 3, chlorine is the most electronegative element.",
+        "Noble gases have complete octet & hence do not attract electrons to themselves."
+      ]
+    },
+    "trend_down_a_group": {
+      "direction": "Down a group",
+      "trend": "ELECTRONEGATIVITY DECREASES",
+      "reasons": [
+        "Atomic radii INCREASE (no. of shells increases) → E.N. DECREASES",
+        "Nuclear charge INCREASES → E.N. should increase. BUT",
+        "Increase in atomic radii DOMINATES over increase in nuclear charge. Overall E.N. DECREASES."
+      ],
+      "example_group_17": [
+        {
+          "element": "F",
+          "elec_config": "2,7",
+          "EN": 4,
+          "note": "most electronegative"
+        },
+        {
+          "element": "Cl",
+          "elec_config": "2,8,7",
+          "EN": 3
+        },
+        {
+          "element": "Br",
+          "elec_config": "2,8,18,7",
+          "EN": 2.8
+        },
+        {
+          "element": "I",
+          "elec_config": "2,8,18,18,7",
+          "EN": 2.5
+        }
+      ]
+    }
+  },
+  "section_J_metallic_non_metallic_character": {
+    "section_id": "J",
+    "title": "Periodic Trends in Properties - Metallic & Non-metallic Character",
+    "source_page": 13,
+    "definitions": [
+      {
+        "term": "Metallic character (electropositive)",
+        "definition": "In terms of electron LOSING property - an atom is a METAL if it loses one or more electrons when supplied with energy. M → M+ + e-"
+      },
+      {
+        "term": "Non-metallic character",
+        "definition": "In terms of electron GAINING property - an atom is a NON-METAL if it gains one or more electrons when supplied with energy. N + e- → N-"
+      }
+    ],
+    "factors_influencing": [
+      {
+        "factor": "Atomic radii",
+        "metallic_char": "Increases",
+        "non_metallic_char": "Decreases"
+      },
+      {
+        "factor": "Ionization potential",
+        "metallic_char": "Decreases",
+        "non_metallic_char": "Increases"
+      }
+    ],
+    "key_facts": [
+      "Metallic atoms (left side of periodic table) have LARGE atomic radii & LOW I.P., tend to LOSE electrons.",
+      "Non-metallic atoms (right side of periodic table) have SMALL atomic radii & HIGH I.P., tend to GAIN electrons.",
+      "Metals are good REDUCING agents; non-metals are good OXIDISING agents.",
+      "REACTIVITY of metals: greater the tendency to lose electrons, greater the reactivity.",
+      "REACTIVITY of non-metals: greater the tendency to gain electrons, greater the reactivity."
+    ],
+    "trend_across_a_period": {
+      "direction": "From left to right",
+      "metallic_character": "DECREASES",
+      "non_metallic_character": "INCREASES",
+      "reasons": [
+        "Atomic radii DECREASE → metallic character DECREASES; non-metallic character INCREASES",
+        "I.P. INCREASES → metallic character DECREASES; non-metallic character INCREASES"
+      ],
+      "example_period_3": [
+        {
+          "element": "Na",
+          "elec_config": "2,8,1",
+          "character": "Metal"
+        },
+        {
+          "element": "Mg",
+          "elec_config": "2,8,2",
+          "character": "Metal"
+        },
+        {
+          "element": "Al",
+          "elec_config": "2,8,3",
+          "character": "Metal"
+        },
+        {
+          "element": "Si",
+          "elec_config": "2,8,4",
+          "character": "Metalloid"
+        },
+        {
+          "element": "P",
+          "elec_config": "2,8,5",
+          "character": "Non-metal"
+        },
+        {
+          "element": "S",
+          "elec_config": "2,8,6",
+          "character": "Non-metal"
+        },
+        {
+          "element": "Cl",
+          "elec_config": "2,8,7",
+          "character": "Non-metal"
+        },
+        {
+          "element": "Ar",
+          "elec_config": "2,8,8",
+          "character": "Noble gas"
+        }
+      ]
+    },
+    "trend_down_a_group": {
+      "direction": "Down a group (e.g. group 14)",
+      "metallic_character": "INCREASES",
+      "non_metallic_character": "DECREASES",
+      "reasons": [
+        "Atomic radii INCREASE → metallic character INCREASES; non-metallic character DECREASES",
+        "I.P. DECREASES → metallic character INCREASES; non-metallic character DECREASES"
+      ],
+      "example_group_14": [
+        {
+          "element": "C",
+          "elec_config": "2,4",
+          "character": "Non-metal"
+        },
+        {
+          "element": "Si",
+          "elec_config": "2,8,4",
+          "character": "Metalloid"
+        },
+        {
+          "element": "Ge",
+          "elec_config": "2,8,18,4",
+          "character": "Metalloid"
+        },
+        {
+          "element": "Sn",
+          "elec_config": "2,8,18,18,4",
+          "character": "Metal"
+        },
+        {
+          "element": "Pb",
+          "elec_config": "2,8,18,32,18,4",
+          "character": "Metal"
+        }
+      ],
+      "key_note": "Elements at the BOTTOM of a group are MOST metallic - have large atomic size, lowest I.P., electrons are loosely held & will form ions from metals most readily & thus are more reactive."
+    }
+  },
+  "section_K_other_properties": {
+    "section_id": "K",
+    "title": "Other Physical & Chemical Properties",
+    "source_page": 14,
+    "physical_properties": {
+      "across_a_period": "Density & m.p./b.p. of elements INCREASE gradually (slight decrease thereafter).",
+      "down_a_group": "Density INCREASES gradually; m.p. & b.p. DECREASE gradually.",
+      "example_period_2_and_3": {
+        "headers": [
+          "Property",
+          "Li",
+          "Be",
+          "B",
+          "C",
+          "N",
+          "O",
+          "F",
+          "Na",
+          "Mg",
+          "Al",
+          "Si",
+          "P",
+          "S",
+          "Cl"
+        ],
+        "density_g_per_ml": [
+          0.5,
+          1.8,
+          2.3,
+          2.2,
+          "—",
+          "—",
+          "—",
+          0.97,
+          1.7,
+          2.7,
+          2.3,
+          1.8,
+          2,
+          "—"
+        ],
+        "melting_point_C": [
+          181,
+          1277,
+          2030,
+          3727,
+          "—210",
+          "—219",
+          "—220",
+          97.8,
+          650,
+          660,
+          1410,
+          44,
+          119,
+          "—101"
+        ]
+      },
+      "example_group_1": [
+        {
+          "element": "Li",
+          "density_g_per_ml": 0.54,
+          "melting_point_C": 181,
+          "boiling_point_C": 1347
+        },
+        {
+          "element": "Na",
+          "density_g_per_ml": 0.97,
+          "melting_point_C": 97.8,
+          "boiling_point_C": 880
+        },
+        {
+          "element": "K",
+          "density_g_per_ml": 0.86,
+          "melting_point_C": 63.7,
+          "boiling_point_C": 766
+        }
+      ]
+    },
+    "chemical_properties_periodicity": {
+      "table": [
+        {
+          "property": "Oxides",
+          "across_a_period": "Varies from Strongly basic to Strongly acidic",
+          "down_a_group": "Strongly basic to Basic (less basic to strongly basic)"
+        },
+        {
+          "property": "Hydroxides",
+          "across_a_period": "Strongly basic to Amphoteric to Strongly acidic",
+          "down_a_group": "Less basic to Strongly basic"
+        },
+        {
+          "property": "Oxy-acids",
+          "across_a_period": "Weak oxy-acids to Strong oxy-acids",
+          "down_a_group": "Strong oxy-acids to Weak oxy-acids"
+        },
+        {
+          "property": "Hydrides",
+          "across_a_period": "Strongly basic to Strongly acidic",
+          "down_a_group": "Less acidic to More acidic"
+        }
+      ]
+    },
+    "stable_vs_unstable_elements_reference": {
+      "definition": "n/p (neutron/proton) ratio determines stability of elements.",
+      "stable": "Light metals - elements with n/p ratio around 1 are stable. e.g. Na and K.",
+      "unstable_radioactive": "Heavy metals - elements with n/p ratio above 1.5 are considered radioactive unstable elements. e.g. uranium.",
+      "examples_table": [
+        {
+          "element": "Sodium",
+          "symbol": "23Na",
+          "atomic_no_Z": 11,
+          "mass_no_A": 23,
+          "protons_p": 11,
+          "neutrons_n": 12,
+          "n_p_ratio": "12/11 ≈ 1.09"
+        },
+        {
+          "element": "Potassium",
+          "symbol": "39K",
+          "atomic_no_Z": 19,
+          "mass_no_A": 39,
+          "protons_p": 19,
+          "neutrons_n": 20,
+          "n_p_ratio": "20/19 ≈ 1.05"
+        },
+        {
+          "element": "Uranium",
+          "symbol": "236U",
+          "atomic_no_Z": 92,
+          "mass_no_A": 236,
+          "protons_p": 92,
+          "neutrons_n": 144,
+          "n_p_ratio": "144/92 ≈ 1.57"
+        }
+      ]
+    },
+    "reference_values_table": {
+      "atomic_size_period_2": [
+        {
+          "element": "Li",
+          "atomic_size_A": 1.55
+        },
+        {
+          "element": "Be",
+          "atomic_size_A": 1.12
+        },
+        {
+          "element": "B",
+          "atomic_size_A": 0.88
+        },
+        {
+          "element": "C",
+          "atomic_size_A": 0.77
+        },
+        {
+          "element": "N",
+          "atomic_size_A": 0.7
+        },
+        {
+          "element": "O",
+          "atomic_size_A": 0.66
+        },
+        {
+          "element": "F",
+          "atomic_size_A": 0.64
+        },
+        {
+          "element": "Ne",
+          "atomic_size_A": 1.12,
+          "note": "inert gas - larger due to filled shell"
+        }
+      ],
+      "atomic_size_period_3": [
+        {
+          "element": "Na",
+          "atomic_size_A": 1.91
+        },
+        {
+          "element": "Mg",
+          "atomic_size_A": 1.18
+        },
+        {
+          "element": "Al",
+          "atomic_size_A": 1.1
+        },
+        {
+          "element": "Si",
+          "atomic_size_A": 1.06
+        },
+        {
+          "element": "P",
+          "atomic_size_A": 0.99
+        },
+        {
+          "element": "S",
+          "atomic_size_A": 1.28,
+          "note": "exception"
+        },
+        {
+          "element": "Cl",
+          "atomic_size_A": 0.97
+        },
+        {
+          "element": "Ar",
+          "atomic_size_A": "—",
+          "note": "inert gas"
+        }
+      ],
+      "electron_affinity_period_2_eV": [
+        {
+          "element": "H",
+          "EA_eV": 0.72
+        },
+        {
+          "element": "He",
+          "EA_eV": 0
+        },
+        {
+          "element": "Li",
+          "EA_eV": 0.61
+        },
+        {
+          "element": "Be",
+          "EA_eV": "−0.30",
+          "note": "exception"
+        },
+        {
+          "element": "B",
+          "EA_eV": "−1.2"
+        },
+        {
+          "element": "C",
+          "EA_eV": "−1.48"
+        },
+        {
+          "element": "N",
+          "EA_eV": "−3.6",
+          "note": "exception"
+        },
+        {
+          "element": "O",
+          "EA_eV": "−3.6"
+        },
+        {
+          "element": "F",
+          "EA_eV": "−3.6"
+        },
+        {
+          "element": "Ne",
+          "EA_eV": 0
+        }
+      ],
+      "electronegativity_period_2": [
+        {
+          "element": "H",
+          "EN": 2.1
+        },
+        {
+          "element": "He",
+          "EN": 0
+        },
+        {
+          "element": "Li",
+          "EN": 1
+        },
+        {
+          "element": "Be",
+          "EN": 1.5
+        },
+        {
+          "element": "B",
+          "EN": 2
+        },
+        {
+          "element": "C",
+          "EN": 2.5
+        },
+        {
+          "element": "N",
+          "EN": 3
+        },
+        {
+          "element": "O",
+          "EN": 3.5
+        },
+        {
+          "element": "F",
+          "EN": 4
+        },
+        {
+          "element": "Ne",
+          "EN": 0
+        }
+      ],
+      "electronegativity_period_3": [
+        {
+          "element": "Na",
+          "EN": 0.9
+        },
+        {
+          "element": "Mg",
+          "EN": 1.2
+        },
+        {
+          "element": "Al",
+          "EN": 1.5
+        },
+        {
+          "element": "Si",
+          "EN": 1.8
+        },
+        {
+          "element": "P",
+          "EN": 2.1
+        },
+        {
+          "element": "S",
+          "EN": 2.5
+        },
+        {
+          "element": "Cl",
+          "EN": 3
+        },
+        {
+          "element": "Ar",
+          "EN": 0
+        }
+      ]
+    }
+  },
+  "section_L_summary_chart": {
+    "section_id": "L",
+    "title": "Summary Chart - Periodic Properties",
+    "source_page": 15,
+    "trends_across_a_period_ascii": "PERIOD-1:  1H ──────────────────────────────────────── 2He\nPERIOD-2:  Li  Be  B  C  N  O  F  Ne\nPERIOD-3:  Na  Mg  Al  Si  P  S  Cl  Ar\n           ↑                                          ↑\n      LARGEST                                    SMALLEST\n      ATOMIC SIZE                                (except noble gas: LARGER)\n\n           I.P.  LOWEST ────────────► HIGHEST (Noble gas)\n           E.A.  LOWEST ────────────► HIGHEST (Group 17) ──► ZERO (Noble gas)\n           E.N.  LEAST  ────────────► HIGHEST (Group 17)\n           NON-METALLIC: LEAST ─────► HIGHEST\n           METALLIC:     HIGHEST ───► LEAST",
+    "trends_down_a_group_table": [
+      {
+        "group": 1,
+        "period_2_element": "3Li",
+        "period_3_element": "11Na",
+        "period_4_element": "19K",
+        "period_5_element": "37Rb"
+      },
+      {
+        "group": 2,
+        "period_2_element": "4Be",
+        "period_3_element": "12Mg",
+        "period_4_element": "20Ca",
+        "period_5_element": "38Sr"
+      },
+      {
+        "group": 13,
+        "period_2_element": "5B",
+        "period_3_element": "13Al",
+        "period_4_element": "31Ga",
+        "period_5_element": "49In"
+      },
+      {
+        "period_2_size": "SMALLEST",
+        "period_5_size": "LARGEST"
+      },
+      {
+        "period_2_metallic_char": "HIGHEST",
+        "period_5_metallic_char": "LOWEST"
+      },
+      {
+        "period_2_valence_electrons": "SAME for all (group number)"
+      },
+      {
+        "period_2_no_of_shells": 2,
+        "period_5_no_of_shells": 5,
+        "trend": "INCREASES BY ONE down a group"
+      }
+    ],
+    "reasons_for_trends_across_a_period": [
+      {
+        "property": "Atomic size",
+        "change": "Decreases",
+        "reason": "Nuclear charge increases; No. of shells remains same; Atomic radii decreases"
+      },
+      {
+        "property": "Ionisation potential",
+        "change": "Increases",
+        "reason": "Nuclear charge increases; Atomic radii decreases"
+      },
+      {
+        "property": "Electron affinity",
+        "change": "Increases",
+        "reason": "Nuclear charge increases; Atomic radii decreases"
+      },
+      {
+        "property": "Electronegativity",
+        "change": "Increases",
+        "reason": "Nuclear charge increases; Atomic radii decreases"
+      },
+      {
+        "property": "Non-metallic character",
+        "change": "Increases",
+        "reason": "Atomic radii decreases"
+      },
+      {
+        "property": "Metallic character",
+        "change": "Decreases",
+        "reason": "Atomic radii decreases; Ionisation potential increases"
+      }
+    ],
+    "reasons_for_trends_down_a_group": [
+      {
+        "property": "Atomic size",
+        "change": "Increases",
+        "reason": "No. of shells increases; Atomic radii increases; Nuclear charge effect dominated by increase in shells"
+      },
+      {
+        "property": "Electron affinity",
+        "change": "Decreases",
+        "reason": "Nuclear charge increases; Atomic radii increases; Nuclear charge effect dominated by increase in atomic radii"
+      },
+      {
+        "property": "Electronegativity",
+        "change": "Decreases",
+        "reason": "Nuclear charge increases; Atomic radii increases; Nuclear charge effect dominated by increase in atomic radii"
+      },
+      {
+        "property": "Non-metallic character",
+        "change": "Decreases",
+        "reason": "Ionisation potential decreases; Atomic radii increases"
+      },
+      {
+        "property": "Ionisation potential",
+        "change": "Decreases",
+        "reason": "Nuclear charge increases; Atomic radii increases; Nuclear charge effect dominated by increase in atomic radii"
+      },
+      {
+        "property": "Metallic character",
+        "change": "Increases",
+        "reason": "Ionisation potential decreases; Atomic radii increases"
+      }
+    ],
+    "group_18_special_facts": [
+      "Atomic radii MORE than group 17 (outer shell completely filled → force of repulsion → increasing atomic size).",
+      "Electron affinity is ZERO (elements with stable electronic configuration find it difficult to accept electrons)."
+    ],
+    "metals_vs_non_metals": "Metals lose electrons, have large atomic radii, & have less I.P., E.A. & E.N. compared to non-metals."
+  },
+  "key_terms_glossary": [
+    {
+      "term": "Periodic table",
+      "definition": "Tabular arrangement of elements in increasing order of their atomic numbers, showing periodic variation in properties."
+    },
+    {
+      "term": "Periodic Law (Modern)",
+      "definition": "Properties of elements are periodic functions of their atomic numbers."
+    },
+    {
+      "term": "Periods",
+      "definition": "Seven horizontal rows of the periodic table. Period number = number of electron shells in element."
+    },
+    {
+      "term": "Groups",
+      "definition": "Eighteen vertical columns of the periodic table. Group number (for main group) = number of valence electrons."
+    },
+    {
+      "term": "Normal elements",
+      "definition": "Groups 1, 2 & 13-17 (IA-VIIA). Also called representative or main group elements."
+    },
+    {
+      "term": "Transition elements",
+      "definition": "Groups 3-12 (IB-VIIB & VIII). Heavy metals with variable valency."
+    },
+    {
+      "term": "Inner transition elements",
+      "definition": "Lanthanides (period 6) and actinides (period 7) - 14 elements each, placed separately at bottom of periodic table."
+    },
+    {
+      "term": "Noble/Inert gases",
+      "definition": "Group 18 (0) elements with completely filled outer shell; unreactive; E.A. = 0."
+    },
+    {
+      "term": "Alkali metals",
+      "definition": "Group 1 (IA) - highly reactive, soft, light metals; strong reducing agents; valency 1."
+    },
+    {
+      "term": "Alkaline earth metals",
+      "definition": "Group 2 (IIA) - reactive metals, harder than alkali metals; valency 2."
+    },
+    {
+      "term": "Halogens",
+      "definition": "Group 17 (VIIA) - highly reactive non-metals; strong oxidising agents; valency 1."
+    },
+    {
+      "term": "Bridge elements",
+      "definition": "Period 2 elements that show diagonal similarity with period 3 elements of the next group."
+    },
+    {
+      "term": "Typical elements",
+      "definition": "Period 3 elements that match the typical properties of their respective groups."
+    },
+    {
+      "term": "Periodicity",
+      "definition": "Recurrence of characteristic properties of elements at definite intervals (2, 8, 18, 32) in atomic number."
+    },
+    {
+      "term": "Atomic radius",
+      "definition": "Distance between centre of nucleus and outermost shell of an atom. Unit = Å."
+    },
+    {
+      "term": "Nuclear charge",
+      "definition": "Positive charge on the nucleus of an atom; equivalent to atomic number."
+    },
+    {
+      "term": "Ionisation potential (I.P.)",
+      "definition": "Energy required to remove a loosely bound electron from outermost shell of an isolated gaseous atom."
+    },
+    {
+      "term": "Electron affinity (E.A.)",
+      "definition": "Energy released when an atom in gaseous state accepts an electron to form an anion."
+    },
+    {
+      "term": "Electronegativity (E.N.)",
+      "definition": "Tendency of an atom to attract shared pair of electrons to itself when combined in a compound."
+    },
+    {
+      "term": "Metallic character (electropositive)",
+      "definition": "Tendency of an atom to lose electrons; high for metals."
+    },
+    {
+      "term": "Non-metallic character",
+      "definition": "Tendency of an atom to gain electrons; high for non-metals."
+    },
+    {
+      "term": "Reducing agent",
+      "definition": "Substance that loses electrons (gets oxidised) and reduces another substance. Metals are good reducing agents."
+    },
+    {
+      "term": "Oxidising agent",
+      "definition": "Substance that gains electrons (gets reduced) and oxidises another substance. Non-metals (especially halogens) are good oxidising agents."
+    },
+    {
+      "term": "Catenation",
+      "definition": "Property of an element to form chains by bonding with itself; notable in carbon (group 14)."
+    },
+    {
+      "term": "Triads (Dobereiner)",
+      "definition": "Groups of three elements where atomic weight of middle is average of other two."
+    },
+    {
+      "term": "Law of Octaves (Newland)",
+      "definition": "Every eighth element repeats properties of the first when arranged by atomic weight."
+    },
+    {
+      "term": "Isotopes",
+      "definition": "Atoms of same element with same atomic number but different mass numbers."
+    },
+    {
+      "term": "n/p ratio",
+      "definition": "Neutron-to-proton ratio; stable elements ≈ 1; radioactive elements > 1.5."
+    },
+    {
+      "term": "Amphoteric oxide",
+      "definition": "Oxide that shows both acidic and basic properties (e.g. Al2O3)."
+    }
+  ],
+  "ascii_diagrams": {
+    "modern_periodic_table_first_4_periods": "MODERN PERIODIC TABLE (Periods 1-4, Groups 1-18)\n\nGroup →  1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18\nOld →   IA IIA                                     IIIA IVA VA  VIIA VIIA 0\n        ─── ─── ───────── TRANSITION ───────── ─── ─── ─── ─── ─── ─── ───\nPer 1:  H                                                           He\nPer 2:  Li  Be  ───────── ELEMENTS ───────────────  B   C   N   O   F   Ne\nPer 3:  Na  Mg  ───────── ELEMENTS ───────────────  Al  Si  P   S   Cl  Ar\nPer 4:  K   Ca  Sc  Ti  V   Cr  Mn  Fe  Co  Ni  Cu  Zn  Ga  Ge  As  Se  Br  Kr\n\n(Lanthanides & Actinides are placed separately at the bottom)",
+    "atomic_radius_trend": "ATOMIC SIZE TREND\n\nACROSS A PERIOD (left to right):  DECREASES\n  Li ──► Be ──► B ──► C ──► N ──► O ──► F\n  (largest)                       (smallest)\n\nDOWN A GROUP:  INCREASES\n  Li  (smallest)\n   │\n  Na\n   │\n  K\n   │\n  Rb\n   │\n  Cs  (largest)",
+    "ionisation_potential_trend": "IONISATION POTENTIAL TREND\n\nACROSS A PERIOD (left to right):  INCREASES\n  Li ──► Be ──► B ──► C ──► N ──► O ──► F ──► Ne\n  (lowest)                        (highest in period 2)\n\nDOWN A GROUP:  DECREASES\n  Li  (highest: 5.4 eV)\n   │\n  Na  (5.1 eV)\n   │\n  K   (4.3 eV)\n   │\n  Rb  (4.2 eV)\n   │\n  Cs  (lowest: 3.9 eV)",
+    "electron_affinity_trend": "ELECTRON AFFINITY TREND\n\nACROSS A PERIOD (left to right):  INCREASES\n  Na ──► Mg ──► Al ──► Si ──► P ──► S ──► Cl ──► Ar\n  (lowest)                        (highest)   (zero)\n\nDOWN A GROUP:  DECREASES\n  F   (−3.60 eV)\n   │\n  Cl  (−3.80 eV)  ← exception (smaller size of F causes repulsion)\n   │\n  Br  (−3.50 eV)\n   │\n  I   (−3.20 eV)",
+    "electronegativity_trend": "ELECTRONEGATIVITY TREND\n\nACROSS A PERIOD (left to right):  INCREASES\n  Na ──► Mg ──► Al ──► Si ──► P ──► S ──► Cl\n  (0.9) (1.2)  (1.5)  (1.8)  (2.1) (2.5) (3.0)\n\nDOWN A GROUP:  DECREASES\n  F   (4.0)  ← MOST electronegative element\n   │\n  Cl  (3.0)\n   │\n  Br  (2.8)\n   │\n  I   (2.5)",
+    "metallic_character_trend": "METALLIC & NON-METALLIC CHARACTER TREND\n\nACROSS A PERIOD (left to right):\n  METALLIC character:  DECREASES  ──►\n  NON-METALLIC character:  INCREASES  ──►\n  Na (metal) → Mg → Al → Si (metalloid) → P → S → Cl (non-metal)\n\nDOWN A GROUP:\n  METALLIC character:  INCREASES  ↓\n  NON-METALLIC character:  DECREASES  ↓\n  C (non-metal)\n   ↓\n  Si (metalloid)\n   ↓\n  Ge (metalloid)\n   ↓\n  Sn (metal)\n   ↓\n  Pb (metal)",
+    "periodic_property_summary_grid": "┌─────────────────────┬─────────────────────┬─────────────────────┐\n│ PERIODIC PROPERTY   │ ACROSS A PERIOD     │ DOWN A GROUP         │\n│                     │ (left → right)      │ (top → bottom)       │\n├─────────────────────┼─────────────────────┼─────────────────────┤\n│ Atomic size         │ DECREASES           │ INCREASES            │\n├─────────────────────┼─────────────────────┼─────────────────────┤\n│ Ionisation potential│ INCREASES           │ DECREASES            │\n├─────────────────────┼─────────────────────┼─────────────────────┤\n│ Electron affinity   │ INCREASES           │ DECREASES            │\n├─────────────────────┼─────────────────────┼─────────────────────┤\n│ Electronegativity   │ INCREASES           │ DECREASES            │\n├─────────────────────┼─────────────────────┼─────────────────────┤\n│ Metallic character  │ DECREASES           │ INCREASES            │\n├─────────────────────┼─────────────────────┼─────────────────────┤\n│ Non-metallic char.  │ INCREASES           │ DECREASES            │\n└─────────────────────┴─────────────────────┴─────────────────────┘"
+  },
+  "atomic_configurations_reference": [
+    {
+      "element": "Hydrogen",
+      "symbol": "H",
+      "atomic_number": 1,
+      "electronic_configuration": "1",
+      "period": 1,
+      "group": "1 or 17"
+    },
+    {
+      "element": "Helium",
+      "symbol": "He",
+      "atomic_number": 2,
+      "electronic_configuration": "2",
+      "period": 1,
+      "group": "18"
+    },
+    {
+      "element": "Lithium",
+      "symbol": "Li",
+      "atomic_number": 3,
+      "electronic_configuration": "2,1",
+      "period": 2,
+      "group": "1"
+    },
+    {
+      "element": "Beryllium",
+      "symbol": "Be",
+      "atomic_number": 4,
+      "electronic_configuration": "2,2",
+      "period": 2,
+      "group": "2"
+    },
+    {
+      "element": "Boron",
+      "symbol": "B",
+      "atomic_number": 5,
+      "electronic_configuration": "2,3",
+      "period": 2,
+      "group": "13"
+    },
+    {
+      "element": "Carbon",
+      "symbol": "C",
+      "atomic_number": 6,
+      "electronic_configuration": "2,4",
+      "period": 2,
+      "group": "14"
+    },
+    {
+      "element": "Nitrogen",
+      "symbol": "N",
+      "atomic_number": 7,
+      "electronic_configuration": "2,5",
+      "period": 2,
+      "group": "15"
+    },
+    {
+      "element": "Oxygen",
+      "symbol": "O",
+      "atomic_number": 8,
+      "electronic_configuration": "2,6",
+      "period": 2,
+      "group": "16"
+    },
+    {
+      "element": "Fluorine",
+      "symbol": "F",
+      "atomic_number": 9,
+      "electronic_configuration": "2,7",
+      "period": 2,
+      "group": "17"
+    },
+    {
+      "element": "Neon",
+      "symbol": "Ne",
+      "atomic_number": 10,
+      "electronic_configuration": "2,8",
+      "period": 2,
+      "group": "18"
+    },
+    {
+      "element": "Sodium",
+      "symbol": "Na",
+      "atomic_number": 11,
+      "electronic_configuration": "2,8,1",
+      "period": 3,
+      "group": "1"
+    },
+    {
+      "element": "Magnesium",
+      "symbol": "Mg",
+      "atomic_number": 12,
+      "electronic_configuration": "2,8,2",
+      "period": 3,
+      "group": "2"
+    },
+    {
+      "element": "Aluminium",
+      "symbol": "Al",
+      "atomic_number": 13,
+      "electronic_configuration": "2,8,3",
+      "period": 3,
+      "group": "13"
+    },
+    {
+      "element": "Silicon",
+      "symbol": "Si",
+      "atomic_number": 14,
+      "electronic_configuration": "2,8,4",
+      "period": 3,
+      "group": "14"
+    },
+    {
+      "element": "Phosphorus",
+      "symbol": "P",
+      "atomic_number": 15,
+      "electronic_configuration": "2,8,5",
+      "period": 3,
+      "group": "15"
+    },
+    {
+      "element": "Sulphur",
+      "symbol": "S",
+      "atomic_number": 16,
+      "electronic_configuration": "2,8,6",
+      "period": 3,
+      "group": "16"
+    },
+    {
+      "element": "Chlorine",
+      "symbol": "Cl",
+      "atomic_number": 17,
+      "electronic_configuration": "2,8,7",
+      "period": 3,
+      "group": "17"
+    },
+    {
+      "element": "Argon",
+      "symbol": "Ar",
+      "atomic_number": 18,
+      "electronic_configuration": "2,8,8",
+      "period": 3,
+      "group": "18"
+    },
+    {
+      "element": "Potassium",
+      "symbol": "K",
+      "atomic_number": 19,
+      "electronic_configuration": "2,8,8,1",
+      "period": 4,
+      "group": "1"
+    },
+    {
+      "element": "Calcium",
+      "symbol": "Ca",
+      "atomic_number": 20,
+      "electronic_configuration": "2,8,8,2",
+      "period": 4,
+      "group": "2"
+    },
+    {
+      "element": "Bromine",
+      "symbol": "Br",
+      "atomic_number": 35,
+      "electronic_configuration": "2,8,18,7",
+      "period": 4,
+      "group": "17"
+    },
+    {
+      "element": "Krypton",
+      "symbol": "Kr",
+      "atomic_number": 36,
+      "electronic_configuration": "2,8,18,8",
+      "period": 4,
+      "group": "18"
+    }
+  ],
+  "practice_questions": {
+    "source_page": 16,
+    "source_note": "From Dr. Viraf J. Dalal's 'Simplified ICSE Chemistry' - Std. X (Objective Workbook)",
+    "give_one_word_or_phrase": [
+      {
+        "question": "The energy required to remove an electron from a neutral isolated gaseous atom & convert it into a positively charged gaseous ion.",
+        "answer": "Ionisation potential"
+      },
+      {
+        "question": "The energy released when an electron is added to a neutral gaseous isolated atom to form a negatively charged ion.",
+        "answer": "Electron affinity"
+      },
+      {
+        "question": "The tendency of an atom to attract electrons towards itself when combined in a covalent compound.",
+        "answer": "Electronegativity"
+      },
+      {
+        "question": "The tendency of an atom to attract electrons to itself when combined in a compound.",
+        "answer": "Electronegativity"
+      },
+      {
+        "question": "The energy released when an atom in the gaseous state accepts an electron to form an anion.",
+        "answer": "Electron affinity"
+      },
+      {
+        "question": "The tendency of an atom to pull a shared pair of electrons towards itself in a compound.",
+        "answer": "Electronegativity"
+      },
+      {
+        "question": "The tendency of an atom to attract the shared pair of electrons towards itself when combined in a compound.",
+        "answer": "Electronegativity"
+      }
+    ],
+    "mcqs": [
+      {
+        "year": 2017,
+        "question": "The energy required to remove an electron from a neutral isolated gaseous atom & convert it into a positively charged gaseous ion is called ___",
+        "options": [
+          "Electron affinity",
+          "Ionisation potential",
+          "Electronegativity"
+        ],
+        "answer": "Ionisation potential"
+      },
+      {
+        "year": 2019,
+        "question": "The most electronegative element from the following: A. Magnesium  B. Chlorine  C. Aluminium  D. Sulphur",
+        "options": {
+          "A": "Magnesium",
+          "B": "Chlorine",
+          "C": "Aluminium",
+          "D": "Sulphur"
+        },
+        "answer": "B. Chlorine"
+      },
+      {
+        "year": 2020,
+        "question": "The element with highest ionization potential is: A. Hydrogen  B. Caesium  C. Radon  D. Helium",
+        "options": {
+          "A": "Hydrogen",
+          "B": "Caesium",
+          "C": "Radon",
+          "D": "Helium"
+        },
+        "answer": "D. Helium"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "In the Periodic Table, elements of Period 3 are arranged in increasing order of ionization potential as:",
+        "options": {
+          "a": "B, N, Cl, Ar",
+          "b": "Mg, Si, S, Ar",
+          "c": "Ar, Si, S, Mg",
+          "d": "Si, Ar, Cl, Mg"
+        },
+        "answer": "b. Mg, Si, S, Ar"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "The tendency of an atom to attract shared pair of electrons to itself when forming a chemical bond is known as:",
+        "options": {
+          "a": "Electron affinity",
+          "b": "Electronegativity",
+          "c": "Ionization potential",
+          "d": "Nuclear charge"
+        },
+        "answer": "b. Electronegativity"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "Elements A & B have electronic configuration: 8 & 13 respectively. The chemical formula formed between A & B will be:",
+        "options": {
+          "a": "AB",
+          "b": "B3A3",
+          "c": "A2B3",
+          "d": "B2A3"
+        },
+        "answer": "d. B2A3 (A=Oxygen with valency 2; B=Aluminium with valency 3 → Al2O3)"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "Alkaline earth metals have the same:",
+        "options": {
+          "a": "Number of valence electrons",
+          "b": "Number of shells",
+          "c": "Metallic property",
+          "d": "Ionization potential"
+        },
+        "answer": "a. Number of valence electrons (2 electrons)"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "Electronic configurations: W:2,6  X:2,8  Y:2,8,1  Z:2,8,7. Which pair of atoms will form a covalent compound?",
+        "options": {
+          "a": "Two atoms of W",
+          "b": "Two atoms of X",
+          "c": "An atom of W & an atom of X",
+          "d": "An atom of Y & an atom of Z"
+        },
+        "answer": "a. Two atoms of W (Oxygen atoms form covalent O=O molecule)"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "Element with atomic number 19 will:",
+        "options": {
+          "a": "Accept an electron & get oxidized",
+          "b": "Accept an electron & get reduced",
+          "c": "Lose an electron & get oxidized",
+          "d": "Lose an electron & get reduced"
+        },
+        "answer": "c. Lose an electron & get oxidized (K = 2,8,8,1 loses 1 e-)"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "Element with low ionization potential is likely to be:",
+        "options": {
+          "a": "Metal",
+          "b": "Metalloid",
+          "c": "Non-metal",
+          "d": "Inert gas"
+        },
+        "answer": "a. Metal"
+      },
+      {
+        "year": "2021-22 (Semester 2)",
+        "question": "The non-metallic properties of elements from left to right in a Periodic Table:",
+        "options": {
+          "a": "Increases",
+          "b": "Decreases",
+          "c": "Remains same",
+          "d": "First increases & then decreases"
+        },
+        "answer": "a. Increases"
+      },
+      {
+        "year": 2023,
+        "question": "In period 3, an element whose electron affinity is zero is:",
+        "options": {
+          "a": "Neon",
+          "b": "Sulphur",
+          "c": "Sodium",
+          "d": "Argon"
+        },
+        "answer": "d. Argon (noble gas in period 3)"
+      },
+      {
+        "year": 2023,
+        "question": "An element with the largest atomic radius is:",
+        "options": {
+          "a": "Carbon",
+          "b": "Nitrogen",
+          "c": "Lithium",
+          "d": "Beryllium"
+        },
+        "answer": "c. Lithium (leftmost in period 2 = largest)"
+      },
+      {
+        "year": 2024,
+        "question": "In the 2nd period, Neon has maximum Ionization Potential because:",
+        "options": {
+          "a": "It has unstable electronic configuration",
+          "b": "It easily accepts electrons",
+          "c": "It easily loses electrons",
+          "d": "The outermost shell is completely filled"
+        },
+        "answer": "d. The outermost shell is completely filled"
+      },
+      {
+        "year": 2024,
+        "question": "Electron Affinity is maximum in:",
+        "options": {
+          "A": "Mg",
+          "B": "Ar",
+          "C": "Li",
+          "D": "Br"
+        },
+        "answer": "D. Br (among these, Br is a halogen; halogens have highest E.A.)"
+      },
+      {
+        "year": 2025,
+        "question": "Assertion (A): The tendency of losing electrons increases down the Group. Reason (R): The most reactive metal is placed at the top of Group 1.",
+        "options": {
+          "a": "Both A & R are true and R is the correct explanation of A",
+          "b": "Both A & R are true but R is not the correct explanation of A",
+          "c": "A is true but R is false",
+          "d": "A is false but R is true"
+        },
+        "answer": "c. A is true but R is false (R is wrong: most reactive metal is at the BOTTOM of Group 1, not top)"
+      },
+      {
+        "year": 2025,
+        "question": "X, Y & Z are three metallic atoms in successive order belonging to the same group such that atomic radii of 'X' is the smallest. Which of the three atoms is the best reducing agent?",
+        "options": {
+          "a": "X",
+          "b": "Y",
+          "c": "Z",
+          "d": "All three have the same reducing power"
+        },
+        "answer": "c. Z (largest atomic radius = lowest I.P. = best reducing agent)"
+      },
+      {
+        "source": "MCQ section",
+        "question": "Assertion (A): Noble gases - Ne, Ar have electron affinity zero. Reason (R): Greater the value of electron affinity, the more electronegative is the element.",
+        "options": {
+          "a": "Both A & R are true and R is the correct explanation of A",
+          "b": "Both A & R are true but R is not the correct explanation of A",
+          "c": "A is true but R is false",
+          "d": "A is false but R is true"
+        },
+        "answer": "b. Both A & R are true but R is not the correct explanation of A"
+      },
+      {
+        "source": "MCQ section",
+        "question": "Assertion (A): Elements with high electronegativity are usually non-metals. Reason (R): Non-metallic atoms have high ionisation potential & tend to gain electrons.",
+        "options": {
+          "a": "Both A & R are true and R is the correct explanation of A",
+          "b": "Both A & R are true but R is not the correct explanation of A",
+          "c": "A is true but R is false",
+          "d": "A is false but R is true"
+        },
+        "answer": "a. Both A & R are true and R is the correct explanation of A"
+      },
+      {
+        "source": "MCQ section",
+        "question": "The oxide of the metallic element with three valence electrons in its third shell is:",
+        "options": {
+          "a": "Basic",
+          "b": "Weakly acidic",
+          "c": "Amphoteric",
+          "d": "Strongly basic"
+        },
+        "answer": "c. Amphoteric (Al2O3 - aluminium is in period 3, group 13)"
+      },
+      {
+        "source": "MCQ section",
+        "question": "'ACl3' is the formula of an electrovalent solid. 'A' is likely to be in the same group in period-3 as the element given below present in period-2.",
+        "options": {
+          "a": "Be",
+          "b": "Li",
+          "c": "C",
+          "d": "B"
+        },
+        "answer": "d. B (Boron is in group 13, same as Al which forms AlCl3)"
+      },
+      {
+        "source": "MCQ section",
+        "question": "Metallic element 'X' in period-3, having valency 2, reacts with a non-metallic element 'Y' of the same period also having valency 2. The number of non-metallic atoms in the compound formed between 'X' & 'Y' is:",
+        "options": {
+          "a": "3",
+          "b": "1",
+          "c": "4",
+          "d": "2"
+        },
+        "answer": "b. 1 (X=Mg, Y=S → MgS, 1 sulphur atom)"
+      },
+      {
+        "source": "MCQ section",
+        "question": "State the element with the lowest electron affinity from the elements whose electronic configurations are:",
+        "options": {
+          "a": "2,8,8",
+          "b": "2,7",
+          "c": "2,8,6",
+          "d": "2,8,7"
+        },
+        "answer": "a. 2,8,8 (Argon - noble gas with E.A. = 0)"
+      },
+      {
+        "source": "MCQ section",
+        "question": "Non-metallic elements have:",
+        "options": {
+          "a": "Large atomic size",
+          "b": "Low electron affinity",
+          "c": "High ionisation potential",
+          "d": "Greater tendency to lose electrons"
+        },
+        "answer": "c. High ionisation potential"
+      }
+    ],
+    "fill_in_the_blanks": [
+      {
+        "statement": "In period 3, the most metallic element is ___ (sodium/magnesium/aluminium).",
+        "answer": "sodium"
+      },
+      {
+        "statement": "Periods are ___ (5/6/7) horizontal rows of elements in the periodic table.",
+        "answer": "7"
+      },
+      {
+        "statement": "Across a period the valence electrons ___ (increase/decrease), while down a subgroup they ___ (remain same/increase).",
+        "answer": "increase; remain same"
+      },
+      {
+        "statement": "Across a period, the electropositive character ___ (increases/decreases), and down a group the electronegative character ___ (increases/decreases).",
+        "answer": "decreases; decreases"
+      },
+      {
+        "statement": "Elements at the extreme left of the modern periodic table are ___ (least/un/most) reactive, while elements on the extreme right [group 18 (0)] are ___ (least/un/most) reactive.",
+        "answer": "most; least"
+      },
+      {
+        "statement": "Elements of group 1 (IA) are strong ___ (oxidising/reducing) agents since they are electron ___ (acceptors/donors).",
+        "answer": "reducing; donors"
+      },
+      {
+        "statement": "The element in group 17 (VIIA) which is a liquid at room temperature is ___ (F/Cl/Br/I).",
+        "answer": "Br"
+      },
+      {
+        "statement": "Periodicity in properties is observed in elements after definite intervals due to similar ___ (electronic configuration/number of valence electrons/atomic numbers) of elements.",
+        "answer": "electronic configuration"
+      },
+      {
+        "statement": "Across a period the nature of oxides and hydrides varies from ___ (acidic/basic) to ___ (acidic/basic), while the strength of oxy-acids ___ (decreases/increases) from left to right.",
+        "answer": "basic; acidic; increases"
+      },
+      {
+        "statement": "Nuclear charge of an atom is the ___ (negative/positive) charge on the nucleus, equivalent to the atomic ___ (number/mass) of an atom.",
+        "answer": "positive; number"
+      },
+      {
+        "statement": "Atomic size of neon is ___ (more/less) than the atomic size of fluorine.",
+        "answer": "more"
+      },
+      {
+        "statement": "Atomic size across a period ___ (increases/decreases) with increase in nuclear charge of the element.",
+        "answer": "decreases"
+      },
+      {
+        "statement": "With increase in nuclear charge the nuclear attraction for outer electrons ___ (increases/decreases), hence ionisation potential ___ (increases/decreases).",
+        "answer": "increases; increases"
+      },
+      {
+        "statement": "Increase in nuclear charge of an atom ___ (decreases/increases) the tendency of the atom to lose electrons.",
+        "answer": "decreases"
+      },
+      {
+        "statement": "Elements with stable electronic configuration e.g. neon have an electron affinity value of ___ (1/0/−1).",
+        "answer": "0"
+      },
+      {
+        "statement": "An atom with a small atomic radii takes up electrons ___ (less/more) readily than an atom with a large radii.",
+        "answer": "more"
+      },
+      {
+        "statement": "If combining atoms of a compound have nearly similar electronegativities, the bond between them is ___ (electrovalent/covalent).",
+        "answer": "covalent"
+      },
+      {
+        "statement": "Elements with low electronegativity are usually ___ (metallic/non-metallic).",
+        "answer": "metallic"
+      },
+      {
+        "statement": "An atom is said to be a non-metal if it ___ (gains/loses) one or more electrons.",
+        "answer": "gains"
+      },
+      {
+        "statement": "Atoms with ___ (small/large) atomic radii & ___ (high/low) ionisation potential tend to gain electrons.",
+        "answer": "small; high"
+      },
+      {
+        "statement": "Element 'X' in period 3 has high electron affinity & electronegativity. It is likely to be a ___ (metal/non-metal).",
+        "answer": "non-metal"
+      },
+      {
+        "statement": "Element 'B' in period 2 is to the right of element 'A'. Element 'B' is likely to be ___ (more/less) non-metallic in character than element 'A'.",
+        "answer": "more"
+      },
+      {
+        "statement": "Element 'Z' in sub-group 2 (IIA) is below element 'Y' in the same sub-group. The element 'Z' will be expected to have ___ (higher/lower) atomic size and ___ (more/less) metallic character than 'Y'.",
+        "answer": "higher; more"
+      },
+      {
+        "statement": "Argon in period 3 is likely to have a ___ (larger/smaller) atomic size than chlorine, and its electron affinity value would be ___ (greater/lesser/zero) compared to chlorine.",
+        "answer": "larger; zero"
+      },
+      {
+        "statement": "Across a period - Atomic size & metallic character ___ (increase/decrease), while I.P., E.A., E.N. & non-metallic character & nuclear charge ___ (increase/decrease).",
+        "answer": "decrease; increase"
+      },
+      {
+        "statement": "Down a group - Atomic size & metallic character ___ (increase/decrease), while I.P., E.A., E.N. & non-metallic character & nuclear charge ___ (increase/decrease).",
+        "answer": "increase; decrease"
+      }
+    ],
+    "match_the_columns": [
+      {
+        "year": 2017,
+        "instruction": "Match the atomic numbers 2, 4, 8, 15 & 19 with the following:",
+        "pairs": [
+          {
+            "description": "A solid non-metal in the third period",
+            "atomic_number": 15,
+            "element": "Phosphorus (P)"
+          },
+          {
+            "description": "A metal of valency 1",
+            "atomic_number": 19,
+            "element": "Potassium (K)"
+          },
+          {
+            "description": "A gaseous element with valency 2",
+            "atomic_number": 8,
+            "element": "Oxygen (O)"
+          },
+          {
+            "description": "An element in Group 2",
+            "atomic_number": 4,
+            "element": "Beryllium (Be)"
+          },
+          {
+            "description": "A rare gas",
+            "atomic_number": 2,
+            "element": "Helium (He)"
+          }
+        ]
+      },
+      {
+        "year": 2025,
+        "instruction": "Match the elements in column X with the correct group they belong from column Y.",
+        "pairs": [
+          {
+            "column_X": "Element with atomic number 19 (K)",
+            "column_Y": "Group 1 (IA)"
+          },
+          {
+            "column_X": "Element with electronic configuration 2 (He)",
+            "column_Y": "Group 18 (0)"
+          },
+          {
+            "column_X": "Element with valency −2 (O)",
+            "column_Y": "Group 16 (VIA)"
+          },
+          {
+            "column_X": "Element 'P' which loses 3 electrons to form a cation (Al/B)",
+            "column_Y": "Group 13 (IIIA)"
+          },
+          {
+            "column_X": "Element 'Q' in period-3 with highest electron affinity (Cl)",
+            "column_Y": "Group 17 (VIIA)"
+          }
+        ]
+      }
+    ],
+    "arrange_as_per_instruction": [
+      {
+        "year": 2017,
+        "items": [
+          {
+            "instruction": "Increasing order of electron shells",
+            "elements": "He, Ar, Ne",
+            "answer": "He (1) < Ne (2) < Ar (3)"
+          },
+          {
+            "instruction": "Increasing order of electronegativity",
+            "elements": "Cl, Br, I",
+            "answer": "I < Br < Cl"
+          },
+          {
+            "instruction": "Increasing order of atomic size",
+            "elements": "Na, K, Li",
+            "answer": "Li < Na < K"
+          }
+        ]
+      },
+      {
+        "year": 2018,
+        "items": [
+          {
+            "instruction": "Decreasing order of ionization potential",
+            "elements": "Li, K, Na, H",
+            "answer": "H > Li > Na > K"
+          },
+          {
+            "instruction": "Increasing order of electron affinity",
+            "elements": "F, B, N, O",
+            "answer": "N < B < O < F (note: N is exception due to half-filled stability)"
+          }
+        ]
+      },
+      {
+        "year": 2019,
+        "items": [
+          {
+            "instruction": "Increasing order of electron shells",
+            "elements": "He, Ar, Ne",
+            "answer": "He < Ne < Ar"
+          },
+          {
+            "instruction": "Increasing ionisation energy",
+            "elements": "Na, Li, K",
+            "answer": "K < Na < Li"
+          },
+          {
+            "instruction": "Increasing electronegativity",
+            "elements": "F, Cl, Br",
+            "answer": "Br < Cl < F"
+          },
+          {
+            "instruction": "Increasing atomic size",
+            "elements": "Na, K, Li",
+            "answer": "Li < Na < K"
+          }
+        ]
+      },
+      {
+        "year": 2023,
+        "items": [
+          {
+            "instruction": "Increasing order of non-metallic character",
+            "elements": "N, Be, O, C",
+            "answer": "Be < C < N < O"
+          },
+          {
+            "instruction": "Decreasing order of valence electrons",
+            "elements": "P, Si, F, Be",
+            "answer": "F (7) > P (5) > Si (4) > Be (2)"
+          }
+        ]
+      },
+      {
+        "year": 2024,
+        "items": [
+          {
+            "instruction": "Decreasing order of atomic size",
+            "elements": "Carbon, Fluorine, Beryllium",
+            "answer": "Be > C > F"
+          },
+          {
+            "instruction": "Increasing order of ionization potential",
+            "elements": "Potassium, Lithium, Sodium",
+            "answer": "K < Na < Li"
+          }
+        ]
+      }
+    ],
+    "give_reasons": [
+      {
+        "question": "Inert gases do not form ions.",
+        "answer": "Inert gases have stable electronic configuration with completely filled outer shell (duplet or octet). They have no urge to destabilize themselves through gain or loss of electrons. They have zero electron affinity and very high ionisation potential, so they do not form ions."
+      },
+      {
+        "question": "Ionisation potential increases across a period from left to right.",
+        "answer": "Across a period, atomic radii decreases (number of shells remains same, nuclear charge increases). Smaller atomic size means stronger nuclear attraction on outer electrons, making them harder to remove. Hence I.P. increases."
+      },
+      {
+        "question": "Ionisation potential decreases down a group.",
+        "answer": "Down a group, atomic radii increases (more shells added). Larger atomic size means weaker nuclear attraction on outer electrons, making them easier to remove. Although nuclear charge increases, the increase in atomic size dominates. Hence I.P. decreases."
+      },
+      {
+        "question": "Noble gases are considered unreactive elements.",
+        "answer": "Noble gases have completely filled outer shells (duplet for He, octet for others). They have zero electron affinity, very high ionisation potential, and no tendency to gain, lose, or share electrons. Hence they are unreactive."
+      },
+      {
+        "question": "In a sub-group, the chemical properties of elements remain similar.",
+        "answer": "Elements in the same sub-group have the same number of valence electrons (same outer electronic configuration). Since chemical properties depend on outer electronic configuration, elements in a sub-group have similar chemical properties."
+      },
+      {
+        "question": "Halogens in group 17 are strong oxidising agents.",
+        "answer": "Halogens (F, Cl, Br, I) have 7 valence electrons and need only 1 more electron to complete their octet. They have high electron affinity and high electronegativity, so they readily accept electrons from other substances. Substances that gain electrons are oxidising agents, hence halogens are strong oxidising agents."
+      },
+      {
+        "question": "Atomic radii is considered a periodic property, exhibiting periodicity.",
+        "answer": "Atomic size varies in a regular pattern across periods and down groups, repeating at definite intervals of atomic number (2, 8, 18, 32). When elements with similar valence shell electronic configuration recur, they show similar atomic size patterns. Hence atomic radii is a periodic property."
+      },
+      {
+        "question": "Atomic size of neon is more than the atomic size of fluorine.",
+        "answer": "Neon has a completely filled outer shell (octet). This results in a force of repulsion between the electrons, increasing the atomic size. The effect of nuclear pull over valence shell electrons is not seen. Hence Ne has a larger atomic radius than F."
+      },
+      {
+        "question": "In period 3, the most metallic element is sodium (not magnesium or aluminium).",
+        "answer": "Metallic character decreases across a period from left to right. Sodium (group 1) is leftmost in period 3, has the largest atomic size and lowest I.P., making it the most metallic element in period 3."
+      },
+      {
+        "question": "Fluorine is the most electronegative element of the periodic table.",
+        "answer": "Fluorine has the smallest atomic size among halogens (group 17) and the highest nuclear charge per shell (effective). It needs only 1 electron to complete its octet. With small size + high nuclear attraction, F has the highest tendency to attract shared electrons - hence most electronegative."
+      },
+      {
+        "question": "Phosphorus, sulphur & chlorine are electronegative elements of the periodic table.",
+        "answer": "These elements are in the right side of period 3 (groups 15, 16, 17). They have small atomic size and high nuclear charge, so they tend to gain electrons (electronegative character). Non-metals are electronegative."
+      },
+      {
+        "question": "Chlorine is more metallic in nature than argon (placed at the extreme right of period 3).",
+        "answer": "Metallic character decreases across a period. Argon (group 18) is rightmost in period 3 and is a noble gas with no metallic character. Chlorine (group 17) is to the left of argon, so it has slightly more metallic character than argon (though both are non-metals)."
+      },
+      {
+        "question": "Sulphur is placed in group 16.",
+        "answer": "Sulphur (16S) has electronic configuration 2,8,6 - it has 6 valence electrons. Group number (for main group elements) = number of valence electrons. Hence sulphur is placed in group 16."
+      },
+      {
+        "question": "Occurrence of characteristic properties of elements takes place at definite intervals in the modern periodic table.",
+        "answer": "After definite intervals of atomic number (2, 8, 18, 32), elements with similar valence shell electronic configuration recur. Since properties depend on valence shell configuration, characteristic properties reappear at these intervals."
+      },
+      {
+        "question": "Properties of elements are periodic functions of their atomic numbers and not atomic weights.",
+        "answer": "Physical and chemical properties of elements depend on the number of electrons and their arrangement (electronic configuration), which is determined by atomic number. Atomic weight does not correlate directly with electronic configuration. Hence properties are periodic functions of atomic numbers."
+      },
+      {
+        "question": "Atomic size of an element depends on the nuclear charge of that element.",
+        "answer": "Nuclear charge (= atomic number) determines the force of attraction on electrons. Higher nuclear charge pulls electrons closer, decreasing atomic size. Lower nuclear charge means weaker pull, increasing atomic size. Hence atomic size depends on nuclear charge."
+      },
+      {
+        "question": "Down a group electronegativity should increase with increase in nuclear charge but it is seen that electronegativity decreases.",
+        "answer": "Down a group, although nuclear charge increases, the number of electron shells also increases, making atomic size larger. The outer electrons are farther from the nucleus and the nuclear pull is reduced. The increase in atomic size dominates over the increase in nuclear charge, hence electronegativity decreases."
+      },
+      {
+        "question": "If combining atoms have nearly similar electronegativities, the bond between them is covalent.",
+        "answer": "When combining atoms have similar electronegativities, neither atom can completely pull the bonding electrons away from the other. So they share electrons (rather than transferring), forming a covalent bond. Large differences in electronegativity lead to ionic bonds."
+      },
+      {
+        "question": "Atomic size of group 18 (0 group) elements is more than that of group 17 elements.",
+        "answer": "Group 18 elements (noble gases) have completely filled outer shells. This causes a force of repulsion between the electrons, expanding the atomic size. The nuclear pull on valence electrons is not as effective as in group 17 elements. Hence noble gases have larger atomic size than halogens of the same period."
+      }
+    ],
+    "identify_the_following": [
+      {
+        "question": "An element in period 1 which can be placed in both group 1 & group 17 of the Periodic Table.",
+        "answer": "Hydrogen (H)"
+      },
+      {
+        "question": "The element having electronic configuration 2, 8, 6.",
+        "answer": "Sulphur (S)"
+      },
+      {
+        "question": "The most electronegative element of period 3.",
+        "answer": "Chlorine (Cl)"
+      },
+      {
+        "question": "An alkaline earth metal present in group 2 & period 3.",
+        "answer": "Magnesium (Mg)"
+      },
+      {
+        "question": "The alkali metal in period 2.",
+        "answer": "Lithium (Li)"
+      },
+      {
+        "question": "The halogen in period 3.",
+        "answer": "Chlorine (Cl)"
+      },
+      {
+        "question": "The noble gas having duplet arrangement of electrons.",
+        "answer": "Helium (He)"
+      },
+      {
+        "question": "The noble gas having electronic configuration 2, 8, 8.",
+        "answer": "Argon (Ar)"
+      },
+      {
+        "question": "The number of electron shells in elements of period 3.",
+        "answer": "3 shells"
+      },
+      {
+        "question": "The valency of elements in group 1 (IA).",
+        "answer": "1"
+      },
+      {
+        "question": "The metals present in period 3.",
+        "answer": "Na, Mg, Al"
+      },
+      {
+        "question": "The non-metals present in period 2.",
+        "answer": "C, N, O, F"
+      },
+      {
+        "question": "The group whose elements have zero valency.",
+        "answer": "Group 18 (0) - Noble gases"
+      },
+      {
+        "question": "The non-metal in period 3 having valency 1.",
+        "answer": "Chlorine (Cl)"
+      },
+      {
+        "question": "The formula of the hydroxide of element having electronic configuration 2, 8, 2.",
+        "answer": "Mg(OH)2"
+      },
+      {
+        "question": "The formula of the hydride of the halogen in period 3.",
+        "answer": "HCl"
+      },
+      {
+        "question": "The formula of the sulphite of the element in period-3, group 1 (IA).",
+        "answer": "Na2SO3"
+      },
+      {
+        "question": "The element in period-3 which does not form an oxide.",
+        "answer": "Argon (Ar)"
+      },
+      {
+        "question": "The bonding (electrovalent or covalent) of the oxide of element in period-3 group 16.",
+        "answer": "Covalent (SO2 / SO3)"
+      },
+      {
+        "question": "The character of the hydroxide of the element in period-3 group 13 (IIIA).",
+        "answer": "Amphoteric (Al(OH)3)"
+      },
+      {
+        "question": "A light element in period-3 which is a stable element & a light metal.",
+        "answer": "Sodium (Na)"
+      },
+      {
+        "question": "The element with the least atomic size from carbon, nitrogen, boron & beryllium.",
+        "answer": "Nitrogen (N)"
+      },
+      {
+        "question": "The element from Li, Na, K having the least number of electron shells.",
+        "answer": "Lithium (Li)"
+      },
+      {
+        "question": "The element from C, O, N, F having the maximum nuclear charge.",
+        "answer": "Fluorine (F)"
+      },
+      {
+        "question": "The element from Be and Mg having a lower nuclear charge.",
+        "answer": "Be (Beryllium)"
+      },
+      {
+        "question": "The element from F and Ne having a higher electron affinity.",
+        "answer": "Fluorine (F)"
+      },
+      {
+        "question": "The period & group to which element 'X' with electronic configuration 2, 8, 8, 2 belongs.",
+        "answer": "Period 4, Group 2 (IIA) - Calcium"
+      },
+      {
+        "question": "The element from Ar, S, Cl of period-3 with the largest atomic size.",
+        "answer": "Argon (Ar)"
+      },
+      {
+        "question": "The element with the highest ionisation potential from elements of period 1, 2 & 3.",
+        "answer": "Helium (He)"
+      },
+      {
+        "question": "The element from Li, Na, K which has maximum metallic character.",
+        "answer": "Potassium (K)"
+      },
+      {
+        "question": "Element from P=13 (Al); Q=7 (N); R=10 (Ne) which combines with hydrogen to form a basic gas.",
+        "answer": "Q (Nitrogen - forms NH3 which is basic)"
+      },
+      {
+        "question": "Element from P=13, Q=7, R=10 which has electron affinity zero.",
+        "answer": "R (Neon - noble gas)"
+      },
+      {
+        "question": "Element from P=13, Q=7, R=10 which forms an ionic compound with chlorine.",
+        "answer": "P (Aluminium - forms AlCl3)"
+      }
+    ]
+  },
+  "unit_test_paper": {
+    "title": "Unit Test Paper 1 - Periodic Table & Properties",
+    "marks": 30,
+    "source_page": 21,
+    "questions": [
+      {
+        "number": "Q1",
+        "marks": 5,
+        "type": "In period 2, element 'A' is to the right of element 'B'. Fill in the blanks.",
+        "items": [
+          {
+            "statement": "The element 'A' would probably have a ___ (smaller/larger) atomic size than 'B'.",
+            "answer": "smaller"
+          },
+          {
+            "statement": "The element 'B' would probably have ___ (lower/higher) ionisation potential than 'A'.",
+            "answer": "lower"
+          },
+          {
+            "statement": "The element 'A' would have ___ (lesser/higher) electron affinity than 'B'.",
+            "answer": "higher"
+          },
+          {
+            "statement": "Nuclear charge of element 'B' would be ___ (less/more) than element 'A'.",
+            "answer": "less"
+          },
+          {
+            "statement": "If an element 'C' had a low electronegativity and ionisation potential it would have more tendency to ___ (gain/lose) electrons.",
+            "answer": "lose"
+          }
+        ]
+      },
+      {
+        "number": "Q2",
+        "marks": 5,
+        "type": "With reference to period 3 of the periodic table - State:",
+        "items": [
+          {
+            "question": "The type of bonding of the element with electronic configuration 2, 8, 7.",
+            "answer": "Covalent (Cl forms covalent compounds like HCl, Cl2)"
+          },
+          {
+            "question": "The formula of the chloride of the element with electronic configuration 2, 8, 4.",
+            "answer": "SiCl4 (Silicon tetrachloride)"
+          },
+          {
+            "question": "The nature of the oxide of the alkaline earth metal in the period.",
+            "answer": "Basic (MgO is basic)"
+          },
+          {
+            "question": "The number of electrons in the penultimate shell of the element with valency 1.",
+            "answer": "8 (Na = 2,8,1 - penultimate shell has 8 electrons)"
+          },
+          {
+            "question": "The electronic configuration of the element whose hydroxide is a weak base.",
+            "answer": "2,8,2 (Mg - forms Mg(OH)2 which is a weak base)"
+          }
+        ]
+      },
+      {
+        "number": "Q3",
+        "marks": 5,
+        "type": "With reference to Group 1 of the periodic table - fill in the blanks with correct word:",
+        "items": [
+          {
+            "statement": "The elements are ___ (light/heavy) ___ (metals/non-metals) since their atomic size is ___ (large/small).",
+            "answer": "light; metals; large"
+          },
+          {
+            "statement": "The energy binding the atoms is ___ (high/low) and hence the elements have ___ (high/low) melting points.",
+            "answer": "low; low"
+          },
+          {
+            "statement": "The melting points of the elements ___ (increases/decreases) down the subgroup.",
+            "answer": "decreases"
+          },
+          {
+            "statement": "The electropositive character ___ (increases/decreases) down the subgroup and the elements are strong ___ (reducing/oxidizing) agents.",
+            "answer": "increases; reducing"
+          },
+          {
+            "statement": "The element with electronic configuration 2,8,1 will have ___ (higher/lower) electron affinity and ___ (smaller/larger) atomic size than the element with electronic configuration 2,1.",
+            "answer": "lower; larger"
+          }
+        ]
+      },
+      {
+        "number": "Q4",
+        "marks": 5,
+        "type": "Match the elements in column X with the correct group in column Y:",
+        "pairs": [
+          {
+            "column_X": "Element with atomic number 19 (K)",
+            "column_Y": "Group 1 (IA)"
+          },
+          {
+            "column_X": "Element with electronic configuration 2 (He)",
+            "column_Y": "Group 18 (0)"
+          },
+          {
+            "column_X": "Element with valency −2 (O)",
+            "column_Y": "Group 16 (VIA)"
+          },
+          {
+            "column_X": "Element 'P' which loses 3 electrons to form a cation (Al)",
+            "column_Y": "Group 13 (IIIA)"
+          },
+          {
+            "column_X": "Element 'Q' in period-3 with highest electron affinity (Cl)",
+            "column_Y": "Group 17 (VIIA)"
+          }
+        ]
+      },
+      {
+        "number": "Q5",
+        "marks": 5,
+        "type": "Give reasons for the following:",
+        "items": [
+          {
+            "question": "Occurrence of characteristic properties of elements takes place at definite intervals in the modern periodic table.",
+            "answer": "Due to recurrence of similar valence shell electronic configuration after definite intervals (2, 8, 18, 32)."
+          },
+          {
+            "question": "Properties of elements are periodic functions of their atomic numbers and not atomic weights.",
+            "answer": "Physical and chemical properties depend on outer electronic arrangement, which is determined solely by atomic number."
+          },
+          {
+            "question": "Atomic size of an element depends on the nuclear charge of that element.",
+            "answer": "Greater nuclear charge attracts outer shell electrons inward with stronger electrostatic force, decreasing atomic radius."
+          },
+          {
+            "question": "Down a group electronegativity should increase with increase in nuclear charge but it is seen that electronegativity decreases.",
+            "answer": "The addition of extra electron shells dominates over the increase in nuclear charge, placing outer electrons further from the nucleus."
+          },
+          {
+            "question": "If combining atoms have nearly similar electronegativities, the bond between them is covalent.",
+            "answer": "Neither atom has sufficient electronegativity difference to pull electrons completely away; hence electrons are shared."
+          }
+        ]
+      },
+      {
+        "number": "Q6",
+        "marks": 5,
+        "type": "Arrange the following elements as per the guidelines in brackets:",
+        "items": [
+          {
+            "instruction": "Decreasing order of atomic size",
+            "elements": "Na, Cl, Mg, P",
+            "answer": "Na > Mg > P > Cl"
+          },
+          {
+            "instruction": "Increasing order of electronegativity",
+            "elements": "C, Li, F, N",
+            "answer": "Li < C < N < F"
+          },
+          {
+            "instruction": "Increasing order of ionisation potential",
+            "elements": "Cl, Al, Na, S",
+            "answer": "Na < Al < S < Cl"
+          },
+          {
+            "instruction": "Increasing order of electron affinity",
+            "elements": "Li, F, C, O",
+            "answer": "Li < C < O < F"
+          },
+          {
+            "instruction": "Increasing order of number of electron shells",
+            "elements": "Ar, He, Ne",
+            "answer": "He < Ne < Ar"
+          }
+        ]
+      }
+    ]
+  },
+  "quick_revision_summary": {
+    "one_line_summary": "Periodic table arranges elements by atomic number; across a period (L→R): size↓, I.P.↑, E.A.↑, E.N.↑, metallic character↓, non-metallic character↑. Down a group: size↑, I.P.↓, E.A.↓, E.N.↓, metallic character↑, non-metallic character↓.",
+    "mnemonic_across_period": "Across a period - 'MAGIC MEN' → Metallic character Decreases, Atomic size Decreases, I.P. Increases, Character (non-metallic) Increases. Then 'E3' → E.A., E.N., Electropositive (decreases) — All follow the trend: Across period: small atoms → strong pull → high I.P./E.A./E.N.",
+    "mnemonic_down_group": "Down a group - 'BIG MAC' → Big size, Increases metallic character. The rest (I.P., E.A., E.N., non-metallic character) all Decrease.",
+    "trends_grid_compact": "Property           | Across Period (→) | Down Group (↓)\n-------------------|-------------------|----------------\nAtomic size        | Decreases          | Increases\nI.P.               | Increases          | Decreases\nE.A.               | Increases          | Decreases\nE.N.               | Increases          | Decreases\nMetallic char.     | Decreases          | Increases\nNon-metallic char. | Increases          | Decreases",
+    "key_extremes": [
+      "Highest I.P. = Helium (He); Lowest I.P. = Caesium (Cs)",
+      "Most electronegative = Fluorine (F, EN=4.0); Least electronegative = Caesium (Cs)",
+      "Highest E.A. = Chlorine (Cl, −3.80 eV); E.A. = 0 for noble gases",
+      "Largest atom (among main group) = Caesium (Cs); Smallest atom = Helium (He)",
+      "Most reactive metal = Cs (or Fr if radioactive); Most reactive non-metal = F",
+      "Best reducing agent (among alkali metals) = Li (due to high hydration energy) — per textbook note: Li is best reducing agent due to small size + high E.N. + high I.P."
+    ],
+    "exam_tips": [
+      "Memorize the trends grid - this is the single most important table for the exam.",
+      "For 'give reasons' questions: state the cause (atomic size / nuclear charge / shells) → mechanism → result.",
+      "Noble gases are SPECIAL - they have: zero E.A., highest I.P. in period, larger atomic size than halogens.",
+      "Period number = number of shells. Group number (for main group) = number of valence electrons.",
+      "Across period: shells SAME, valence electrons INCREASE by 1.",
+      "Down group: shells INCREASE by 1, valence electrons SAME.",
+      "When asked to 'arrange in order': check if it's PERIOD elements (use across-period trend) or GROUP elements (use down-group trend).",
+      "Bridge elements = period 2 elements showing diagonal similarity with period 3 elements of NEXT group (e.g. Li-Mg, Be-Al, B-Si).",
+      "Hydrogen is unique - can be placed in group 1 (loses 1 e-) or group 17 (gains 1 e-).",
+      "Remember: small atom → strong nuclear pull → high I.P., high E.A., high E.N. (for non-metals).",
+      "Metals: large size, low I.P., lose electrons, reducing agents, basic oxides.",
+      "Non-metals: small size, high I.P., gain electrons, oxidising agents, acidic oxides.",
+      "For atomic size comparison: cation < parent atom < anion (e.g. Na+ < Na < Cl- in size).",
+      "Don't forget: Cl has HIGHER E.A. than F (exception due to small size of F causing electron-electron repulsion)."
+    ]
+  },
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Introduction & History of Classification",
+      "source_page": 1,
+      "need_for_classification": [
+        "Need arose to group elements into families whose elements showed maximum resemblance.",
+        "On such an arrangement in the form of a table, properties of elements were seen to reappear at regular intervals."
+      ],
+      "history_of_classification": [
+        {
+          "scientist": "Early Chemists",
+          "basis": "Valency, metallic & non-metallic character",
+          "outcome": "Method discarded as elements showed variable valency and dual character."
+        },
+        {
+          "scientist": "Dobereiner (1815)",
+          "basis": "Increasing order of atomic weights",
+          "outcome": "Elements arranged in groups of three called TRIADS. Atomic weight of the middle element was generally the average of the other two. Discarded as it did not hold true for all elements."
+        },
+        {
+          "scientist": "Newland (1864)",
+          "basis": "Increasing order of atomic weights",
+          "outcome": "Elements arranged in a series of eight. Properties of every eighth element were a repetition of the first (Law of Octaves). Discarded as it failed to leave spaces for undiscovered elements."
+        },
+        {
+          "scientist": "Mendeleeff (1869)",
+          "basis": "Increasing order of atomic weights",
+          "outcome": "Elements arranged in the form of a table called Mendeleeff's Periodic Table. Stated that properties of elements are periodic functions of their atomic weights. Could not justify position of certain elements, rare earths and isotopes."
+        },
+        {
+          "scientist": "Moseley (1912)",
+          "basis": "Increasing order of atomic numbers",
+          "outcome": "Elements arranged in a modified table called Modern Periodic Table. Stated that properties of elements are periodic functions of their atomic numbers. Removes most defects of Mendeleeff's Periodic Table."
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Modern Periodic Table - Long form of the Periodic Table",
+      "source_page": 3,
+      "introduction": [
+        "Mendeleeff had arranged elements in the periodic table on basis of increasing atomic weights.",
+        "Moseley modified Mendeleeff's periodic table & stated that the basis of classification of elements should be increasing atomic numbers (not atomic weights) since physical and chemical properties of elements depend on the number of electrons and their arrangement.",
+        "Atomic number is equal to the number of electrons in the energy shells of an atom - hence atomic number is the fundamental property of an element."
+      ],
+      "modern_periodic_law": "Physical & chemical properties of elements are periodic functions of their atomic numbers.",
+      "salient_features": [
+        {
+          "feature": "Classification",
+          "description": "Periodic table based on basic fundamental property - atomic number."
+        },
+        {
+          "feature": "Position",
+          "description": "Correlates position of an element with its electronic configuration."
+        },
+        {
+          "feature": "Methodical arrangement",
+          "description": "Arranges elements in increasing order of atomic numbers in SEVEN horizontal rows called PERIODS & EIGHTEEN vertical columns called GROUPS."
+        },
+        {
+          "feature": "Periods",
+          "description": "Completion of each period is logical - each period begins with an element having one electron in outermost shell & ends with zero group element having completely filled outer shell. A transition from metallic to non-metallic character is seen across a period."
+        },
+        {
+          "feature": "Groups",
+          "description": "Each vertical column accommodates elements with the same outer electronic configuration, hence having similar properties. 18 vertical columns consist of groups 1 to 17 & 18 [zero group]. Groups 1, 2 & 13 to 17 [IA to VIIA] are called NORMAL ELEMENTS. Groups 3 to 12 [IB to VIIB & VIII] are called TRANSITION ELEMENTS. Group 18 [zero] at extreme right contains NOBLE or INERT GASES."
+        },
+        {
+          "feature": "Separation of elements",
+          "description": "Reactive metals placed in group 1 [IA] and 2 [IIA]. Transition elements [metals] placed in the middle. Non-metals placed in the upper right corner of the periodic table."
+        },
+        {
+          "feature": "Periodicity of elements",
+          "description": "Gradual change in properties is seen with increase in atomic number. Periodicity in properties (recurrence of properties) is seen with elements of the same subgroup after a difference of 2, 8, 18 or 32 in atomic numbers - due to recurrence of similar valence shell electronic configuration."
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Periods in the Modern Periodic Table",
+      "source_page": 4,
+      "key_concepts": [
+        "Periods = Seven horizontal rows of elements arranged in increasing order of atomic numbers.",
+        "Period numbers (1, 2, 3, ...) signify the NUMBER OF ELECTRON SHELLS of an element.",
+        "Period 1 elements (e.g. 1H) have 1 shell; Period 2 elements (e.g. 3Li) have 2 shells; Period 3 elements (e.g. 11Na) have 3 shells, and so on."
+      ],
+      "dual_position_of_hydrogen": "Hydrogen has the simplest electronic configuration of one. It can hence lose 1 electron, behaving like alkali metals (group 1) OR gain 1 electron, behaving like halogens (group 17). It is hence placed above Li in group 1 OR above F in group 17.",
+      "isotopes_of_hydrogen": "Atoms of the same element, having same atomic number but different atomic mass numbers. Hydrogen exists in 3 isotopic forms: 1H, 2H, 3H. Since they have the same electronic configuration, they occupy the same position in the periodic table.",
+      "seven_periods_table": [
+        {
+          "period": 1,
+          "type": "Short (shortest)",
+          "no_of_elements": 2,
+          "atomic_numbers": "1 & 2"
+        },
+        {
+          "period": 2,
+          "type": "Short",
+          "no_of_elements": 8,
+          "atomic_numbers": "3 to 10"
+        },
+        {
+          "period": 3,
+          "type": "Short",
+          "no_of_elements": 8,
+          "atomic_numbers": "11 to 18"
+        },
+        {
+          "period": 4,
+          "type": "Long",
+          "no_of_elements": 18,
+          "atomic_numbers": "19 to 36"
+        },
+        {
+          "period": 5,
+          "type": "Long",
+          "no_of_elements": 18,
+          "atomic_numbers": "37 to 54"
+        },
+        {
+          "period": 6,
+          "type": "Long",
+          "no_of_elements": 32,
+          "atomic_numbers": "55 to 86",
+          "note": "Contains LANTHANIDE SERIES (Rare Earth Elements)"
+        },
+        {
+          "period": 7,
+          "type": "Long",
+          "no_of_elements": 32,
+          "atomic_numbers": "87 to 112",
+          "note": "Contains ACTINIDE SERIES (Radioactive Elements)"
+        }
+      ],
+      "bridge_elements": {
+        "definition": "Period 2 elements are called 'bridge elements' - they show similarities in properties diagonally with the period 3 element of the next group.",
+        "diagram_ascii": "Period 2:  Li  Be  B  C   (bridge elements)\n            ↘   ↘   ↘\nPeriod 3:  Na  Mg  Al  Si  (typical elements)",
+        "example": "Li (period 2, group 1) shows diagonal similarity with Mg (period 3, group 2)."
+      },
+      "property_trends_across_a_period": [
+        {
+          "property": "Number of electron shells",
+          "trend": "REMAINS SAME (electrons enter same shell - K, L, M)"
+        },
+        {
+          "property": "Valence electrons",
+          "trend": "INCREASES BY ONE (from left to right)"
+        },
+        {
+          "property": "Non-metallic character",
+          "trend": "INCREASES (transition from metallic to non-metallic character)"
+        }
+      ],
+      "period_1_elements": [
+        {
+          "element": "Hydrogen",
+          "symbol": "1H",
+          "group": "1 (IA)"
+        },
+        {
+          "element": "Helium",
+          "symbol": "2He",
+          "group": "18 (0)",
+          "note": "Noble gas having duplet arrangement of electrons"
+        }
+      ],
+      "period_2_elements_table": [
+        {
+          "group": "1 (IA)",
+          "element": "Lithium",
+          "symbol": "Li",
+          "at_no": 3,
+          "elec_config": "2,1",
+          "state": "Metal",
+          "valency": 1
+        },
+        {
+          "group": "2 (IIA)",
+          "element": "Beryllium",
+          "symbol": "Be",
+          "at_no": 4,
+          "elec_config": "2,2",
+          "state": "Metal",
+          "valency": 2
+        },
+        {
+          "group": "13 (IIIA)",
+          "element": "Boron",
+          "symbol": "B",
+          "at_no": 5,
+          "elec_config": "2,3",
+          "state": "Metalloid",
+          "valency": 3
+        },
+        {
+          "group": "14 (IVA)",
+          "element": "Carbon",
+          "symbol": "C",
+          "at_no": 6,
+          "elec_config": "2,4",
+          "state": "Non-metal",
+          "valency": 4
+        },
+        {
+          "group": "15 (VA)",
+          "element": "Nitrogen",
+          "symbol": "N",
+          "at_no": 7,
+          "elec_config": "2,5",
+          "state": "Non-metal",
+          "valency": 3
+        },
+        {
+          "group": "16 (VIA)",
+          "element": "Oxygen",
+          "symbol": "O",
+          "at_no": 8,
+          "elec_config": "2,6",
+          "state": "Non-metal",
+          "valency": 2
+        },
+        {
+          "group": "17 (VIIA)",
+          "element": "Fluorine",
+          "symbol": "F",
+          "at_no": 9,
+          "elec_config": "2,7",
+          "state": "Non-metal",
+          "valency": 1
+        },
+        {
+          "group": "18 (0)",
+          "element": "Neon",
+          "symbol": "Ne",
+          "at_no": 10,
+          "elec_config": "2,8",
+          "state": "Noble gas",
+          "valency": 0
+        }
+      ],
+      "period_3_elements_table": [
+        {
+          "group": "1 (IA)",
+          "element": "Sodium",
+          "symbol": "Na",
+          "at_no": 11,
+          "elec_config": "2,8,1",
+          "state": "Metal",
+          "valency": 1
+        },
+        {
+          "group": "2 (IIA)",
+          "element": "Magnesium",
+          "symbol": "Mg",
+          "at_no": 12,
+          "elec_config": "2,8,2",
+          "state": "Metal",
+          "valency": 2
+        },
+        {
+          "group": "13 (IIIA)",
+          "element": "Aluminium",
+          "symbol": "Al",
+          "at_no": 13,
+          "elec_config": "2,8,3",
+          "state": "Metal",
+          "valency": 3
+        },
+        {
+          "group": "14 (IVA)",
+          "element": "Silicon",
+          "symbol": "Si",
+          "at_no": 14,
+          "elec_config": "2,8,4",
+          "state": "Metalloid",
+          "valency": 4
+        },
+        {
+          "group": "15 (VA)",
+          "element": "Phosphorus",
+          "symbol": "P",
+          "at_no": 15,
+          "elec_config": "2,8,5",
+          "state": "Non-metal",
+          "valency": 3
+        },
+        {
+          "group": "16 (VIA)",
+          "element": "Sulphur",
+          "symbol": "S",
+          "at_no": 16,
+          "elec_config": "2,8,6",
+          "state": "Non-metal",
+          "valency": 2
+        },
+        {
+          "group": "17 (VIIA)",
+          "element": "Chlorine",
+          "symbol": "Cl",
+          "at_no": 17,
+          "elec_config": "2,8,7",
+          "state": "Non-metal",
+          "valency": 1
+        },
+        {
+          "group": "18 (0)",
+          "element": "Argon",
+          "symbol": "Ar",
+          "at_no": 18,
+          "elec_config": "2,8,8",
+          "state": "Noble gas",
+          "valency": 0
+        }
+      ],
+      "period_3_compounds_table": {
+        "headers": [
+          "Property",
+          "Na",
+          "Mg",
+          "Al",
+          "Si",
+          "P",
+          "S",
+          "Cl"
+        ],
+        "chloride_formula": [
+          "NaCl",
+          "MgCl2",
+          "AlCl3",
+          "SiCl4",
+          "PCl5 / PCl3",
+          "S2Cl2",
+          "—"
+        ],
+        "chloride_bonding": [
+          "Ionic",
+          "Ionic",
+          "Ionic, covalent",
+          "Covalent",
+          "Covalent",
+          "Covalent",
+          "—"
+        ],
+        "chloride_state": [
+          "Solid",
+          "Solid",
+          "Solid",
+          "Liquid",
+          "Liquid/solid",
+          "Liquid",
+          "—"
+        ],
+        "oxide_formula": [
+          "Na2O",
+          "MgO",
+          "Al2O3",
+          "SiO2",
+          "P2O5 / P4O10",
+          "SO2 / SO3",
+          "Cl2O7"
+        ],
+        "oxide_bonding": [
+          "Electrovalent",
+          "Electrovalent",
+          "Electrovalent",
+          "Covalent",
+          "Covalent",
+          "Covalent",
+          "Covalent"
+        ],
+        "oxide_character": [
+          "Strongly basic",
+          "Basic",
+          "Amphoteric",
+          "Weakly acidic",
+          "Acidic",
+          "Acidic",
+          "Strongly acidic"
+        ],
+        "hydroxide": [
+          "NaOH",
+          "Mg(OH)2",
+          "Al(OH)3",
+          "H2SiO3",
+          "HPO3",
+          "H2SO4",
+          "HClO4"
+        ],
+        "hydroxide_character": [
+          "Strong base",
+          "Weak base",
+          "Amphoteric",
+          "Weak acid",
+          "Weak acid",
+          "Strong acid",
+          "Strong acid"
+        ],
+        "hydride": [
+          "NaH",
+          "MgH2",
+          "AlH3",
+          "SiH4",
+          "PH3",
+          "H2S",
+          "HCl"
+        ],
+        "hydride_character": [
+          "Strong base",
+          "Weak base",
+          "Weaker base",
+          "Weaker base",
+          "Weaker base",
+          "Weak acid",
+          "Strong acid"
+        ],
+        "notes": [
+          "H2SiO3 = metasilicic acid; HClO4 = perchloric acid; Cl2O7 = chlorine heptoxide",
+          "PH3 = phosphine",
+          "HPO3 = metaphosphoric acid; H3PO4 = orthophosphoric acid"
+        ]
+      }
+    },
+    {
+      "section_id": "D",
+      "title": "Groups in the Modern Periodic Table",
+      "source_page": 6,
+      "key_concepts": [
+        "Groups = Eighteen vertical columns (with eight main groups) in the periodic table.",
+        "Group numbers signify the NUMBER OF VALENCE ELECTRONS of an element (valence electrons = electrons in outermost shell).",
+        "Group 1 (IA) elements e.g. 11Na [2,8,1] have 1 valence electron.",
+        "Group 2 (IIA) elements e.g. 12Mg [2,8,2] have 2 valence electrons, and so on.",
+        "Transition elements also have 2 valence electrons - e.g. 26Fe [2,8,14,2], 30Zn [2,8,18,2]."
+      ],
+      "groups_summary_table": [
+        {
+          "group": "1 (IA)",
+          "type": "ALKALI METALS",
+          "elements": "Light metals from 3Li to 87Fr"
+        },
+        {
+          "group": "2 (IIA)",
+          "type": "ALKALINE EARTH METALS",
+          "elements": "Light metals from 4Be to 88Ra"
+        },
+        {
+          "group": "3 to 12 (IB to VIIB, VIII)",
+          "type": "TRANSITION ELEMENTS",
+          "elements": "Heavy metals from 21Sc to 30Zn; 39Y to 48Cd; 72Hf to 80Hg"
+        },
+        {
+          "group": "Period 6 (special)",
+          "type": "LANTHANIDE SERIES (Rare earths)",
+          "elements": "Ce to Lu, 57La to 71Lu"
+        },
+        {
+          "group": "Period 7 (special)",
+          "type": "ACTINIDE SERIES (Radioactive)",
+          "elements": "Th to Lr, 89Ac to 103Lr; 104Rf to 112Uub"
+        },
+        {
+          "group": "13 to 16 (IIIA to VIA)",
+          "type": "POST TRANSITION ELEMENTS",
+          "elements": "13Al, 32Ge, 50Sn, 81Tl, 82Pb, 83Bi, 84Po"
+        },
+        {
+          "group": "17 (VIIA)",
+          "type": "HALOGENS",
+          "elements": "9F to 85At"
+        },
+        {
+          "group": "18 (0)",
+          "type": "NOBLE / INERT GASES",
+          "elements": "2He, 10Ne, 18Ar, 36Kr, 54Xe, 86Rn"
+        }
+      ],
+      "inner_transition_elements_note": "INNER TRANSITION ELEMENTS (e.g. 58Ce, 90Th) - Metals. Lanthanides (rare earths) & Actinides (radioactive) - two series of 14 elements each. Form two horizontal rows at the bottom of the periodic table. They lie between strongly electropositive metals on the left & least electropositive elements on the right. All have 3 valence electrons (e.g. 21Sc [2,8,8,3]).",
+      "property_trends_down_a_subgroup": [
+        {
+          "property": "Valence electrons",
+          "trend": "REMAIN SAME"
+        },
+        {
+          "property": "Chemical properties",
+          "trend": "REMAIN SIMILAR (or vary gradually) - because chemical properties depend on outer electronic configuration"
+        },
+        {
+          "property": "Metallic character (electropositive character)",
+          "trend": "INCREASES"
+        },
+        {
+          "property": "Number of electron shells",
+          "trend": "INCREASES BY ONE"
+        }
+      ],
+      "alkali_metals_vs_halogens_comparison": {
+        "group_1_alkali_metals": {
+          "elements": "Lithium (Li), Sodium (Na), Potassium (K), Rubidium (Rb), Caesium (Cs), Francium (Fr)",
+          "valency": "Univalent (1 valence electron)",
+          "nature": "Highly reactive, highly electropositive, light, soft metals. Metallic in nature. Soft - can be cut with a knife.",
+          "conductivity": "Good conductors of heat & electricity",
+          "redox_nature": "Strong reducing agents (alkali metals are electron donors). Have one valence electron easily removed from outer shell. After loss, achieve stable configuration of noble gases.",
+          "electronegativity": "Low electronegativity (electropositive character increases from Li to Cs)",
+          "reaction_with_non_metals": "Electrovalent compounds formed (e.g. NaCl, KBr)",
+          "reaction_with_hydrogen": "Ionic hydrides formed (e.g. LiH, NaH)"
+        },
+        "group_17_halogen": {
+          "elements": "Fluorine (F), Chlorine (Cl), Bromine (Br), Iodine (I), Astatine (At)",
+          "valency": "Univalent (7 valence electrons)",
+          "nature": "Highly reactive, highly electronegative, non-metals. Non-metallic in nature. Gaseous: F & Cl; Liquid: Br; Solid at room temp: I",
+          "conductivity": "Bad or non-conductors of heat & electricity",
+          "redox_nature": "Strong oxidising agents (halogens are electron acceptors). Electronegative character decreases from F to I.",
+          "electronegativity": "High electronegativity",
+          "reaction_with_non_metals": "Covalent compounds formed (e.g. HCl, PCl3, SCl4)",
+          "reaction_with_hydrogen": "Covalent hydrides formed (e.g. HF, HCl, HBr, HI)"
+        }
+      }
+    },
+    {
+      "section_id": "E",
+      "title": "Periodic Properties - Variation in Periods & Groups",
+      "source_page": 8,
+      "periodicity_in_properties": {
+        "definition": "Occurrence of characteristic properties of elements at definite intervals in the modern periodic table when elements are arranged in increasing order of their atomic numbers. (Definite intervals = difference of 2, 8, 18 or 32 in atomic numbers.)",
+        "modern_periodic_law": "Properties of elements are periodic functions of their atomic numbers."
+      },
+      "periodic_properties_list": [
+        "Atomic radii",
+        "Ionisation potential",
+        "Electron affinity",
+        "Electronegativity",
+        "Non-metallic and metallic character",
+        "Density",
+        "Melting and boiling point",
+        "Nature of oxides, oxy-acids, hydrides"
+      ],
+      "reasons_for_periodicity": [
+        "After definite intervals of atomic number, similar valence shell electronic configuration occurs.",
+        "Properties of elements depend on the number & arrangement of electrons in various shells including valence shell.",
+        "In the same period or subgroup, increase or decrease in a particular property is due to gradual change in electronic configuration in the arranged elements."
+      ],
+      "definitions_table": [
+        {
+          "property": "Atomic Radius",
+          "definition": "It is the distance between the centre of the nucleus and the outermost shell of the atom.",
+          "ascii_diagram": "      outermost shell\n           ◯\n          / \\\n         |   |  ← atomic radius\n          \\ /\n           ●\n        nucleus"
+        },
+        {
+          "property": "Ionisation Potential (I.P.)",
+          "definition": "It is the amount of energy required to remove an electron from the outermost shell of an isolated gaseous atom.",
+          "equation": "M → M+ + e-  [Energy required = I.P.]"
+        },
+        {
+          "property": "Electron Affinity (E.A.)",
+          "definition": "It is the amount of energy released when an atom in the gaseous state accepts an electron to form an anion.",
+          "equation": "X + e- → X- + energy liberated  [Energy released = E.A.]"
+        },
+        {
+          "property": "Electronegativity (E.N.)",
+          "definition": "It is the tendency of an atom to attract electrons to itself when combined in a compound.",
+          "note": "Small difference in E.N. between combining atoms → covalent bond. Large difference → ionic bond."
+        },
+        {
+          "property": "Non-metallic & Metallic Character",
+          "definition": "In terms of electron loss or gain: an element is a Non-metal if it gains one or more electrons; a Metal if it loses one or more electrons.",
+          "equations": [
+            "N + e- → N- (non-metal gains electron)",
+            "M → M+ + e- (metal loses electron)"
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "F",
+      "title": "Periodic Trends in Properties - Atomic Size",
+      "source_page": 9,
+      "definition": "The distance between the centre of the nucleus of an atom and its outermost shell. (Atomic radius determines bond length.) Unit = Angstrom (Å).",
+      "factors_affecting_atomic_size": [
+        {
+          "factor": "Number of shells",
+          "effect": "Increases → Atomic size INCREASES. Reason: distance of outermost shell from nucleus increases."
+        },
+        {
+          "factor": "Nuclear charge",
+          "effect": "Increases → Atomic size DECREASES. Reason: electrons in outermost shell are attracted with increasing force. (Nuclear charge = positive charge on nucleus = atomic number of element.)"
+        }
+      ],
+      "trend_across_a_period": {
+        "direction": "From left to right",
+        "trend": "ATOMIC SIZE DECREASES",
+        "reasons": [
+          "Number of shells REMAINS SAME → atomic size unaffected",
+          "Nuclear charge INCREASES → atomic size DECREASES"
+        ],
+        "example_period_2": [
+          {
+            "element": "Li",
+            "elec_config": "2,1",
+            "atomic_radius_A": 1.55
+          },
+          {
+            "element": "Be",
+            "elec_config": "2,2",
+            "atomic_radius_A": 1.12
+          },
+          {
+            "element": "B",
+            "elec_config": "2,3",
+            "atomic_radius_A": 0.88
+          },
+          {
+            "element": "C",
+            "elec_config": "2,4",
+            "atomic_radius_A": 0.77
+          },
+          {
+            "element": "N",
+            "elec_config": "2,5",
+            "atomic_radius_A": 0.7
+          },
+          {
+            "element": "O",
+            "elec_config": "2,6",
+            "atomic_radius_A": 0.66
+          },
+          {
+            "element": "F",
+            "elec_config": "2,7",
+            "atomic_radius_A": 0.64
+          },
+          {
+            "element": "Ne",
+            "elec_config": "2,8",
+            "atomic_radius_A": 1.12,
+            "note": "Larger than F since outer shell completely filled → force of repulsion; nuclear pull not seen"
+          }
+        ],
+        "key_facts": [
+          "In period 2, Li has the LARGEST atomic radius & F has the SMALLEST.",
+          "Neon has a larger atomic radius since in inert gases the outer shell is completely filled, resulting in a force of repulsion. The effect of nuclear pull over valence shell electrons is not seen.",
+          "A cation (e.g. Na → Na+ + e-) is SMALLER than the parent neutral atom since the remaining electrons are strongly attracted by the nucleus."
+        ]
+      },
+      "trend_down_a_group": {
+        "direction": "Down a group",
+        "trend": "ATOMIC SIZE INCREASES",
+        "reasons": [
+          "Number of shells INCREASES → atomic size INCREASES (new shells added with increasing atomic number; nuclear distance from valence electrons increases).",
+          "Nuclear charge should increase → atomic size should decrease. BUT",
+          "Increase in number of shells DOMINATES over increase in nuclear charge. Overall atomic radius INCREASES."
+        ],
+        "example_group_1": [
+          {
+            "element": "Li",
+            "elec_config": "2,1",
+            "atomic_radius_A": 1.55
+          },
+          {
+            "element": "Na",
+            "elec_config": "2,8,1",
+            "atomic_radius_A": 1.91
+          },
+          {
+            "element": "K",
+            "elec_config": "2,8,8,1",
+            "atomic_radius_A": 2.35
+          },
+          {
+            "element": "Rb",
+            "elec_config": "2,8,18,8,1",
+            "atomic_radius_A": 2.48
+          },
+          {
+            "element": "Cs",
+            "elec_config": "2,8,18,18,8,1",
+            "atomic_radius_A": 2.67
+          }
+        ],
+        "important_note": "From Li, Na & K - Li has the smallest atomic radius & therefore has higher E.N. & I.P. compared to Na & K. Hence Li has a greater tendency to lose electrons, making it the BEST reducing agent."
+      }
+    },
+    {
+      "section_id": "G",
+      "title": "Periodic Trends in Properties - Ionisation Potential (I.P.)",
+      "source_page": 10,
+      "definition": "The amount of energy required to remove a loosely bound electron from the outermost shell of an isolated gaseous atom.",
+      "first_and_second_IP": [
+        "Energy required to remove 1st electron = FIRST I.P. (M → M+ + e-)  [first I.P. is less]",
+        "Energy required to remove 2nd electron = SECOND I.P. (M+ → M2+ + e-)  [second I.P. is more]"
+      ],
+      "factors_affecting_IP": [
+        {
+          "factor": "Atomic size",
+          "effect": "Increases → I.P. DECREASES. Reason: nuclear attraction on outer electrons decreases; outer electrons loosely held."
+        },
+        {
+          "factor": "Nuclear charge",
+          "effect": "Increases → I.P. INCREASES. Reason: nuclear attraction on outer electrons increases; outer electrons firmly held."
+        }
+      ],
+      "trend_across_a_period": {
+        "direction": "From left to right",
+        "trend": "IONISATION POTENTIAL INCREASES",
+        "reasons": [
+          "Atomic radii DECREASE → I.P. INCREASES",
+          "Nuclear charge INCREASES → I.P. INCREASES"
+        ],
+        "example_period_2": [
+          {
+            "element": "Li",
+            "elec_config": "2,1",
+            "IP_eV": 5.4
+          },
+          {
+            "element": "Be",
+            "elec_config": "2,2",
+            "IP_eV": 9.3
+          },
+          {
+            "element": "B",
+            "elec_config": "2,3",
+            "IP_eV": 8.3
+          },
+          {
+            "element": "C",
+            "elec_config": "2,4",
+            "IP_eV": 14.5
+          },
+          {
+            "element": "N",
+            "elec_config": "2,5",
+            "IP_eV": 13.6
+          }
+        ],
+        "key_facts": [
+          "Helium (He) has the HIGHEST ionisation potential; Caesium (Cs) has the LOWEST (Francium is radioactive).",
+          "Neon in period 2 also has maximum I.P. since its outer shell is completely filled.",
+          "Metals lose electrons & generally have LOW ionisation potential compared to non-metals."
+        ]
+      },
+      "trend_down_a_group": {
+        "direction": "Down a group",
+        "trend": "IONISATION POTENTIAL DECREASES",
+        "reasons": [
+          "Atomic radii INCREASE (no. of shells increases) → I.P. DECREASES",
+          "Nuclear charge INCREASES → I.P. should increase. BUT",
+          "Increase in atomic radii DOMINATES over increase in nuclear charge. Overall I.P. DECREASES."
+        ],
+        "example_group_1": [
+          {
+            "element": "Li",
+            "elec_config": "2,1",
+            "IP_eV": 5.4
+          },
+          {
+            "element": "Na",
+            "elec_config": "2,8,1",
+            "IP_eV": 5.1
+          },
+          {
+            "element": "K",
+            "elec_config": "2,8,8,1",
+            "IP_eV": 4.3
+          },
+          {
+            "element": "Rb",
+            "elec_config": "2,8,18,8,1",
+            "IP_eV": 4.2
+          },
+          {
+            "element": "Cs",
+            "elec_config": "2,8,18,18,8,1",
+            "IP_eV": 3.9
+          }
+        ]
+      }
+    },
+    {
+      "section_id": "H",
+      "title": "Periodic Trends in Properties - Electron Affinity (E.A.)",
+      "source_page": 11,
+      "definition": "The amount of energy released when an atom in the gaseous state accepts an electron to form an anion.",
+      "equations": [
+        "X + e- → X- + energy liberated  [1st electron affinity]",
+        "Cl + e- → Cl-  [−3.80 eV, represented with −ve sign]"
+      ],
+      "factors_affecting_EA": [
+        {
+          "factor": "Atomic size",
+          "effect": "Increases → E.A. DECREASES. Reason: A small atom takes up electrons more readily than a large atom since nucleus has greater attraction on the electrons."
+        },
+        {
+          "factor": "Nuclear charge",
+          "effect": "Increases → E.A. INCREASES. Reason: increases the tendency of the atom to accept electrons."
+        }
+      ],
+      "trend_across_a_period": {
+        "direction": "From left to right",
+        "trend": "ELECTRON AFFINITY INCREASES",
+        "reasons": [
+          "Atomic radii DECREASE → E.A. INCREASES",
+          "Nuclear charge INCREASES → E.A. INCREASES"
+        ],
+        "key_facts": [
+          "Electron affinity is HIGHEST for halogens (group 17) & LEAST for alkali metals (group 1).",
+          "Neon (Ne) has electron affinity ZERO since inert gases with stable electronic configuration find it difficult to accept electrons.",
+          "INERT GASES DO NOT FORM IONS - their outermost shell is completely filled. They need not accept or donate any electrons & are already stable. They have no urge to destabilize themselves through gain or loss of electrons.",
+          "Greater the value of E.A., more electronegative or more oxidising is the element."
+        ]
+      },
+      "trend_down_a_group": {
+        "direction": "Down a group",
+        "trend": "ELECTRON AFFINITY DECREASES",
+        "reasons": [
+          "Atomic radii INCREASE (no. of shells increases) → E.A. DECREASES",
+          "Nuclear charge INCREASES → E.A. should increase. BUT",
+          "Increase in atomic radii DOMINATES over increase in nuclear charge. Overall E.A. DECREASES."
+        ],
+        "example_group_17": [
+          {
+            "element": "F",
+            "elec_config": "2,7",
+            "EA_eV": "−3.60"
+          },
+          {
+            "element": "Cl",
+            "elec_config": "2,8,7",
+            "EA_eV": "−3.80"
+          },
+          {
+            "element": "Br",
+            "elec_config": "2,8,18,7",
+            "EA_eV": "−3.50"
+          },
+          {
+            "element": "I",
+            "elec_config": "2,8,18,18,7",
+            "EA_eV": "−3.20"
+          }
+        ],
+        "note": "Cl has higher E.A. than F (exception) because F has very small size with high electron-electron repulsion."
+      }
+    },
+    {
+      "section_id": "I",
+      "title": "Periodic Trends in Properties - Electronegativity (E.N.)",
+      "source_page": 12,
+      "definition": "The tendency of an atom to attract the shared pair of electrons to itself when combined in a compound.",
+      "bond_type_based_on_EN": [
+        "IONIC BOND forms between combining atoms if atoms differ widely in electronegativity.",
+        "COVALENT BOND forms between combining atoms if atoms have nearly similar electronegativities to attract the bond forming electron pair."
+      ],
+      "factors_affecting_EN": [
+        "Reasons affecting electronegativity are the same and in the same order as electron affinity.",
+        {
+          "factor": "Atomic size",
+          "effect": "Increases → E.N. DECREASES"
+        },
+        {
+          "factor": "Nuclear charge",
+          "effect": "Increases → E.N. INCREASES"
+        }
+      ],
+      "trend_across_a_period": {
+        "direction": "From left to right",
+        "trend": "ELECTRONEGATIVITY INCREASES",
+        "reasons": [
+          "Atomic radii DECREASE → E.N. INCREASES",
+          "Nuclear charge INCREASES → E.N. INCREASES"
+        ],
+        "example_period_3": [
+          {
+            "element": "Na",
+            "elec_config": "2,8,1",
+            "EN": 0.9
+          },
+          {
+            "element": "Mg",
+            "elec_config": "2,8,2",
+            "EN": 1.2
+          },
+          {
+            "element": "Al",
+            "elec_config": "2,8,3",
+            "EN": 1.5
+          },
+          {
+            "element": "Si",
+            "elec_config": "2,8,4",
+            "EN": 1.8
+          },
+          {
+            "element": "P",
+            "elec_config": "2,8,5",
+            "EN": 2.1
+          },
+          {
+            "element": "S",
+            "elec_config": "2,8,6",
+            "EN": 2.5
+          },
+          {
+            "element": "Cl",
+            "elec_config": "2,8,7",
+            "EN": 3
+          },
+          {
+            "element": "Ar",
+            "elec_config": "2,8,8",
+            "EN": "—"
+          }
+        ],
+        "key_facts": [
+          "Elements with high electronegativity are usually NON-METALLIC. (Non-metals are electronegative; metals are electropositive.)",
+          "Fluorine is the MOST electronegative element in the periodic table; Caesium is the LEAST.",
+          "In period 3, chlorine is the most electronegative element.",
+          "Noble gases have complete octet & hence do not attract electrons to themselves."
+        ]
+      },
+      "trend_down_a_group": {
+        "direction": "Down a group",
+        "trend": "ELECTRONEGATIVITY DECREASES",
+        "reasons": [
+          "Atomic radii INCREASE (no. of shells increases) → E.N. DECREASES",
+          "Nuclear charge INCREASES → E.N. should increase. BUT",
+          "Increase in atomic radii DOMINATES over increase in nuclear charge. Overall E.N. DECREASES."
+        ],
+        "example_group_17": [
+          {
+            "element": "F",
+            "elec_config": "2,7",
+            "EN": 4,
+            "note": "most electronegative"
+          },
+          {
+            "element": "Cl",
+            "elec_config": "2,8,7",
+            "EN": 3
+          },
+          {
+            "element": "Br",
+            "elec_config": "2,8,18,7",
+            "EN": 2.8
+          },
+          {
+            "element": "I",
+            "elec_config": "2,8,18,18,7",
+            "EN": 2.5
+          }
+        ]
+      }
+    },
+    {
+      "section_id": "J",
+      "title": "Periodic Trends in Properties - Metallic & Non-metallic Character",
+      "source_page": 13,
+      "definitions": [
+        {
+          "term": "Metallic character (electropositive)",
+          "definition": "In terms of electron LOSING property - an atom is a METAL if it loses one or more electrons when supplied with energy. M → M+ + e-"
+        },
+        {
+          "term": "Non-metallic character",
+          "definition": "In terms of electron GAINING property - an atom is a NON-METAL if it gains one or more electrons when supplied with energy. N + e- → N-"
+        }
+      ],
+      "factors_influencing": [
+        {
+          "factor": "Atomic radii",
+          "metallic_char": "Increases",
+          "non_metallic_char": "Decreases"
+        },
+        {
+          "factor": "Ionization potential",
+          "metallic_char": "Decreases",
+          "non_metallic_char": "Increases"
+        }
+      ],
+      "key_facts": [
+        "Metallic atoms (left side of periodic table) have LARGE atomic radii & LOW I.P., tend to LOSE electrons.",
+        "Non-metallic atoms (right side of periodic table) have SMALL atomic radii & HIGH I.P., tend to GAIN electrons.",
+        "Metals are good REDUCING agents; non-metals are good OXIDISING agents.",
+        "REACTIVITY of metals: greater the tendency to lose electrons, greater the reactivity.",
+        "REACTIVITY of non-metals: greater the tendency to gain electrons, greater the reactivity."
+      ],
+      "trend_across_a_period": {
+        "direction": "From left to right",
+        "metallic_character": "DECREASES",
+        "non_metallic_character": "INCREASES",
+        "reasons": [
+          "Atomic radii DECREASE → metallic character DECREASES; non-metallic character INCREASES",
+          "I.P. INCREASES → metallic character DECREASES; non-metallic character INCREASES"
+        ],
+        "example_period_3": [
+          {
+            "element": "Na",
+            "elec_config": "2,8,1",
+            "character": "Metal"
+          },
+          {
+            "element": "Mg",
+            "elec_config": "2,8,2",
+            "character": "Metal"
+          },
+          {
+            "element": "Al",
+            "elec_config": "2,8,3",
+            "character": "Metal"
+          },
+          {
+            "element": "Si",
+            "elec_config": "2,8,4",
+            "character": "Metalloid"
+          },
+          {
+            "element": "P",
+            "elec_config": "2,8,5",
+            "character": "Non-metal"
+          },
+          {
+            "element": "S",
+            "elec_config": "2,8,6",
+            "character": "Non-metal"
+          },
+          {
+            "element": "Cl",
+            "elec_config": "2,8,7",
+            "character": "Non-metal"
+          },
+          {
+            "element": "Ar",
+            "elec_config": "2,8,8",
+            "character": "Noble gas"
+          }
+        ]
+      },
+      "trend_down_a_group": {
+        "direction": "Down a group (e.g. group 14)",
+        "metallic_character": "INCREASES",
+        "non_metallic_character": "DECREASES",
+        "reasons": [
+          "Atomic radii INCREASE → metallic character INCREASES; non-metallic character DECREASES",
+          "I.P. DECREASES → metallic character INCREASES; non-metallic character DECREASES"
+        ],
+        "example_group_14": [
+          {
+            "element": "C",
+            "elec_config": "2,4",
+            "character": "Non-metal"
+          },
+          {
+            "element": "Si",
+            "elec_config": "2,8,4",
+            "character": "Metalloid"
+          },
+          {
+            "element": "Ge",
+            "elec_config": "2,8,18,4",
+            "character": "Metalloid"
+          },
+          {
+            "element": "Sn",
+            "elec_config": "2,8,18,18,4",
+            "character": "Metal"
+          },
+          {
+            "element": "Pb",
+            "elec_config": "2,8,18,32,18,4",
+            "character": "Metal"
+          }
+        ],
+        "key_note": "Elements at the BOTTOM of a group are MOST metallic - have large atomic size, lowest I.P., electrons are loosely held & will form ions from metals most readily & thus are more reactive."
+      }
+    },
+    {
+      "section_id": "K",
+      "title": "Other Physical & Chemical Properties",
+      "source_page": 14,
+      "physical_properties": {
+        "across_a_period": "Density & m.p./b.p. of elements INCREASE gradually (slight decrease thereafter).",
+        "down_a_group": "Density INCREASES gradually; m.p. & b.p. DECREASE gradually.",
+        "example_period_2_and_3": {
+          "headers": [
+            "Property",
+            "Li",
+            "Be",
+            "B",
+            "C",
+            "N",
+            "O",
+            "F",
+            "Na",
+            "Mg",
+            "Al",
+            "Si",
+            "P",
+            "S",
+            "Cl"
+          ],
+          "density_g_per_ml": [
+            0.5,
+            1.8,
+            2.3,
+            2.2,
+            "—",
+            "—",
+            "—",
+            0.97,
+            1.7,
+            2.7,
+            2.3,
+            1.8,
+            2,
+            "—"
+          ],
+          "melting_point_C": [
+            181,
+            1277,
+            2030,
+            3727,
+            "—210",
+            "—219",
+            "—220",
+            97.8,
+            650,
+            660,
+            1410,
+            44,
+            119,
+            "—101"
+          ]
+        },
+        "example_group_1": [
+          {
+            "element": "Li",
+            "density_g_per_ml": 0.54,
+            "melting_point_C": 181,
+            "boiling_point_C": 1347
+          },
+          {
+            "element": "Na",
+            "density_g_per_ml": 0.97,
+            "melting_point_C": 97.8,
+            "boiling_point_C": 880
+          },
+          {
+            "element": "K",
+            "density_g_per_ml": 0.86,
+            "melting_point_C": 63.7,
+            "boiling_point_C": 766
+          }
+        ]
+      },
+      "chemical_properties_periodicity": {
+        "table": [
+          {
+            "property": "Oxides",
+            "across_a_period": "Varies from Strongly basic to Strongly acidic",
+            "down_a_group": "Strongly basic to Basic (less basic to strongly basic)"
+          },
+          {
+            "property": "Hydroxides",
+            "across_a_period": "Strongly basic to Amphoteric to Strongly acidic",
+            "down_a_group": "Less basic to Strongly basic"
+          },
+          {
+            "property": "Oxy-acids",
+            "across_a_period": "Weak oxy-acids to Strong oxy-acids",
+            "down_a_group": "Strong oxy-acids to Weak oxy-acids"
+          },
+          {
+            "property": "Hydrides",
+            "across_a_period": "Strongly basic to Strongly acidic",
+            "down_a_group": "Less acidic to More acidic"
+          }
+        ]
+      },
+      "stable_vs_unstable_elements_reference": {
+        "definition": "n/p (neutron/proton) ratio determines stability of elements.",
+        "stable": "Light metals - elements with n/p ratio around 1 are stable. e.g. Na and K.",
+        "unstable_radioactive": "Heavy metals - elements with n/p ratio above 1.5 are considered radioactive unstable elements. e.g. uranium.",
+        "examples_table": [
+          {
+            "element": "Sodium",
+            "symbol": "23Na",
+            "atomic_no_Z": 11,
+            "mass_no_A": 23,
+            "protons_p": 11,
+            "neutrons_n": 12,
+            "n_p_ratio": "12/11 ≈ 1.09"
+          },
+          {
+            "element": "Potassium",
+            "symbol": "39K",
+            "atomic_no_Z": 19,
+            "mass_no_A": 39,
+            "protons_p": 19,
+            "neutrons_n": 20,
+            "n_p_ratio": "20/19 ≈ 1.05"
+          },
+          {
+            "element": "Uranium",
+            "symbol": "236U",
+            "atomic_no_Z": 92,
+            "mass_no_A": 236,
+            "protons_p": 92,
+            "neutrons_n": 144,
+            "n_p_ratio": "144/92 ≈ 1.57"
+          }
+        ]
+      },
+      "reference_values_table": {
+        "atomic_size_period_2": [
+          {
+            "element": "Li",
+            "atomic_size_A": 1.55
+          },
+          {
+            "element": "Be",
+            "atomic_size_A": 1.12
+          },
+          {
+            "element": "B",
+            "atomic_size_A": 0.88
+          },
+          {
+            "element": "C",
+            "atomic_size_A": 0.77
+          },
+          {
+            "element": "N",
+            "atomic_size_A": 0.7
+          },
+          {
+            "element": "O",
+            "atomic_size_A": 0.66
+          },
+          {
+            "element": "F",
+            "atomic_size_A": 0.64
+          },
+          {
+            "element": "Ne",
+            "atomic_size_A": 1.12,
+            "note": "inert gas - larger due to filled shell"
+          }
+        ],
+        "atomic_size_period_3": [
+          {
+            "element": "Na",
+            "atomic_size_A": 1.91
+          },
+          {
+            "element": "Mg",
+            "atomic_size_A": 1.18
+          },
+          {
+            "element": "Al",
+            "atomic_size_A": 1.1
+          },
+          {
+            "element": "Si",
+            "atomic_size_A": 1.06
+          },
+          {
+            "element": "P",
+            "atomic_size_A": 0.99
+          },
+          {
+            "element": "S",
+            "atomic_size_A": 1.28,
+            "note": "exception"
+          },
+          {
+            "element": "Cl",
+            "atomic_size_A": 0.97
+          },
+          {
+            "element": "Ar",
+            "atomic_size_A": "—",
+            "note": "inert gas"
+          }
+        ],
+        "electron_affinity_period_2_eV": [
+          {
+            "element": "H",
+            "EA_eV": 0.72
+          },
+          {
+            "element": "He",
+            "EA_eV": 0
+          },
+          {
+            "element": "Li",
+            "EA_eV": 0.61
+          },
+          {
+            "element": "Be",
+            "EA_eV": "−0.30",
+            "note": "exception"
+          },
+          {
+            "element": "B",
+            "EA_eV": "−1.2"
+          },
+          {
+            "element": "C",
+            "EA_eV": "−1.48"
+          },
+          {
+            "element": "N",
+            "EA_eV": "−3.6",
+            "note": "exception"
+          },
+          {
+            "element": "O",
+            "EA_eV": "−3.6"
+          },
+          {
+            "element": "F",
+            "EA_eV": "−3.6"
+          },
+          {
+            "element": "Ne",
+            "EA_eV": 0
+          }
+        ],
+        "electronegativity_period_2": [
+          {
+            "element": "H",
+            "EN": 2.1
+          },
+          {
+            "element": "He",
+            "EN": 0
+          },
+          {
+            "element": "Li",
+            "EN": 1
+          },
+          {
+            "element": "Be",
+            "EN": 1.5
+          },
+          {
+            "element": "B",
+            "EN": 2
+          },
+          {
+            "element": "C",
+            "EN": 2.5
+          },
+          {
+            "element": "N",
+            "EN": 3
+          },
+          {
+            "element": "O",
+            "EN": 3.5
+          },
+          {
+            "element": "F",
+            "EN": 4
+          },
+          {
+            "element": "Ne",
+            "EN": 0
+          }
+        ],
+        "electronegativity_period_3": [
+          {
+            "element": "Na",
+            "EN": 0.9
+          },
+          {
+            "element": "Mg",
+            "EN": 1.2
+          },
+          {
+            "element": "Al",
+            "EN": 1.5
+          },
+          {
+            "element": "Si",
+            "EN": 1.8
+          },
+          {
+            "element": "P",
+            "EN": 2.1
+          },
+          {
+            "element": "S",
+            "EN": 2.5
+          },
+          {
+            "element": "Cl",
+            "EN": 3
+          },
+          {
+            "element": "Ar",
+            "EN": 0
+          }
+        ]
+      }
+    },
+    {
+      "section_id": "L",
+      "title": "Summary Chart - Periodic Properties",
+      "source_page": 15,
+      "trends_across_a_period_ascii": "PERIOD-1:  1H ──────────────────────────────────────── 2He\nPERIOD-2:  Li  Be  B  C  N  O  F  Ne\nPERIOD-3:  Na  Mg  Al  Si  P  S  Cl  Ar\n           ↑                                          ↑\n      LARGEST                                    SMALLEST\n      ATOMIC SIZE                                (except noble gas: LARGER)\n\n           I.P.  LOWEST ────────────► HIGHEST (Noble gas)\n           E.A.  LOWEST ────────────► HIGHEST (Group 17) ──► ZERO (Noble gas)\n           E.N.  LEAST  ────────────► HIGHEST (Group 17)\n           NON-METALLIC: LEAST ─────► HIGHEST\n           METALLIC:     HIGHEST ───► LEAST",
+      "trends_down_a_group_table": [
+        {
+          "group": 1,
+          "period_2_element": "3Li",
+          "period_3_element": "11Na",
+          "period_4_element": "19K",
+          "period_5_element": "37Rb"
+        },
+        {
+          "group": 2,
+          "period_2_element": "4Be",
+          "period_3_element": "12Mg",
+          "period_4_element": "20Ca",
+          "period_5_element": "38Sr"
+        },
+        {
+          "group": 13,
+          "period_2_element": "5B",
+          "period_3_element": "13Al",
+          "period_4_element": "31Ga",
+          "period_5_element": "49In"
+        },
+        {
+          "period_2_size": "SMALLEST",
+          "period_5_size": "LARGEST"
+        },
+        {
+          "period_2_metallic_char": "HIGHEST",
+          "period_5_metallic_char": "LOWEST"
+        },
+        {
+          "period_2_valence_electrons": "SAME for all (group number)"
+        },
+        {
+          "period_2_no_of_shells": 2,
+          "period_5_no_of_shells": 5,
+          "trend": "INCREASES BY ONE down a group"
+        }
+      ],
+      "reasons_for_trends_across_a_period": [
+        {
+          "property": "Atomic size",
+          "change": "Decreases",
+          "reason": "Nuclear charge increases; No. of shells remains same; Atomic radii decreases"
+        },
+        {
+          "property": "Ionisation potential",
+          "change": "Increases",
+          "reason": "Nuclear charge increases; Atomic radii decreases"
+        },
+        {
+          "property": "Electron affinity",
+          "change": "Increases",
+          "reason": "Nuclear charge increases; Atomic radii decreases"
+        },
+        {
+          "property": "Electronegativity",
+          "change": "Increases",
+          "reason": "Nuclear charge increases; Atomic radii decreases"
+        },
+        {
+          "property": "Non-metallic character",
+          "change": "Increases",
+          "reason": "Atomic radii decreases"
+        },
+        {
+          "property": "Metallic character",
+          "change": "Decreases",
+          "reason": "Atomic radii decreases; Ionisation potential increases"
+        }
+      ],
+      "reasons_for_trends_down_a_group": [
+        {
+          "property": "Atomic size",
+          "change": "Increases",
+          "reason": "No. of shells increases; Atomic radii increases; Nuclear charge effect dominated by increase in shells"
+        },
+        {
+          "property": "Electron affinity",
+          "change": "Decreases",
+          "reason": "Nuclear charge increases; Atomic radii increases; Nuclear charge effect dominated by increase in atomic radii"
+        },
+        {
+          "property": "Electronegativity",
+          "change": "Decreases",
+          "reason": "Nuclear charge increases; Atomic radii increases; Nuclear charge effect dominated by increase in atomic radii"
+        },
+        {
+          "property": "Non-metallic character",
+          "change": "Decreases",
+          "reason": "Ionisation potential decreases; Atomic radii increases"
+        },
+        {
+          "property": "Ionisation potential",
+          "change": "Decreases",
+          "reason": "Nuclear charge increases; Atomic radii increases; Nuclear charge effect dominated by increase in atomic radii"
+        },
+        {
+          "property": "Metallic character",
+          "change": "Increases",
+          "reason": "Ionisation potential decreases; Atomic radii increases"
+        }
+      ],
+      "group_18_special_facts": [
+        "Atomic radii MORE than group 17 (outer shell completely filled → force of repulsion → increasing atomic size).",
+        "Electron affinity is ZERO (elements with stable electronic configuration find it difficult to accept electrons)."
+      ],
+      "metals_vs_non_metals": "Metals lose electrons, have large atomic radii, & have less I.P., E.A. & E.N. compared to non-metals."
+    }
+  ]
+}
